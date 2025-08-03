@@ -68,6 +68,15 @@ body {
     font-size: 1.8rem;
 }
 
+.header-slogan {
+    color: rgba(255, 255, 255, 1);
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin: 0;
+    opacity: 1;
+    letter-spacing: 0.5px;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -1721,6 +1730,11 @@ body {
 
     .header-social-links {
         display: none;
+    }
+
+    .header-slogan {
+        font-size: 0.7rem;
+        opacity: 0.8;
     }
 
     .nav-menu {

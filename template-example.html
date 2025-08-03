@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Örneği - Lojikon</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Template Container -->
+    <div id="header-container"></div>
+
+    <!-- Page Content -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">Template</span> Sistemi
+                </h1>
+                <p class="hero-slogan">Akıllı Çözümler, Akıllı Gelecek</p>
+                <p class="hero-description">
+                    Bu sayfa template sisteminin nasıl çalıştığını gösteriyor. 
+                    Header ve footer ayrı dosyalardan yükleniyor.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#content" class="btn btn-primary">Detayları Gör</a>
+                    <a href="index.html" class="btn btn-secondary">Ana Sayfa</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="content" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Template Sistemi Avantajları</h2>
+                <p>Header ve footer'ı ayrı dosyalarda tutmanın faydaları</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Kolay Bakım</h3>
+                    <p>Bir değişiklik yaptığınızda tüm sayfalarda otomatik olarak güncellenir.</p>
+                    
+                    <h3>Tutarlılık</h3>
+                    <p>Tüm sayfalarda aynı header ve footer görünür.</p>
+                    
+                    <h3>Hızlı Geliştirme</h3>
+                    <p>Yeni sayfa oluştururken sadece içerik kısmına odaklanabilirsiniz.</p>
+                    
+                    <h3>Kod Tekrarını Önleme</h3>
+                    <p>Aynı HTML kodunu her sayfada tekrar yazmaya gerek yok.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Template Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="include-templates.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("pMn_T_QHghVJklt3q");
+        })();
+    </script>
+</body>
+</html> 
