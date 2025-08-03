@@ -505,15 +505,29 @@ window.addEventListener('resize', function() {
     }
 });
 
-// Scroll to top butonu
+// Scroll to top ve WhatsApp butonları
 function createScrollToTopButton() {
-    const button = document.createElement('button');
-    button.innerHTML = '↑';
-    button.className = 'scroll-to-top';
-    button.style.cssText = `
+    // Container oluştur
+    const container = document.createElement('div');
+    container.className = 'floating-buttons';
+    container.style.cssText = `
         position: fixed;
         bottom: 30px;
         right: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    `;
+    
+    // Scroll to top butonu
+    const scrollButton = document.createElement('button');
+    scrollButton.innerHTML = '↑';
+    scrollButton.className = 'scroll-to-top';
+    scrollButton.style.cssText = `
         width: 50px;
         height: 50px;
         background: var(--primary);
@@ -522,45 +536,250 @@ function createScrollToTopButton() {
         border-radius: 50%;
         font-size: 1.5rem;
         cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
         transition: all 0.3s ease;
-        z-index: 1000;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     `;
     
-    document.body.appendChild(button);
+    // WhatsApp butonu
+    const whatsappButton = document.createElement('a');
+    whatsappButton.href = 'https://wa.me/902126571803?text=Merhaba! Lojikon hakkında bilgi almak istiyorum.';
+    whatsappButton.target = '_blank';
+    whatsappButton.rel = 'noopener noreferrer';
+    whatsappButton.className = 'whatsapp-button';
+    whatsappButton.innerHTML = '<i class="fab fa-whatsapp"></i>';
+    whatsappButton.style.cssText = `
+        width: 50px;
+        height: 50px;
+        background: #25D366;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    `;
+    
+    container.appendChild(scrollButton);
+    container.appendChild(whatsappButton);
+    document.body.appendChild(container);
     
     // Scroll olayını dinle
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 300) {
-            button.style.opacity = '1';
-            button.style.visibility = 'visible';
+            container.style.opacity = '1';
+            container.style.visibility = 'visible';
+            scrollButton.style.opacity = '1';
+            scrollButton.style.visibility = 'visible';
         } else {
-            button.style.opacity = '0';
-            button.style.visibility = 'hidden';
+            // WhatsApp butonu her zaman görünür, sadece scroll-to-top butonu gizlenir
+            scrollButton.style.opacity = '0';
+            scrollButton.style.visibility = 'hidden';
+            // Container'ın opacity'sini 1'de tut ki WhatsApp butonu görünsün
+            container.style.opacity = '1';
+            container.style.visibility = 'visible';
         }
     });
     
-    // Tıklama olayı
-    button.addEventListener('click', () => {
+    // Scroll to top tıklama olayı
+    scrollButton.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
     });
     
-    // Hover efekti
-    button.addEventListener('mouseenter', () => {
-        button.style.transform = 'translateY(-3px)';
-        button.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
+    // Scroll to top hover efekti
+    scrollButton.addEventListener('mouseenter', () => {
+        scrollButton.style.transform = 'translateY(-3px)';
+        scrollButton.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
     });
     
-    button.addEventListener('mouseleave', () => {
-        button.style.transform = 'translateY(0)';
-        button.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+    scrollButton.addEventListener('mouseleave', () => {
+        scrollButton.style.transform = 'translateY(0)';
+        scrollButton.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+    });
+    
+    // WhatsApp hover efekti
+    whatsappButton.addEventListener('mouseenter', () => {
+        whatsappButton.style.transform = 'translateY(-3px)';
+        whatsappButton.style.boxShadow = '0 8px 20px rgba(37, 211, 102, 0.4)';
+        whatsappButton.style.background = '#128C7E';
+    });
+    
+    whatsappButton.addEventListener('mouseleave', () => {
+        whatsappButton.style.transform = 'translateY(0)';
+        whatsappButton.style.boxShadow = '0 5px 15px rgba(37, 211, 102, 0.3)';
+        whatsappButton.style.background = '#25D366';
     });
 }
 
 // Scroll to top butonunu oluştur
-createScrollToTopButton(); 
+createScrollToTopButton();
+
+// Hero Slider Functionality
+class HeroSlider {
+    constructor() {
+        this.currentSlide = 1;
+        this.totalSlides = 3;
+        this.autoPlayInterval = null;
+        this.autoPlayDelay = 5000; // 5 seconds
+        
+        this.init();
+    }
+    
+    init() {
+        this.bindEvents();
+        this.startAutoPlay();
+        this.updateSlide();
+    }
+    
+    bindEvents() {
+        // Previous button
+        const prevBtn = document.getElementById('prevSlide');
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => this.prevSlide());
+        }
+        
+        // Next button
+        const nextBtn = document.getElementById('nextSlide');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => this.nextSlide());
+        }
+        
+        // Dot navigation
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => this.goToSlide(index + 1));
+        });
+        
+        // Pause auto-play on hover
+        const slider = document.querySelector('.hero-slider');
+        if (slider) {
+            slider.addEventListener('mouseenter', () => this.pauseAutoPlay());
+            slider.addEventListener('mouseleave', () => this.startAutoPlay());
+        }
+        
+        // Touch/swipe support for mobile
+        this.initTouchSupport();
+    }
+    
+    nextSlide() {
+        this.currentSlide = this.currentSlide >= this.totalSlides ? 1 : this.currentSlide + 1;
+        this.updateSlide();
+    }
+    
+    prevSlide() {
+        this.currentSlide = this.currentSlide <= 1 ? this.totalSlides : this.currentSlide - 1;
+        this.updateSlide();
+    }
+    
+    goToSlide(slideNumber) {
+        this.currentSlide = slideNumber;
+        this.updateSlide();
+    }
+    
+    updateSlide() {
+        // Hide all slides
+        const slides = document.querySelectorAll('.hero-slide');
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Show current slide
+        const currentSlideElement = document.querySelector(`[data-slide="${this.currentSlide}"]`);
+        if (currentSlideElement) {
+            currentSlideElement.classList.add('active');
+        }
+        
+        // Update dots
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+            if (index + 1 === this.currentSlide) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+        
+        // Update buttons
+        this.updateButtonStates();
+    }
+    
+    updateButtonStates() {
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        
+        if (prevBtn) {
+            prevBtn.style.opacity = this.currentSlide === 1 ? '0.5' : '1';
+            prevBtn.disabled = this.currentSlide === 1;
+        }
+        
+        if (nextBtn) {
+            nextBtn.style.opacity = this.currentSlide === this.totalSlides ? '0.5' : '1';
+            nextBtn.disabled = this.currentSlide === this.totalSlides;
+        }
+    }
+    
+    startAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+        }
+        
+        this.autoPlayInterval = setInterval(() => {
+            this.nextSlide();
+        }, this.autoPlayDelay);
+    }
+    
+    pauseAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
+    }
+    
+    initTouchSupport() {
+        const slider = document.querySelector('.hero-slider');
+        if (!slider) return;
+        
+        let startX = 0;
+        let endX = 0;
+        
+        slider.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+        
+        slider.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            this.handleSwipe(startX, endX);
+        }, { passive: true });
+    }
+    
+    handleSwipe(startX, endX) {
+        const swipeThreshold = 50;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next slide
+                this.nextSlide();
+            } else {
+                // Swipe right - previous slide
+                this.prevSlide();
+            }
+        }
+    }
+}
+
+// Initialize hero slider when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're on the homepage (has hero slider)
+    const heroSlider = document.querySelector('.hero-slider');
+    if (heroSlider) {
+        new HeroSlider();
+    }
+}); 
