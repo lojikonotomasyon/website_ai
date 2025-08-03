@@ -2,6 +2,43 @@
 
 Modern, responsive ve SEO dostu HTML/CSS/JS website'ı. Endüstriyel otomasyon ve intralogistics çözümleri için tasarlanmıştır.
 
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](VERSION)
+[![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-Production-green.svg)](https://lojikon.com)
+
+## 📋 Versiyon Bilgisi
+
+**Mevcut Versiyon:** `1.0.0`  
+**Son Güncelleme:** 19 Aralık 2024  
+**Durum:** Production Ready
+
+### 🚀 Versiyon Yönetimi
+
+Bu proje [Semantic Versioning](https://semver.org/) standardını kullanır:
+
+- **MAJOR** (1.0.0): Büyük değişiklikler, geriye uyumsuz güncellemeler
+- **MINOR** (1.1.0): Yeni özellikler, geriye uyumlu
+- **PATCH** (1.0.1): Hata düzeltmeleri, küçük iyileştirmeler
+
+### 📝 Versiyon Güncelleme
+
+Versiyon güncellemeleri için `version.sh` scriptini kullanın:
+
+```bash
+# Patch güncelleme (hata düzeltmesi)
+./version.sh patch "Hero slider animasyon düzeltmesi"
+
+# Minor güncelleme (yeni özellik)
+./version.sh minor "Yeni intralogistics animasyonu eklendi"
+
+# Major güncelleme (büyük değişiklik)
+./version.sh major "Website tamamen yeniden tasarlandı"
+```
+
+### 📚 Changelog
+
+Tüm değişiklikler [CHANGELOG.md](CHANGELOG.md) dosyasında takip edilir.
+
 ## 🎯 Özellikler
 
 ### 📱 Responsive Tasarım

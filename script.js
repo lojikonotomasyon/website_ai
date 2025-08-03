@@ -1,5 +1,87 @@
+// Hero Slider functionality
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    if (!slides.length) return; // Exit if no slides found
+    
+    let currentSlide = 0;
+    let slideInterval;
+    
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Show current slide
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        currentSlide = index;
+    }
+    
+    function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        showSlide(next);
+    }
+    
+    function prevSlide() {
+        const prev = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(prev);
+    }
+    
+    function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+    
+    function stopAutoSlide() {
+        clearInterval(slideInterval);
+    }
+    
+    // Event listeners for dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto-slide
+        });
+    });
+    
+    // Event listeners for navigation buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto-slide
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide(); // Restart auto-slide
+        });
+    }
+    
+    // Pause auto-slide on hover
+    const slider = document.querySelector('.hero-slider');
+    if (slider) {
+        slider.addEventListener('mouseenter', stopAutoSlide);
+        slider.addEventListener('mouseleave', startAutoSlide);
+    }
+    
+    // Start auto-slide
+    startAutoSlide();
+}
+
 // DOM yüklendiğinde çalışacak fonksiyonlar
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize hero slider
+    initHeroSlider();
+    
     // Mobil menü toggle
     const hamburger = document.querySelector('.hamburger, .mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -94,18 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.textContent = 'Gönderiliyor...';
             submitBtn.disabled = true;
             
-            // Simüle edilmiş form gönderimi
-            setTimeout(() => {
-                // Başarı mesajı göster
-                showNotification('Mesajınız başarıyla gönderildi! En kısa sürede size geri dönüş yapacağız.', 'success');
-                
-                // Formu temizle
-                this.reset();
-                
-                // Butonu eski haline getir
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+            // E-posta gönderme işlemi
+            sendEmail(data, submitBtn, originalText, this);
         });
     }
 
@@ -157,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounter(entry.target);
+                    // animateCounter(entry.target); // Kaldırıldı
                     statsObserver.unobserve(entry.target);
                 }
             });
@@ -188,22 +260,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
 });
 
-// Sayaç animasyonu fonksiyonu
-function animateCounter(element) {
-    const target = parseInt(element.textContent.replace(/\D/g, ''));
-    const duration = 2000;
-    const step = target / (duration / 16);
-    let current = 0;
-    
-    const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
-        element.textContent = Math.floor(current) + '+';
-    }, 16);
-}
+// Sayaç animasyonu fonksiyonu - Kaldırıldı
+// function animateCounter(element) {
+//     const target = parseInt(element.textContent.replace(/\D/g, ''));
+//     const duration = 2000;
+//     const step = target / (duration / 16);
+//     let current = 0;
+//     
+//     const timer = setInterval(() => {
+//         current += step;
+//         if (current >= target) {
+//             current = target;
+//             clearInterval(timer);
+//         }
+//         element.textContent = Math.floor(current) + '+';
+//     }, 16);
+// }
 
 // Bildirim gösterme fonksiyonu
 function showNotification(message, type = 'info') {
@@ -413,6 +485,40 @@ function showSolutionDetails(solutionType) {
     });
 }
 
+// E-posta gönderme fonksiyonu
+function sendEmail(data, submitBtn, originalText, form) {
+    // EmailJS ile otomatik e-posta gönderimi
+    if (typeof emailjs !== 'undefined') {
+        emailjs.send('service_myv14au', 'template_j48q9zh', {
+            to_email: 'yusuf@lojikon.com',
+            from_name: data.name,
+            from_email: data.email,
+            company: data.company || 'Belirtilmemiş',
+            phone: data.phone || 'Belirtilmemiş',
+            service: data.service || 'Belirtilmemiş',
+            message: data.message,
+            date: new Date().toLocaleString('tr-TR')
+        })
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            showNotification('Mesajınız başarıyla gönderildi! En kısa sürede size geri dönüş yapacağız.', 'success');
+            form.reset();
+        }, function(error) {
+            console.log('FAILED...', error);
+            showNotification('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.', 'error');
+        })
+        .finally(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+    } else {
+        console.error('EmailJS yüklenmedi!');
+        showNotification('E-posta servisi yüklenemedi. Lütfen sayfayı yenileyin.', 'error');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
 // İletişim formuna yönlendirme
 function contactUs(solutionType) {
     const contactSection = document.getElementById('contact');
@@ -466,7 +572,7 @@ window.addEventListener('load', function() {
         if (stats.length > 0) {
             stats.forEach((stat, index) => {
                 setTimeout(() => {
-                    animateCounter(stat);
+                    // animateCounter(stat); // Kaldırıldı
                 }, index * 200);
             });
         }

@@ -52,6 +52,8 @@
         </div>
     </section>
 
+
+
     <!-- Animation Section -->
     <section id="animation" class="animation-section">
         <div class="container">
@@ -165,37 +167,6 @@
         </div>
     </section>
 
-    <!-- Info Section -->
-    <section class="info-section">
-        <div class="container">
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Nasıl Çalışır?</h3>
-                    <p>Pick to light sistemi, toplama işlemlerini ışık göstergeleri ile yönlendirir. Sistem, hangi ürünün hangi miktarda toplanacağını ışık ile gösterir. Operatör ışığı takip ederek doğru ürünü doğru miktarda toplar ve onay verir.</p>
-                </div>
-                
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-question-circle"></i>
-                    </div>
-                    <h3>Neden Kullanılır?</h3>
-                    <p>Toplama hızını artırmak, hata oranını minimize etmek ve operatör eğitim süresini kısaltmak için kullanılır. Özellikle yüksek hacimli e-ticaret operasyonlarında kritik öneme sahiptir.</p>
-                </div>
-                
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Nerede Kullanılır?</h3>
-                    <p>E-ticaret depoları, perakende mağaza depoları, ilaç depoları, elektronik ürün depoları ve hızlı tüketim ürünleri depolarında yaygın olarak kullanılır. Özellikle çok çeşitli ürün bulunan depolar için idealdir.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Specs Section -->
     <section class="specs-section">
         <div class="container">
@@ -277,7 +248,7 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+90 212 555 0123</span>
+                            <span>+90 212 657 18 03</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -285,7 +256,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>İstanbul, Türkiye</span>
+                            <span>Silivri-İstanbul TÜRKİYE</span>
                         </div>
                     </div>
                 </div>
@@ -382,12 +353,13 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h4>İletişim</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> +90 212 555 0123</p>
-                        <p><i class="fas fa-envelope"></i> info@lojikon.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
-                    </div>
+                                            <h4>İletişim</h4>
+                        <div class="contact-info">
+                            <p><i class="fas fa-phone"></i> +90 212 657 18 03</p>
+                            <p><i class="fas fa-mobile-alt"></i> +90 533 388 33 92</p>
+                            <p><i class="fas fa-envelope"></i> info@lojikon.com</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Silivri-İstanbul TÜRKİYE</p>
+                        </div>
                 </div>
             </div>
             
@@ -397,6 +369,12 @@
         </div>
     </footer>
 
+    <!-- EmailJS kütüphanesi -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // EmailJS Public Key (User ID) - https://dashboard.emailjs.com/admin/account adresinden alın
+        emailjs.init("pMn_T_QHghVJklt3q");
+    </script>
     <script src="script.js"></script>
     <script src="pick-to-light-animation.js"></script>
 </body>

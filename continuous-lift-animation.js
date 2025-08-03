@@ -56,10 +56,10 @@ class ContinuousLiftAnimation {
         }
 
         // Package click effects
-        this.packages.forEach(package => {
-            package.addEventListener('click', () => {
+        this.packages.forEach(pkg => {
+            pkg.addEventListener('click', () => {
                 if (!this.isRunning) {
-                    this.highlightPackage(package);
+                    this.highlightPackage(pkg);
                 }
             });
         });
@@ -141,26 +141,26 @@ class ContinuousLiftAnimation {
         }
     }
 
-    movePackageToPlatform(package, platform, callback) {
+    movePackageToPlatform(pkg, platform, callback) {
         const platformRect = platform.getBoundingClientRect();
-        const packageRect = package.getBoundingClientRect();
+        const packageRect = pkg.getBoundingClientRect();
 
         const deltaX = platformRect.left - packageRect.left;
         const deltaY = platformRect.top - packageRect.top;
 
-        package.style.transition = `transform ${this.animationSpeed / 2}ms ease-in-out`;
-        package.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        pkg.style.transition = `transform ${this.animationSpeed / 2}ms ease-in-out`;
+        pkg.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 
         setTimeout(() => {
-            package.style.opacity = '0.7';
+            pkg.style.opacity = '0.7';
             if (callback) callback();
         }, this.animationSpeed / 2);
     }
 
-    liftPackage(package, platform, callback) {
+    liftPackage(pkg, platform, callback) {
         platform.classList.add('moving');
-        package.style.transition = `transform ${this.animationSpeed}ms ease-in-out`;
-        package.style.transform = 'translateY(-200px)';
+        pkg.style.transition = `transform ${this.animationSpeed}ms ease-in-out`;
+        pkg.style.transform = 'translateY(-200px)';
 
         // Update platform indicator
         const indicator = platform.querySelector('.platform-indicator i');
@@ -174,36 +174,36 @@ class ContinuousLiftAnimation {
         }, this.animationSpeed);
     }
 
-    movePackageToOutput(package, slot, callback) {
+    movePackageToOutput(pkg, slot, callback) {
         const slotRect = slot.getBoundingClientRect();
-        const packageRect = package.getBoundingClientRect();
+        const packageRect = pkg.getBoundingClientRect();
 
         const deltaX = slotRect.left - packageRect.left;
         const deltaY = slotRect.top - packageRect.top;
 
-        package.style.transition = `transform ${this.animationSpeed / 2}ms ease-in-out`;
-        package.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        pkg.style.transition = `transform ${this.animationSpeed / 2}ms ease-in-out`;
+        pkg.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 
         setTimeout(() => {
-            package.style.opacity = '1';
+            pkg.style.opacity = '1';
             slot.classList.add('filled');
-            slot.appendChild(package);
-            package.style.transform = 'none';
-            package.style.position = 'static';
+            slot.appendChild(pkg);
+            pkg.style.transform = 'none';
+            pkg.style.position = 'static';
 
             if (callback) callback();
         }, this.animationSpeed / 2);
     }
 
     resetPackages() {
-        this.packages.forEach((package, index) => {
+        this.packages.forEach((pkg, index) => {
             const originalContainer = document.querySelector('.input-conveyor');
-            package.style.transition = 'all 0.5s ease-in-out';
-            package.style.transform = 'none';
-            package.style.opacity = '1';
-            package.style.position = 'static';
+            pkg.style.transition = 'all 0.5s ease-in-out';
+            pkg.style.transform = 'none';
+            pkg.style.opacity = '1';
+            pkg.style.position = 'static';
 
-            originalContainer.appendChild(package);
+            originalContainer.appendChild(pkg);
         });
 
         this.outputSlots.forEach(slot => {
@@ -240,8 +240,8 @@ class ContinuousLiftAnimation {
         this.currentSpeed = 0;
 
         // Stop all animations
-        this.packages.forEach(package => {
-            package.style.transition = 'none';
+        this.packages.forEach(pkg => {
+            pkg.style.transition = 'none';
         });
 
         this.platforms.forEach(platform => {
@@ -284,13 +284,13 @@ class ContinuousLiftAnimation {
         this.updateButtonStates();
     }
 
-    highlightPackage(package) {
-        package.style.transform = 'scale(1.2)';
-        package.style.boxShadow = '0 0 20px rgba(255, 165, 0, 0.8)';
+    highlightPackage(pkg) {
+        pkg.style.transform = 'scale(1.2)';
+        pkg.style.boxShadow = '0 0 20px rgba(255, 165, 0, 0.8)';
 
         setTimeout(() => {
-            package.style.transform = 'scale(1)';
-            package.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+            pkg.style.transform = 'scale(1)';
+            pkg.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
         }, 500);
     }
 
