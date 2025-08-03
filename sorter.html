@@ -168,207 +168,136 @@
                 <p>İnteraktif animasyon ile sorter sisteminin çalışma prensibini keşfedin</p>
             </div>
             <div class="sorter-animation">
-                    <!-- Professional Sorter System -->
-                    <div class="sorter-system">
-                        <!-- Infeed Conveyor -->
-                        <div class="infeed-section">
-                            <div class="conveyor-frame">
-                                <div class="conveyor-belt">
-                                    <div class="belt-rollers">
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                    </div>
-                                    <div class="belt-surface"></div>
-                                </div>
-                            </div>
-                            <div class="packages-container">
-                                <div class="package" data-type="box" data-destination="A">
-                                    <div class="package-body">
-                                        <div class="barcode"></div>
-                                        <div class="package-label">BOX-001</div>
-                                    </div>
-                                </div>
-                                <div class="package" data-type="envelope" data-destination="B">
-                                    <div class="package-body">
-                                        <div class="barcode"></div>
-                                        <div class="package-label">ENV-002</div>
-                                    </div>
-                                </div>
-                                <div class="package" data-type="tote" data-destination="C">
-                                    <div class="package-body">
-                                        <div class="barcode"></div>
-                                        <div class="package-label">TOTE-003</div>
-                                    </div>
-                                </div>
-                                <div class="package" data-type="box" data-destination="A">
-                                    <div class="package-body">
-                                        <div class="barcode"></div>
-                                        <div class="package-label">BOX-004</div>
-                                    </div>
-                                </div>
-                                <div class="package" data-type="envelope" data-destination="B">
-                                    <div class="package-body">
-                                        <div class="barcode"></div>
-                                        <div class="package-label">ENV-005</div>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Main Conveyor Belt -->
+                <div class="main-conveyor">
+                    <div class="conveyor-frame">
+                        <div class="conveyor-belt" id="mainBelt">
+                            <!-- Packages will be added here dynamically -->
                         </div>
-
-                        <!-- Scanner Station -->
-                        <div class="scanner-station">
-                            <div class="scanner-tower">
-                                <div class="scanner-head">
-                                    <div class="scanner-lens"></div>
-                                    <div class="scanner-light"></div>
-                                </div>
-                                <div class="scanner-beam"></div>
-                            </div>
-                            <div class="scanner-display">
-                                <div class="display-screen">
-                                    <div class="scan-data">SCANNING...</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sorting Junction -->
-                        <div class="sorting-junction">
-                            <div class="junction-frame">
-                                <div class="divertor-mechanism">
-                                    <div class="divertor-arm arm-1" data-target="A">
-                                        <div class="arm-base"></div>
-                                        <div class="arm-pusher"></div>
-                                        <div class="arm-indicator"></div>
-                                    </div>
-                                    <div class="divertor-arm arm-2" data-target="B">
-                                        <div class="arm-base"></div>
-                                        <div class="arm-pusher"></div>
-                                        <div class="arm-indicator"></div>
-                                    </div>
-                                    <div class="divertor-arm arm-3" data-target="C">
-                                        <div class="arm-base"></div>
-                                        <div class="arm-pusher"></div>
-                                        <div class="arm-indicator"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Output Lanes -->
-                        <div class="output-section">
-                            <div class="output-lane lane-a">
-                                <div class="lane-conveyor">
-                                    <div class="belt-rollers">
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                    </div>
-                                </div>
-                                <div class="lane-header">
-                                    <div class="lane-indicator">
-                                        <div class="light green"></div>
-                                        <span>ZONE A</span>
-                                    </div>
-                                    <div class="lane-counter">0</div>
-                                </div>
-                                <div class="sorted-packages"></div>
-                            </div>
-                            <div class="output-lane lane-b">
-                                <div class="lane-conveyor">
-                                    <div class="belt-rollers">
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                    </div>
-                                </div>
-                                <div class="lane-header">
-                                    <div class="lane-indicator">
-                                        <div class="light blue"></div>
-                                        <span>ZONE B</span>
-                                    </div>
-                                    <div class="lane-counter">0</div>
-                                </div>
-                                <div class="sorted-packages"></div>
-                            </div>
-                            <div class="output-lane lane-c">
-                                <div class="lane-conveyor">
-                                    <div class="belt-rollers">
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                        <div class="roller"></div>
-                                    </div>
-                                </div>
-                                <div class="lane-header">
-                                    <div class="lane-indicator">
-                                        <div class="light orange"></div>
-                                        <span>ZONE C</span>
-                                    </div>
-                                    <div class="lane-counter">0</div>
-                                </div>
-                                <div class="sorted-packages"></div>
-                            </div>
-                        </div>
-
-                        <!-- Control Panel -->
-                        <div class="control-panel">
-                            <div class="panel-display">
-                                <div class="status-line">
-                                    <span class="status-label">STATUS:</span>
-                                    <span class="status-value">READY</span>
-                                </div>
-                                <div class="status-line">
-                                    <span class="status-label">SPEED:</span>
-                                    <span class="status-value">45 m/min</span>
-                                </div>
-                                <div class="status-line">
-                                    <span class="status-label">TOTAL:</span>
-                                    <span class="status-value">0</span>
-                                </div>
-                            </div>
+                        <div class="conveyor-rollers">
+                            <div class="roller"></div>
+                            <div class="roller"></div>
+                            <div class="roller"></div>
+                            <div class="roller"></div>
+                            <div class="roller"></div>
+                            <div class="roller"></div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Animation Controls -->
-                    <div class="animation-controls">
-                        <button id="startAnimation" class="control-button">
-                            <i class="fas fa-play"></i>
-                            <span>Başlat</span>
-                        </button>
-                        <button id="pauseAnimation" class="control-button">
-                            <i class="fas fa-pause"></i>
-                            <span>Duraklat</span>
-                        </button>
-                        <button id="resetAnimation" class="control-button">
-                            <i class="fas fa-redo"></i>
-                            <span>Sıfırla</span>
-                        </button>
-                        <div class="speed-control">
-                            <label>Hız:</label>
-                            <input type="range" id="speedSlider" min="0.5" max="3" step="0.5" value="1">
-                            <span id="speedValue">1x</span>
+                <!-- Sorting Mechanism -->
+                <div class="sorting-mechanism">
+                    <div class="divertor-arm" id="divertor1" data-lane="1">
+                        <div class="divertor-paddle"></div>
+                        <div class="divertor-actuator"></div>
+                    </div>
+                    <div class="divertor-arm" id="divertor2" data-lane="2">
+                        <div class="divertor-paddle"></div>
+                        <div class="divertor-actuator"></div>
+                    </div>
+                    <div class="divertor-arm" id="divertor3" data-lane="3">
+                        <div class="divertor-paddle"></div>
+                        <div class="divertor-actuator"></div>
+                    </div>
+                </div>
+
+                <!-- Output Lanes -->
+                <div class="output-lanes">
+                    <div class="output-lane" data-lane="1">
+                        <div class="lane-conveyor">
+                            <div class="lane-belt" id="lane1Belt"></div>
+                        </div>
+                        <div class="lane-indicator">
+                            <span class="lane-name">Lane 1</span>
+                            <span class="package-count" id="lane1Count">0</span>
                         </div>
                     </div>
+                    <div class="output-lane" data-lane="2">
+                        <div class="lane-conveyor">
+                            <div class="lane-belt" id="lane2Belt"></div>
+                        </div>
+                        <div class="lane-indicator">
+                            <span class="lane-name">Lane 2</span>
+                            <span class="package-count" id="lane2Count">0</span>
+                        </div>
+                    </div>
+                    <div class="output-lane" data-lane="3">
+                        <div class="lane-conveyor">
+                            <div class="lane-belt" id="lane3Belt"></div>
+                        </div>
+                        <div class="lane-indicator">
+                            <span class="lane-name">Lane 3</span>
+                            <span class="package-count" id="lane3Count">0</span>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- Performance Indicators -->
-                    <div class="performance-indicators">
-                        <div class="indicator">
-                            <div class="indicator-label">İşlenen Parça</div>
-                            <div class="indicator-value" id="processedCount">0</div>
+                <!-- Scanner and Control System -->
+                <div class="scanner-system">
+                    <div class="scanner-frame">
+                        <div class="scanner-light" id="scannerLight"></div>
+                        <div class="scanner-display">
+                            <span id="scannerText">SCANNING...</span>
                         </div>
-                        <div class="indicator">
-                            <div class="indicator-label">Hız</div>
-                            <div class="indicator-value" id="speedIndicator">0 p/h</div>
+                    </div>
+                </div>
+
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <div class="panel-display">
+                        <div class="display-row">
+                            <span class="label">Speed:</span>
+                            <span class="value" id="speedValue">120 m/min</span>
                         </div>
-                        <div class="indicator">
-                            <div class="indicator-label">Doğruluk</div>
-                            <div class="indicator-value" id="accuracyIndicator">%99.9</div>
+                        <div class="display-row">
+                            <span class="label">Capacity:</span>
+                            <span class="value" id="capacityValue">5000 pcs/hr</span>
                         </div>
+                        <div class="display-row">
+                            <span class="label">Accuracy:</span>
+                            <span class="value" id="accuracyValue">99.8%</span>
+                        </div>
+                        <div class="display-row">
+                            <span class="label">Status:</span>
+                            <span class="value" id="statusValue">RUNNING</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animation Controls -->
+                <div class="animation-controls">
+                    <button id="startSorterAnimation" class="control-button">
+                        <i class="fas fa-play"></i>
+                        <span>Başlat</span>
+                    </button>
+                    <button id="stopSorterAnimation" class="control-button">
+                        <i class="fas fa-pause"></i>
+                        <span>Duraklat</span>
+                    </button>
+                    <button id="resetSorterAnimation" class="control-button">
+                        <i class="fas fa-redo"></i>
+                        <span>Sıfırla</span>
+                    </button>
+                    <div class="speed-control">
+                        <label>Hız:</label>
+                        <input type="range" id="speedControl" min="60" max="200" step="20" value="120">
+                        <span id="speedDisplay">120 m/min</span>
+                    </div>
+                </div>
+
+                <!-- Performance Indicators -->
+                <div class="performance-indicators">
+                    <div class="indicator">
+                        <div class="indicator-label">İşlenen Parça</div>
+                        <div class="indicator-value" id="processedCount">0</div>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-label">Hız</div>
+                        <div class="indicator-value" id="speedIndicator">0 p/h</div>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-label">Doğruluk</div>
+                        <div class="indicator-value" id="accuracyIndicator">%99.8</div>
                     </div>
                 </div>
             </div>

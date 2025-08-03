@@ -1,297 +1,370 @@
-// Professional Sorter Animation JavaScript
-class SorterAnimation {
+// Professional Sorter Animation System
+class ProfessionalSorter {
     constructor() {
         this.isRunning = false;
-        this.isPaused = false;
-        this.speed = 1;
-        this.processedCount = 0;
-        this.startTime = null;
-        this.animationInterval = null;
-        this.packageInterval = null;
+        this.packages = [];
+        this.laneCounts = { 1: 0, 2: 0, 3: 0 };
+        this.currentSpeed = 120;
+        this.capacity = 5000;
+        this.accuracy = 99.8;
+        this.packageId = 1;
         
-        this.initializeElements();
-        this.bindEvents();
-        this.updateDisplay();
+        this.init();
     }
 
-    initializeElements() {
-        // Control buttons
-        this.startBtn = document.getElementById('startAnimation');
-        this.pauseBtn = document.getElementById('pauseAnimation');
-        this.resetBtn = document.getElementById('resetAnimation');
-        this.speedSlider = document.getElementById('speedSlider');
-        this.speedValue = document.getElementById('speedValue');
-
-        // System elements
-        this.conveyorBelt = document.querySelector('.conveyor-belt');
-        this.scannerStation = document.querySelector('.scanner-station');
-        this.divertorArms = document.querySelectorAll('.divertor-arm');
-        this.outputLanes = document.querySelectorAll('.output-lane');
-        this.packages = document.querySelectorAll('.package');
-
-        // Control panel
-        this.statusValue = document.querySelector('.status-value');
-        this.speedDisplay = document.querySelector('.status-line:nth-child(2) .status-value');
-        this.totalDisplay = document.querySelector('.status-line:nth-child(3) .status-value');
-
-        // Performance indicators
-        this.processedCountDisplay = document.getElementById('processedCount');
-        this.speedIndicator = document.getElementById('speedIndicator');
-        this.accuracyIndicator = document.getElementById('accuracyIndicator');
-
-        // Lane counters
-        this.laneCounters = document.querySelectorAll('.lane-counter');
-        this.sortedPackages = document.querySelectorAll('.sorted-packages');
+    init() {
+        this.bindEvents();
+        this.updateDisplay();
+        this.createInitialPackages();
     }
 
     bindEvents() {
-        this.startBtn.addEventListener('click', () => this.startAnimation());
-        this.pauseBtn.addEventListener('click', () => this.pauseAnimation());
-        this.resetBtn.addEventListener('click', () => this.resetAnimation());
-        this.speedSlider.addEventListener('input', (e) => this.setSpeed(e.target.value));
+        const startBtn = document.getElementById('startSorterAnimation');
+        const stopBtn = document.getElementById('stopSorterAnimation');
+        const resetBtn = document.getElementById('resetSorterAnimation');
+        const speedControl = document.getElementById('speedControl');
+
+        if (startBtn) startBtn.addEventListener('click', () => this.start());
+        if (stopBtn) stopBtn.addEventListener('click', () => this.stop());
+        if (resetBtn) resetBtn.addEventListener('click', () => this.reset());
+        if (speedControl) {
+            speedControl.addEventListener('input', (e) => {
+                this.setSpeed(e.target.value);
+                const speedDisplay = document.getElementById('speedDisplay');
+                if (speedDisplay) speedDisplay.textContent = `${e.target.value} m/min`;
+            });
+        }
     }
 
-    startAnimation() {
+    start() {
         if (this.isRunning) return;
         
         this.isRunning = true;
-        this.isPaused = false;
-        this.startTime = Date.now();
-        
         this.updateStatus('RUNNING');
-        this.activateSystem();
-        this.startPackageFlow();
+        this.startConveyor();
+        this.startPackageGeneration();
+        this.startScanner();
         
-        this.startBtn.disabled = true;
-        this.pauseBtn.disabled = false;
+        // Update button states
+        const startBtn = document.getElementById('startSorterAnimation');
+        const stopBtn = document.getElementById('stopSorterAnimation');
+        if (startBtn) startBtn.disabled = true;
+        if (stopBtn) stopBtn.disabled = false;
     }
 
-    pauseAnimation() {
-        if (!this.isRunning) return;
-        
-        this.isPaused = !this.isPaused;
-        
-        if (this.isPaused) {
-            this.updateStatus('PAUSED');
-            this.deactivateSystem();
-            this.pauseBtn.innerHTML = '<i class="fas fa-play"></i><span>Devam</span>';
-        } else {
-            this.updateStatus('RUNNING');
-            this.activateSystem();
-            this.pauseBtn.innerHTML = '<i class="fas fa-pause"></i><span>Duraklat</span>';
-        }
-    }
-
-    resetAnimation() {
+    stop() {
         this.isRunning = false;
-        this.isPaused = false;
-        this.processedCount = 0;
+        this.updateStatus('STOPPED');
+        this.stopConveyor();
+        this.stopPackageGeneration();
+        this.stopScanner();
         
-        this.updateStatus('READY');
-        this.deactivateSystem();
-        this.resetPackages();
-        this.resetCounters();
-        this.updateDisplay();
-        
-        this.startBtn.disabled = false;
-        this.pauseBtn.disabled = true;
-        this.pauseBtn.innerHTML = '<i class="fas fa-pause"></i><span>Duraklat</span>';
+        // Update button states
+        const startBtn = document.getElementById('startSorterAnimation');
+        const stopBtn = document.getElementById('stopSorterAnimation');
+        if (startBtn) startBtn.disabled = false;
+        if (stopBtn) stopBtn.disabled = true;
     }
 
-    setSpeed(value) {
-        this.speed = parseFloat(value);
-        this.speedValue.textContent = this.speed + 'x';
+    reset() {
+        this.stop();
+        this.clearPackages();
+        this.resetLaneCounts();
+        this.updateDisplay();
+        this.createInitialPackages();
+    }
+
+    setSpeed(speed) {
+        this.currentSpeed = parseInt(speed);
+        this.updateDisplay();
+    }
+
+    startConveyor() {
+        const belt = document.querySelector('.conveyor-belt');
+        if (belt) {
+            belt.style.animationPlayState = 'running';
+        }
         
-        if (this.isRunning && !this.isPaused) {
-            this.updateAnimationSpeed();
+        const laneBelts = document.querySelectorAll('.lane-belt');
+        laneBelts.forEach(belt => {
+            belt.style.animationPlayState = 'running';
+        });
+    }
+
+    stopConveyor() {
+        const belt = document.querySelector('.conveyor-belt');
+        if (belt) {
+            belt.style.animationPlayState = 'paused';
+        }
+        
+        const laneBelts = document.querySelectorAll('.lane-belt');
+        laneBelts.forEach(belt => {
+            belt.style.animationPlayState = 'paused';
+        });
+    }
+
+    startPackageGeneration() {
+        this.packageInterval = setInterval(() => {
+            if (this.isRunning) {
+                this.createPackage();
+            }
+        }, 1500); // Daha sık paket oluştur
+    }
+
+    stopPackageGeneration() {
+        if (this.packageInterval) {
+            clearInterval(this.packageInterval);
         }
     }
 
-    activateSystem() {
-        // Activate conveyor belt
-        this.conveyorBelt.classList.add('active');
-        
-        // Activate scanner
-        this.scannerStation.classList.add('active');
-        
-        // Activate output lanes
-        this.outputLanes.forEach(lane => lane.classList.add('active'));
-    }
-
-    deactivateSystem() {
-        // Deactivate conveyor belt
-        this.conveyorBelt.classList.remove('active');
-        
-        // Deactivate scanner
-        this.scannerStation.classList.remove('active');
-        
-        // Deactivate output lanes
-        this.outputLanes.forEach(lane => lane.classList.remove('active'));
-    }
-
-    startPackageFlow() {
-        const packageDelay = 2000 / this.speed;
-        
-        this.packageInterval = setInterval(() => {
-            if (!this.isPaused) {
-                this.processNextPackage();
+    startScanner() {
+        this.scannerInterval = setInterval(() => {
+            if (this.isRunning) {
+                this.scanPackage();
             }
-        }, packageDelay);
+        }, 800);
+        
+        // Activate scanner light
+        const scannerLight = document.getElementById('scannerLight');
+        if (scannerLight) {
+            scannerLight.classList.add('active');
+        }
     }
 
-    processNextPackage() {
-        const package = this.getNextPackage();
-        if (!package) return;
+    stopScanner() {
+        if (this.scannerInterval) {
+            clearInterval(this.scannerInterval);
+        }
+        
+        // Deactivate scanner light
+        const scannerLight = document.getElementById('scannerLight');
+        if (scannerLight) {
+            scannerLight.classList.remove('active');
+        }
+    }
 
-        const destination = package.dataset.destination;
-        const packageType = package.dataset.type;
+    createPackage() {
+        const pkg = {
+            id: this.packageId++,
+            type: this.getRandomPackageType(),
+            lane: Math.floor(Math.random() * 3) + 1,
+            x: -150, // Ana conveyor'ın daha gerisinden başla
+            y: 15,
+            element: null
+        };
+
+        this.packages.push(pkg);
+        this.renderPackage(pkg);
+        this.animatePackage(pkg);
+    }
+
+    getRandomPackageType() {
+        const types = ['box', 'envelope', 'tote'];
+        return types[Math.floor(Math.random() * types.length)];
+    }
+
+    renderPackage(pkg) {
+        const mainConveyor = document.querySelector('.main-conveyor');
+        if (!mainConveyor) return;
+
+        const packageElement = document.createElement('div');
+        packageElement.className = 'package';
+        packageElement.id = `package-${pkg.id}`;
+        packageElement.style.left = `${pkg.x}px`;
+        packageElement.style.top = `${pkg.y}px`;
+        packageElement.textContent = pkg.id;
         
-        // Start package movement
-        package.classList.add('moving');
+        // Add package type styling
+        packageElement.classList.add(`package-${pkg.type}`);
         
-        // Simulate scanning
+        mainConveyor.appendChild(packageElement);
+        pkg.element = packageElement;
+    }
+
+    animatePackage(pkg) {
+        if (!pkg.element) return;
+
+        const animationDuration = Math.max(2, (60000 / this.currentSpeed) * 0.3); // Daha hızlı animasyon
+        
+        pkg.element.style.transition = `left ${animationDuration}s linear`;
+        pkg.element.style.left = '50%';
+
+        // Trigger sorting at the center
         setTimeout(() => {
-            this.activateScanner();
-        }, 1000 / this.speed);
-        
+            this.sortPackage(pkg);
+        }, animationDuration * 1000 * 0.6);
+
+        // Remove package after animation
+        setTimeout(() => {
+            this.removePackage(pkg);
+        }, animationDuration * 1000);
+    }
+
+    sortPackage(pkg) {
         // Activate divertor
-        setTimeout(() => {
-            this.activateDivertor(destination);
-        }, 2000 / this.speed);
+        this.activateDivertor(pkg.lane);
         
-        // Complete sorting
-        setTimeout(() => {
-            this.completeSorting(package, destination, packageType);
-        }, 3000 / this.speed);
+        // Move package to output lane
+        this.moveToOutputLane(pkg);
+        
+        // Update lane count
+        this.laneCounts[pkg.lane]++;
+        this.updateLaneCount(pkg.lane);
     }
 
-    getNextPackage() {
-        const packages = Array.from(this.packages);
-        const availablePackage = packages.find(pkg => !pkg.classList.contains('moving'));
-        return availablePackage;
-    }
-
-    activateScanner() {
-        // Scanner animation is handled by CSS
-        // Additional visual feedback can be added here
-    }
-
-    activateDivertor(destination) {
-        const divertorArm = document.querySelector(`[data-target="${destination}"]`);
-        if (divertorArm) {
-            divertorArm.classList.add('active');
+    activateDivertor(lane) {
+        const divertor = document.querySelector(`.divertor-arm[data-lane="${lane}"]`);
+        if (divertor) {
+            // Reset all divertors first
+            document.querySelectorAll('.divertor-arm').forEach(d => {
+                const laneNum = d.dataset.lane;
+                const rotation = laneNum === "1" ? -30 : laneNum === "2" ? 0 : 30;
+                d.style.transform = `rotate(${rotation}deg)`;
+                d.style.background = '';
+            });
+            
+            // Activate the target divertor with correct rotation
+            let rotation;
+            switch(lane) {
+                case 1:
+                    rotation = -30;
+                    break;
+                case 2:
+                    rotation = 0;
+                    break;
+                case 3:
+                    rotation = 30;
+                    break;
+                default:
+                    rotation = 0;
+            }
+            
+            divertor.style.transform = `rotate(${rotation}deg)`;
+            divertor.style.background = 'rgba(231, 76, 60, 0.3)';
             
             setTimeout(() => {
-                divertorArm.classList.remove('active');
-            }, 500 / this.speed);
+                divertor.style.background = '';
+            }, 500);
         }
     }
 
-    completeSorting(package, destination, packageType) {
-        // Remove package from conveyor
-        package.classList.remove('moving');
-        package.style.left = '-60px';
-        
-        // Add to sorted packages
-        this.addToSortedPackages(destination, packageType);
-        
-        // Update counters
-        this.updateCounters(destination);
-        this.processedCount++;
-        
-        // Update display
-        this.updateDisplay();
-        
-        // Check if all packages are processed
-        if (this.processedCount >= this.packages.length) {
-            this.completeAnimation();
+    moveToOutputLane(pkg) {
+        if (!pkg.element) return;
+
+        const laneElement = document.querySelector(`.output-lane[data-lane="${pkg.lane}"]`);
+        if (laneElement) {
+            const laneRect = laneElement.getBoundingClientRect();
+            const mainConveyor = document.querySelector('.main-conveyor');
+            const conveyorRect = mainConveyor.getBoundingClientRect();
+            
+            // Calculate correct position for each lane
+            let targetX, targetY;
+            switch(pkg.lane) {
+                case 1: // Sol lane
+                    targetX = laneRect.left - conveyorRect.left + 30;
+                    targetY = laneRect.top - conveyorRect.top + laneRect.height / 2 - 15;
+                    break;
+                case 2: // Orta lane
+                    targetX = laneRect.left - conveyorRect.left + laneRect.width / 2 - 20;
+                    targetY = laneRect.top - conveyorRect.top + laneRect.height / 2 - 15;
+                    break;
+                case 3: // Sağ lane
+                    targetX = laneRect.right - conveyorRect.left - 50;
+                    targetY = laneRect.top - conveyorRect.top + laneRect.height / 2 - 15;
+                    break;
+                default:
+                    targetX = laneRect.left - conveyorRect.left + laneRect.width / 2 - 20;
+                    targetY = laneRect.top - conveyorRect.top + laneRect.height / 2 - 15;
+            }
+            
+            pkg.element.style.transition = 'all 1s ease-in-out';
+            pkg.element.style.left = `${targetX}px`;
+            pkg.element.style.top = `${targetY}px`;
+            pkg.element.style.transform = 'scale(0.8)';
         }
     }
 
-    addToSortedPackages(destination, packageType) {
-        const lane = document.querySelector(`.lane-${destination.toLowerCase()}`);
-        const sortedPackages = lane.querySelector('.sorted-packages');
-        
-        const sortedPackage = document.createElement('div');
-        sortedPackage.className = 'sorted-package';
-        sortedPackage.innerHTML = `
-            <div class="package-body ${packageType}">
-                <div class="barcode"></div>
-                <div class="package-label">${packageType.toUpperCase()}</div>
-            </div>
-        `;
-        
-        sortedPackages.appendChild(sortedPackage);
-        
-        // Animate package appearance
-        setTimeout(() => {
-            sortedPackage.style.opacity = '1';
-            sortedPackage.style.transform = 'scale(1)';
-        }, 100);
+    removePackage(pkg) {
+        if (pkg.element) {
+            pkg.element.remove();
+        }
+        this.packages = this.packages.filter(p => p.id !== pkg.id);
     }
 
-    updateCounters(destination) {
-        const laneIndex = destination === 'A' ? 0 : destination === 'B' ? 1 : 2;
-        const counter = this.laneCounters[laneIndex];
-        const currentCount = parseInt(counter.textContent);
-        counter.textContent = currentCount + 1;
+    scanPackage() {
+        const scannerText = document.getElementById('scannerText');
+        if (scannerText) {
+            const scanMessages = ['SCANNING...', 'READING...', 'PROCESSING...', 'SORTING...'];
+            const randomMessage = scanMessages[Math.floor(Math.random() * scanMessages.length)];
+            scannerText.textContent = randomMessage;
+        }
     }
 
-    resetPackages() {
-        this.packages.forEach(package => {
-            package.classList.remove('moving');
-            package.style.left = '-60px';
+    createInitialPackages() {
+        // Create 3 initial packages
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                this.createPackage();
+            }, i * 1000);
+        }
+    }
+
+    clearPackages() {
+        this.packages.forEach(pkg => {
+            if (pkg.element) {
+                pkg.element.remove();
+            }
         });
+        this.packages = [];
     }
 
-    resetCounters() {
-        this.laneCounters.forEach(counter => {
-            counter.textContent = '0';
-        });
-        
-        this.sortedPackages.forEach(container => {
-            container.innerHTML = '';
+    resetLaneCounts() {
+        this.laneCounts = { 1: 0, 2: 0, 3: 0 };
+        this.updateAllLaneCounts();
+    }
+
+    updateLaneCount(lane) {
+        const countElement = document.getElementById(`lane${lane}Count`);
+        if (countElement) {
+            countElement.textContent = this.laneCounts[lane];
+        }
+    }
+
+    updateAllLaneCounts() {
+        Object.keys(this.laneCounts).forEach(lane => {
+            this.updateLaneCount(lane);
         });
     }
 
     updateDisplay() {
+        const speedElement = document.getElementById('speedValue');
+        const capacityElement = document.getElementById('capacityValue');
+        const accuracyElement = document.getElementById('accuracyValue');
+        const processedElement = document.getElementById('processedCount');
+        const speedIndicator = document.getElementById('speedIndicator');
+        const accuracyIndicator = document.getElementById('accuracyIndicator');
+
+        if (speedElement) speedElement.textContent = `${this.currentSpeed} m/min`;
+        if (capacityElement) capacityElement.textContent = `${this.capacity} pcs/hr`;
+        if (accuracyElement) accuracyElement.textContent = `${this.accuracy}%`;
+        
         // Update performance indicators
-        this.processedCountDisplay.textContent = this.processedCount;
-        
-        // Calculate and update speed
-        if (this.startTime && this.processedCount > 0) {
-            const elapsed = (Date.now() - this.startTime) / 1000; // seconds
-            const packagesPerHour = Math.round((this.processedCount / elapsed) * 3600);
-            this.speedIndicator.textContent = packagesPerHour + ' p/h';
-        }
-        
-        // Update total count
-        this.totalDisplay.textContent = this.processedCount;
+        const totalProcessed = Object.values(this.laneCounts).reduce((a, b) => a + b, 0);
+        if (processedElement) processedElement.textContent = totalProcessed;
+        if (speedIndicator) speedIndicator.textContent = `${this.currentSpeed} m/min`;
+        if (accuracyIndicator) accuracyIndicator.textContent = `%${this.accuracy}`;
     }
 
     updateStatus(status) {
-        this.statusValue.textContent = status;
-    }
-
-    updateAnimationSpeed() {
-        // Update CSS animation speed based on speed multiplier
-        const elements = [this.conveyorBelt, this.scannerStation, ...this.outputLanes];
-        elements.forEach(element => {
-            element.style.animationDuration = `${2 / this.speed}s`;
-        });
-    }
-
-    completeAnimation() {
-        clearInterval(this.packageInterval);
-        this.updateStatus('COMPLETED');
-        
-        setTimeout(() => {
-            this.resetAnimation();
-        }, 3000);
+        const statusElement = document.getElementById('statusValue');
+        if (statusElement) {
+            statusElement.textContent = status;
+            statusElement.style.color = status === 'RUNNING' ? '#2ecc71' : '#e74c3c';
+        }
     }
 }
 
-// Initialize animation when DOM is loaded
+// Initialize the sorter when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    new SorterAnimation();
+    new ProfessionalSorter();
 }); 

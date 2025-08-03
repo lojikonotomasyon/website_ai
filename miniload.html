@@ -144,9 +144,10 @@
             <p class="section-subtitle">Miniload shuttle sisteminin nasıl çalıştığını görün</p>
             
             <div class="miniload-animation">
-                <div class="miniload-system">
-                    <!-- Storage Racks -->
-                    <div class="storage-racks">
+                <!-- Storage Rack System -->
+                <div class="storage-rack">
+                    <div class="rack-frame">
+                        <!-- Rack Levels (6 levels) -->
                         <div class="rack-level" data-level="1">
                             <div class="rack-slot" data-slot="1-1"></div>
                             <div class="rack-slot" data-slot="1-2"></div>
@@ -168,73 +169,167 @@
                             <div class="rack-slot" data-slot="3-4"></div>
                             <div class="rack-slot" data-slot="3-5"></div>
                         </div>
-                    </div>
-                    
-                    <!-- Shuttle Car -->
-                    <div class="shuttle-car" id="shuttleCar">
-                        <div class="shuttle-body">
-                            <i class="fas fa-truck"></i>
+                        <div class="rack-level" data-level="4">
+                            <div class="rack-slot" data-slot="4-1"></div>
+                            <div class="rack-slot" data-slot="4-2"></div>
+                            <div class="rack-slot" data-slot="4-3"></div>
+                            <div class="rack-slot" data-slot="4-4"></div>
+                            <div class="rack-slot" data-slot="4-5"></div>
                         </div>
-                        <div class="shuttle-indicator">
-                            <span class="shuttle-status">Hazır</span>
+                        <div class="rack-level" data-level="5">
+                            <div class="rack-slot" data-slot="5-1"></div>
+                            <div class="rack-slot" data-slot="5-2"></div>
+                            <div class="rack-slot" data-slot="5-3"></div>
+                            <div class="rack-slot" data-slot="5-4"></div>
+                            <div class="rack-slot" data-slot="5-5"></div>
                         </div>
-                    </div>
-                    
-                    <!-- Lift Mechanism -->
-                    <div class="lift-mechanism">
-                        <div class="lift-platform" id="liftPlatform">
-                            <div class="lift-indicator">
-                                <i class="fas fa-arrow-up"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Work Station -->
-                    <div class="work-station">
-                        <div class="station-header">
-                            <h4>İş İstasyonu</h4>
-                        </div>
-                        <div class="station-area">
-                            <div class="input-area">
-                                <span>Giriş</span>
-                            </div>
-                            <div class="output-area">
-                                <span>Çıkış</span>
-                            </div>
+                        <div class="rack-level" data-level="6">
+                            <div class="rack-slot" data-slot="6-1"></div>
+                            <div class="rack-slot" data-slot="6-2"></div>
+                            <div class="rack-slot" data-slot="6-3"></div>
+                            <div class="rack-slot" data-slot="6-4"></div>
+                            <div class="rack-slot" data-slot="6-5"></div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Animation Controls -->
-                <div class="animation-controls">
-                    <button id="startMiniloadAnimation" class="control-button">
-                        <i class="fas fa-play"></i> Başlat
-                    </button>
-                    <button id="resetMiniloadAnimation" class="control-button">
-                        <i class="fas fa-redo"></i> Sıfırla
-                    </button>
-                    <button id="storeItem" class="control-button">
-                        <i class="fas fa-upload"></i> Depola
-                    </button>
-                    <button id="retrieveItem" class="control-button">
-                        <i class="fas fa-download"></i> Çek
+                <!-- Shuttle Vehicle -->
+                <div class="shuttle" id="shuttle">
+                    <div class="shuttle-body">
+                        <div class="shuttle-cabin"></div>
+                        <div class="shuttle-forks"></div>
+                        <div class="shuttle-wheels">
+                            <div class="wheel"></div>
+                            <div class="wheel"></div>
+                            <div class="wheel"></div>
+                            <div class="wheel"></div>
+                        </div>
+                    </div>
+                    <div class="shuttle-indicator">
+                        <span class="shuttle-status">HAZIR</span>
+                    </div>
+                </div>
+                
+                <!-- Storage Items (Boxes) -->
+                <div class="storage-items">
+                    <div class="storage-item" data-item="1" data-slot="1-1">
+                        <div class="item-box"></div>
+                        <div class="item-label">KUTU-1</div>
+                    </div>
+                    <div class="storage-item" data-item="2" data-slot="2-3">
+                        <div class="item-box"></div>
+                        <div class="item-label">KUTU-2</div>
+                    </div>
+                    <div class="storage-item" data-item="3" data-slot="3-5">
+                        <div class="item-box"></div>
+                        <div class="item-label">KUTU-3</div>
+                    </div>
+                    <div class="storage-item" data-item="4" data-slot="4-2">
+                        <div class="item-box"></div>
+                        <div class="item-label">KUTU-4</div>
+                    </div>
+                    <div class="storage-item" data-item="5" data-slot="5-4">
+                        <div class="item-box"></div>
+                        <div class="item-label">KUTU-5</div>
+                    </div>
+                    <div class="storage-item" data-item="6" data-slot="6-1">
+                        <div class="item-box"></div>
+                        <div class="item-label">KUTU-6</div>
+                    </div>
+                </div>
+                
+                <!-- Input/Output Station -->
+                <div class="io-station">
+                    <div class="io-platform">
+                        <div class="io-indicator">GİRİŞ/ÇIKIŞ</div>
+                        <div class="io-slot" id="ioSlot"></div>
+                    </div>
+                </div>
+                
+                <!-- Charging Station -->
+                <div class="charging-station">
+                    <div class="charging-dock">
+                        <div class="charging-indicator">
+                            <i class="fas fa-battery-full"></i>
+                            <span>ŞARJ İSTASYONU</span>
+                        </div>
+                        <div class="charging-status" id="chargingStatus">HAZIR</div>
+                    </div>
+                </div>
+                
+                <!-- Control Panel -->
+                <div class="miniload-control-panel">
+                    <div class="control-display">
+                        <div class="display-row">
+                            <span class="label">Pil Durumu:</span>
+                            <span class="value" id="batteryIndicator">100%</span>
+                        </div>
+                        <div class="display-row">
+                            <span class="label">Durum:</span>
+                            <span class="value" id="statusIndicator">HAZIR</span>
+                        </div>
+                        <div class="display-row">
+                            <span class="label">Hız:</span>
+                            <span class="value" id="speedIndicator">0 m/dk</span>
+                        </div>
+                        <div class="display-row">
+                            <span class="label">Yük:</span>
+                            <span class="value" id="loadIndicator">0 / 24</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Manual Controls -->
+                    <div class="manual-controls">
+                        <button class="manual-btn up" id="manualUp">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                        <button class="manual-btn left" id="manualLeft">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="manual-btn right" id="manualRight">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="manual-btn down" id="manualDown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Emergency Stop -->
+                    <button class="emergency-stop" id="emergencyStop">
+                        ACİL DURDUR
                     </button>
                 </div>
                 
                 <!-- Performance Indicators -->
-                <div class="performance-indicators">
-                    <div class="indicator">
-                        <span class="indicator-label">Hız:</span>
-                        <span id="miniloadSpeed" class="indicator-value">0 m/s</span>
+                <div class="miniload-performance-indicators">
+                    <div class="miniload-indicator">
+                        <div class="miniload-indicator-label">Pil Durumu</div>
+                        <div class="miniload-indicator-value" id="batteryIndicator2">100%</div>
                     </div>
-                    <div class="indicator">
-                        <span class="indicator-label">Kapasite:</span>
-                        <span id="miniloadCapacity" class="indicator-value">15 slot</span>
+                    <div class="miniload-indicator">
+                        <div class="miniload-indicator-label">Sistem Durumu</div>
+                        <div class="miniload-indicator-value" id="statusIndicator2">HAZIR</div>
                     </div>
-                    <div class="indicator">
-                        <span class="indicator-label">Durum:</span>
-                        <span id="miniloadStatus" class="indicator-value">Hazır</span>
+                    <div class="miniload-indicator">
+                        <div class="miniload-indicator-label">Çalışma Hızı</div>
+                        <div class="miniload-indicator-value" id="speedIndicator2">0 m/dk</div>
                     </div>
+                </div>
+                
+                <!-- Animation Controls -->
+                <div class="miniload-animation-controls">
+                    <button id="startMiniloadAnimation" class="miniload-control-button">
+                        <i class="fas fa-play"></i>
+                        <span>Başlat</span>
+                    </button>
+                    <button id="stopMiniloadAnimation" class="miniload-control-button">
+                        <i class="fas fa-pause"></i>
+                        <span>Duraklat</span>
+                    </button>
+                    <button id="resetMiniloadAnimation" class="miniload-control-button">
+                        <i class="fas fa-redo"></i>
+                        <span>Sıfırla</span>
+                    </button>
                 </div>
             </div>
         </div>
