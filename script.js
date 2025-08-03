@@ -83,29 +83,47 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Form verilerini al
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                company: document.getElementById('company').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
             
-            // Form gönderme animasyonu
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Gönderiliyor...';
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
             submitBtn.disabled = true;
             
-            // Simüle edilmiş form gönderimi
-            setTimeout(() => {
-                // Başarı mesajı göster
-                showNotification('Mesajınız başarıyla gönderildi! En kısa sürede size geri dönüş yapacağız.', 'success');
-                
-                // Formu temizle
-                this.reset();
-                
-                // Butonu eski haline getir
-                submitBtn.textContent = originalText;
+            // Send email using EmailJS
+            emailjs.send('service_myv14au', 'template_j48q9zh', {
+                to_email: 'yusuf@lojikon.com',
+                from_name: formData.name,
+                from_email: formData.email,
+                from_phone: formData.phone,
+                from_company: formData.company,
+                service_type: formData.service,
+                message: formData.message
+            })
+            .then(function(response) {
+                // Success
+                alert('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.');
+                contactForm.reset();
+            })
+            .catch(function(error) {
+                // Error
+                alert('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+                console.error('EmailJS Error:', error);
+            })
+            .finally(function() {
+                // Reset button
+                submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }, 2000);
+            });
         });
     }
 
@@ -153,7 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // İstatistik sayaç animasyonu
     const stats = document.querySelectorAll('.stat h3');
-    if (stats.length > 0) {
+    if (stats.length > 0 && !window.statsAnimated) {
+        window.statsAnimated = true;
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -190,7 +209,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Sayaç animasyonu fonksiyonu
 function animateCounter(element) {
-    const target = parseInt(element.textContent.replace(/\D/g, ''));
+    // Eğer animasyon zaten çalıştıysa tekrar çalıştırma
+    if (element.dataset.animated === 'true') {
+        return;
+    }
+    
+    // Animasyon çalıştı olarak işaretle
+    element.dataset.animated = 'true';
+    
+    const target = parseInt(element.textContent.replace(/\D/g, '')) || 10;
     const duration = 2000;
     const step = target / (duration / 16);
     let current = 0;
@@ -203,6 +230,11 @@ function animateCounter(element) {
         }
         element.textContent = Math.floor(current) + '+';
     }, 16);
+    
+    // Animasyon tamamlandığında final değeri garanti et
+    setTimeout(() => {
+        element.textContent = target + '+';
+    }, duration + 100);
 }
 
 // Bildirim gösterme fonksiyonu
@@ -459,18 +491,6 @@ window.addEventListener('load', function() {
             heroContent.style.transform = 'translateY(0)';
         }, 300);
     }
-    
-    // İstatistikler için gecikme
-    setTimeout(() => {
-        const stats = document.querySelectorAll('.stat h3');
-        if (stats.length > 0) {
-            stats.forEach((stat, index) => {
-                setTimeout(() => {
-                    animateCounter(stat);
-                }, index * 200);
-            });
-        }
-    }, 1000);
 });
 
 // Responsive tasarım için ek kontroller

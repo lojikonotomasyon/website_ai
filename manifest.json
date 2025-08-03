@@ -1,0 +1,30 @@
+{
+    "name": "Lojikon - Endüstriyel Otomasyon ve Intralogistics Çözümleri",
+    "short_name": "Lojikon",
+    "description": "Endüstriyel otomasyon ve intralogistics çözümleri sağlayıcısı",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1e3a8a",
+    "theme_color": "#1e3a8a",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "categories": ["business", "productivity"],
+    "lang": "tr",
+    "dir": "ltr"
+} 

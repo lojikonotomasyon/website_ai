@@ -1,297 +1,297 @@
-// Sorter Animation JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    const startBtn = document.getElementById('startAnimation');
-    const resetBtn = document.getElementById('resetAnimation');
-    const conveyorBelt = document.querySelector('.conveyor-belt');
-    const packages = document.querySelectorAll('.package');
-    const divertors = document.querySelectorAll('.divertor');
-    const lanes = document.querySelectorAll('.lane .sorted-packages');
-    
-    let animationRunning = false;
-    let packageIndex = 0;
-    
-    // Animation start function
-    function startAnimation() {
-        if (animationRunning) return;
+// Professional Sorter Animation JavaScript
+class SorterAnimation {
+    constructor() {
+        this.isRunning = false;
+        this.isPaused = false;
+        this.speed = 1;
+        this.processedCount = 0;
+        this.startTime = null;
+        this.animationInterval = null;
+        this.packageInterval = null;
         
-        animationRunning = true;
-        startBtn.disabled = true;
-        startBtn.textContent = 'Animasyon Çalışıyor...';
-        
-        // Start conveyor belt
-        conveyorBelt.classList.add('active');
-        
-        // Process packages one by one
-        processNextPackage();
+        this.initializeElements();
+        this.bindEvents();
+        this.updateDisplay();
     }
-    
-    // Process next package
-    function processNextPackage() {
-        if (packageIndex >= packages.length) {
-            // Animation complete
-            setTimeout(() => {
-                stopAnimation();
-            }, 2000);
-            return;
-        }
+
+    initializeElements() {
+        // Control buttons
+        this.startBtn = document.getElementById('startAnimation');
+        this.pauseBtn = document.getElementById('pauseAnimation');
+        this.resetBtn = document.getElementById('resetAnimation');
+        this.speedSlider = document.getElementById('speedSlider');
+        this.speedValue = document.getElementById('speedValue');
+
+        // System elements
+        this.conveyorBelt = document.querySelector('.conveyor-belt');
+        this.scannerStation = document.querySelector('.scanner-station');
+        this.divertorArms = document.querySelectorAll('.divertor-arm');
+        this.outputLanes = document.querySelectorAll('.output-lane');
+        this.packages = document.querySelectorAll('.package');
+
+        // Control panel
+        this.statusValue = document.querySelector('.status-value');
+        this.speedDisplay = document.querySelector('.status-line:nth-child(2) .status-value');
+        this.totalDisplay = document.querySelector('.status-line:nth-child(3) .status-value');
+
+        // Performance indicators
+        this.processedCountDisplay = document.getElementById('processedCount');
+        this.speedIndicator = document.getElementById('speedIndicator');
+        this.accuracyIndicator = document.getElementById('accuracyIndicator');
+
+        // Lane counters
+        this.laneCounters = document.querySelectorAll('.lane-counter');
+        this.sortedPackages = document.querySelectorAll('.sorted-packages');
+    }
+
+    bindEvents() {
+        this.startBtn.addEventListener('click', () => this.startAnimation());
+        this.pauseBtn.addEventListener('click', () => this.pauseAnimation());
+        this.resetBtn.addEventListener('click', () => this.resetAnimation());
+        this.speedSlider.addEventListener('input', (e) => this.setSpeed(e.target.value));
+    }
+
+    startAnimation() {
+        if (this.isRunning) return;
         
-        const package = packages[packageIndex];
+        this.isRunning = true;
+        this.isPaused = false;
+        this.startTime = Date.now();
+        
+        this.updateStatus('RUNNING');
+        this.activateSystem();
+        this.startPackageFlow();
+        
+        this.startBtn.disabled = true;
+        this.pauseBtn.disabled = false;
+    }
+
+    pauseAnimation() {
+        if (!this.isRunning) return;
+        
+        this.isPaused = !this.isPaused;
+        
+        if (this.isPaused) {
+            this.updateStatus('PAUSED');
+            this.deactivateSystem();
+            this.pauseBtn.innerHTML = '<i class="fas fa-play"></i><span>Devam</span>';
+        } else {
+            this.updateStatus('RUNNING');
+            this.activateSystem();
+            this.pauseBtn.innerHTML = '<i class="fas fa-pause"></i><span>Duraklat</span>';
+        }
+    }
+
+    resetAnimation() {
+        this.isRunning = false;
+        this.isPaused = false;
+        this.processedCount = 0;
+        
+        this.updateStatus('READY');
+        this.deactivateSystem();
+        this.resetPackages();
+        this.resetCounters();
+        this.updateDisplay();
+        
+        this.startBtn.disabled = false;
+        this.pauseBtn.disabled = true;
+        this.pauseBtn.innerHTML = '<i class="fas fa-pause"></i><span>Duraklat</span>';
+    }
+
+    setSpeed(value) {
+        this.speed = parseFloat(value);
+        this.speedValue.textContent = this.speed + 'x';
+        
+        if (this.isRunning && !this.isPaused) {
+            this.updateAnimationSpeed();
+        }
+    }
+
+    activateSystem() {
+        // Activate conveyor belt
+        this.conveyorBelt.classList.add('active');
+        
+        // Activate scanner
+        this.scannerStation.classList.add('active');
+        
+        // Activate output lanes
+        this.outputLanes.forEach(lane => lane.classList.add('active'));
+    }
+
+    deactivateSystem() {
+        // Deactivate conveyor belt
+        this.conveyorBelt.classList.remove('active');
+        
+        // Deactivate scanner
+        this.scannerStation.classList.remove('active');
+        
+        // Deactivate output lanes
+        this.outputLanes.forEach(lane => lane.classList.remove('active'));
+    }
+
+    startPackageFlow() {
+        const packageDelay = 2000 / this.speed;
+        
+        this.packageInterval = setInterval(() => {
+            if (!this.isPaused) {
+                this.processNextPackage();
+            }
+        }, packageDelay);
+    }
+
+    processNextPackage() {
+        const package = this.getNextPackage();
+        if (!package) return;
+
         const destination = package.dataset.destination;
+        const packageType = package.dataset.type;
         
         // Start package movement
         package.classList.add('moving');
         
-        // Activate corresponding divertor after delay
+        // Simulate scanning
         setTimeout(() => {
-            const divertor = document.querySelector(`[data-target="${destination}"]`);
-            if (divertor) {
-                divertor.classList.add('active');
-            }
-        }, 1500);
+            this.activateScanner();
+        }, 1000 / this.speed);
         
-        // Add package to destination lane
+        // Activate divertor
         setTimeout(() => {
-            const lane = document.querySelector(`.lane-${destination.toLowerCase()} .sorted-packages`);
-            if (lane) {
-                const sortedPackage = document.createElement('div');
-                sortedPackage.className = 'sorted-package';
-                sortedPackage.textContent = destination;
-                lane.appendChild(sortedPackage);
-                
-                // Add entrance animation
-                sortedPackage.style.animation = 'fadeInUp 0.5s ease';
-            }
+            this.activateDivertor(destination);
+        }, 2000 / this.speed);
+        
+        // Complete sorting
+        setTimeout(() => {
+            this.completeSorting(package, destination, packageType);
+        }, 3000 / this.speed);
+    }
+
+    getNextPackage() {
+        const packages = Array.from(this.packages);
+        const availablePackage = packages.find(pkg => !pkg.classList.contains('moving'));
+        return availablePackage;
+    }
+
+    activateScanner() {
+        // Scanner animation is handled by CSS
+        // Additional visual feedback can be added here
+    }
+
+    activateDivertor(destination) {
+        const divertorArm = document.querySelector(`[data-target="${destination}"]`);
+        if (divertorArm) {
+            divertorArm.classList.add('active');
             
-            // Deactivate divertor
-            const divertor = document.querySelector(`[data-target="${destination}"]`);
-            if (divertor) {
-                divertor.classList.remove('active');
-            }
-            
-            packageIndex++;
-            
-            // Process next package after delay
             setTimeout(() => {
-                processNextPackage();
-            }, 500);
-            
+                divertorArm.classList.remove('active');
+            }, 500 / this.speed);
+        }
+    }
+
+    completeSorting(package, destination, packageType) {
+        // Remove package from conveyor
+        package.classList.remove('moving');
+        package.style.left = '-60px';
+        
+        // Add to sorted packages
+        this.addToSortedPackages(destination, packageType);
+        
+        // Update counters
+        this.updateCounters(destination);
+        this.processedCount++;
+        
+        // Update display
+        this.updateDisplay();
+        
+        // Check if all packages are processed
+        if (this.processedCount >= this.packages.length) {
+            this.completeAnimation();
+        }
+    }
+
+    addToSortedPackages(destination, packageType) {
+        const lane = document.querySelector(`.lane-${destination.toLowerCase()}`);
+        const sortedPackages = lane.querySelector('.sorted-packages');
+        
+        const sortedPackage = document.createElement('div');
+        sortedPackage.className = 'sorted-package';
+        sortedPackage.innerHTML = `
+            <div class="package-body ${packageType}">
+                <div class="barcode"></div>
+                <div class="package-label">${packageType.toUpperCase()}</div>
+            </div>
+        `;
+        
+        sortedPackages.appendChild(sortedPackage);
+        
+        // Animate package appearance
+        setTimeout(() => {
+            sortedPackage.style.opacity = '1';
+            sortedPackage.style.transform = 'scale(1)';
+        }, 100);
+    }
+
+    updateCounters(destination) {
+        const laneIndex = destination === 'A' ? 0 : destination === 'B' ? 1 : 2;
+        const counter = this.laneCounters[laneIndex];
+        const currentCount = parseInt(counter.textContent);
+        counter.textContent = currentCount + 1;
+    }
+
+    resetPackages() {
+        this.packages.forEach(package => {
+            package.classList.remove('moving');
+            package.style.left = '-60px';
+        });
+    }
+
+    resetCounters() {
+        this.laneCounters.forEach(counter => {
+            counter.textContent = '0';
+        });
+        
+        this.sortedPackages.forEach(container => {
+            container.innerHTML = '';
+        });
+    }
+
+    updateDisplay() {
+        // Update performance indicators
+        this.processedCountDisplay.textContent = this.processedCount;
+        
+        // Calculate and update speed
+        if (this.startTime && this.processedCount > 0) {
+            const elapsed = (Date.now() - this.startTime) / 1000; // seconds
+            const packagesPerHour = Math.round((this.processedCount / elapsed) * 3600);
+            this.speedIndicator.textContent = packagesPerHour + ' p/h';
+        }
+        
+        // Update total count
+        this.totalDisplay.textContent = this.processedCount;
+    }
+
+    updateStatus(status) {
+        this.statusValue.textContent = status;
+    }
+
+    updateAnimationSpeed() {
+        // Update CSS animation speed based on speed multiplier
+        const elements = [this.conveyorBelt, this.scannerStation, ...this.outputLanes];
+        elements.forEach(element => {
+            element.style.animationDuration = `${2 / this.speed}s`;
+        });
+    }
+
+    completeAnimation() {
+        clearInterval(this.packageInterval);
+        this.updateStatus('COMPLETED');
+        
+        setTimeout(() => {
+            this.resetAnimation();
         }, 3000);
     }
-    
-    // Stop animation
-    function stopAnimation() {
-        animationRunning = false;
-        startBtn.disabled = false;
-        startBtn.textContent = 'Animasyonu Başlat';
-        conveyorBelt.classList.remove('active');
-    }
-    
-    // Reset animation
-    function resetAnimation() {
-        // Stop current animation
-        stopAnimation();
-        
-        // Reset variables
-        packageIndex = 0;
-        
-        // Reset packages
-        packages.forEach(package => {
-            package.classList.remove('moving');
-            package.style.left = '-50px';
-        });
-        
-        // Reset divertors
-        divertors.forEach(divertor => {
-            divertor.classList.remove('active');
-        });
-        
-        // Clear lanes
-        lanes.forEach(lane => {
-            lane.innerHTML = '';
-        });
-    }
-    
-    // Event listeners
-    if (startBtn) {
-        startBtn.addEventListener('click', startAnimation);
-    }
-    
-    if (resetBtn) {
-        resetBtn.addEventListener('click', resetAnimation);
-    }
-    
-    // Add fadeInUp animation for sorted packages
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // Auto-start animation after page load
-    setTimeout(() => {
-        if (!animationRunning) {
-            startAnimation();
-        }
-    }, 3000);
-});
+}
 
-// Additional interactive features
-document.addEventListener('DOMContentLoaded', function() {
-    // Package hover effects
-    const packages = document.querySelectorAll('.package');
-    packages.forEach(package => {
-        package.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.1)';
-            this.style.zIndex = '10';
-        });
-        
-        package.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-            this.style.zIndex = '1';
-        });
-    });
-    
-    // Divertor click effects
-    const divertors = document.querySelectorAll('.divertor');
-    divertors.forEach(divertor => {
-        divertor.addEventListener('click', function() {
-            if (!this.classList.contains('active')) {
-                this.classList.add('active');
-                setTimeout(() => {
-                    this.classList.remove('active');
-                }, 1000);
-            }
-        });
-    });
-    
-    // Lane hover effects
-    const lanes = document.querySelectorAll('.lane');
-    lanes.forEach(lane => {
-        lane.addEventListener('mouseenter', function() {
-            this.style.background = 'rgba(255, 255, 255, 0.2)';
-        });
-        
-        lane.addEventListener('mouseleave', function() {
-            this.style.background = 'rgba(255, 255, 255, 0.1)';
-        });
-    });
-    
-    // Add package counter
-    function updatePackageCount() {
-        const lanes = document.querySelectorAll('.lane');
-        lanes.forEach(lane => {
-            const packages = lane.querySelectorAll('.sorted-package');
-            const count = packages.length;
-            const title = lane.querySelector('h4');
-            if (title) {
-                title.textContent = `${title.textContent.split(' ')[0]} (${count})`;
-            }
-        });
-    }
-    
-    // Update count every second
-    setInterval(updatePackageCount, 1000);
-    
-    // Add speed control
-    const speedControl = document.createElement('div');
-    speedControl.className = 'speed-control';
-    speedControl.innerHTML = `
-        <label for="animationSpeed">Animasyon Hızı:</label>
-        <input type="range" id="animationSpeed" min="0.5" max="2" step="0.1" value="1">
-        <span id="speedValue">1x</span>
-    `;
-    
-    const animationControls = document.querySelector('.animation-controls');
-    if (animationControls) {
-        animationControls.appendChild(speedControl);
-    }
-    
-    // Speed control functionality
-    const speedSlider = document.getElementById('animationSpeed');
-    const speedValue = document.getElementById('speedValue');
-    
-    if (speedSlider && speedValue) {
-        speedSlider.addEventListener('input', function() {
-            const speed = this.value;
-            speedValue.textContent = speed + 'x';
-            
-            // Update animation speed
-            const conveyorBelt = document.querySelector('.conveyor-belt');
-            if (conveyorBelt) {
-                conveyorBelt.style.animationDuration = (10 / speed) + 's';
-            }
-            
-            const packages = document.querySelectorAll('.package');
-            packages.forEach(package => {
-                package.style.animationDuration = (3 / speed) + 's';
-            });
-        });
-    }
-    
-    // Add speed control styles
-    const speedStyles = document.createElement('style');
-    speedStyles.textContent = `
-        .speed-control {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: var(--light-bg);
-            border-radius: 8px;
-        }
-        
-        .speed-control label {
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-        
-        .speed-control input[type="range"] {
-            flex: 1;
-            max-width: 200px;
-        }
-        
-        .speed-control span {
-            font-weight: 600;
-            color: var(--accent);
-            min-width: 30px;
-        }
-    `;
-    document.head.appendChild(speedStyles);
-});
-
-// Performance optimization
-document.addEventListener('DOMContentLoaded', function() {
-    // Use requestAnimationFrame for smooth animations
-    function smoothAnimation(callback) {
-        requestAnimationFrame(callback);
-    }
-    
-    // Optimize package movement
-    const packages = document.querySelectorAll('.package');
-    packages.forEach(package => {
-        package.style.willChange = 'transform, left';
-    });
-    
-    // Clean up after animation
-    function cleanupAnimation() {
-        packages.forEach(package => {
-            package.style.willChange = 'auto';
-        });
-    }
-    
-    // Call cleanup after animation stops
-    const resetBtn = document.getElementById('resetAnimation');
-    if (resetBtn) {
-        resetBtn.addEventListener('click', cleanupAnimation);
-    }
+// Initialize animation when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new SorterAnimation();
 }); 

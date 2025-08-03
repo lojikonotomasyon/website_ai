@@ -1,347 +1,359 @@
-// Palet Lift Animation JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    const startBtn = document.getElementById('startPaletAnimation');
-    const resetBtn = document.getElementById('resetPaletAnimation');
-    const liftPlatform = document.querySelector('.lift-platform');
-    const palets = document.querySelectorAll('.palet');
-    const upBtn = document.querySelector('.up-btn');
-    const downBtn = document.querySelector('.down-btn');
-    
-    let animationRunning = false;
-    let currentLevel = 'ground'; // 'ground' or 'upper'
-    
-    // Animation start function
-    function startPaletAnimation() {
-        if (animationRunning) return;
+// Professional Palet Lift Animation JavaScript
+class PaletLiftAnimation {
+    constructor() {
+        this.isRunning = false;
+        this.isPaused = false;
+        this.speed = 1;
+        this.currentLevel = 1;
+        this.currentLoad = 0;
+        this.cycleCount = 0;
+        this.totalCycles = 0;
+        this.startTime = null;
+        this.cycleTimes = [];
         
-        animationRunning = true;
-        startBtn.disabled = true;
-        startBtn.textContent = 'Animasyon Çalışıyor...';
-        
-        // Start the animation sequence
-        animatePaletLift();
+        this.initializeElements();
+        this.bindEvents();
+        this.updateDisplay();
     }
-    
-    // Main animation sequence
-    function animatePaletLift() {
-        const groundPalets = document.querySelectorAll('.ground-level .palet');
-        const upperPalets = document.querySelectorAll('.upper-level .palet');
-        
-        // Move palets from ground to upper level
-        movePaletsToUpper(groundPalets, 0);
+
+    initializeElements() {
+        // Control buttons
+        this.startBtn = document.getElementById('startPaletAnimation');
+        this.pauseBtn = document.getElementById('pausePaletAnimation');
+        this.resetBtn = document.getElementById('resetPaletAnimation');
+        this.speedSlider = document.getElementById('liftSpeedSlider');
+        this.speedValue = document.getElementById('liftSpeedValue');
+
+        // Lift controls
+        this.upBtn = document.getElementById('upBtn');
+        this.downBtn = document.getElementById('downBtn');
+        this.emergencyBtn = document.getElementById('emergencyBtn');
+
+        // System elements
+        this.liftStructure = document.querySelector('.lift-structure');
+        this.liftPlatform = document.querySelector('.lift-platform');
+        this.groundLevel = document.querySelector('.ground-level');
+        this.upperLevel = document.querySelector('.upper-level');
+        this.safetySystems = document.querySelector('.safety-systems');
+        this.pallets = document.querySelectorAll('.pallet');
+
+        // Control panel displays
+        this.liftStatus = document.getElementById('liftStatus');
+        this.currentLevelDisplay = document.getElementById('currentLevel');
+        this.currentLoadDisplay = document.getElementById('currentLoad');
+        this.cycleCountDisplay = document.getElementById('cycleCount');
+
+        // Performance indicators
+        this.totalCyclesDisplay = document.getElementById('totalCycles');
+        this.avgCycleTimeDisplay = document.getElementById('avgCycleTime');
+        this.safetyScoreDisplay = document.getElementById('safetyScore');
+
+        // Safety gates
+        this.safetyGates = document.querySelectorAll('.gate');
+        this.levelIndicator = document.querySelector('.level-text');
     }
-    
-    // Move palets to upper level
-    function movePaletsToUpper(palets, index) {
-        if (index >= palets.length) {
-            // All ground palets moved, now move upper palets down
-            setTimeout(() => {
-                const upperPalets = document.querySelectorAll('.upper-level .palet');
-                movePaletsToGround(upperPalets, 0);
-            }, 1000);
-            return;
+
+    bindEvents() {
+        this.startBtn.addEventListener('click', () => this.startAnimation());
+        this.pauseBtn.addEventListener('click', () => this.pauseAnimation());
+        this.resetBtn.addEventListener('click', () => this.resetAnimation());
+        this.speedSlider.addEventListener('input', (e) => this.setSpeed(e.target.value));
+        
+        this.upBtn.addEventListener('click', () => this.moveUp());
+        this.downBtn.addEventListener('click', () => this.moveDown());
+        this.emergencyBtn.addEventListener('click', () => this.emergencyStop());
+        
+        // Pallet click events
+        this.pallets.forEach(pallet => {
+            pallet.addEventListener('click', () => this.selectPallet(pallet));
+        });
+    }
+
+    startAnimation() {
+        if (this.isRunning) return;
+        
+        this.isRunning = true;
+        this.isPaused = false;
+        this.startTime = Date.now();
+        
+        this.updateStatus('RUNNING');
+        this.activateSystem();
+        this.startAutomaticOperation();
+        
+        this.startBtn.disabled = true;
+        this.pauseBtn.disabled = false;
+    }
+
+    pauseAnimation() {
+        if (!this.isRunning) return;
+        
+        this.isPaused = !this.isPaused;
+        
+        if (this.isPaused) {
+            this.updateStatus('PAUSED');
+            this.deactivateSystem();
+            this.pauseBtn.innerHTML = '<i class="fas fa-play"></i><span>Devam</span>';
+        } else {
+            this.updateStatus('RUNNING');
+            this.activateSystem();
+            this.pauseBtn.innerHTML = '<i class="fas fa-pause"></i><span>Duraklat</span>';
         }
+    }
+
+    resetAnimation() {
+        this.isRunning = false;
+        this.isPaused = false;
+        this.currentLevel = 1;
+        this.currentLoad = 0;
+        this.cycleCount = 0;
         
-        const palet = palets[index];
-        const destination = palet.dataset.destination;
+        this.updateStatus('READY');
+        this.deactivateSystem();
+        this.resetLiftPosition();
+        this.resetPallets();
+        this.updateDisplay();
         
-        if (destination === 'up') {
+        this.startBtn.disabled = false;
+        this.pauseBtn.disabled = true;
+        this.pauseBtn.innerHTML = '<i class="fas fa-pause"></i><span>Duraklat</span>';
+    }
+
+    setSpeed(value) {
+        this.speed = parseFloat(value);
+        this.speedValue.textContent = this.speed + 'x';
+        
+        if (this.isRunning && !this.isPaused) {
+            this.updateAnimationSpeed();
+        }
+    }
+
+    activateSystem() {
+        this.liftStructure.classList.add('active');
+        this.groundLevel.classList.add('active');
+        this.upperLevel.classList.add('active');
+        this.safetySystems.classList.add('active');
+    }
+
+    deactivateSystem() {
+        this.liftStructure.classList.remove('active');
+        this.groundLevel.classList.remove('active');
+        this.upperLevel.classList.remove('active');
+        this.safetySystems.classList.remove('active');
+    }
+
+    startAutomaticOperation() {
+        this.performLiftCycle();
+    }
+
+    performLiftCycle() {
+        if (!this.isRunning || this.isPaused) return;
+
+        const cycleStartTime = Date.now();
+        
+        // Find available pallets
+        const groundPallets = Array.from(this.pallets).filter(p => 
+            p.closest('.ground-level') && !p.classList.contains('moving')
+        );
+        const upperPallets = Array.from(this.pallets).filter(p => 
+            p.closest('.upper-level') && !p.classList.contains('moving')
+        );
+
+        if (groundPallets.length > 0) {
+            this.movePalletUp(groundPallets[0], cycleStartTime);
+        } else if (upperPallets.length > 0) {
+            this.movePalletDown(upperPallets[0], cycleStartTime);
+        } else {
+            // All pallets moved, complete cycle
+            this.completeCycle(cycleStartTime);
+        }
+    }
+
+    movePalletUp(pallet, cycleStartTime) {
+        const weight = parseInt(pallet.dataset.weight);
+        
+        // Update load
+        this.currentLoad = weight;
+        this.updateDisplay();
+        
+        // Move pallet to platform
+        this.movePalletToPlatform(pallet, () => {
             // Move lift up
-            liftPlatform.classList.add('moving-up');
-            upBtn.classList.add('active');
-            
-            setTimeout(() => {
-                // Move palet to lift platform
-                palet.classList.add('moving');
-                palet.style.position = 'absolute';
-                palet.style.top = '50%';
-                palet.style.left = '50%';
-                palet.style.transform = 'translate(-50%, -50%)';
-                
-                setTimeout(() => {
-                    // Move lift down
-                    liftPlatform.classList.remove('moving-up');
-                    liftPlatform.classList.add('moving-down');
-                    upBtn.classList.remove('active');
-                    downBtn.classList.add('active');
-                    
-                    setTimeout(() => {
-                        // Place palet in upper level
-                        const upperLevel = document.querySelector('.upper-level');
-                        upperLevel.appendChild(palet);
-                        palet.classList.remove('moving');
-                        palet.style.position = 'static';
-                        palet.style.top = 'auto';
-                        palet.style.left = 'auto';
-                        palet.style.transform = 'none';
-                        
-                        liftPlatform.classList.remove('moving-down');
-                        downBtn.classList.remove('active');
-                        
-                        // Move next palet
-                        setTimeout(() => {
-                            movePaletsToUpper(palets, index + 1);
-                        }, 500);
-                    }, 2000);
-                }, 1000);
-            }, 2000);
-        }
-    }
-    
-    // Move palets to ground level
-    function movePaletsToGround(palets, index) {
-        if (index >= palets.length) {
-            // Animation complete
-            setTimeout(() => {
-                stopPaletAnimation();
-            }, 1000);
-            return;
-        }
-        
-        const palet = palets[index];
-        const destination = palet.dataset.destination;
-        
-        if (destination === 'down') {
-            // Move lift up
-            liftPlatform.classList.add('moving-up');
-            upBtn.classList.add('active');
-            
-            setTimeout(() => {
-                // Move palet to lift platform
-                palet.classList.add('moving');
-                palet.style.position = 'absolute';
-                palet.style.top = '50%';
-                palet.style.left = '50%';
-                palet.style.transform = 'translate(-50%, -50%)';
-                
-                setTimeout(() => {
-                    // Move lift down
-                    liftPlatform.classList.remove('moving-up');
-                    liftPlatform.classList.add('moving-down');
-                    upBtn.classList.remove('active');
-                    downBtn.classList.add('active');
-                    
-                    setTimeout(() => {
-                        // Place palet in ground level
-                        const groundLevel = document.querySelector('.ground-level');
-                        groundLevel.appendChild(palet);
-                        palet.classList.remove('moving');
-                        palet.style.position = 'static';
-                        palet.style.top = 'auto';
-                        palet.style.left = 'auto';
-                        palet.style.transform = 'none';
-                        
-                        liftPlatform.classList.remove('moving-down');
-                        downBtn.classList.remove('active');
-                        
-                        // Move next palet
-                        setTimeout(() => {
-                            movePaletsToGround(palets, index + 1);
-                        }, 500);
-                    }, 2000);
-                }, 1000);
-            }, 2000);
-        }
-    }
-    
-    // Stop animation
-    function stopPaletAnimation() {
-        animationRunning = false;
-        startBtn.disabled = false;
-        startBtn.textContent = 'Animasyonu Başlat';
-        
-        // Reset lift platform
-        liftPlatform.classList.remove('moving-up', 'moving-down');
-        upBtn.classList.remove('active');
-        downBtn.classList.remove('active');
-    }
-    
-    // Reset animation
-    function resetPaletAnimation() {
-        // Stop current animation
-        stopPaletAnimation();
-        
-        // Reset palets to original positions
-        palets.forEach(palet => {
-            palet.classList.remove('moving');
-            palet.style.position = 'static';
-            palet.style.top = 'auto';
-            palet.style.left = 'auto';
-            palet.style.transform = 'none';
-        });
-        
-        // Reset lift platform
-        liftPlatform.classList.remove('moving-up', 'moving-down');
-        upBtn.classList.remove('active');
-        downBtn.classList.remove('active');
-    }
-    
-    // Event listeners
-    if (startBtn) {
-        startBtn.addEventListener('click', startPaletAnimation);
-    }
-    
-    if (resetBtn) {
-        resetBtn.addEventListener('click', resetPaletAnimation);
-    }
-    
-    // Manual control buttons
-    if (upBtn) {
-        upBtn.addEventListener('click', function() {
-            if (!animationRunning) {
-                this.classList.add('active');
-                liftPlatform.classList.add('moving-up');
-                
-                setTimeout(() => {
-                    this.classList.remove('active');
-                    liftPlatform.classList.remove('moving-up');
-                }, 2000);
-            }
+            this.moveLiftToLevel(2, () => {
+                // Move pallet to upper level
+                this.movePalletToLevel(pallet, 'upper', () => {
+                    this.currentLoad = 0;
+                    this.updateDisplay();
+                    this.performLiftCycle();
+                });
+            });
         });
     }
-    
-    if (downBtn) {
-        downBtn.addEventListener('click', function() {
-            if (!animationRunning) {
-                this.classList.add('active');
-                liftPlatform.classList.add('moving-down');
-                
-                setTimeout(() => {
-                    this.classList.remove('active');
-                    liftPlatform.classList.remove('moving-down');
-                }, 2000);
-            }
+
+    movePalletDown(pallet, cycleStartTime) {
+        const weight = parseInt(pallet.dataset.weight);
+        
+        // Update load
+        this.currentLoad = weight;
+        this.updateDisplay();
+        
+        // Move pallet to platform
+        this.movePalletToPlatform(pallet, () => {
+            // Move lift down
+            this.moveLiftToLevel(1, () => {
+                // Move pallet to ground level
+                this.movePalletToLevel(pallet, 'ground', () => {
+                    this.currentLoad = 0;
+                    this.updateDisplay();
+                    this.performLiftCycle();
+                });
+            });
         });
     }
-    
-    // Palet click effects
-    palets.forEach(palet => {
-        palet.addEventListener('click', function() {
-            if (!animationRunning) {
-                this.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 200);
-            }
+
+    movePalletToPlatform(pallet, callback) {
+        pallet.classList.add('moving');
+        
+        setTimeout(() => {
+            // Simulate pallet moving to platform
+            callback();
+        }, 1000 / this.speed);
+    }
+
+    moveLiftToLevel(level, callback) {
+        const targetTop = level === 1 ? 300 : 100;
+        this.currentLevel = level;
+        
+        this.liftPlatform.style.top = targetTop + 'px';
+        this.levelIndicator.textContent = `LEVEL ${level}`;
+        
+        // Open safety gates
+        this.openSafetyGates();
+        
+        setTimeout(() => {
+            // Close safety gates
+            this.closeSafetyGates();
+            callback();
+        }, 2000 / this.speed);
+    }
+
+    movePalletToLevel(pallet, level, callback) {
+        const targetLevel = level === 'upper' ? this.upperLevel : this.groundLevel;
+        const targetQueue = targetLevel.querySelector('.pallet-queue');
+        
+        targetQueue.appendChild(pallet);
+        pallet.classList.remove('moving');
+        
+        setTimeout(callback, 500 / this.speed);
+    }
+
+    openSafetyGates() {
+        this.safetyGates.forEach(gate => {
+            gate.classList.add('open');
         });
-    });
-    
-    // Auto-start animation after page load
-    setTimeout(() => {
-        if (!animationRunning) {
-            startPaletAnimation();
-        }
-    }, 3000);
-    
-    // Add performance indicators
-    function addPerformanceIndicators() {
-        const indicators = document.createElement('div');
-        indicators.className = 'performance-indicators';
-        indicators.innerHTML = `
-            <div class="indicator">
-                <span class="label">Hız:</span>
-                <span class="value">0.3 m/s</span>
-            </div>
-            <div class="indicator">
-                <span class="label">Kapasite:</span>
-                <span class="value">1500 kg</span>
-            </div>
-            <div class="indicator">
-                <span class="label">Durum:</span>
-                <span class="value" id="liftStatus">Hazır</span>
-            </div>
-        `;
-        
-        const animationContainer = document.querySelector('.palet-lift-animation');
-        if (animationContainer) {
-            animationContainer.appendChild(indicators);
-        }
-        
-        // Add styles for indicators
-        const style = document.createElement('style');
-        style.textContent = `
-            .performance-indicators {
-                display: flex;
-                justify-content: space-around;
-                margin-top: 1rem;
-                padding: 1rem;
-                background: var(--light-bg);
-                border-radius: 8px;
-            }
-            
-            .indicator {
-                text-align: center;
-            }
-            
-            .indicator .label {
-                display: block;
-                font-size: 0.8rem;
-                color: var(--secondary);
-                margin-bottom: 0.25rem;
-            }
-            
-            .indicator .value {
-                display: block;
-                font-weight: 600;
-                color: var(--primary-dark);
-                font-size: 1rem;
-            }
-        `;
-        document.head.appendChild(style);
     }
-    
-    // Update status indicator
-    function updateStatus(status) {
-        const statusElement = document.getElementById('liftStatus');
-        if (statusElement) {
-            statusElement.textContent = status;
-        }
-    }
-    
-    // Initialize performance indicators
-    addPerformanceIndicators();
-    
-    // Update status during animation
-    const originalStartAnimation = startPaletAnimation;
-    startPaletAnimation = function() {
-        updateStatus('Çalışıyor');
-        originalStartAnimation();
-    };
-    
-    const originalStopAnimation = stopPaletAnimation;
-    stopPaletAnimation = function() {
-        updateStatus('Hazır');
-        originalStopAnimation();
-    };
-    
-    // Add safety features
-    function addSafetyFeatures() {
-        // Emergency stop button
-        const emergencyBtn = document.createElement('button');
-        emergencyBtn.className = 'emergency-btn';
-        emergencyBtn.innerHTML = '⏹️ DURDUR';
-        emergencyBtn.style.cssText = `
-            background: var(--danger);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 1rem;
-        `;
-        
-        emergencyBtn.addEventListener('click', function() {
-            updateStatus('DURDURULDU');
-            resetPaletAnimation();
+
+    closeSafetyGates() {
+        this.safetyGates.forEach(gate => {
+            gate.classList.remove('open');
         });
-        
-        const animationControls = document.querySelector('.animation-controls');
-        if (animationControls) {
-            animationControls.appendChild(emergencyBtn);
+    }
+
+    moveUp() {
+        if (this.currentLevel < 2) {
+            this.moveLiftToLevel(this.currentLevel + 1, () => {});
         }
     }
-    
-    // Initialize safety features
-    addSafetyFeatures();
+
+    moveDown() {
+        if (this.currentLevel > 1) {
+            this.moveLiftToLevel(this.currentLevel - 1, () => {});
+        }
+    }
+
+    emergencyStop() {
+        this.isRunning = false;
+        this.isPaused = false;
+        this.updateStatus('EMERGENCY STOP');
+        this.deactivateSystem();
+        this.closeSafetyGates();
+        
+        this.startBtn.disabled = false;
+        this.pauseBtn.disabled = true;
+    }
+
+    selectPallet(pallet) {
+        if (!this.isRunning || this.isPaused) return;
+        
+        // Highlight selected pallet
+        this.pallets.forEach(p => p.classList.remove('selected'));
+        pallet.classList.add('selected');
+        
+        // Show pallet info
+        const weight = pallet.dataset.weight;
+        const id = pallet.dataset.id;
+        console.log(`Selected pallet ${id} with weight ${weight}kg`);
+    }
+
+    completeCycle(cycleStartTime) {
+        const cycleTime = (Date.now() - cycleStartTime) / 1000;
+        this.cycleTimes.push(cycleTime);
+        this.totalCycles++;
+        
+        this.updatePerformanceIndicators();
+        
+        // Continue with next cycle after delay
+        setTimeout(() => {
+            if (this.isRunning && !this.isPaused) {
+                this.performLiftCycle();
+            }
+        }, 2000 / this.speed);
+    }
+
+    resetLiftPosition() {
+        this.liftPlatform.style.top = '300px';
+        this.levelIndicator.textContent = 'LEVEL 1';
+        this.closeSafetyGates();
+    }
+
+    resetPallets() {
+        this.pallets.forEach(pallet => {
+            pallet.classList.remove('moving', 'selected');
+        });
+    }
+
+    updateDisplay() {
+        this.currentLevelDisplay.textContent = this.currentLevel;
+        this.currentLoadDisplay.textContent = this.currentLoad + ' kg';
+        this.cycleCountDisplay.textContent = this.cycleCount;
+    }
+
+    updateStatus(status) {
+        this.liftStatus.textContent = status;
+    }
+
+    updatePerformanceIndicators() {
+        this.totalCyclesDisplay.textContent = this.totalCycles;
+        
+        if (this.cycleTimes.length > 0) {
+            const avgTime = (this.cycleTimes.reduce((a, b) => a + b, 0) / this.cycleTimes.length).toFixed(1);
+            this.avgCycleTimeDisplay.textContent = avgTime + 's';
+        }
+        
+        // Calculate safety score (simplified)
+        const safetyScore = Math.max(95, 100 - (this.totalCycles * 0.1));
+        this.safetyScoreDisplay.textContent = '%' + safetyScore.toFixed(0);
+    }
+
+    updateAnimationSpeed() {
+        // Update CSS animation speed based on speed multiplier
+        const elements = [this.liftStructure, this.groundLevel, this.upperLevel];
+        elements.forEach(element => {
+            element.style.animationDuration = `${3 / this.speed}s`;
+        });
+    }
+}
+
+// Initialize animation when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new PaletLiftAnimation();
 }); 

@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://lojikonotomasyonveyazlmticltds.github.io/website_ai/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Allow images for better SEO
+Allow: /img/
+
+# Disallow specific files
+Disallow: /*.js$
+Disallow: /*.css$ 
