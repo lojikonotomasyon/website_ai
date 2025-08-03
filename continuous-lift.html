@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuous Lift Sistemleri - Lojikon</title>
+    <meta name="description" content="Lojikon continuous lift sistemleri ile sürekli yük taşıma operasyonlarınızı optimize edin. Yüksek kapasiteli, güvenilir sürekli lift çözümleri.">
+    <meta name="keywords" content="continuous lift, sürekli lift, depo otomasyonu, intralogistik, yük taşıma, lift sistemi">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container-custom">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-cogs"></i>
+                    <span>Lojikon</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html#home">Ana Sayfa</a></li>
+                    <li><a href="index.html#about">Hakkımızda</a></li>
+                    <li><a href="index.html#solutions">Çözümler</a></li>
+                    <li><a href="index.html#services">Hizmetler</a></li>
+                    <li><a href="index.html#contact">İletişim</a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container-custom">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">Continuous Lift</span> Sistemleri
+                </h1>
+                <p class="hero-subtitle">
+                    Sürekli yük taşıma operasyonlarınızı optimize edin. Yüksek kapasiteli, güvenilir ve verimli continuous lift çözümleri.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#animation" class="btn btn-primary">Animasyonu İzle</a>
+                    <a href="#contact" class="btn btn-secondary">Teklif Al</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animation Section -->
+    <section id="animation" class="animation-section">
+        <div class="container-custom">
+            <h2 class="section-title">Continuous Lift Animasyonu</h2>
+            <p class="section-subtitle">Continuous lift sisteminin nasıl çalıştığını görün</p>
+
+            <div class="continuous-lift-animation">
+                <div class="continuous-lift-machine">
+                    <!-- Input Level -->
+                    <div class="input-level">
+                        <div class="level-label">Giriş Seviyesi</div>
+                        <div class="conveyor-belt input-conveyor">
+                            <div class="package" data-package-id="1">
+                                <div class="package-content">Paket 1</div>
+                            </div>
+                            <div class="package" data-package-id="2">
+                                <div class="package-content">Paket 2</div>
+                            </div>
+                            <div class="package" data-package-id="3">
+                                <div class="package-content">Paket 3</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Continuous Lift Mechanism -->
+                    <div class="lift-mechanism">
+                        <div class="lift-chains">
+                            <div class="chain left-chain"></div>
+                            <div class="chain right-chain"></div>
+                        </div>
+                        <div class="lift-platforms">
+                            <div class="lift-platform" data-platform-id="1">
+                                <div class="platform-indicator">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                            </div>
+                            <div class="lift-platform" data-platform-id="2">
+                                <div class="platform-indicator">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                            </div>
+                            <div class="lift-platform" data-platform-id="3">
+                                <div class="platform-indicator">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Level -->
+                    <div class="output-level">
+                        <div class="level-label">Çıkış Seviyesi</div>
+                        <div class="conveyor-belt output-conveyor">
+                            <div class="output-slot" data-slot-id="1"></div>
+                            <div class="output-slot" data-slot-id="2"></div>
+                            <div class="output-slot" data-slot-id="3"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animation Controls -->
+                <div class="animation-controls">
+                    <button id="startContinuousAnimation" class="control-button">
+                        <i class="fas fa-play"></i> Başlat
+                    </button>
+                    <button id="resetContinuousAnimation" class="control-button">
+                        <i class="fas fa-redo"></i> Sıfırla
+                    </button>
+                    <button id="speedUp" class="control-button">
+                        <i class="fas fa-tachometer-alt"></i> Hızlandır
+                    </button>
+                    <button id="slowDown" class="control-button">
+                        <i class="fas fa-minus"></i> Yavaşlat
+                    </button>
+                    <button id="emergencyStopContinuous" class="control-button emergency">
+                        <i class="fas fa-stop"></i> Acil Dur
+                    </button>
+                </div>
+
+                <!-- Performance Indicators -->
+                <div class="performance-indicators">
+                    <div class="indicator">
+                        <span class="indicator-label">Hız:</span>
+                        <span id="continuousSpeed" class="indicator-value">0 m/s</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Kapasite:</span>
+                        <span id="continuousCapacity" class="indicator-value">100 paket/saat</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Durum:</span>
+                        <span id="continuousStatus" class="indicator-value">Hazır</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container-custom">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Nasıl Çalışır?</h3>
+                    <p>Continuous lift sistemi, sürekli bir zincir mekanizması ile paketleri farklı seviyeler arasında taşır. Sistem, giriş konveyöründen paketleri alır, lift platformlarına yerleştirir ve sürekli hareket eden zincirler ile yukarı taşır. Çıkış seviyesinde paketler otomatik olarak çıkış konveyörüne aktarılır.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>Neden Kullanılır?</h3>
+                    <p>Yüksek hacimli operasyonlarda sürekli yük taşıma ihtiyacını karşılamak için kullanılır. Geleneksel lift sistemlerinden farklı olarak, sürekli operasyon sağlar ve bekleme sürelerini minimize eder. Özellikle e-ticaret depolarında ve dağıtım merkezlerinde kritik öneme sahiptir.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Nerede Kullanılır?</h3>
+                    <p>E-ticaret depoları, dağıtım merkezleri, perakende mağaza depoları, üretim tesisleri ve lojistik merkezlerinde yaygın olarak kullanılır. Özellikle yüksek hacimli, sürekli operasyon gerektiren tesislerde tercih edilir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs-section">
+        <div class="container-custom">
+            <h2 class="section-title">Teknik Özellikler</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <h4>Yük Kapasitesi</h4>
+                    <p>1000 kg'a kadar</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Çalışma Hızı</h4>
+                    <p>0.3 - 1.5 m/s</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Yükseklik</h4>
+                    <p>5 - 25 metre</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Kapasite</h4>
+                    <p>200+ paket/saat</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Güç Tüketimi</h4>
+                    <p>5.5 kW</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Güvenlik</h4>
+                    <p>Çoklu sensör sistemi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container-custom">
+            <h2 class="section-title">Avantajlar</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Sürekli Operasyon</h4>
+                    <p>Kesintisiz yük taşıma imkanı</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h4>Yüksek Kapasite</h4>
+                    <p>Geleneksel liftlerden 3x daha hızlı</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Güvenlik</h4>
+                    <p>Gelişmiş güvenlik sistemleri</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h4>Kolay Entegrasyon</h4>
+                    <p>Mevcut sistemlere uyumlu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container-custom">
+            <h2 class="section-title">Continuous Lift Sistemi Hakkında Bilgi Alın</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Bizimle İletişime Geçin</h3>
+                    <p>Continuous lift sistemleri hakkında detaylı bilgi almak ve projeniz için özel çözümler geliştirmek için bizimle iletişime geçin.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+90 212 555 0123</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@lojikon.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>İstanbul, Türkiye</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ad Soyad *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-posta *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Firma</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Hizmet Türü</label>
+                        <select id="service" name="service">
+                            <option value="continuous-lift" selected>Continuous Lift Sistemleri</option>
+                            <option value="sorter">Sorter Sistemleri</option>
+                            <option value="palet-lift">Palet Lift Sistemleri</option>
+                            <option value="kasa-lift">Kasa Lift Sistemleri</option>
+                            <option value="pick-to-light">Pick to Light</option>
+                            <option value="miniload">Miniload Shuttle</option>
+                            <option value="scada">SCADA Sistemleri</option>
+                            <option value="data-collection">Veri Toplama</option>
+                            <option value="production-tracking">Üretim Takibi</option>
+                            <option value="custom-software">Özel Yazılım</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mesajınız *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Projeniz hakkında detaylı bilgi verin..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Gönder
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-custom">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-cogs"></i>
+                        <span>Lojikon</span>
+                    </div>
+                    <p>Otomasyon ve intralogistik çözümlerinde güvenilir partneriniz.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Çözümler</h4>
+                    <ul>
+                        <li><a href="sorter.html">Sorter Sistemleri</a></li>
+                        <li><a href="palet-lift.html">Palet Lift</a></li>
+                        <li><a href="kasa-lift.html">Kasa Lift</a></li>
+                        <li><a href="continuous-lift.html">Continuous Lift</a></li>
+                        <li><a href="pick-to-light.html">Pick to Light</a></li>
+                        <li><a href="miniload.html">Miniload Shuttle</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Hizmetler</h4>
+                    <ul>
+                        <li><a href="#services">Veri Toplama</a></li>
+                        <li><a href="#services">SCADA Sistemleri</a></li>
+                        <li><a href="#services">Üretim Takibi</a></li>
+                        <li><a href="#services">Özel Yazılım</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +90 212 555 0123</p>
+                        <p><i class="fas fa-envelope"></i> info@lojikon.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lojikon. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="continuous-lift-animation.js"></script>
+</body>
+</html> 

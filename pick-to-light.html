@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick to Light Sistemleri - Lojikon</title>
+    <meta name="description" content="Lojikon pick to light sistemleri ile depo operasyonlarınızı optimize edin. Hızlı, doğru ve verimli toplama çözümleri.">
+    <meta name="keywords" content="pick to light, depo otomasyonu, intralogistik, toplama sistemi, ışık göstergeli toplama">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>LOJİKON</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html#home">Ana Sayfa</a></li>
+                    <li><a href="index.html#about">Hakkımızda</a></li>
+                    <li><a href="index.html#solutions">Çözümler</a></li>
+                    <li><a href="index.html#services">Hizmetler</a></li>
+                    <li><a href="index.html#contact">İletişim</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">Pick to Light</span> Sistemleri
+                </h1>
+                <p class="hero-subtitle">
+                    Depo operasyonlarınızda toplama işlemlerini optimize edin. Işık göstergeli, hızlı ve doğru toplama çözümleri.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#animation" class="btn btn-primary">Animasyonu İzle</a>
+                    <a href="#contact" class="btn btn-secondary">Teklif Al</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animation Section -->
+    <section id="animation" class="animation-section">
+        <div class="container">
+            <h2 class="section-title">Pick to Light Animasyonu</h2>
+            <p class="section-subtitle">Pick to light sisteminin nasıl çalıştığını görün</p>
+            
+            <div class="pick-to-light-animation">
+                <div class="pick-station">
+                    <!-- Pick Station -->
+                    <div class="station-header">
+                        <h3>Toplama İstasyonu</h3>
+                        <div class="order-info">
+                            <span>Sipariş: #12345</span>
+                            <span>Durum: <span id="pickStatus">Hazır</span></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Shelving Units -->
+                    <div class="shelving-units">
+                        <div class="shelf-row">
+                            <div class="shelf-cell" data-item-id="1">
+                                <div class="light-indicator"></div>
+                                <div class="item-info">
+                                    <span class="item-name">Ürün A</span>
+                                    <span class="item-quantity">2 adet</span>
+                                </div>
+                            </div>
+                            <div class="shelf-cell" data-item-id="2">
+                                <div class="light-indicator"></div>
+                                <div class="item-info">
+                                    <span class="item-name">Ürün B</span>
+                                    <span class="item-quantity">1 adet</span>
+                                </div>
+                            </div>
+                            <div class="shelf-cell" data-item-id="3">
+                                <div class="light-indicator"></div>
+                                <div class="item-info">
+                                    <span class="item-name">Ürün C</span>
+                                    <span class="item-quantity">3 adet</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shelf-row">
+                            <div class="shelf-cell" data-item-id="4">
+                                <div class="light-indicator"></div>
+                                <div class="item-info">
+                                    <span class="item-name">Ürün D</span>
+                                    <span class="item-quantity">1 adet</span>
+                                </div>
+                            </div>
+                            <div class="shelf-cell" data-item-id="5">
+                                <div class="light-indicator"></div>
+                                <div class="item-info">
+                                    <span class="item-name">Ürün E</span>
+                                    <span class="item-quantity">2 adet</span>
+                                </div>
+                            </div>
+                            <div class="shelf-cell" data-item-id="6">
+                                <div class="light-indicator"></div>
+                                <div class="item-info">
+                                    <span class="item-name">Ürün F</span>
+                                    <span class="item-quantity">1 adet</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pick Cart -->
+                    <div class="pick-cart">
+                        <div class="cart-header">
+                            <h4>Toplama Sepeti</h4>
+                        </div>
+                        <div class="cart-items" id="cartItems">
+                            <!-- Items will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Animation Controls -->
+                <div class="animation-controls">
+                    <button id="startPickAnimation" class="control-button">
+                        <i class="fas fa-play"></i> Başlat
+                    </button>
+                    <button id="resetPickAnimation" class="control-button">
+                        <i class="fas fa-redo"></i> Sıfırla
+                    </button>
+                    <button id="nextItem" class="control-button">
+                        <i class="fas fa-arrow-right"></i> Sonraki
+                    </button>
+                    <button id="completeOrder" class="control-button">
+                        <i class="fas fa-check"></i> Tamamla
+                    </button>
+                </div>
+                
+                <!-- Performance Indicators -->
+                <div class="performance-indicators">
+                    <div class="indicator">
+                        <span class="indicator-label">Hız:</span>
+                        <span id="pickSpeed" class="indicator-value">0 ürün/dk</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Doğruluk:</span>
+                        <span id="pickAccuracy" class="indicator-value">%100</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Durum:</span>
+                        <span id="pickStatus" class="indicator-value">Hazır</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Nasıl Çalışır?</h3>
+                    <p>Pick to light sistemi, toplama işlemlerini ışık göstergeleri ile yönlendirir. Sistem, hangi ürünün hangi miktarda toplanacağını ışık ile gösterir. Operatör ışığı takip ederek doğru ürünü doğru miktarda toplar ve onay verir.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>Neden Kullanılır?</h3>
+                    <p>Toplama hızını artırmak, hata oranını minimize etmek ve operatör eğitim süresini kısaltmak için kullanılır. Özellikle yüksek hacimli e-ticaret operasyonlarında kritik öneme sahiptir.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Nerede Kullanılır?</h3>
+                    <p>E-ticaret depoları, perakende mağaza depoları, ilaç depoları, elektronik ürün depoları ve hızlı tüketim ürünleri depolarında yaygın olarak kullanılır. Özellikle çok çeşitli ürün bulunan depolar için idealdir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs-section">
+        <div class="container">
+            <h2 class="section-title">Teknik Özellikler</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <h4>Toplama Hızı</h4>
+                    <p>200-500 ürün/saat</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Doğruluk Oranı</h4>
+                    <p>%99.9+</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Işık Renkleri</h4>
+                    <p>Yeşil, Kırmızı, Mavi</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Çalışma Mesafesi</h4>
+                    <p>50 metre</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Güç Tüketimi</h4>
+                    <p>LED bazlı düşük güç</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Entegrasyon</h4>
+                    <p>WMS/WCS uyumlu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">Avantajlar</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h4>Hız Artışı</h4>
+                    <p>Toplama hızını %40-60 oranında artırır</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4>Doğruluk</h4>
+                    <p>Hata oranını %99.9'a kadar azaltır</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Kolay Eğitim</h4>
+                    <p>Operatör eğitim süresini kısaltır</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Verimlilik</h4>
+                    <p>Genel depo verimliliğini artırır</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Pick to Light Sistemi Hakkında Bilgi Alın</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Bizimle İletişime Geçin</h3>
+                    <p>Pick to light sistemleri hakkında detaylı bilgi almak ve projeniz için özel çözümler geliştirmek için bizimle iletişime geçin.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+90 212 555 0123</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@lojikon.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>İstanbul, Türkiye</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ad Soyad *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-posta *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Firma</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Hizmet Türü</label>
+                        <select id="service" name="service">
+                            <option value="pick-to-light" selected>Pick to Light Sistemleri</option>
+                            <option value="sorter">Sorter Sistemleri</option>
+                            <option value="palet-lift">Palet Lift Sistemleri</option>
+                            <option value="kasa-lift">Kasa Lift Sistemleri</option>
+                            <option value="continuous-lift">Continuous Lift</option>
+                            <option value="miniload">Miniload Shuttle</option>
+                            <option value="scada">SCADA Sistemleri</option>
+                            <option value="data-collection">Veri Toplama</option>
+                            <option value="production-tracking">Üretim Takibi</option>
+                            <option value="custom-software">Özel Yazılım</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mesajınız *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Projeniz hakkında detaylı bilgi verin..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Gönder
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-cogs"></i>
+                        <span>Lojikon</span>
+                    </div>
+                    <p>Otomasyon ve intralogistik çözümlerinde güvenilir partneriniz.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Çözümler</h4>
+                    <ul>
+                        <li><a href="sorter.html">Sorter Sistemleri</a></li>
+                        <li><a href="palet-lift.html">Palet Lift</a></li>
+                        <li><a href="kasa-lift.html">Kasa Lift</a></li>
+                        <li><a href="continuous-lift.html">Continuous Lift</a></li>
+                        <li><a href="pick-to-light.html">Pick to Light</a></li>
+                        <li><a href="miniload.html">Miniload Shuttle</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Hizmetler</h4>
+                    <ul>
+                        <li><a href="#services">Veri Toplama</a></li>
+                        <li><a href="#services">SCADA Sistemleri</a></li>
+                        <li><a href="#services">Üretim Takibi</a></li>
+                        <li><a href="#services">Özel Yazılım</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +90 212 555 0123</p>
+                        <p><i class="fas fa-envelope"></i> info@lojikon.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lojikon. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="pick-to-light-animation.js"></script>
+</body>
+</html> 

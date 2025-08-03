@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miniload Shuttle Sistemleri - Lojikon</title>
+    <meta name="description" content="Lojikon miniload shuttle sistemleri ile depo otomasyonunuzu optimize edin. Yüksek yoğunluklu, hızlı ve verimli depolama çözümleri.">
+    <meta name="keywords" content="miniload shuttle, depo otomasyonu, intralogistik, shuttle sistemi, yüksek yoğunluklu depolama">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>LOJİKON</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html#home">Ana Sayfa</a></li>
+                    <li><a href="index.html#about">Hakkımızda</a></li>
+                    <li><a href="index.html#solutions">Çözümler</a></li>
+                    <li><a href="index.html#services">Hizmetler</a></li>
+                    <li><a href="index.html#contact">İletişim</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">Miniload Shuttle</span> Sistemleri
+                </h1>
+                <p class="hero-subtitle">
+                    Yüksek yoğunluklu depolama çözümleri ile depo alanınızı maksimum verimlilikle kullanın. Hızlı, güvenilir ve esnek shuttle sistemleri.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#animation" class="btn btn-primary">Animasyonu İzle</a>
+                    <a href="#contact" class="btn btn-secondary">Teklif Al</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animation Section -->
+    <section id="animation" class="animation-section">
+        <div class="container">
+            <h2 class="section-title">Miniload Shuttle Animasyonu</h2>
+            <p class="section-subtitle">Miniload shuttle sisteminin nasıl çalıştığını görün</p>
+            
+            <div class="miniload-animation">
+                <div class="miniload-system">
+                    <!-- Storage Racks -->
+                    <div class="storage-racks">
+                        <div class="rack-level" data-level="1">
+                            <div class="rack-slot" data-slot="1-1"></div>
+                            <div class="rack-slot" data-slot="1-2"></div>
+                            <div class="rack-slot" data-slot="1-3"></div>
+                            <div class="rack-slot" data-slot="1-4"></div>
+                            <div class="rack-slot" data-slot="1-5"></div>
+                        </div>
+                        <div class="rack-level" data-level="2">
+                            <div class="rack-slot" data-slot="2-1"></div>
+                            <div class="rack-slot" data-slot="2-2"></div>
+                            <div class="rack-slot" data-slot="2-3"></div>
+                            <div class="rack-slot" data-slot="2-4"></div>
+                            <div class="rack-slot" data-slot="2-5"></div>
+                        </div>
+                        <div class="rack-level" data-level="3">
+                            <div class="rack-slot" data-slot="3-1"></div>
+                            <div class="rack-slot" data-slot="3-2"></div>
+                            <div class="rack-slot" data-slot="3-3"></div>
+                            <div class="rack-slot" data-slot="3-4"></div>
+                            <div class="rack-slot" data-slot="3-5"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Shuttle Car -->
+                    <div class="shuttle-car" id="shuttleCar">
+                        <div class="shuttle-body">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="shuttle-indicator">
+                            <span class="shuttle-status">Hazır</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Lift Mechanism -->
+                    <div class="lift-mechanism">
+                        <div class="lift-platform" id="liftPlatform">
+                            <div class="lift-indicator">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Work Station -->
+                    <div class="work-station">
+                        <div class="station-header">
+                            <h4>İş İstasyonu</h4>
+                        </div>
+                        <div class="station-area">
+                            <div class="input-area">
+                                <span>Giriş</span>
+                            </div>
+                            <div class="output-area">
+                                <span>Çıkış</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Animation Controls -->
+                <div class="animation-controls">
+                    <button id="startMiniloadAnimation" class="control-button">
+                        <i class="fas fa-play"></i> Başlat
+                    </button>
+                    <button id="resetMiniloadAnimation" class="control-button">
+                        <i class="fas fa-redo"></i> Sıfırla
+                    </button>
+                    <button id="storeItem" class="control-button">
+                        <i class="fas fa-upload"></i> Depola
+                    </button>
+                    <button id="retrieveItem" class="control-button">
+                        <i class="fas fa-download"></i> Çek
+                    </button>
+                </div>
+                
+                <!-- Performance Indicators -->
+                <div class="performance-indicators">
+                    <div class="indicator">
+                        <span class="indicator-label">Hız:</span>
+                        <span id="miniloadSpeed" class="indicator-value">0 m/s</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Kapasite:</span>
+                        <span id="miniloadCapacity" class="indicator-value">15 slot</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Durum:</span>
+                        <span id="miniloadStatus" class="indicator-value">Hazır</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Nasıl Çalışır?</h3>
+                    <p>Miniload shuttle sistemi, yüksek yoğunluklu depolama için tasarlanmıştır. Shuttle araçları raflar arasında hareket ederek ürünleri otomatik olarak depolama ve çekme işlemlerini gerçekleştirir. Sistem, en yakın boş slotu bulur ve ürünü yerleştirir.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>Neden Kullanılır?</h3>
+                    <p>Depo alanını maksimum verimlilikle kullanmak, yüksek yoğunluklu depolama sağlamak ve hızlı erişim imkanı sunmak için kullanılır. Özellikle küçük ve orta boyutlu ürünler için idealdir.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Nerede Kullanılır?</h3>
+                    <p>E-ticaret depoları, parça depoları, ilaç depoları, elektronik ürün depoları ve küçük boyutlu ürünlerin yoğun olarak depolandığı tesislerde yaygın olarak kullanılır. Yüksek yoğunluklu depolama gerektiren her yerde tercih edilir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs-section">
+        <div class="container">
+            <h2 class="section-title">Teknik Özellikler</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <h4>Yük Kapasitesi</h4>
+                    <p>50 kg'a kadar</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Shuttle Hızı</h4>
+                    <p>2.0 m/s</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Depolama Yüksekliği</h4>
+                    <p>15 metre</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Slot Boyutu</h4>
+                    <p>600x400x300 mm</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Güç Tüketimi</h4>
+                    <p>1.5 kW</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Güvenlik</h4>
+                    <p>Çoklu sensör sistemi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">Avantajlar</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </div>
+                    <h4>Yüksek Yoğunluk</h4>
+                    <p>Depo alanını %60 daha verimli kullanır</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h4>Hızlı Erişim</h4>
+                    <p>Ürünlere saniyeler içinde erişim</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h4>Otomatik Çalışma</h4>
+                    <p>7/24 kesintisiz operasyon</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Ölçeklenebilir</h4>
+                    <p>İhtiyaca göre genişletilebilir</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Miniload Shuttle Sistemi Hakkında Bilgi Alın</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Bizimle İletişime Geçin</h3>
+                    <p>Miniload shuttle sistemleri hakkında detaylı bilgi almak ve projeniz için özel çözümler geliştirmek için bizimle iletişime geçin.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+90 212 555 0123</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@lojikon.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>İstanbul, Türkiye</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ad Soyad *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-posta *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Firma</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Hizmet Türü</label>
+                        <select id="service" name="service">
+                            <option value="miniload" selected>Miniload Shuttle Sistemleri</option>
+                            <option value="sorter">Sorter Sistemleri</option>
+                            <option value="palet-lift">Palet Lift Sistemleri</option>
+                            <option value="kasa-lift">Kasa Lift Sistemleri</option>
+                            <option value="continuous-lift">Continuous Lift</option>
+                            <option value="pick-to-light">Pick to Light</option>
+                            <option value="scada">SCADA Sistemleri</option>
+                            <option value="data-collection">Veri Toplama</option>
+                            <option value="production-tracking">Üretim Takibi</option>
+                            <option value="custom-software">Özel Yazılım</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mesajınız *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Projeniz hakkında detaylı bilgi verin..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Gönder
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-cogs"></i>
+                        <span>Lojikon</span>
+                    </div>
+                    <p>Otomasyon ve intralogistik çözümlerinde güvenilir partneriniz.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Çözümler</h4>
+                    <ul>
+                        <li><a href="sorter.html">Sorter Sistemleri</a></li>
+                        <li><a href="palet-lift.html">Palet Lift</a></li>
+                        <li><a href="kasa-lift.html">Kasa Lift</a></li>
+                        <li><a href="continuous-lift.html">Continuous Lift</a></li>
+                        <li><a href="pick-to-light.html">Pick to Light</a></li>
+                        <li><a href="miniload.html">Miniload Shuttle</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Hizmetler</h4>
+                    <ul>
+                        <li><a href="#services">Veri Toplama</a></li>
+                        <li><a href="#services">SCADA Sistemleri</a></li>
+                        <li><a href="#services">Üretim Takibi</a></li>
+                        <li><a href="#services">Özel Yazılım</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +90 212 555 0123</p>
+                        <p><i class="fas fa-envelope"></i> info@lojikon.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lojikon. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="miniload-animation.js"></script>
+</body>
+</html> 
