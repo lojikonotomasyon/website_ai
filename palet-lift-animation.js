@@ -18,6 +18,22 @@ class ProfessionalElevator {
         this.updateDisplay();
         this.setElevatorPosition();
         this.setCounterweightPosition();
+        
+        // Add page visibility handling
+        this.setupPageVisibilityHandling();
+    }
+
+    setupPageVisibilityHandling() {
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Page is hidden, stop demo
+                this.stopDemo();
+            } else {
+                // Page is visible, start demo
+                this.startDemo();
+            }
+        });
     }
 
     bindEvents() {

@@ -1058,6 +1058,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     padding: 8px;
+    z-index: 1;
 }
 
 .panel-header {
@@ -1099,40 +1100,42 @@ body {
 /* Performance Indicators */
 .performance-indicators {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     z-index: 5;
     pointer-events: none;
 }
 
 .indicator {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(51, 65, 85, 0.8));
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.6));
     border: 1px solid #475569;
     border-radius: 4px;
-    padding: 4px 8px;
+    padding: 3px 9px;
     min-width: 60px;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(2px);
 }
 
 .indicator-label {
     display: block;
-    font-size: 7px;
+    font-size: 9px;
     color: #9ca3af;
     font-weight: normal;
-    margin-bottom: 1px;
+    margin-bottom: 0px;
+    line-height: 1;
 }
 
 .indicator-value {
     display: block;
-    font-size: 9px;
+    font-size: 12px;
     color: #10b981;
     font-weight: bold;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    line-height: 1;
 }
 
 /* Slider Controls */
@@ -1858,12 +1861,15 @@ body {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
     }
 
     .btn {
         width: 100%;
         max-width: 300px;
         text-align: center;
+        font-size: 0.9rem;
+        padding: 12px 20px;
     }
 }
 
@@ -2387,34 +2393,42 @@ html {
 /* Performance Indicators */
 .performance-indicators {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    right: 10px;
     display: flex;
-    gap: 15px;
-    z-index: 15;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+    pointer-events: none;
 }
 
 .indicator {
-    background: rgba(26, 26, 46, 0.9);
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(52, 152, 219, 0.3);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.6));
+    border: 1px solid #475569;
+    border-radius: 4px;
+    padding: 3px 9px;
+    min-width: 60px;
     text-align: center;
-    min-width: 80px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
 }
 
 .indicator-label {
-    font-size: 12px;
-    color: #3498db;
-    font-weight: 600;
-    margin-bottom: 5px;
+    display: block;
+    font-size: 9px;
+    color: #9ca3af;
+    font-weight: normal;
+    margin-bottom: 0px;
+    line-height: 1;
 }
 
 .indicator-value {
-    font-size: 16px;
-    color: white;
-    font-weight: 700;
+    display: block;
+    font-size: 12px;
+    color: #10b981;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    line-height: 1;
 }
 
 /* Speed Control */
@@ -3840,34 +3854,42 @@ html {
 /* Performance Indicators */
 .performance-indicators {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     display: flex;
-    gap: 15px;
-    z-index: 10;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+    pointer-events: none;
 }
 
 .indicator {
-    background: rgba(26, 26, 46, 0.9);
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(52, 152, 219, 0.3);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.6));
+    border: 1px solid #475569;
+    border-radius: 4px;
+    padding: 3px 9px;
+    min-width: 60px;
     text-align: center;
-    min-width: 80px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
 }
 
 .indicator-label {
-    font-size: 12px;
-    color: #3498db;
-    font-weight: 600;
-    margin-bottom: 5px;
+    display: block;
+    font-size: 9px;
+    color: #9ca3af;
+    font-weight: normal;
+    margin-bottom: 0px;
+    line-height: 1;
 }
 
 .indicator-value {
-    font-size: 16px;
-    color: white;
-    font-weight: 700;
+    display: block;
+    font-size: 12px;
+    color: #10b981;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    line-height: 1;
 }
 
 /* Fix for sorting mechanism layout */
@@ -3975,22 +3997,22 @@ html {
     }
     
     .performance-indicators {
-        top: 10px;
-        right: 10px;
-        gap: 10px;
+        top: 5px;
+        right: 5px;
+        gap: 3px;
     }
     
     .indicator {
-        padding: 8px 12px;
-        min-width: 60px;
+        padding: 1.5px 6px;
+        min-width: 45px;
     }
     
     .indicator-label {
-        font-size: 10px;
+        font-size: 7.5px;
     }
     
     .indicator-value {
-        font-size: 14px;
+        font-size: 10.5px;
     }
 } 
 
@@ -4052,8 +4074,9 @@ html {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
     z-index: 10;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     cursor: pointer;
+    transform: translate(600px, 350px); /* Initial position using transform */
 }
 
 .shuttle::before {
@@ -4251,34 +4274,42 @@ html {
 /* Performance Indicators */
 .miniload-performance-indicators {
     position: absolute;
-    bottom: 140px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 10px;
+    right: 10px;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+    pointer-events: none;
 }
 
 .miniload-indicator {
-    background: rgba(26, 26, 46, 0.9);
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(52, 152, 219, 0.3);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.6));
+    border: 1px solid #475569;
+    border-radius: 4px;
+    padding: 3px 9px;
+    min-width: 60px;
     text-align: center;
-    min-width: 80px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
 }
 
 .miniload-indicator-label {
-    font-size: 12px;
-    color: #3498db;
-    font-weight: 600;
-    margin-bottom: 5px;
+    display: block;
+    font-size: 9px;
+    color: #9ca3af;
+    font-weight: normal;
+    margin-bottom: 0px;
+    line-height: 1;
 }
 
 .miniload-indicator-value {
-    font-size: 16px;
-    color: white;
-    font-weight: 700;
+    display: block;
+    font-size: 12px;
+    color: #10b981;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    line-height: 1;
 }
 
 /* Charging Station */
@@ -4347,20 +4378,20 @@ html {
     }
     
     .miniload-performance-indicators {
-        gap: 10px;
+        gap: 3px;
     }
     
     .miniload-indicator {
-        padding: 8px 12px;
-        min-width: 60px;
+        padding: 1.5px 6px;
+        min-width: 45px;
     }
     
     .miniload-indicator-label {
-        font-size: 10px;
+        font-size: 7.5px;
     }
     
     .miniload-indicator-value {
-        font-size: 14px;
+        font-size: 10.5px;
     }
 }
 
@@ -4610,34 +4641,42 @@ html {
 /* Performance Indicators */
 .kasa-performance-indicators {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     display: flex;
-    gap: 15px;
-    z-index: 15;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+    pointer-events: none;
 }
 
 .kasa-indicator {
-    background: rgba(26, 26, 46, 0.9);
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(52, 152, 219, 0.3);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.6));
+    border: 1px solid #475569;
+    border-radius: 4px;
+    padding: 3px 9px;
+    min-width: 60px;
     text-align: center;
-    min-width: 80px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
 }
 
 .kasa-indicator-label {
-    font-size: 12px;
-    color: #3498db;
-    font-weight: 600;
-    margin-bottom: 5px;
+    display: block;
+    font-size: 9px;
+    color: #9ca3af;
+    font-weight: normal;
+    margin-bottom: 0px;
+    line-height: 1;
 }
 
 .kasa-indicator-value {
-    font-size: 16px;
-    color: white;
-    font-weight: 700;
+    display: block;
+    font-size: 12px;
+    color: #10b981;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    line-height: 1;
 }
 
 /* Responsive Design */
@@ -4684,20 +4723,20 @@ html {
     }
     
     .kasa-performance-indicators {
-        gap: 10px;
+        gap: 3px;
     }
     
     .kasa-indicator {
-        padding: 8px 12px;
-        min-width: 60px;
+        padding: 1.5px 6px;
+        min-width: 45px;
     }
     
     .kasa-indicator-label {
-        font-size: 10px;
+        font-size: 7.5px;
     }
     
     .kasa-indicator-value {
-        font-size: 14px;
+        font-size: 10.5px;
     }
 }
 
@@ -5014,34 +5053,42 @@ html {
 /* Performance Indicators */
 .continuous-performance-indicators {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     display: flex;
-    gap: 15px;
-    z-index: 15;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+    pointer-events: none;
 }
 
 .continuous-indicator {
-    background: rgba(26, 26, 46, 0.9);
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(52, 152, 219, 0.3);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.6));
+    border: 1px solid #475569;
+    border-radius: 4px;
+    padding: 3px 9px;
+    min-width: 60px;
     text-align: center;
-    min-width: 80px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
 }
 
 .continuous-indicator-label {
-    font-size: 12px;
-    color: #3498db;
-    font-weight: 600;
-    margin-bottom: 5px;
+    display: block;
+    font-size: 9px;
+    color: #9ca3af;
+    font-weight: normal;
+    margin-bottom: 0px;
+    line-height: 1;
 }
 
 .continuous-indicator-value {
-    font-size: 16px;
-    color: white;
-    font-weight: 700;
+    display: block;
+    font-size: 12px;
+    color: #10b981;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    line-height: 1;
 }
 
 /* Responsive Design */
@@ -5643,34 +5690,42 @@ html {
 /* Performance Indicators */
 .miniload-performance-indicators {
     position: absolute;
-    bottom: 140px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 10px;
+    right: 10px;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+    pointer-events: none;
 }
 
 .miniload-indicator {
-    background: rgba(26, 26, 46, 0.9);
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(52, 152, 219, 0.3);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.6));
+    border: 1px solid #475569;
+    border-radius: 4px;
+    padding: 3px 9px;
+    min-width: 60px;
     text-align: center;
-    min-width: 80px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
 }
 
 .miniload-indicator-label {
-    font-size: 12px;
-    color: #3498db;
-    font-weight: 600;
-    margin-bottom: 5px;
+    display: block;
+    font-size: 9px;
+    color: #9ca3af;
+    font-weight: normal;
+    margin-bottom: 0px;
+    line-height: 1;
 }
 
 .miniload-indicator-value {
-    font-size: 16px;
-    color: white;
-    font-weight: 700;
+    display: block;
+    font-size: 12px;
+    color: #10b981;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    line-height: 1;
 }
 
 /* Responsive Design for Miniload */
@@ -5743,3 +5798,4 @@ html {
         font-size: 12px;
     }
 }
+

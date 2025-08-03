@@ -1,7 +1,7 @@
 // Professional Sorter Animation System
 class ProfessionalSorter {
     constructor() {
-        this.isRunning = false;
+        this.isRunning = true; // Changed to true for auto-start
         this.packages = [];
         this.laneCounts = { 1: 0, 2: 0, 3: 0 };
         this.currentSpeed = 120;
@@ -16,17 +16,30 @@ class ProfessionalSorter {
         this.bindEvents();
         this.updateDisplay();
         this.createInitialPackages();
+        // Auto-start the animation
+        this.start();
+        
+        // Add page visibility handling
+        this.setupPageVisibilityHandling();
+    }
+
+    setupPageVisibilityHandling() {
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Page is hidden, pause animation
+                this.stop();
+            } else {
+                // Page is visible, resume animation
+                this.start();
+            }
+        });
     }
 
     bindEvents() {
-        const startBtn = document.getElementById('startSorterAnimation');
-        const stopBtn = document.getElementById('stopSorterAnimation');
-        const resetBtn = document.getElementById('resetSorterAnimation');
+        // Removed manual control buttons - animation starts automatically
         const speedControl = document.getElementById('speedControl');
 
-        if (startBtn) startBtn.addEventListener('click', () => this.start());
-        if (stopBtn) stopBtn.addEventListener('click', () => this.stop());
-        if (resetBtn) resetBtn.addEventListener('click', () => this.reset());
         if (speedControl) {
             speedControl.addEventListener('input', (e) => {
                 this.setSpeed(e.target.value);
@@ -44,12 +57,6 @@ class ProfessionalSorter {
         this.startConveyor();
         this.startPackageGeneration();
         this.startScanner();
-        
-        // Update button states
-        const startBtn = document.getElementById('startSorterAnimation');
-        const stopBtn = document.getElementById('stopSorterAnimation');
-        if (startBtn) startBtn.disabled = true;
-        if (stopBtn) stopBtn.disabled = false;
     }
 
     stop() {
@@ -58,12 +65,6 @@ class ProfessionalSorter {
         this.stopConveyor();
         this.stopPackageGeneration();
         this.stopScanner();
-        
-        // Update button states
-        const startBtn = document.getElementById('startSorterAnimation');
-        const stopBtn = document.getElementById('stopSorterAnimation');
-        if (startBtn) startBtn.disabled = false;
-        if (stopBtn) stopBtn.disabled = true;
     }
 
     reset() {

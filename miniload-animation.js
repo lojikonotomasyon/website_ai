@@ -1,7 +1,7 @@
 // Miniload Shuttle Animation
 class MiniloadShuttleAnimation {
     constructor() {
-        this.isRunning = false;
+        this.isRunning = true; // Changed to true for auto-start
         this.isEmergencyStop = false;
         this.currentSpeed = 0;
         this.maxSpeed = 3; // m/dk
@@ -34,7 +34,24 @@ class MiniloadShuttleAnimation {
         this.setupEventListeners();
         this.positionItems();
         this.updateIndicators();
-        this.updateButtonStates();
+        // Auto-start the animation
+        this.startAnimation();
+        
+        // Add page visibility handling
+        this.setupPageVisibilityHandling();
+    }
+
+    setupPageVisibilityHandling() {
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Page is hidden, pause animation
+                this.stopAnimation();
+            } else {
+                // Page is visible, resume animation
+                this.startAnimation();
+            }
+        });
     }
 
     setupEventListeners() {
@@ -84,20 +101,17 @@ class MiniloadShuttleAnimation {
     }
 
     positionItems() {
-        // Position storage items in their designated slots
+        // Use CSS-based positioning instead of getBoundingClientRect to avoid forced reflow
         this.storageItems.forEach(item => {
             const slotId = item.getAttribute('data-slot');
             const slot = document.querySelector(`[data-slot="${slotId}"]`);
             
             if (slot) {
-                const slotRect = slot.getBoundingClientRect();
-                const containerRect = document.querySelector('.miniload-animation').getBoundingClientRect();
-                
-                const x = slotRect.left - containerRect.left + slotRect.width / 2 - 35;
-                const y = slotRect.top - containerRect.top + slotRect.height / 2 - 30;
-                
-                item.style.left = `${x}px`;
-                item.style.top = `${y}px`;
+                // Use CSS positioning instead of JavaScript calculations
+                item.style.position = 'absolute';
+                item.style.left = '50%';
+                item.style.top = '50%';
+                item.style.transform = 'translate(-50%, -50%)';
                 
                 slot.classList.add('occupied');
             }
@@ -313,9 +327,9 @@ class MiniloadShuttleAnimation {
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         const duration = (distance / 100) * (this.animationSpeed / this.currentSpeed);
 
-        this.shuttle.style.transition = `all ${duration}ms ease-in-out`;
-        this.shuttle.style.left = `${this.targetPosition.x}px`;
-        this.shuttle.style.top = `${this.targetPosition.y}px`;
+        // Use transform instead of left/top to avoid layout thrashing
+        this.shuttle.style.transition = `transform ${duration}ms ease-in-out`;
+        this.shuttle.style.transform = `translate(${this.targetPosition.x}px, ${this.targetPosition.y}px)`;
 
         this.shuttle.classList.add('moving');
 
@@ -392,8 +406,7 @@ class MiniloadShuttleAnimation {
 
         // Reset shuttle position
         if (this.shuttle) {
-            this.shuttle.style.left = '600px';
-            this.shuttle.style.top = '350px';
+            this.shuttle.style.transform = 'translate(600px, 350px)';
             this.shuttle.style.transition = 'none';
         }
 
@@ -426,47 +439,50 @@ class MiniloadShuttleAnimation {
     }
 
     updateIndicators() {
-        // Update battery indicator
-        const batteryIndicator = document.getElementById('batteryIndicator');
-        const batteryIndicator2 = document.getElementById('batteryIndicator2');
-        if (batteryIndicator) batteryIndicator.textContent = `${this.batteryLevel}%`;
-        if (batteryIndicator2) batteryIndicator2.textContent = `${this.batteryLevel}%`;
+        // Batch DOM updates to reduce layout thrashing
+        requestAnimationFrame(() => {
+            // Update battery indicator
+            const batteryIndicator = document.getElementById('batteryIndicator');
+            const batteryIndicator2 = document.getElementById('batteryIndicator2');
+            if (batteryIndicator) batteryIndicator.textContent = `${this.batteryLevel}%`;
+            if (batteryIndicator2) batteryIndicator2.textContent = `${this.batteryLevel}%`;
 
-        // Update status indicator
-        const statusIndicator = document.getElementById('statusIndicator');
-        const statusIndicator2 = document.getElementById('statusIndicator2');
-        let status = 'HAZIR';
-        if (this.isEmergencyStop) status = 'ACİL DUR!';
-        else if (this.isRunning) status = 'ÇALIŞIYOR';
-        
-        if (statusIndicator) statusIndicator.textContent = status;
-        if (statusIndicator2) statusIndicator2.textContent = status;
+            // Update status indicator
+            const statusIndicator = document.getElementById('statusIndicator');
+            const statusIndicator2 = document.getElementById('statusIndicator2');
+            let status = 'HAZIR';
+            if (this.isEmergencyStop) status = 'ACİL DUR!';
+            else if (this.isRunning) status = 'ÇALIŞIYOR';
+            
+            if (statusIndicator) statusIndicator.textContent = status;
+            if (statusIndicator2) statusIndicator2.textContent = status;
 
-        // Update speed indicator
-        const speedIndicator = document.getElementById('speedIndicator');
-        const speedIndicator2 = document.getElementById('speedIndicator2');
-        if (speedIndicator) speedIndicator.textContent = `${this.currentSpeed} m/dk`;
-        if (speedIndicator2) speedIndicator2.textContent = `${this.currentSpeed} m/dk`;
+            // Update speed indicator
+            const speedIndicator = document.getElementById('speedIndicator');
+            const speedIndicator2 = document.getElementById('speedIndicator2');
+            if (speedIndicator) speedIndicator.textContent = `${this.currentSpeed} m/dk`;
+            if (speedIndicator2) speedIndicator2.textContent = `${this.currentSpeed} m/dk`;
 
-        // Update load indicator
-        const loadIndicator = document.getElementById('loadIndicator');
-        const loadCount = this.carryingItem ? 1 : 0;
-        if (loadIndicator) loadIndicator.textContent = `${loadCount} / 1`;
+            // Update load indicator
+            const loadIndicator = document.getElementById('loadIndicator');
+            const loadCount = this.carryingItem ? 1 : 0;
+            if (loadIndicator) loadIndicator.textContent = `${loadCount} / 1`;
 
-        // Update shuttle status
-        const shuttleStatus = document.querySelector('.shuttle-status');
-        if (shuttleStatus) {
-            if (this.isEmergencyStop) {
-                shuttleStatus.textContent = 'ACİL DUR!';
-                shuttleStatus.style.color = '#e74c3c';
-            } else if (this.isRunning) {
-                shuttleStatus.textContent = 'ÇALIŞIYOR';
-                shuttleStatus.style.color = '#27ae60';
-            } else {
-                shuttleStatus.textContent = 'HAZIR';
-                shuttleStatus.style.color = '#3498db';
+            // Update shuttle status
+            const shuttleStatus = document.querySelector('.shuttle-status');
+            if (shuttleStatus) {
+                if (this.isEmergencyStop) {
+                    shuttleStatus.textContent = 'ACİL DUR!';
+                    shuttleStatus.style.color = '#e74c3c';
+                } else if (this.isRunning) {
+                    shuttleStatus.textContent = 'ÇALIŞIYOR';
+                    shuttleStatus.style.color = '#27ae60';
+                } else {
+                    shuttleStatus.textContent = 'HAZIR';
+                    shuttleStatus.style.color = '#3498db';
+                }
             }
-        }
+        });
     }
 
     updateButtonStates() {

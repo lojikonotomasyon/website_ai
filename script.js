@@ -782,4 +782,36 @@ document.addEventListener('DOMContentLoaded', function() {
     if (heroSlider) {
         new HeroSlider();
     }
+    
+    // Initialize the elevator only on palet-lift page
+    if (typeof ProfessionalElevator !== 'undefined') {
+        const elevator = new ProfessionalElevator();
+        
+        // Start demo mode after 3 seconds
+        setTimeout(() => {
+            elevator.startDemo();
+        }, 3000);
+    }
 }); 
+
+// Add page visibility handling for CSS animations
+setupPageVisibilityHandling();
+
+// Page visibility handling for CSS animations
+function setupPageVisibilityHandling() {
+    document.addEventListener('visibilitychange', () => {
+        const animations = document.querySelectorAll('.conveyor-belt, .divertor-arm, .package, .shuttle-vehicle, .lift-car, .counterweight');
+        
+        if (document.hidden) {
+            // Page is hidden, pause all CSS animations
+            animations.forEach(animation => {
+                animation.style.animationPlayState = 'paused';
+            });
+        } else {
+            // Page is visible, resume all CSS animations
+            animations.forEach(animation => {
+                animation.style.animationPlayState = 'running';
+            });
+        }
+    });
+} 

@@ -1,7 +1,7 @@
 // Continuous Lift Animation
 class ContinuousLiftAnimation {
     constructor() {
-        this.isRunning = false;
+        this.isRunning = true; // Changed to true for auto-start
         this.isEmergencyStop = false;
         this.currentSpeed = 0;
         this.maxSpeed = 1.5;
@@ -23,6 +23,24 @@ class ContinuousLiftAnimation {
 
         this.setupEventListeners();
         this.updateIndicators();
+        // Auto-start the animation
+        this.startAnimation();
+        
+        // Add page visibility handling
+        this.setupPageVisibilityHandling();
+    }
+
+    setupPageVisibilityHandling() {
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Page is hidden, pause animation
+                this.stopAnimation();
+            } else {
+                // Page is visible, resume animation
+                this.startAnimation();
+            }
+        });
     }
 
     setupEventListeners() {

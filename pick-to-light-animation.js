@@ -2,7 +2,7 @@
 class PickToLightAnimation {
     constructor() {
         this.currentItemIndex = 0;
-        this.isAnimating = false;
+        this.isAnimating = true; // Changed to true for auto-start
         this.pickOrder = [
             { id: 1, name: 'Ürün A', quantity: 2 },
             { id: 3, name: 'Ürün C', quantity: 3 },
@@ -16,6 +16,24 @@ class PickToLightAnimation {
         
         this.initializeElements();
         this.bindEvents();
+        // Auto-start the animation
+        this.startAnimation();
+        
+        // Add page visibility handling
+        this.setupPageVisibilityHandling();
+    }
+    
+    setupPageVisibilityHandling() {
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Page is hidden, pause animation
+                this.resetAnimation();
+            } else {
+                // Page is visible, resume animation
+                this.startAnimation();
+            }
+        });
     }
     
     initializeElements() {
