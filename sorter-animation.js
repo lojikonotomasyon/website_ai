@@ -1,371 +1,369 @@
-// Professional Sorter Animation System
-class ProfessionalSorter {
-    constructor() {
-        this.isRunning = true; // Changed to true for auto-start
-        this.packages = [];
-        this.laneCounts = { 1: 0, 2: 0, 3: 0 };
-        this.currentSpeed = 120;
-        this.capacity = 5000;
-        this.accuracy = 99.8;
-        this.packageId = 1;
-        
-        this.init();
-    }
+// Sorter Animation - Konveyor Sistemi
+// Soldan sağa hareket eden konveyor bandı ve ürünler
 
-    init() {
-        this.bindEvents();
-        this.updateDisplay();
-        this.createInitialPackages();
-        // Auto-start the animation
-        this.start();
-        
-        // Add page visibility handling
-        this.setupPageVisibilityHandling();
-    }
-
-    setupPageVisibilityHandling() {
-        // Handle page visibility changes
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                // Page is hidden, pause animation
-                this.stop();
-            } else {
-                // Page is visible, resume animation
-                this.start();
-            }
-        });
-    }
-
-    bindEvents() {
-        // Removed manual control buttons - animation starts automatically
-        const speedControl = document.getElementById('speedControl');
-
-        if (speedControl) {
-            speedControl.addEventListener('input', (e) => {
-                this.setSpeed(e.target.value);
-                const speedDisplay = document.getElementById('speedDisplay');
-                if (speedDisplay) speedDisplay.textContent = `${e.target.value} m/min`;
-            });
-        }
-    }
-
-    start() {
-        if (this.isRunning) return;
-        
-        this.isRunning = true;
-        this.updateStatus('RUNNING');
-        this.startConveyor();
-        this.startPackageGeneration();
-        this.startScanner();
-    }
-
-    stop() {
-        this.isRunning = false;
-        this.updateStatus('STOPPED');
-        this.stopConveyor();
-        this.stopPackageGeneration();
-        this.stopScanner();
-    }
-
-    reset() {
-        this.stop();
-        this.clearPackages();
-        this.resetLaneCounts();
-        this.updateDisplay();
-        this.createInitialPackages();
-    }
-
-    setSpeed(speed) {
-        this.currentSpeed = parseInt(speed);
-        this.updateDisplay();
-    }
-
-    startConveyor() {
-        const belt = document.querySelector('.conveyor-belt');
-        if (belt) {
-            belt.style.animationPlayState = 'running';
-        }
-        
-        const laneBelts = document.querySelectorAll('.lane-belt');
-        laneBelts.forEach(belt => {
-            belt.style.animationPlayState = 'running';
-        });
-    }
-
-    stopConveyor() {
-        const belt = document.querySelector('.conveyor-belt');
-        if (belt) {
-            belt.style.animationPlayState = 'paused';
-        }
-        
-        const laneBelts = document.querySelectorAll('.lane-belt');
-        laneBelts.forEach(belt => {
-            belt.style.animationPlayState = 'paused';
-        });
-    }
-
-    startPackageGeneration() {
-        this.packageInterval = setInterval(() => {
-            if (this.isRunning) {
-                this.createPackage();
-            }
-        }, 1500); // Daha sık paket oluştur
-    }
-
-    stopPackageGeneration() {
-        if (this.packageInterval) {
-            clearInterval(this.packageInterval);
-        }
-    }
-
-    startScanner() {
-        this.scannerInterval = setInterval(() => {
-            if (this.isRunning) {
-                this.scanPackage();
-            }
-        }, 800);
-        
-        // Activate scanner light
-        const scannerLight = document.getElementById('scannerLight');
-        if (scannerLight) {
-            scannerLight.classList.add('active');
-        }
-    }
-
-    stopScanner() {
-        if (this.scannerInterval) {
-            clearInterval(this.scannerInterval);
-        }
-        
-        // Deactivate scanner light
-        const scannerLight = document.getElementById('scannerLight');
-        if (scannerLight) {
-            scannerLight.classList.remove('active');
-        }
-    }
-
-    createPackage() {
-        const pkg = {
-            id: this.packageId++,
-            type: this.getRandomPackageType(),
-            lane: Math.floor(Math.random() * 3) + 1,
-            x: -150, // Ana conveyor'ın daha gerisinden başla
-            y: 15,
-            element: null
-        };
-
-        this.packages.push(pkg);
-        this.renderPackage(pkg);
-        this.animatePackage(pkg);
-    }
-
-    getRandomPackageType() {
-        const types = ['box', 'envelope', 'tote'];
-        return types[Math.floor(Math.random() * types.length)];
-    }
-
-    renderPackage(pkg) {
-        const mainConveyor = document.querySelector('.main-conveyor');
-        if (!mainConveyor) return;
-
-        const packageElement = document.createElement('div');
-        packageElement.className = 'package';
-        packageElement.id = `package-${pkg.id}`;
-        packageElement.style.left = `${pkg.x}px`;
-        packageElement.style.top = `${pkg.y}px`;
-        packageElement.textContent = pkg.id;
-        
-        // Add package type styling
-        packageElement.classList.add(`package-${pkg.type}`);
-        
-        mainConveyor.appendChild(packageElement);
-        pkg.element = packageElement;
-    }
-
-    animatePackage(pkg) {
-        if (!pkg.element) return;
-
-        const animationDuration = Math.max(2, (60000 / this.currentSpeed) * 0.3); // Daha hızlı animasyon
-        
-        pkg.element.style.transition = `left ${animationDuration}s linear`;
-        pkg.element.style.left = '50%';
-
-        // Trigger sorting at the center
-        setTimeout(() => {
-            this.sortPackage(pkg);
-        }, animationDuration * 1000 * 0.6);
-
-        // Remove package after animation
-        setTimeout(() => {
-            this.removePackage(pkg);
-        }, animationDuration * 1000);
-    }
-
-    sortPackage(pkg) {
-        // Activate divertor
-        this.activateDivertor(pkg.lane);
-        
-        // Move package to output lane
-        this.moveToOutputLane(pkg);
-        
-        // Update lane count
-        this.laneCounts[pkg.lane]++;
-        this.updateLaneCount(pkg.lane);
-    }
-
-    activateDivertor(lane) {
-        const divertor = document.querySelector(`.divertor-arm[data-lane="${lane}"]`);
-        if (divertor) {
-            // Reset all divertors first
-            document.querySelectorAll('.divertor-arm').forEach(d => {
-                const laneNum = d.dataset.lane;
-                const rotation = laneNum === "1" ? -30 : laneNum === "2" ? 0 : 30;
-                d.style.transform = `rotate(${rotation}deg)`;
-                d.style.background = '';
-            });
-            
-            // Activate the target divertor with correct rotation
-            let rotation;
-            switch(lane) {
-                case 1:
-                    rotation = -30;
-                    break;
-                case 2:
-                    rotation = 0;
-                    break;
-                case 3:
-                    rotation = 30;
-                    break;
-                default:
-                    rotation = 0;
-            }
-            
-            divertor.style.transform = `rotate(${rotation}deg)`;
-            divertor.style.background = 'rgba(231, 76, 60, 0.3)';
-            
-            setTimeout(() => {
-                divertor.style.background = '';
-            }, 500);
-        }
-    }
-
-    moveToOutputLane(pkg) {
-        if (!pkg.element) return;
-
-        const laneElement = document.querySelector(`.output-lane[data-lane="${pkg.lane}"]`);
-        if (laneElement) {
-            const laneRect = laneElement.getBoundingClientRect();
-            const mainConveyor = document.querySelector('.main-conveyor');
-            const conveyorRect = mainConveyor.getBoundingClientRect();
-            
-            // Calculate correct position for each lane
-            let targetX, targetY;
-            switch(pkg.lane) {
-                case 1: // Sol lane
-                    targetX = laneRect.left - conveyorRect.left + 30;
-                    targetY = laneRect.top - conveyorRect.top + laneRect.height / 2 - 15;
-                    break;
-                case 2: // Orta lane
-                    targetX = laneRect.left - conveyorRect.left + laneRect.width / 2 - 20;
-                    targetY = laneRect.top - conveyorRect.top + laneRect.height / 2 - 15;
-                    break;
-                case 3: // Sağ lane
-                    targetX = laneRect.right - conveyorRect.left - 50;
-                    targetY = laneRect.top - conveyorRect.top + laneRect.height / 2 - 15;
-                    break;
-                default:
-                    targetX = laneRect.left - conveyorRect.left + laneRect.width / 2 - 20;
-                    targetY = laneRect.top - conveyorRect.top + laneRect.height / 2 - 15;
-            }
-            
-            pkg.element.style.transition = 'all 1s ease-in-out';
-            pkg.element.style.left = `${targetX}px`;
-            pkg.element.style.top = `${targetY}px`;
-            pkg.element.style.transform = 'scale(0.8)';
-        }
-    }
-
-    removePackage(pkg) {
-        if (pkg.element) {
-            pkg.element.remove();
-        }
-        this.packages = this.packages.filter(p => p.id !== pkg.id);
-    }
-
-    scanPackage() {
-        const scannerText = document.getElementById('scannerText');
-        if (scannerText) {
-            const scanMessages = ['SCANNING...', 'READING...', 'PROCESSING...', 'SORTING...'];
-            const randomMessage = scanMessages[Math.floor(Math.random() * scanMessages.length)];
-            scannerText.textContent = randomMessage;
-        }
-    }
-
-    createInitialPackages() {
-        // Create 3 initial packages
-        for (let i = 0; i < 3; i++) {
-            setTimeout(() => {
-                this.createPackage();
-            }, i * 1000);
-        }
-    }
-
-    clearPackages() {
-        this.packages.forEach(pkg => {
-            if (pkg.element) {
-                pkg.element.remove();
-            }
-        });
-        this.packages = [];
-    }
-
-    resetLaneCounts() {
-        this.laneCounts = { 1: 0, 2: 0, 3: 0 };
-        this.updateAllLaneCounts();
-    }
-
-    updateLaneCount(lane) {
-        const countElement = document.getElementById(`lane${lane}Count`);
-        if (countElement) {
-            countElement.textContent = this.laneCounts[lane];
-        }
-    }
-
-    updateAllLaneCounts() {
-        Object.keys(this.laneCounts).forEach(lane => {
-            this.updateLaneCount(lane);
-        });
-    }
-
-    updateDisplay() {
-        const speedElement = document.getElementById('speedValue');
-        const capacityElement = document.getElementById('capacityValue');
-        const accuracyElement = document.getElementById('accuracyValue');
-        const processedElement = document.getElementById('processedCount');
-        const speedIndicator = document.getElementById('speedIndicator');
-        const accuracyIndicator = document.getElementById('accuracyIndicator');
-
-        if (speedElement) speedElement.textContent = `${this.currentSpeed} m/min`;
-        if (capacityElement) capacityElement.textContent = `${this.capacity} pcs/hr`;
-        if (accuracyElement) accuracyElement.textContent = `${this.accuracy}%`;
-        
-        // Update performance indicators
-        const totalProcessed = Object.values(this.laneCounts).reduce((a, b) => a + b, 0);
-        if (processedElement) processedElement.textContent = totalProcessed;
-        if (speedIndicator) speedIndicator.textContent = `${this.currentSpeed} m/min`;
-        if (accuracyIndicator) accuracyIndicator.textContent = `%${this.accuracy}`;
-    }
-
-    updateStatus(status) {
-        const statusElement = document.getElementById('statusValue');
-        if (statusElement) {
-            statusElement.textContent = status;
-            statusElement.style.color = status === 'RUNNING' ? '#2ecc71' : '#e74c3c';
-        }
-    }
-}
-
-// Initialize the sorter when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    new ProfessionalSorter();
+    console.log('Sorter konveyor sistemi başlatılıyor...');
+    
+    // Hero animasyon elementlerini al
+    const heroBeltSurface = document.querySelector('.sorter-hero-animation .belt-surface');
+    const heroRollers = document.querySelectorAll('.sorter-hero-animation .roller');
+    const conveyorBelt = document.querySelector('.sorter-hero-animation .conveyor-belt');
+    const conveyorSystem = document.querySelector('.sorter-hero-animation .conveyor-system');
+    
+    // Animasyonları başlat
+    if (heroBeltSurface) {
+        heroBeltSurface.style.animationPlayState = 'running';
+    }
+    
+    heroRollers.forEach((roller, index) => {
+        roller.style.animationPlayState = 'running';
+    });
+    
+    // Ürün türleri ve sepet eşleştirmeleri
+    const productTypes = ['box', 'envelope', 'tote', 'package'];
+    const basketMapping = {
+        'box': 'red-basket',
+        'envelope': 'blue-basket', 
+        'tote': 'green-basket',
+        'package': 'pink-basket'
+    };
+    
+    // Sepet pozisyonları (divertor pozisyonlarıyla eşleştirildi)
+    const basketPositions = {
+        'box': 0.09,      // %9 pozisyonu - Kırmızı divertor
+        'envelope': 0.35, // %35 pozisyonu - Mavi divertor
+        'tote': 0.61,     // %61 pozisyonu - Yeşil divertor
+        'package': 0.86   // %86 pozisyonu - Pembe divertor
+    };
+    
+    // Sepet sayaçları
+    const basketCounts = {
+        'box': 0,
+        'envelope': 0,
+        'tote': 0,
+        'package': 0
+    };
+    
+    let productCounter = 0;
+    let isPageVisible = true;
+    let animationId;
+    
+    // Animasyon durumu
+    let isPaused = false;
+    let animationSpeed = 1;
+    
+    // Kontrol butonlarını ayarla
+    function setupControls() {
+        const pauseBtn = document.getElementById('pause-btn');
+        const speedSlider = document.getElementById('speed-slider');
+        const speedDisplay = document.getElementById('speed-display');
+        
+        // Pause/Resume butonu
+        if (pauseBtn) {
+            pauseBtn.addEventListener('click', () => {
+                isPaused = !isPaused;
+                
+                // Buton ikonunu güncelle
+                const icon = pauseBtn.querySelector('i');
+                if (icon) {
+                    icon.className = isPaused ? 'fas fa-play' : 'fas fa-pause';
+                }
+                
+                // Animasyonları duraklat/devam ettir
+                updateAnimationState();
+            });
+        }
+        
+        // Hız kontrolü
+        if (speedSlider && speedDisplay) {
+            speedSlider.addEventListener('input', (e) => {
+                animationSpeed = parseFloat(e.target.value);
+                speedDisplay.textContent = `${animationSpeed}x`;
+                
+                // Animasyon hızını güncelle
+                updateAnimationSpeed();
+                startProductCreation(); // Hız değiştiğinde ürün oluşturma aralığını güncelle
+            });
+        }
+    }
+    
+    // Animasyon durumunu güncelle
+    function updateAnimationState() {
+        if (heroBeltSurface) {
+            heroBeltSurface.style.animationPlayState = (isPaused || !isPageVisible) ? 'paused' : 'running';
+        }
+        
+        heroRollers.forEach(roller => {
+            roller.style.animationPlayState = (isPaused || !isPageVisible) ? 'paused' : 'running';
+        });
+        
+        // Hareket eden ürünleri duraklat/devam ettir
+        const movingProducts = document.querySelectorAll('.sorter-product.moving');
+        movingProducts.forEach(product => {
+            product.style.animationPlayState = (isPaused || !isPageVisible) ? 'paused' : 'running';
+        });
+    }
+    
+    // Animasyon hızını güncelle
+    function updateAnimationSpeed() {
+        if (heroBeltSurface) {
+            heroBeltSurface.style.animationDuration = `${3 / animationSpeed}s`;
+        }
+        
+        heroRollers.forEach(roller => {
+            roller.style.animationDuration = `${1 / animationSpeed}s`;
+        });
+        
+        // Hareket eden ürünlerin hızını güncelle
+        const movingProducts = document.querySelectorAll('.sorter-product.moving');
+        movingProducts.forEach(product => {
+            product.style.animationDuration = `${3 / animationSpeed}s`;
+        });
+    }
+    
+    // Dashboard değerlerini güncelle
+    function updateDashboard() {
+        const speedElement = document.getElementById('speed-value');
+        const capacityElement = document.getElementById('capacity-value');
+        const efficiencyElement = document.getElementById('efficiency-value');
+        const totalElement = document.getElementById('total-value');
+        
+        if (speedElement && capacityElement && efficiencyElement && totalElement) {
+            // Toplam ürün sayısını hesapla
+            const totalProducts = Object.values(basketCounts).reduce((sum, count) => sum + count, 0);
+            
+            // Hız: Dakikada işlenen ürün sayısı (animasyon hızına göre)
+            const speed = Math.round(60 / 3); // 3 saniyede 1 ürün = 20 ürün/dakika
+            
+            // Kapasite: Saatte işlenebilecek maksimum ürün
+            const capacity = speed * 60; // 1200 ürün/saat
+            
+            // Verimlilik: Başarılı sıralama oranı (%)
+            const efficiency = totalProducts > 0 ? 98.5 : 0; // Sabit %98.5 verimlilik
+            
+            // Değerleri güncelle
+            speedElement.textContent = speed;
+            capacityElement.textContent = capacity;
+            efficiencyElement.textContent = efficiency.toFixed(1);
+            totalElement.textContent = totalProducts;
+        }
+    }
+    
+    // Sepet sayacını güncelle
+    function updateBasketCount(productType) {
+        basketCounts[productType]++;
+        
+        const basket = document.querySelector(`.${basketMapping[productType]}-basket .basket-count`);
+        if (basket) {
+            basket.textContent = basketCounts[productType];
+        }
+        
+        // Dashboard'u güncelle
+        updateDashboard();
+    }
+    
+    // Ürün düşüş animasyonu
+    function dropProduct(product, productType) {
+        // Ürünün mevcut pozisyonunu al
+        const currentLeft = parseFloat(product.style.left) || -50;
+        const currentTop = parseInt(product.style.top) || 25;
+        const startTime = Date.now();
+        const dropDuration = 500; // 0.5 saniye düşüş (2 kat hızlı)
+
+        // Düşüş class'ını ekle
+        product.classList.add('dropping');
+
+        // Divertor pozisyonunu hesapla (merkez noktası)
+        const conveyorWidth = conveyorSystem.offsetWidth;
+        const targetPosition = basketPositions[productType];
+        const divertorCenterX = targetPosition * conveyorWidth; // Divertor'ın merkez pozisyonu
+        
+        // Ürünün düşüş pozisyonunu ayarla (divertor merkezine)
+        product.style.left = `${divertorCenterX}px`;
+        product.style.top = `${currentTop}px`;
+
+        // İlgili divertor'ı aktif hale getir
+        const divertorSelector = basketMapping[productType].replace('-basket', '-divertor');
+        const divertor = document.querySelector(`.${divertorSelector}`);
+        console.log(`Divertor aranıyor: .${divertorSelector}`);
+        console.log(`Bulunan divertor:`, divertor);
+        
+        if (divertor) {
+            divertor.classList.add('active');
+            console.log(`Divertor aktif hale getirildi:`, divertor);
+            
+            // 750ms sonra divertor'ı deaktif hale getir
+            setTimeout(() => {
+                divertor.classList.remove('active');
+                console.log(`Divertor deaktif hale getirildi:`, divertor);
+            }, 750);
+        } else {
+            console.log(`Divertor bulunamadı! Product type: ${productType}, Basket mapping: ${basketMapping[productType]}`);
+        }
+
+        function animateDrop() {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / dropDuration, 1);
+
+            // Easing fonksiyonu (daha doğal düşüş)
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+            // Dinamik düşüş mesafesi hesapla
+            const conveyorHeight = conveyorSystem.offsetHeight;
+            const basketTop = 250; // Sepetlerin üst kısmı (conveyor yüksekliği - bottom - basket yüksekliği)
+            const dropDistance = basketTop - currentTop; // Sepetlere kadar olan mesafe
+            
+            const newTop = currentTop + (easeProgress * dropDistance);
+            product.style.top = `${newTop}px`;
+
+            if (progress < 1) {
+                animationId = requestAnimationFrame(animateDrop);
+            } else {
+                // Düşüş tamamlandı, ürünü kaldır ve sayacı güncelle
+                updateBasketCount(productType);
+                
+                if (product.parentNode) {
+                    product.parentNode.removeChild(product);
+                }
+            }
+        }
+
+        animateDrop();
+    }
+    
+    // Ürün pozisyonunu takip et ve düşüş kontrolü yap
+    function checkProductPosition(product, productType) {
+        // CSS animasyonu ile güncellenen left pozisyonunu al
+        const computedStyle = window.getComputedStyle(product);
+        const currentLeft = parseFloat(computedStyle.left) || 0;
+        const conveyorWidth = conveyorSystem.offsetWidth;
+        
+        // Ürün boyutunu al
+        const productWidth = product.offsetWidth;
+        const productCenter = currentLeft + (productWidth / 2); // Ürünün merkezi
+        
+        // Konveyor sistemi içindeki pozisyonu hesapla (0-1 arası) - ürün merkezi baz alınarak
+        const relativeX = productCenter / conveyorWidth;
+        
+        // Hedef divertor pozisyonunu kontrol et
+        const targetPosition = basketPositions[productType];
+        const tolerance = 0.05; // %5 tolerans
+        
+        if (Math.abs(relativeX - targetPosition) < tolerance) {
+            // Yatay hareketi durdur ve mevcut pozisyonu koru
+            product.classList.remove('moving');
+            product.style.animation = 'none';
+            
+            // Mevcut pozisyonu hemen ayarla
+            product.style.left = `${currentLeft}px`;
+            
+            // Düşüş animasyonunu başlat
+            dropProduct(product, productType);
+            return true; // Düşüş başladı
+        }
+        
+        return false; // Henüz düşüş pozisyonunda değil
+    }
+    
+    // Ürün oluşturma fonksiyonu
+    function createProduct() {
+        if (!conveyorSystem || !isPageVisible || isPaused) {
+            return;
+        }
+        
+        const product = document.createElement('div');
+        const productType = productTypes[Math.floor(Math.random() * productTypes.length)];
+        
+        product.className = `sorter-product ${productType}`;
+        product.id = `product-${productCounter++}`;
+        product.dataset.type = productType;
+        
+        // Ürünü konveyor sisteminin sol kenarından başlat
+        product.style.position = 'absolute';
+        product.style.left = '0px'; // Conveyor-system'in sol kenarından başla
+        
+        // Ürünün dikey pozisyonunu belt-surface'ın alt kenarına yakın ayarla
+        product.style.top = '45px'; // Belt-surface'ın alt kenarına yakın (20px + 30px - 5px = 45px)
+        
+        product.style.zIndex = '999';
+        
+        // Ürünü konveyor sistemine ekle
+        conveyorSystem.appendChild(product);
+        
+        // Ürünü hareket ettir
+        setTimeout(() => {
+            product.classList.add('moving');
+            // Yeni ürünün hızını ayarla
+            product.style.animationDuration = `${3 / animationSpeed}s`;
+        }, 100);
+        
+        // Ürün pozisyonunu sürekli kontrol et
+        const positionCheckInterval = setInterval(() => {
+            if (!product.parentNode) {
+                clearInterval(positionCheckInterval);
+                return;
+            }
+            
+            // Ürün düşüş pozisyonuna geldi mi kontrol et
+            if (checkProductPosition(product, productType)) {
+                clearInterval(positionCheckInterval);
+            }
+        }, 100); // Her 100ms'de bir kontrol et
+        
+        // Güvenlik için maksimum süre (eğer düşüş olmazsa)
+        setTimeout(() => {
+            if (product.parentNode) {
+                clearInterval(positionCheckInterval);
+                updateBasketCount(productType);
+                product.parentNode.removeChild(product);
+            }
+        }, 6000); // 6 saniye sonra zorla kaldır
+    }
+    
+    // Dinamik ürün oluşturma interval'i
+    let productInterval;
+    
+    function startProductCreation() {
+        // Önceki interval'i temizle
+        if (productInterval) {
+            clearInterval(productInterval);
+        }
+        
+        // Hıza göre interval ayarla (1.5 saniye baz alınarak)
+        const baseInterval = 1500; // 1.5 saniye
+        const intervalTime = Math.max(500, baseInterval / animationSpeed); // Minimum 500ms
+        productInterval = setInterval(createProduct, intervalTime);
+    }
+    
+    // Her saniye yeni ürün oluştur
+    startProductCreation();
+    
+    // Sayfa görünürlük kontrolü
+    document.addEventListener('visibilitychange', () => {
+        isPageVisible = !document.hidden;
+        updateAnimationState();
+        
+        // Ürün oluşturmayı kontrol et
+        if (isPageVisible && !isPaused) {
+            startProductCreation();
+        } else {
+            if (productInterval) {
+                clearInterval(productInterval);
+            }
+        }
+    });
+    
+    // Sayfa kapatıldığında interval'i temizle
+    window.addEventListener('beforeunload', () => {
+        clearInterval(productInterval);
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+    });
+    
+    // İlk dashboard güncellemesi
+    updateDashboard();
+
+    // Kontrol butonlarını ayarla
+    setupControls();
 }); 

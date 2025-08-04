@@ -229,9 +229,9 @@ body {
     padding: 0 20px;
     position: relative;
     z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
     align-items: center;
     width: 100%;
 }
@@ -398,6 +398,151 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+/* Hero Animation Styles */
+.hero-animation {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+}
+
+.sorter-hero-animation {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hero Konveyor Sistemi */
+.sorter-hero-animation .conveyor-system {
+    position: relative;
+    width: 100%;
+    height: 320px; /* Increased from 220px to 320px */
+    background: linear-gradient(145deg, #34495e, #2c3e50);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border: 3px solid #3498db;
+}
+
+.sorter-hero-animation .conveyor-belt {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(145deg, #495057, #6c757d);
+    border-radius: 10px;
+    overflow: visible;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sorter-hero-animation .belt-surface {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: repeating-linear-gradient(
+        90deg,
+        #343a40 0px,
+        #343a40 30px,
+        #495057 30px,
+        #495057 60px
+    );
+    background-size: 60px 100%;
+    border-radius: 5px;
+    animation: beltMove 3s linear infinite !important;
+}
+
+.sorter-hero-animation .belt-rollers {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.sorter-hero-animation .roller {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(145deg, #212529, #343a40);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    animation: rollerSpin 1s linear infinite;
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    .hero-container {
+        gap: 2rem;
+    }
+    
+    .hero-animation {
+        min-height: 400px;
+    }
+    
+    .sorter-hero-animation .conveyor-system {
+        width: 100%;
+        height: 280px; /* Increased from 180px to 280px */
+        padding: 20px;
+    }
+    
+    .sorter-hero-animation .conveyor-belt {
+        height: 110px;
+    }
+    
+    .sorter-hero-animation .belt-surface {
+        height: 25px;
+    }
+    
+    .sorter-hero-animation .belt-rollers {
+        height: 50px;
+        padding: 0 20px;
+    }
+    
+    .sorter-hero-animation .roller {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-animation {
+        min-height: 350px;
+    }
+    
+    .sorter-hero-animation .conveyor-system {
+        height: 240px; /* Increased from 150px to 240px */
+        padding: 15px;
+    }
+    
+    .sorter-hero-animation .conveyor-belt {
+        height: 90px;
+    }
+    
+    .sorter-hero-animation .belt-surface {
+        height: 20px;
+    }
+    
+    .sorter-hero-animation .belt-rollers {
+        height: 40px;
+        padding: 0 15px;
+    }
+    
+    .sorter-hero-animation .roller {
+        width: 12px;
+        height: 12px;
+    }
 }
 
 /* Hero Animation */
@@ -571,8 +716,8 @@ body {
 }
 
 @keyframes beltMove {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-16px); }
+    0% { background-position: 0 0; }
+    100% { background-position: 60px 0; }
 }
 
 /* Sorting Station */
@@ -597,24 +742,7 @@ body {
     align-items: flex-end;
 }
 
-.divertor-arm {
-    width: 3px;
-    height: 25px;
-    background: linear-gradient(to top, #3b82f6, #60a5fa);
-    border-radius: 2px;
-    position: relative;
-    transform-origin: bottom center;
-    animation: divertorMove 4s ease-in-out infinite;
-}
 
-.divertor-arm[data-lane="1"] { animation-delay: 0s; }
-.divertor-arm[data-lane="2"] { animation-delay: 1.3s; }
-.divertor-arm[data-lane="3"] { animation-delay: 2.6s; }
-
-@keyframes divertorMove {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(25deg); }
-}
 
 .output-lanes {
     position: absolute;
@@ -1932,11 +2060,11 @@ html {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Professional Sorter Animation Styles */
-.sorter-animation {
+/* Sorter Animation Container */
+.sorter-animation-container {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 700px;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     border-radius: 15px;
     overflow: hidden;
@@ -1944,43 +2072,69 @@ html {
     margin: 30px 0;
 }
 
-/* Main Conveyor Belt */
-.main-conveyor {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    height: 120px;
-    background: #2c3e50;
-    border-radius: 10px;
-    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.conveyor-frame {
+.animation-screen {
     position: relative;
-    width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, #34495e 0%, #2c3e50 50%, #34495e 100%);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
+    border: 2px solid rgba(52, 152, 219, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
 }
 
-.conveyor-belt {
+.animation-screen::before {
+    content: 'Sorter Animasyon Ekranı';
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #3498db;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    display: none; /* Yazıyı gizle */
+}
+
+/* Konveyor Sistemi */
+.conveyor-system {
     position: absolute;
-    top: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 120px;
+    background: linear-gradient(145deg, #34495e, #2c3e50);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border: 3px solid #3498db;
+}
+
+.conveyor-belt {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(145deg, #495057, #6c757d);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.belt-surface {
+    position: absolute;
+    top: 10px;
     left: 0;
     right: 0;
-    height: 80px;
-    background: repeating-linear-gradient(
-        90deg,
-        #95a5a6 0px,
-        #95a5a6 30px,
-        #7f8c8d 30px,
-        #7f8c8d 60px
-    );
-    animation: beltMove 3s linear infinite;
-    border-radius: 5px;
+    height: 20px;
+    background: linear-gradient(90deg, 
+        #2c3e50 0%, 
+        #34495e 20%, 
+        #3498db 40%, 
+        #2980b9 60%, 
+        #34495e 80%, 
+        #2c3e50 100%);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: beltMove 3s linear infinite !important; /* 5s'den 3s'ye düşürüldü */
 }
 
 @keyframes beltMove {
@@ -1988,12 +2142,12 @@ html {
     100% { background-position: -60px 0; }
 }
 
-.conveyor-rollers {
+.belt-rollers {
     position: absolute;
-    top: 0;
+    bottom: 10px;
     left: 0;
     right: 0;
-    height: 100%;
+    height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2001,287 +2155,33 @@ html {
 }
 
 .roller {
-    width: 8px;
-    height: 100px;
-    background: linear-gradient(180deg, #e74c3c 0%, #c0392b 50%, #e74c3c 100%);
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Sorting Mechanism */
-.sorting-mechanism {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 120px;
-    z-index: 10;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: linear-gradient(90deg, rgba(52, 73, 94, 0.8) 0%, rgba(44, 62, 80, 0.8) 100%);
-    border-radius: 10px;
-    padding: 0 20px;
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.divertor-arm {
-    position: relative;
-    width: 60px;
-    height: 120px;
-    transition: all 0.3s ease;
-    margin: 0 20px;
-}
-
-.divertor-arm[data-lane="1"] { transform: rotate(-30deg); }
-.divertor-arm[data-lane="2"] { transform: rotate(0deg); }
-.divertor-arm[data-lane="3"] { transform: rotate(30deg); }
-
-.divertor-paddle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 80px;
-    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-    border-radius: 8px;
-    transform-origin: center bottom;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border: 2px solid #c0392b;
-}
-
-.divertor-paddle::before {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-}
-
-.divertor-paddle::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-}
-
-.divertor-actuator {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 40px;
-    background: linear-gradient(180deg, #e67e22 0%, #d35400 100%);
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Output Lanes */
-.output-lanes {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 200px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 20px;
-    z-index: 5;
-}
-
-.output-lane {
-    position: relative;
-    width: 200px;
-    height: 150px;
-    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-}
-
-.lane-conveyor {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    height: 60px;
-    background: #34495e;
-    border-radius: 5px;
-}
-
-.lane-belt {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background: repeating-linear-gradient(
-        90deg,
-        #95a5a6 0px,
-        #95a5a6 20px,
-        #7f8c8d 20px,
-        #7f8c8d 40px
-    );
-    animation: laneBeltMove 2s linear infinite;
-    border-radius: 3px;
-}
-
-@keyframes laneBeltMove {
-    0% { background-position: 0 0; }
-    100% { background-position: -40px 0; }
-}
-
-.lane-indicator {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #ecf0f1;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.lane-name {
-    color: #3498db;
-    font-weight: 700;
-}
-
-.package-count {
-    color: #e74c3c;
-    font-weight: 700;
-    font-size: 14px;
-}
-
-/* Scanner System */
-.scanner-system {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    height: 80px;
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.scanner-frame {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.scanner-light {
-    width: 20px;
-    height: 20px;
-    background: #e74c3c;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(145deg, #212529, #343a40);
     border-radius: 50%;
-    animation: scannerBlink 1s ease-in-out infinite;
-    box-shadow: 0 0 10px #e74c3c;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    animation: rollerSpin 2s linear infinite;
 }
 
-@keyframes scannerBlink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0.3; }
+@keyframes rollerSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.scanner-display {
-    background: #1a1a2e;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 2px solid #3498db;
-}
-
-.scanner-display span {
-    color: #3498db;
-    font-family: 'Courier New', monospace;
-    font-weight: 700;
-    font-size: 14px;
-}
-
-/* Control Panel */
-.control-panel {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 250px;
-    height: 120px;
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    padding: 15px;
-}
-
-.panel-display {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.display-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-    border-bottom: 1px solid #34495e;
-}
-
-.display-row:last-child {
-    border-bottom: none;
-}
-
-.label {
-    color: #bdc3c7;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.value {
-    color: #2ecc71;
-    font-family: 'Courier New', monospace;
-    font-weight: 700;
-    font-size: 12px;
-}
-
-/* Package Styles */
-.package {
-    position: absolute;
-    width: 40px;
-    height: 30px;
-    background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    border: 2px solid #d35400;
-    z-index: 20;
-    transition: all 0.3s ease;
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    .sorter-animation-container {
+        height: 500px;
+        margin: 20px 0;
+    }
+    
+    .animation-screen {
+        height: 100%;
+    }
+    
+    .animation-screen::before {
+        font-size: 1.4em;
+    }
 }
 
 .package::before {
@@ -2317,15 +2217,15 @@ html {
 .package-envelope {
     background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
     border-color: #2980b9;
-    width: 35px;
-    height: 25px;
+    width: 20px;
+    height: 12px;
 }
 
 .package-tote {
     background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
     border-color: #27ae60;
-    width: 45px;
-    height: 35px;
+    width: 30px;
+    height: 20px;
 }
 
 /* Package Animation States */
@@ -3763,7 +3663,7 @@ html {
 /* Animation Controls */
 .animation-controls {
     position: absolute;
-    bottom: 20px;
+    bottom: 1px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -3902,81 +3802,15 @@ html {
 /* Fix for sorting mechanism layout */
 .sorting-mechanism {
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    height: 120px;
-    z-index: 10;
+    height: 200px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: linear-gradient(90deg, rgba(52, 73, 94, 0.8) 0%, rgba(44, 62, 80, 0.8) 100%);
-    border-radius: 10px;
-    padding: 0 20px;
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.divertor-arm {
-    position: relative;
-    width: 60px;
-    height: 120px;
-    transition: all 0.3s ease;
-    margin: 0 20px;
-}
-
-.divertor-arm[data-lane="1"] { transform: rotate(-30deg); }
-.divertor-arm[data-lane="2"] { transform: rotate(0deg); }
-.divertor-arm[data-lane="3"] { transform: rotate(30deg); }
-
-.divertor-paddle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 80px;
-    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-    border-radius: 8px;
-    transform-origin: center bottom;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border: 2px solid #c0392b;
-}
-
-.divertor-paddle::before {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-}
-
-.divertor-paddle::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-}
-
-.divertor-actuator {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 40px;
-    background: linear-gradient(180deg, #e67e22 0%, #d35400 100%);
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 10;
 }
 
 /* Responsive adjustments for animation controls */
@@ -5804,5 +5638,559 @@ html {
     .miniload-indicator-value {
         font-size: 12px;
     }
+}
+
+/* Konveyor Sistemi */
+.conveyor-system {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 120px;
+    background: linear-gradient(145deg, #34495e, #2c3e50);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border: 3px solid #3498db;
+}
+
+.conveyor-belt {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(145deg, #495057, #6c757d);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.belt-surface {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(90deg, 
+        #2c3e50 0%, 
+        #34495e 20%, 
+        #3498db 40%, 
+        #2980b9 60%, 
+        #34495e 80%, 
+        #2c3e50 100%);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: beltMove 3s linear infinite !important; /* 5s'den 3s'ye düşürüldü */
+}
+
+@keyframes beltMove {
+    0% { background-position: 0 0; }
+    100% { background-position: -60px 0; }
+}
+
+.belt-rollers {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.roller {
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(145deg, #212529, #343a40);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    animation: rollerSpin 2s linear infinite;
+}
+
+@keyframes rollerSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Sorter Products */
+.sorter-product {
+    position: absolute !important;
+    top: 45px; /* Belt-surface'ın alt kenarına yakın (20px + 30px - 5px = 45px) */
+    width: 35px;
+    height: 28px;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+    border: 3px solid !important;
+    z-index: 999 !important;
+    transition: transform 0.3s ease;
+    opacity: 1 !important;
+    background-color: #e67e22 !important;
+}
+
+.sorter-product:hover {
+    transform: scale(1.1);
+}
+
+.sorter-product.box {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    border-color: #c44569;
+}
+
+.sorter-product.envelope {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    border-color: #2d3436;
+    width: 28px;
+    height: 20px;
+}
+
+.sorter-product.tote {
+    background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+    border-color: #00a085;
+    width: 40px;
+    height: 25px;
+}
+
+.sorter-product.package {
+    background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+    border-color: #e84393;
+    width: 30px;
+    height: 22px;
+}
+
+/* Product movement animation */
+@keyframes productMove {
+    0% { 
+        left: 0px; 
+        top: 45px; /* Belt-surface'ın alt kenarına yakın */
+    }
+    100% { 
+        left: calc(100% - 50px); 
+        top: 45px; /* Belt-surface'ın alt kenarına yakın */
+    }
+}
+
+.sorter-product.moving {
+    animation: productMove 3s linear forwards !important;
+}
+
+/* Dropping state - ürün düşerken pozisyonunu koru */
+.sorter-product.dropping {
+    animation: none !important;
+    transition: top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Responsive product sizes */
+@media (max-width: 768px) {
+    .sorter-product {
+        top: 42.5px; /* Belt-surface'ın alt kenarına yakın (20px + 25px - 2.5px = 42.5px) */
+        width: 28px;
+        height: 22px;
+    }
+    
+    .sorter-product.envelope {
+        width: 22px;
+        height: 16px;
+    }
+    
+    .sorter-product.tote {
+        width: 32px;
+        height: 20px;
+    }
+    
+    .sorter-product.package {
+        width: 24px;
+        height: 18px;
+    }
+}
+
+/* Sorter Animation Dashboard - Büyük boyut */
+.sorter-hero-animation .performance-indicators {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.sorter-hero-animation .indicator {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(51, 65, 85, 0.7));
+    border: 2px solid #475569;
+    border-radius: 6px;
+    padding: 6px 12px;
+    min-width: 80px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+}
+
+.sorter-hero-animation .indicator-label {
+    display: block;
+    font-size: 11px;
+    color: #9ca3af;
+    font-weight: normal;
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+
+.sorter-hero-animation .indicator-value {
+    display: block;
+    font-size: 16px;
+    color: #10b981;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    line-height: 1.2;
+}
+
+/* Responsive sorter dashboard */
+@media (max-width: 768px) {
+    .sorter-hero-animation .performance-indicators {
+        top: 5px;
+        right: 10px;
+        gap: 6px;
+    }
+    
+    .sorter-hero-animation .indicator {
+        padding: 4px 8px;
+        min-width: 65px;
+    }
+    
+    .sorter-hero-animation .indicator-label {
+        font-size: 9px;
+    }
+    
+    .sorter-hero-animation .indicator-value {
+        font-size: 13px;
+    }
+    
+    /* Sorter animasyonu için özel tablet ayarları */
+    .sorter-hero-animation .animation-controls {
+        bottom: 2px;
+        padding: 8px 12px;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .sorter-hero-animation .control-button {
+        font-size: 11px;
+        padding: 8px 12px;
+        min-width: 70px;
+    }
+    
+    .sorter-hero-animation .speed-control {
+        font-size: 11px;
+    }
+    
+    .sorter-hero-animation .speed-control input[type="range"] {
+        width: 70px;
+    }
+    
+    /* Sepetlerin tablet modunda pozisyonu */
+    .sorter-hero-animation .drop-baskets {
+        bottom: 102px;
+        gap: 8px;
+        padding: 0 15px;
+    }
+    
+    .sorter-hero-animation .drop-basket {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .sorter-hero-animation .basket-icon {
+        font-size: 14px;
+    }
+    
+    .sorter-hero-animation .basket-count {
+        font-size: 10px;
+        padding: 1px 4px;
+        min-width: 16px;
+    }
+    
+    .sorter-hero-animation .basket-label {
+        font-size: 8px;
+        bottom: -20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sorter-product {
+        top: 40px; /* Belt-surface'ın alt kenarına yakın (20px + 20px - 0px = 40px) */
+        width: 24px;
+        height: 18px;
+    }
+    
+    .sorter-product.envelope {
+        width: 18px;
+        height: 14px;
+    }
+    
+    .sorter-product.tote {
+        width: 28px;
+        height: 16px;
+    }
+    
+    .sorter-product.package {
+        width: 20px;
+        height: 15px;
+    }
+}
+
+/* Drop Baskets */
+.drop-baskets {
+    position: absolute;
+    bottom: 82px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px;
+    z-index: 100;
+}
+
+.drop-basket {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 3px solid;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.drop-basket:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.drop-basket.red-basket {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    border-color: #c44569;
+}
+
+.drop-basket.blue-basket {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    border-color: #2d3436;
+}
+
+.drop-basket.green-basket {
+    background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+    border-color: #00a085;
+}
+
+.drop-basket.pink-basket {
+    background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+    border-color: #e84393;
+}
+
+.basket-icon {
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.basket-count {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 2px 6px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.basket-label {
+    position: absolute;
+    bottom: -25px;
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive basket sizes */
+@media (max-width: 768px) {
+    .drop-baskets {
+        bottom: 60px;
+        gap: 8px;
+        padding: 0 15px;
+    }
+    
+    .drop-basket {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .basket-icon {
+        font-size: 14px;
+    }
+    
+    .basket-count {
+        font-size: 10px;
+        padding: 1px 4px;
+        min-width: 16px;
+    }
+    
+    .basket-label {
+        font-size: 8px;
+        bottom: -20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .drop-baskets {
+        bottom: 50px;
+        gap: 5px;
+        padding: 0 10px;
+    }
+    
+    .drop-basket {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .basket-icon {
+        font-size: 12px;
+    }
+    
+    .basket-count {
+        font-size: 9px;
+        padding: 1px 3px;
+        min-width: 14px;
+    }
+    
+    .basket-label {
+        font-size: 7px;
+        bottom: -18px;
+    }
+}
+
+/* Divertor'lar */
+.divertors {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.divertor {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #666;
+    border: 2px solid #444;
+    border-radius: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.divertor.active {
+    background-color: #4CAF50;
+    border-color: #45a049;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+/* Divertor pozisyonları (sepet pozisyonlarıyla aynı) */
+.red-divertor {
+    left: calc(9%);
+}
+
+.blue-divertor {
+    left: 35%;
+}
+
+.green-divertor {
+    left: calc(61%);
+}
+
+.pink-divertor {
+    left: calc(86%);
+}
+
+/* Responsive divertor boyutları */
+@media (max-width: 768px) {
+    .divertor {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .divertor {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* Mobil modda animation controls ayarları */
+.sorter-hero-animation .animation-controls {
+    bottom: 1px;
+    padding: 6px 10px;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-width: 280px;
+}
+
+.sorter-hero-animation .control-button {
+    font-size: 10px;
+    padding: 6px 10px;
+    min-width: 60px;
+}
+
+.sorter-hero-animation .speed-control {
+    font-size: 10px;
+    gap: 4px;
+}
+
+.sorter-hero-animation .speed-control input[type="range"] {
+    width: 60px;
+    height: 4px;
+}
+
+.sorter-hero-animation .speed-control span {
+    font-size: 10px;
+    min-width: 20px;
+}
+
+/* Mobil modda dashboard ayarları */
+.sorter-hero-animation .performance-indicators {
+    top: 60px;
+    right: 5px;
+    gap: 4px;
+}
+
+.sorter-hero-animation .indicator {
+    padding: 3px 6px;
+    min-width: 55px;
+}
+
+.sorter-hero-animation .indicator-label {
+    font-size: 8px;
+}
+
+.sorter-hero-animation .indicator-value {
+    font-size: 11px;
 }
 

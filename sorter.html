@@ -134,147 +134,101 @@
                     otomatik sınıflandırma, ayırma, ayrıştırma ve yönlendirme. Yüksek hızda ve doğrulukta sıralama işlemleri.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#animation" class="btn btn-primary">Animasyonu İzle</a>
-                    <a href="#photos" class="btn btn-secondary">Galeri</a>
+                    <a href="#photos" class="btn btn-primary">Galeri</a>
                     <a href="#specs" class="btn btn-secondary">Teknik Özellikler</a>
                     <a href="#benefits" class="btn btn-secondary">Faydalar</a>
                     <a href="#contact" class="btn btn-secondary">Teklif Alın</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Animation Section -->
-    <section id="animation" class="animation-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Sorter Sistemi Nasıl Çalışır?</h2>
-                <p>İnteraktif animasyon ile sorter sisteminin çalışma prensibini keşfedin</p>
-            </div>
-            <div class="sorter-animation">
-                <!-- Main Conveyor Belt -->
-                <div class="main-conveyor">
-                    <div class="conveyor-frame">
-                        <div class="conveyor-belt" id="mainBelt">
-                            <!-- Packages will be added here dynamically -->
+            <!-- Hero Animation -->
+            <div class="hero-animation">
+                <div class="sorter-hero-animation">
+                    <!-- Konveyor Bandı -->
+                    <div class="conveyor-system">
+                        <div class="conveyor-belt">
+                            <div class="belt-surface"></div>
+                            <div class="belt-rollers">
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                            </div>
+                            
+                            <!-- Divertor'lar -->
+                            <div class="divertors">
+                                <div class="divertor red-divertor" data-type="box"></div>
+                                <div class="divertor blue-divertor" data-type="envelope"></div>
+                                <div class="divertor green-divertor" data-type="tote"></div>
+                                <div class="divertor pink-divertor" data-type="package"></div>
+                            </div>
                         </div>
-                        <div class="conveyor-rollers">
-                            <div class="roller"></div>
-                            <div class="roller"></div>
-                            <div class="roller"></div>
-                            <div class="roller"></div>
-                            <div class="roller"></div>
-                            <div class="roller"></div>
+                        
+                        <!-- Performance Dashboard -->
+                        <div class="performance-indicators">
+                            <div class="indicator">
+                                <span class="indicator-label">Hız</span>
+                                <span class="indicator-value" id="speed-value">60</span>
+                            </div>
+                            <div class="indicator">
+                                <span class="indicator-label">Kapasite</span>
+                                <span class="indicator-value" id="capacity-value">1200</span>
+                            </div>
+                            <div class="indicator">
+                                <span class="indicator-label">Verimlilik</span>
+                                <span class="indicator-value" id="efficiency-value">98.5</span>
+                            </div>
+                            <div class="indicator">
+                                <span class="indicator-label">Toplam</span>
+                                <span class="indicator-value" id="total-value">0</span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Sorting Mechanism -->
-                <div class="sorting-mechanism">
-                    <div class="divertor-arm" id="divertor1" data-lane="1">
-                        <div class="divertor-paddle"></div>
-                        <div class="divertor-actuator"></div>
-                    </div>
-                    <div class="divertor-arm" id="divertor2" data-lane="2">
-                        <div class="divertor-paddle"></div>
-                        <div class="divertor-actuator"></div>
-                    </div>
-                    <div class="divertor-arm" id="divertor3" data-lane="3">
-                        <div class="divertor-paddle"></div>
-                        <div class="divertor-actuator"></div>
-                    </div>
-                </div>
-
-                <!-- Output Lanes -->
-                <div class="output-lanes">
-                    <div class="output-lane" data-lane="1">
-                        <div class="lane-conveyor">
-                            <div class="lane-belt" id="lane1Belt"></div>
+                        
+                        <!-- Animation Controls -->
+                        <div class="animation-controls">
+                            <button class="control-button" id="pause-btn" title="Duraklat/Devam Et">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <div class="speed-control">
+                                <label>Hız:</label>
+                                <input type="range" id="speed-slider" min="0.5" max="3" step="0.1" value="1">
+                                <span id="speed-display">1x</span>
+                            </div>
                         </div>
-                        <div class="lane-indicator">
-                            <span class="lane-name">Lane 1</span>
-                            <span class="package-count" id="lane1Count">0</span>
+                        
+                        <!-- Düşüş Sepetleri -->
+                        <div class="drop-baskets">
+                            <div class="drop-basket red-basket" data-type="box">
+                                <div class="basket-icon">📦</div>
+                                <div class="basket-count">0</div>
+                                <div class="basket-label">Kırmızı Sepet</div>
+                            </div>
+                            <div class="drop-basket blue-basket" data-type="envelope">
+                                <div class="basket-icon">✉️</div>
+                                <div class="basket-count">0</div>
+                                <div class="basket-label">Mavi Sepet</div>
+                            </div>
+                            <div class="drop-basket green-basket" data-type="tote">
+                                <div class="basket-icon">🧺</div>
+                                <div class="basket-count">0</div>
+                                <div class="basket-label">Yeşil Sepet</div>
+                            </div>
+                            <div class="drop-basket pink-basket" data-type="package">
+                                <div class="basket-icon">📦</div>
+                                <div class="basket-count">0</div>
+                                <div class="basket-label">Pembe Sepet</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="output-lane" data-lane="2">
-                        <div class="lane-conveyor">
-                            <div class="lane-belt" id="lane2Belt"></div>
-                        </div>
-                        <div class="lane-indicator">
-                            <span class="lane-name">Lane 2</span>
-                            <span class="package-count" id="lane2Count">0</span>
-                        </div>
-                    </div>
-                    <div class="output-lane" data-lane="3">
-                        <div class="lane-conveyor">
-                            <div class="lane-belt" id="lane3Belt"></div>
-                        </div>
-                        <div class="lane-indicator">
-                            <span class="lane-name">Lane 3</span>
-                            <span class="package-count" id="lane3Count">0</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Scanner and Control System -->
-                <div class="scanner-system">
-                    <div class="scanner-frame">
-                        <div class="scanner-light" id="scannerLight"></div>
-                        <div class="scanner-display">
-                            <span id="scannerText">SCANNING...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Control Panel -->
-                <div class="control-panel">
-                    <div class="panel-display">
-                        <div class="display-row">
-                            <span class="label">Speed:</span>
-                            <span class="value" id="speedValue">120 m/min</span>
-                        </div>
-                        <div class="display-row">
-                            <span class="label">Capacity:</span>
-                            <span class="value" id="capacityValue">5000 pcs/hr</span>
-                        </div>
-                        <div class="display-row">
-                            <span class="label">Accuracy:</span>
-                            <span class="value" id="accuracyValue">99.8%</span>
-                        </div>
-                        <div class="display-row">
-                            <span class="label">Status:</span>
-                            <span class="value" id="statusValue">RUNNING</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Animation Controls -->
-                <div class="animation-controls">
-                    <div class="speed-control">
-                        <label>Hız:</label>
-                        <input type="range" id="speedControl" min="60" max="200" step="20" value="120">
-                        <span id="speedDisplay">120 m/min</span>
-                    </div>
-                </div>
-
-                <!-- Performance Indicators -->
-                <div class="performance-indicators">
-                    <div class="indicator">
-                        <div class="indicator-label">İşlenen Parça</div>
-                        <div class="indicator-value" id="processedCount">0</div>
-                    </div>
-                    <div class="indicator">
-                        <div class="indicator-label">Hız</div>
-                        <div class="indicator-value" id="speedIndicator">0 p/h</div>
-                    </div>
-                    <div class="indicator">
-                        <div class="indicator-label">Doğruluk</div>
-                        <div class="indicator-value" id="accuracyIndicator">%99.8</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
 
     <!-- Photos Section -->
     <section id="photos" class="photos-section">
