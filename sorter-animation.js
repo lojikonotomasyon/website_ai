@@ -185,20 +185,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // İlgili divertor'ı aktif hale getir
         const divertorSelector = basketMapping[productType].replace('-basket', '-divertor');
         const divertor = document.querySelector(`.${divertorSelector}`);
-        console.log(`Divertor aranıyor: .${divertorSelector}`);
-        console.log(`Bulunan divertor:`, divertor);
         
         if (divertor) {
             divertor.classList.add('active');
-            console.log(`Divertor aktif hale getirildi:`, divertor);
             
             // 750ms sonra divertor'ı deaktif hale getir
             setTimeout(() => {
                 divertor.classList.remove('active');
-                console.log(`Divertor deaktif hale getirildi:`, divertor);
             }, 750);
-        } else {
-            console.log(`Divertor bulunamadı! Product type: ${productType}, Basket mapping: ${basketMapping[productType]}`);
         }
 
         function animateDrop() {

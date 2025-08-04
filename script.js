@@ -1,23 +1,132 @@
-// DOM yüklendiğinde çalışacak fonksiyonlar
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobil menü toggle
-    const hamburger = document.querySelector('.hamburger, .mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+// Mobile menu initialization function
+function initializeMobileMenu() {
+    // Önceki event listener'ları temizle
+    const existingHamburger = document.querySelector('.hamburger');
+    if (existingHamburger) {
+        const newHamburger = existingHamburger.cloneNode(true);
+        existingHamburger.parentNode.replaceChild(newHamburger, existingHamburger);
+    }
     
-    if (hamburger) {
-        hamburger.addEventListener('click', function() {
+    // Mobil menü toggle - çoklu fallback yöntemi
+    let hamburger = document.querySelector('.hamburger');
+    let navMenu = document.querySelector('.nav-menu');
+    
+    // Fallback selectors
+    if (!hamburger) {
+        hamburger = document.querySelector('[class*="hamburger"]');
+    }
+    if (!hamburger) {
+        hamburger = document.querySelector('div[class*="hamburger"]');
+    }
+    
+    if (!navMenu) {
+        navMenu = document.querySelector('ul[class*="nav-menu"]');
+    }
+    if (!navMenu) {
+        navMenu = document.querySelector('[class*="nav-menu"]');
+    }
+    
+    // Mobile menu function
+    function toggleMobileMenu() {
+        if (hamburger && navMenu) {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
-        });
+        }
     }
-
-    // Menü linklerine tıklandığında mobil menüyü kapat
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (hamburger) hamburger.classList.remove('active');
-            if (navMenu) navMenu.classList.remove('active');
+    
+    if (hamburger && navMenu) {
+        // Event listener'ları temizle ve yeniden ekle
+        const newHamburger = hamburger.cloneNode(true);
+        hamburger.parentNode.replaceChild(newHamburger, hamburger);
+        hamburger = newHamburger;
+        
+        // Primary click handler
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileMenu();
         });
-    });
+        
+        // Touch events for mobile
+        hamburger.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            toggleMobileMenu();
+        });
+        
+        // Menü linklerine tıklandığında mobil menüyü kapat
+        const menuLinks = document.querySelectorAll('.nav-menu a');
+        
+        menuLinks.forEach(link => {
+            // Önceki event listener'ları temizle
+            const newLink = link.cloneNode(true);
+            link.parentNode.replaceChild(newLink, link);
+            
+            newLink.addEventListener('click', () => {
+                if (hamburger) hamburger.classList.remove('active');
+                if (navMenu) navMenu.classList.remove('active');
+            });
+        });
+        
+        // Menü dışına tıklandığında menüyü kapat - global handler
+        const closeMenuOnOutsideClick = (e) => {
+            if (hamburger && navMenu && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        };
+        
+        // Önceki global handler'ı kaldır
+        document.removeEventListener('click', closeMenuOnOutsideClick);
+        document.addEventListener('click', closeMenuOnOutsideClick);
+        
+    } else {
+        // Alternative approach - global click handler
+        const globalClickHandler = function(e) {
+            const clickedElement = e.target;
+            const hamburgerElement = clickedElement.closest('.hamburger') || 
+                                   clickedElement.closest('[class*="hamburger"]');
+            
+            if (hamburgerElement) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const navElement = document.querySelector('.nav-menu') || 
+                                 document.querySelector('[class*="nav-menu"]');
+                
+                if (navElement) {
+                    hamburgerElement.classList.toggle('active');
+                    navElement.classList.toggle('active');
+                }
+            }
+        };
+        
+        // Önceki global handler'ı kaldır
+        document.removeEventListener('click', globalClickHandler);
+        document.addEventListener('click', globalClickHandler);
+    }
+    
+    // Test function
+    window.testMobileMenu = function() {
+        toggleMobileMenu();
+    };
+}
+
+// DOM yüklendiğinde çalışacak fonksiyonlar
+document.addEventListener('DOMContentLoaded', function() {
+    // Header yüklendikten sonra mobile menu'yu başlat
+    const checkHeaderLoaded = setInterval(() => {
+        const hamburger = document.querySelector('.hamburger');
+        if (hamburger) {
+            clearInterval(checkHeaderLoaded);
+            initializeMobileMenu();
+        }
+    }, 100);
+    
+    // 10 saniye sonra timeout
+    setTimeout(() => {
+        clearInterval(checkHeaderLoaded);
+        initializeMobileMenu();
+    }, 10000);
 
     // Scroll animasyonları
     const observerOptions = {
