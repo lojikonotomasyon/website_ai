@@ -195,7 +195,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.3) 0%, rgba(30, 41, 59, 0.2) 100%);
     z-index: 1;
 }
 
@@ -238,6 +238,9 @@ body {
 
 .hero-content {
     color: var(--white);
+    position: relative;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .hero-title {
@@ -245,6 +248,7 @@ body {
     font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.2;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
 }
 
 .hero-slogan {
@@ -254,13 +258,14 @@ body {
     color: var(--accent);
     text-align: center;
     letter-spacing: 1px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .highlight {
@@ -290,6 +295,7 @@ body {
     margin-bottom: 2rem;
     color: var(--secondary-light);
     line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .hero-buttons {
@@ -309,6 +315,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .btn-primary {

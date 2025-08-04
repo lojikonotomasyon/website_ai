@@ -63,5 +63,25 @@ async function loadHeaderAndFooter() {
     }
 }
 
+// Function to load contact information
+async function loadContactInfo() {
+    const contactInfoContainer = document.getElementById('contact-info-container');
+    if (contactInfoContainer) {
+        await templateLoader.loadAndInclude('contact-info', 'contact-info.htm', contactInfoContainer);
+    }
+}
+
+// Function to load contact form
+async function loadContactForm() {
+    const contactFormContainer = document.getElementById('contact-form-container');
+    if (contactFormContainer) {
+        await templateLoader.loadAndInclude('contact-form', 'contact-form.htm', contactFormContainer);
+    }
+}
+
 // Load templates when DOM is ready
-document.addEventListener('DOMContentLoaded', loadHeaderAndFooter); 
+document.addEventListener('DOMContentLoaded', () => {
+    loadHeaderAndFooter();
+    loadContactInfo();
+    loadContactForm();
+}); 

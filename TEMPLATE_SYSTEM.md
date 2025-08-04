@@ -1,108 +1,129 @@
-# Template Sistemi Kullanım Kılavuzu
+# Template System Documentation
 
-## Genel Bakış
-
-Bu template sistemi, header ve footer gibi tekrar eden HTML kısımlarını ayrı dosyalarda tutarak, bakım ve güncellemeleri kolaylaştırır.
+Bu dokümantasyon, Lojikon website'inde kullanılan HTML template sistemini açıklar.
 
 ## Dosya Yapısı
 
 ```
-├── header.htm              # Header şablonu
-├── footer.htm              # Footer şablonu
-├── include-templates.js    # Template yükleme sistemi
-├── template-example.html   # Kullanım örneği
-└── TEMPLATE_SYSTEM.md      # Bu dosya
+website_ai/
+├── header.htm              # Header template
+├── footer.htm              # Footer template
+├── contact-info.htm        # Contact information template
+├── include-templates.js    # Template loader JavaScript
+├── template-example.html   # Template kullanım örneği
+└── TEMPLATE_SYSTEM.md      # Bu dokümantasyon
 ```
 
-## Nasıl Kullanılır?
+## Template Dosyaları
 
-### 1. Yeni Sayfa Oluşturma
+### 1. header.htm
+- **Açıklama:** Website'in header kısmı için template
+- **İçerik:** Logo, navigasyon menüsü, sosyal medya linkleri
+- **Kullanım:** Tüm sayfalarda ortak header
 
-Yeni bir sayfa oluştururken şu yapıyı kullanın:
+### 2. footer.htm
+- **Açıklama:** Website'in footer kısmı için template
+- **İçerik:** Şirket bilgileri, çözüm linkleri, hizmet linkleri, iletişim bilgileri
+- **Kullanım:** Tüm sayfalarda ortak footer
+
+### 3. contact-info.htm
+- **Açıklama:** İletişim bilgileri için template
+- **İçerik:** Adres, telefon, mobil, WhatsApp, e-posta, çalışma saatleri
+- **Kullanım:** Contact section'larda ortak iletişim bilgileri
+
+## Kullanım
+
+### 1. HTML Sayfasında Template Kullanımı
 
 ```html
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sayfa Başlığı - Lojikon</title>
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Sayfa Başlığı</title>
+    <!-- Diğer head içerikleri -->
 </head>
 <body>
     <!-- Header Template Container -->
     <div id="header-container"></div>
-
-    <!-- Sayfa İçeriği Buraya -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="highlight">Sayfa</span> Başlığı
-                </h1>
-                <p class="hero-slogan">Akıllı Çözümler, Akıllı Gelecek</p>
-                <p class="hero-description">
-                    Sayfa açıklaması buraya gelecek.
-                </p>
+    
+    <!-- Sayfa içeriği -->
+    <main>
+        <!-- Ana sayfa içeriği buraya -->
+    </main>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <!-- Contact Info Template Container -->
+                <div id="contact-info-container"></div>
+                
+                <!-- Contact form buraya -->
+                <div class="contact-form">
+                    <!-- Form içeriği -->
+                </div>
             </div>
         </div>
     </section>
-
+    
     <!-- Footer Template Container -->
     <div id="footer-container"></div>
-
+    
     <!-- Scripts -->
     <script src="include-templates.js"></script>
     <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init("pMn_T_QHghVJklt3q");
-        })();
-    </script>
 </body>
 </html>
 ```
 
-### 2. Template Güncelleme
+### 2. JavaScript Template Loader
 
-Header veya footer'da değişiklik yapmak için:
-
-1. `header.htm` veya `footer.htm` dosyasını düzenleyin
-2. Değişiklik otomatik olarak tüm sayfalarda görünecek
-
-### 3. Yeni Template Ekleme
-
-Yeni bir template eklemek için:
-
-1. Yeni template dosyası oluşturun (örn: `contact-form.htm`)
-2. `include-templates.js` dosyasında yeni template'i yükleyin
-3. Sayfalarda kullanın
+`include-templates.js` dosyası otomatik olarak:
+- Header template'ini `#header-container` elementine yükler
+- Footer template'ini `#footer-container` elementine yükler
+- Contact info template'ini `#contact-info-container` elementine yükler
 
 ## Avantajlar
 
-✅ **Kolay Bakım**: Bir değişiklik tüm sayfalarda otomatik güncellenir
-✅ **Tutarlılık**: Tüm sayfalarda aynı header/footer
-✅ **Hızlı Geliştirme**: Sadece içerik kısmına odaklanın
-✅ **Kod Tekrarını Önleme**: Aynı HTML'i tekrar yazmayın
+### 1. **Merkezi Yönetim**
+- Header, footer ve iletişim bilgileri tek yerden yönetilir
+- Değişiklikler tüm sayfalara otomatik yansır
 
-## Örnek Kullanım
+### 2. **Tutarlılık**
+- Tüm sayfalarda aynı header, footer ve iletişim bilgileri
+- Marka tutarlılığı sağlanır
 
-`template-example.html` dosyasını inceleyerek sistemin nasıl çalıştığını görebilirsiniz.
+### 3. **Bakım Kolaylığı**
+- Tek dosyada değişiklik yaparak tüm sayfaları güncelleme
+- Kod tekrarını önleme
 
-## Notlar
+### 4. **Performans**
+- Template'ler bir kez yüklenir ve cache'lenir
+- Sayfa yükleme hızı artar
 
-- Template dosyaları HTTP sunucusu üzerinden çalışır (file:// protokolü ile çalışmaz)
-- Local development için basit bir HTTP sunucusu kullanın
-- Production'da normal web sunucusu kullanın
+## Güncelleme Süreci
+
+### İletişim Bilgilerini Güncelleme
+1. `contact-info.htm` dosyasını düzenle
+2. Değişiklikler tüm sayfalara otomatik yansır
+
+### Header Güncelleme
+1. `header.htm` dosyasını düzenle
+2. Değişiklikler tüm sayfalara otomatik yansır
+
+### Footer Güncelleme
+1. `footer.htm` dosyasını düzenle
+2. Değişiklikler tüm sayfalara otomatik yansır
 
 ## Gelecek Geliştirmeler
 
-- [ ] PHP include sistemi
-- [ ] Server-side rendering
-- [ ] Template değişkenleri sistemi
-- [ ] Conditional rendering 
+- [ ] Daha fazla template ekleme (hero section, navigation, vb.)
+- [ ] Template caching optimizasyonu
+- [ ] Dynamic content loading
+- [ ] Template versioning sistemi
+
+## Notlar
+
+- Template'ler HTTP server üzerinden çalışır (CORS policy nedeniyle)
+- `python -m http.server 8000` komutu ile local server başlatın
+- `http://localhost:8000` adresinden siteye erişin 
