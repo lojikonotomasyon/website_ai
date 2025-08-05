@@ -110,113 +110,107 @@
                     Hata oranını minimize edin, toplama hızını artırın ve operatör verimliliğini maksimize edin.
                 </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Animation Section -->
-    <section id="animation" class="animation-section">
-        <div class="container">
-            <h2 class="section-title">Pick to Light Animasyonu</h2>
-            <p class="section-subtitle">Pick to light sisteminin nasıl çalıştığını görün</p>
-            
-            <div class="pick-to-light-animation">
-                <div class="pick-station">
-                    <!-- Pick Station -->
-                    <div class="station-header">
-                        <h3>Toplama İstasyonu</h3>
-                        <div class="order-info">
-                            <span>Sipariş: #12345</span>
-                            <span>Durum: <span id="pickStatus">Hazır</span></span>
+            <!-- Hero Animation -->
+            <div class="hero-animation">
+                <div class="pick-to-light-animation">
+                    <div class="pick-station">
+                        <!-- Pick Station -->
+                        <div class="station-header">
+                            <h3>Toplama İstasyonu</h3>
+                            <div class="order-info">
+                                <span>Sipariş: #12345</span>
+                                <span>Durum: <span id="pickStatus">Hazır</span></span>
+                            </div>
+                        </div>
+                        
+                        <!-- Shelving Units -->
+                        <div class="shelving-units">
+                            <div class="shelf-row">
+                                <div class="shelf-cell" data-item-id="1">
+                                    <div class="light-indicator"></div>
+                                    <div class="item-info">
+                                        <span class="item-name">Ürün A</span>
+                                        <span class="item-quantity">2 adet</span>
+                                    </div>
+                                </div>
+                                <div class="shelf-cell" data-item-id="2">
+                                    <div class="light-indicator"></div>
+                                    <div class="item-info">
+                                        <span class="item-name">Ürün B</span>
+                                        <span class="item-quantity">1 adet</span>
+                                    </div>
+                                </div>
+                                <div class="shelf-cell" data-item-id="3">
+                                    <div class="light-indicator"></div>
+                                    <div class="item-info">
+                                        <span class="item-name">Ürün C</span>
+                                        <span class="item-quantity">3 adet</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="shelf-row">
+                                <div class="shelf-cell" data-item-id="4">
+                                    <div class="light-indicator"></div>
+                                    <div class="item-info">
+                                        <span class="item-name">Ürün D</span>
+                                        <span class="item-quantity">1 adet</span>
+                                    </div>
+                                </div>
+                                <div class="shelf-cell" data-item-id="5">
+                                    <div class="light-indicator"></div>
+                                    <div class="item-info">
+                                        <span class="item-name">Ürün E</span>
+                                        <span class="item-quantity">2 adet</span>
+                                    </div>
+                                </div>
+                                <div class="shelf-cell" data-item-id="6">
+                                    <div class="light-indicator"></div>
+                                    <div class="item-info">
+                                        <span class="item-name">Ürün F</span>
+                                        <span class="item-quantity">1 adet</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pick Cart -->
+                        <div class="pick-cart">
+                            <div class="cart-header">
+                                <h4>Toplama Sepeti</h4>
+                            </div>
+                            <div class="cart-items" id="cartItems">
+                                <!-- Items will be added here dynamically -->
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Shelving Units -->
-                    <div class="shelving-units">
-                        <div class="shelf-row">
-                            <div class="shelf-cell" data-item-id="1">
-                                <div class="light-indicator"></div>
-                                <div class="item-info">
-                                    <span class="item-name">Ürün A</span>
-                                    <span class="item-quantity">2 adet</span>
-                                </div>
-                            </div>
-                            <div class="shelf-cell" data-item-id="2">
-                                <div class="light-indicator"></div>
-                                <div class="item-info">
-                                    <span class="item-name">Ürün B</span>
-                                    <span class="item-quantity">1 adet</span>
-                                </div>
-                            </div>
-                            <div class="shelf-cell" data-item-id="3">
-                                <div class="light-indicator"></div>
-                                <div class="item-info">
-                                    <span class="item-name">Ürün C</span>
-                                    <span class="item-quantity">3 adet</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shelf-row">
-                            <div class="shelf-cell" data-item-id="4">
-                                <div class="light-indicator"></div>
-                                <div class="item-info">
-                                    <span class="item-name">Ürün D</span>
-                                    <span class="item-quantity">1 adet</span>
-                                </div>
-                            </div>
-                            <div class="shelf-cell" data-item-id="5">
-                                <div class="light-indicator"></div>
-                                <div class="item-info">
-                                    <span class="item-name">Ürün E</span>
-                                    <span class="item-quantity">2 adet</span>
-                                </div>
-                            </div>
-                            <div class="shelf-cell" data-item-id="6">
-                                <div class="light-indicator"></div>
-                                <div class="item-info">
-                                    <span class="item-name">Ürün F</span>
-                                    <span class="item-quantity">1 adet</span>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Animation Controls -->
+                    <div class="animation-controls">
+                        <button id="resetPickAnimation" class="control-button">
+                            <i class="fas fa-redo"></i> Sıfırla
+                        </button>
+                        <button id="nextItem" class="control-button">
+                            <i class="fas fa-arrow-right"></i> Sonraki
+                        </button>
+                        <button id="completeOrder" class="control-button">
+                            <i class="fas fa-check"></i> Tamamla
+                        </button>
                     </div>
                     
-                    <!-- Pick Cart -->
-                    <div class="pick-cart">
-                        <div class="cart-header">
-                            <h4>Toplama Sepeti</h4>
+                    <!-- Performance Indicators -->
+                    <div class="performance-indicators">
+                        <div class="indicator">
+                            <span class="indicator-label">Hız:</span>
+                            <span id="pickSpeed" class="indicator-value">0 ürün/dk</span>
                         </div>
-                        <div class="cart-items" id="cartItems">
-                            <!-- Items will be added here dynamically -->
+                        <div class="indicator">
+                            <span class="indicator-label">Doğruluk:</span>
+                            <span id="pickAccuracy" class="indicator-value">100%</span>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Animation Controls -->
-                <div class="animation-controls">
-                    <button id="resetPickAnimation" class="control-button">
-                        <i class="fas fa-redo"></i> Sıfırla
-                    </button>
-                    <button id="nextItem" class="control-button">
-                        <i class="fas fa-arrow-right"></i> Sonraki
-                    </button>
-                    <button id="completeOrder" class="control-button">
-                        <i class="fas fa-check"></i> Tamamla
-                    </button>
-                </div>
-                
-                <!-- Performance Indicators -->
-                <div class="performance-indicators">
-                    <div class="indicator">
-                        <span class="indicator-label">Hız:</span>
-                        <span id="pickSpeed" class="indicator-value">0 ürün/dk</span>
-                    </div>
-                    <div class="indicator">
-                        <span class="indicator-label">Doğruluk:</span>
-                        <span id="pickAccuracy" class="indicator-value">%100</span>
-                    </div>
-                    <div class="indicator">
-                        <span class="indicator-label">Durum:</span>
-                        <span id="pickStatus" class="indicator-value">Hazır</span>
+                        <div class="indicator">
+                            <span class="indicator-label">Durum:</span>
+                            <span id="pickStatusIndicator" class="indicator-value">Hazır</span>
+                        </div>
                     </div>
                 </div>
             </div>

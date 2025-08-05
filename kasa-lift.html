@@ -98,7 +98,7 @@
     <div id="header-container"></div>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
@@ -110,83 +110,77 @@
                     ve hızlı çözümler.
                 </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Animation Section -->
-    <section id="animation" class="animation-section">
-        <div class="container">
-            <h2 class="section-title">Kasa Lift Animasyonu</h2>
-            <p class="section-subtitle">Kasa lift sisteminin nasıl çalıştığını görün</p>
-            
-            <div class="kasa-lift-animation">
-                <div class="kasa-lift-machine">
-                    <!-- Ground Level -->
-                    <div class="ground-level">
-                        <div class="level-label">Zemin Kat</div>
-                        <div class="kasa-container">
-                            <div class="kasa" data-kasa-id="1">
-                                <div class="kasa-content">Kasa 1</div>
+            <!-- Hero Animation -->
+            <div class="hero-animation">
+                <div class="kasa-lift-animation">
+                    <div class="kasa-lift-machine">
+                        <!-- Ground Level -->
+                        <div class="ground-level">
+                            <div class="level-label">Zemin Kat</div>
+                            <div class="kasa-container">
+                                <div class="kasa" data-kasa-id="1">
+                                    <div class="kasa-content">Kasa 1</div>
+                                </div>
+                                <div class="kasa" data-kasa-id="2">
+                                    <div class="kasa-content">Kasa 2</div>
+                                </div>
+                                <div class="kasa" data-kasa-id="3">
+                                    <div class="kasa-content">Kasa 3</div>
+                                </div>
                             </div>
-                            <div class="kasa" data-kasa-id="2">
-                                <div class="kasa-content">Kasa 2</div>
+                        </div>
+                        
+                        <!-- Lift Mechanism -->
+                        <div class="lift-mechanism">
+                            <div class="lift-platform">
+                                <div class="lift-indicator">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
                             </div>
-                            <div class="kasa" data-kasa-id="3">
-                                <div class="kasa-content">Kasa 3</div>
+                            <div class="lift-guides"></div>
+                        </div>
+                        
+                        <!-- Upper Level -->
+                        <div class="upper-level">
+                            <div class="level-label">Üst Kat</div>
+                            <div class="kasa-container">
+                                <div class="kasa-slot" data-slot-id="1"></div>
+                                <div class="kasa-slot" data-slot-id="2"></div>
+                                <div class="kasa-slot" data-slot-id="3"></div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Lift Mechanism -->
-                    <div class="lift-mechanism">
-                        <div class="lift-platform">
-                            <div class="lift-indicator">
-                                <i class="fas fa-arrow-up"></i>
-                            </div>
-                        </div>
-                        <div class="lift-guides"></div>
+                    <!-- Animation Controls -->
+                    <div class="animation-controls">
+                        <button id="resetKasaAnimation" class="control-button">
+                            <i class="fas fa-redo"></i> Sıfırla
+                        </button>
+                        <button id="manualUp" class="control-button">
+                            <i class="fas fa-arrow-up"></i> Yukarı
+                        </button>
+                        <button id="manualDown" class="control-button">
+                            <i class="fas fa-arrow-down"></i> Aşağı
+                        </button>
+                        <button id="emergencyStop" class="control-button emergency">
+                            <i class="fas fa-stop"></i> Acil Dur
+                        </button>
                     </div>
                     
-                    <!-- Upper Level -->
-                    <div class="upper-level">
-                        <div class="level-label">Üst Kat</div>
-                        <div class="kasa-container">
-                            <div class="kasa-slot" data-slot-id="1"></div>
-                            <div class="kasa-slot" data-slot-id="2"></div>
-                            <div class="kasa-slot" data-slot-id="3"></div>
+                    <!-- Performance Indicators -->
+                    <div class="performance-indicators">
+                        <div class="indicator">
+                            <span class="indicator-label">Hız:</span>
+                            <span id="kasaSpeed" class="indicator-value">0 m/s</span>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Animation Controls -->
-                <div class="animation-controls">
-                    <button id="resetKasaAnimation" class="control-button">
-                        <i class="fas fa-redo"></i> Sıfırla
-                    </button>
-                    <button id="manualUp" class="control-button">
-                        <i class="fas fa-arrow-up"></i> Yukarı
-                    </button>
-                    <button id="manualDown" class="control-button">
-                        <i class="fas fa-arrow-down"></i> Aşağı
-                    </button>
-                    <button id="emergencyStop" class="control-button emergency">
-                        <i class="fas fa-stop"></i> Acil Dur
-                    </button>
-                </div>
-                
-                <!-- Performance Indicators -->
-                <div class="performance-indicators">
-                    <div class="indicator">
-                        <span class="indicator-label">Hız:</span>
-                        <span id="kasaSpeed" class="indicator-value">0 m/s</span>
-                    </div>
-                    <div class="indicator">
-                        <span class="indicator-label">Kapasite:</span>
-                        <span id="kasaCapacity" class="indicator-value">3 kasa</span>
-                    </div>
-                    <div class="indicator">
-                        <span class="indicator-label">Durum:</span>
-                        <span id="kasaStatus" class="indicator-value">Hazır</span>
+                        <div class="indicator">
+                            <span class="indicator-label">Kapasite:</span>
+                            <span id="kasaCapacity" class="indicator-value">3 kasa</span>
+                        </div>
+                        <div class="indicator">
+                            <span class="indicator-label">Durum:</span>
+                            <span id="kasaStatus" class="indicator-value">Hazır</span>
+                        </div>
                     </div>
                 </div>
             </div>

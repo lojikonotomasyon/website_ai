@@ -110,98 +110,92 @@
                     için tasarlanmış sistemler.
                 </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Animation Section -->
-    <section id="animation" class="animation-section">
-        <div class="container">
-            <h2 class="section-title">Continuous Lift Animasyonu</h2>
-            <p class="section-subtitle">Continuous lift sisteminin nasıl çalıştığını görün</p>
-
-            <div class="continuous-lift-animation">
-                <div class="continuous-lift-machine">
-                    <!-- Input Level -->
-                    <div class="input-level">
-                        <div class="level-label">Giriş Seviyesi</div>
-                        <div class="conveyor-belt input-conveyor">
-                            <div class="package" data-package-id="1">
-                                <div class="package-content">Paket 1</div>
-                            </div>
-                            <div class="package" data-package-id="2">
-                                <div class="package-content">Paket 2</div>
-                            </div>
-                            <div class="package" data-package-id="3">
-                                <div class="package-content">Paket 3</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Continuous Lift Mechanism -->
-                    <div class="lift-mechanism">
-                        <div class="lift-chains">
-                            <div class="chain left-chain"></div>
-                            <div class="chain right-chain"></div>
-                        </div>
-                        <div class="lift-platforms">
-                            <div class="lift-platform" data-platform-id="1">
-                                <div class="platform-indicator">
-                                    <i class="fas fa-arrow-up"></i>
+            <!-- Hero Animation -->
+            <div class="hero-animation">
+                <div class="continuous-lift-animation">
+                    <div class="continuous-lift-machine">
+                        <!-- Input Level -->
+                        <div class="input-level">
+                            <div class="level-label">Giriş Seviyesi</div>
+                            <div class="conveyor-belt input-conveyor">
+                                <div class="package" data-package-id="1">
+                                    <div class="package-content">Paket 1</div>
                                 </div>
-                            </div>
-                            <div class="lift-platform" data-platform-id="2">
-                                <div class="platform-indicator">
-                                    <i class="fas fa-arrow-up"></i>
+                                <div class="package" data-package-id="2">
+                                    <div class="package-content">Paket 2</div>
                                 </div>
-                            </div>
-                            <div class="lift-platform" data-platform-id="3">
-                                <div class="platform-indicator">
-                                    <i class="fas fa-arrow-up"></i>
+                                <div class="package" data-package-id="3">
+                                    <div class="package-content">Paket 3</div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Output Level -->
-                    <div class="output-level">
-                        <div class="level-label">Çıkış Seviyesi</div>
-                        <div class="conveyor-belt output-conveyor">
-                            <div class="output-slot" data-slot-id="1"></div>
-                            <div class="output-slot" data-slot-id="2"></div>
-                            <div class="output-slot" data-slot-id="3"></div>
+                        <!-- Continuous Lift Mechanism -->
+                        <div class="lift-mechanism">
+                            <div class="lift-chains">
+                                <div class="chain left-chain"></div>
+                                <div class="chain right-chain"></div>
+                            </div>
+                            <div class="lift-platforms">
+                                <div class="lift-platform" data-platform-id="1">
+                                    <div class="platform-indicator">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </div>
+                                </div>
+                                <div class="lift-platform" data-platform-id="2">
+                                    <div class="platform-indicator">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </div>
+                                </div>
+                                <div class="lift-platform" data-platform-id="3">
+                                    <div class="platform-indicator">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Output Level -->
+                        <div class="output-level">
+                            <div class="level-label">Çıkış Seviyesi</div>
+                            <div class="conveyor-belt output-conveyor">
+                                <div class="output-slot" data-slot-id="1"></div>
+                                <div class="output-slot" data-slot-id="2"></div>
+                                <div class="output-slot" data-slot-id="3"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Animation Controls -->
-                <div class="animation-controls">
-                    <button id="resetContinuousAnimation" class="control-button">
-                        <i class="fas fa-redo"></i> Sıfırla
-                    </button>
-                    <button id="speedUp" class="control-button">
-                        <i class="fas fa-tachometer-alt"></i> Hızlandır
-                    </button>
-                    <button id="slowDown" class="control-button">
-                        <i class="fas fa-minus"></i> Yavaşlat
-                    </button>
-                    <button id="emergencyStopContinuous" class="control-button emergency">
-                        <i class="fas fa-stop"></i> Acil Dur
-                    </button>
-                </div>
+                    <!-- Animation Controls -->
+                    <div class="animation-controls">
+                        <button id="resetContinuousAnimation" class="control-button">
+                            <i class="fas fa-redo"></i> Sıfırla
+                        </button>
+                        <button id="speedUp" class="control-button">
+                            <i class="fas fa-tachometer-alt"></i> Hızlandır
+                        </button>
+                        <button id="slowDown" class="control-button">
+                            <i class="fas fa-minus"></i> Yavaşlat
+                        </button>
+                        <button id="emergencyStopContinuous" class="control-button emergency">
+                            <i class="fas fa-stop"></i> Acil Dur
+                        </button>
+                    </div>
 
-                <!-- Performance Indicators -->
-                <div class="performance-indicators">
-                    <div class="indicator">
-                        <span class="indicator-label">Hız:</span>
-                        <span id="continuousSpeed" class="indicator-value">0 m/s</span>
-                    </div>
-                    <div class="indicator">
-                        <span class="indicator-label">Kapasite:</span>
-                        <span id="continuousCapacity" class="indicator-value">100 paket/saat</span>
-                    </div>
-                    <div class="indicator">
-                        <span class="indicator-label">Durum:</span>
-                        <span id="continuousStatus" class="indicator-value">Hazır</span>
+                    <!-- Performance Indicators -->
+                    <div class="performance-indicators">
+                        <div class="indicator">
+                            <span class="indicator-label">Hız:</span>
+                            <span id="continuousSpeed" class="indicator-value">0 m/s</span>
+                        </div>
+                        <div class="indicator">
+                            <span class="indicator-label">Kapasite:</span>
+                            <span id="continuousCapacity" class="indicator-value">100 paket/saat</span>
+                        </div>
+                        <div class="indicator">
+                            <span class="indicator-label">Durum:</span>
+                            <span id="continuousStatus" class="indicator-value">Hazır</span>
+                        </div>
                     </div>
                 </div>
             </div>

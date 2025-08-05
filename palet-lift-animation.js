@@ -91,11 +91,11 @@ class ProfessionalElevator {
             elevatorCar.style.bottom = `${newElevatorPosition}px`;
         }
 
-        // Animate counterweight
+        // Animate counterweight (moves in opposite direction)
         const counterweight = document.getElementById('counterweight');
         if (counterweight) {
-            counterweight.style.transition = `top ${totalMoveTime}ms ease-in-out`;
-            counterweight.style.top = `${newCounterweightPosition}px`;
+            counterweight.style.transition = `bottom ${totalMoveTime}ms ease-in-out`;
+            counterweight.style.bottom = `${newCounterweightPosition}px`;
         }
 
         // Update floor display during movement
@@ -250,7 +250,7 @@ class ProfessionalElevator {
         const counterweight = document.getElementById('counterweight');
         if (counterweight) {
             const position = (this.currentFloor - 1) * this.floorHeight;
-            counterweight.style.top = `${position}px`;
+            counterweight.style.bottom = `${position}px`;
         }
     }
 

@@ -193,13 +193,15 @@ body {
 /* Hero Section */
 .hero, .hero-section {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+    padding-top: 75px;
+    overflow: hidden;
     background: var(--gradient-primary);
     color: var(--white);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    padding-top: 70px; /* Header yüksekliği kadar padding */
 }
 
 .hero::before, .hero-section::before {
@@ -213,12 +215,32 @@ body {
     z-index: 1;
 }
 
-/* Hero Slider */
+/* Hero Container - Fixed Content */
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: auto;
+    min-height: 80vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Hero Slider - Animation Area */
 .hero-slider {
     position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    height: auto;
+    min-height: 60vh;
+    overflow: visible;
+    margin-top: 20px;
+    margin-bottom: 80px;
 }
 
 .hero-slide {
@@ -230,24 +252,11 @@ body {
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .hero-slide.active {
     opacity: 1;
-}
-
-.hero-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    align-items: center;
-    width: 100%;
 }
 
 .hero-content {
@@ -255,6 +264,7 @@ body {
     position: relative;
     z-index: 10;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
 }
 
 .hero-title {
@@ -420,27 +430,29 @@ body {
 .hero-animation {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 50vh; /* Reduced height */
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    min-height: 500px;
+    padding-top: 25px;
+    z-index: 1;
 }
 
 .sorter-hero-animation {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 50vh; /* Reduced height */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: flex-start;
 }
 
 /* Hero Konveyor Sistemi */
 .sorter-hero-animation .conveyor-system {
     position: relative;
     width: 100%;
-    height: 320px; /* Increased from 220px to 320px */
+    height: 100%; /* Use full height instead of fixed 400px */
     background: linear-gradient(145deg, #34495e, #2c3e50);
     border-radius: 15px;
     padding: 30px;
@@ -473,7 +485,7 @@ body {
     );
     background-size: 60px 100%;
     border-radius: 5px;
-    animation: beltMoveLeftToRight 0.35s linear infinite !important;
+    animation: beltMoveLeftToRight 0.8s linear infinite !important;
 }
 
 @keyframes beltMoveLeftToRight {
@@ -510,67 +522,27 @@ body {
     
     .hero-animation {
         min-height: 400px;
+        align-items: flex-start;
     }
     
-    .sorter-hero-animation .conveyor-system {
-        width: 100%;
-        height: 280px; /* Increased from 180px to 280px */
-        padding: 20px;
+    .miniload-animation,
+    .pick-to-light-animation,
+    .pallet-lift-animation,
+    .kasa-lift-animation,
+    .continuous-lift-animation {
+        align-self: flex-start;
     }
     
-    .sorter-hero-animation .conveyor-belt {
-        height: 110px;
-    }
-    
-    .sorter-hero-animation .belt-surface {
-        height: 25px;
-    }
-    
-    .sorter-hero-animation .belt-rollers {
-        height: 50px;
-        padding: 0 20px;
-    }
-    
-    .sorter-hero-animation .roller {
-        width: 15px;
-        height: 15px;
-    }
+/* Sorter animation media queries removed - using general scale approach */
 }
 
-@media (max-width: 480px) {
-    .hero-animation {
-        min-height: 350px;
-    }
-    
-    .sorter-hero-animation .conveyor-system {
-        height: 240px; /* Increased from 150px to 240px */
-        padding: 15px;
-    }
-    
-    .sorter-hero-animation .conveyor-belt {
-        height: 90px;
-    }
-    
-    .sorter-hero-animation .belt-surface {
-        height: 20px;
-    }
-    
-    .sorter-hero-animation .belt-rollers {
-        height: 40px;
-        padding: 0 15px;
-    }
-    
-    .sorter-hero-animation .roller {
-        width: 12px;
-        height: 12px;
-    }
-}
+/* Mobile sorter animation media queries removed - using general scale approach */
 
 /* Hero Animation */
 .hero-animation {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 400px;
 }
 
@@ -931,27 +903,20 @@ body {
 
 .counterweight {
     position: absolute;
-    top: 20px;
-    left: 8px;
-    right: 8px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    bottom: 0;
+    right: 20px;
+    width: 60px;
+    height: 100px;
+    transition: bottom 2s ease-in-out;
 }
 
 .weight-block {
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(90deg, #6b7280, #9ca3af);
-    border: 2px solid #4b5563;
-    border-radius: 4px;
-    animation: counterweightMove 6s ease-in-out infinite;
-}
-
-@keyframes counterweightMove {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(180px); }
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid #2c3e50;
 }
 
 .cable-system {
@@ -961,20 +926,32 @@ body {
     right: 0;
     height: 100%;
     pointer-events: none;
+    z-index: 5;
 }
 
-.main-cable, .counterweight-cable {
+.main-cable {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 2px;
+    width: 3px;
     height: 100%;
-    background: linear-gradient(to bottom, #6b7280, #9ca3af);
+    background: linear-gradient(to bottom, #4a5568, #2d3748);
+    border-radius: 2px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
     transform: translateX(-50%);
 }
 
 .counterweight-cable {
-    left: 25%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px;
+    height: 120%;
+    background: linear-gradient(to bottom, #4a5568, #2d3748);
+    border-radius: 2px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    transform: translateX(-50%) rotate(-25deg);
+    transform-origin: top center;
 }
 
 @keyframes liftMove {
@@ -1297,13 +1274,19 @@ body {
 /* Slider Controls */
 .slider-controls {
     position: absolute;
-    bottom: 30px;
+    bottom: -60px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     gap: 2rem;
-    z-index: 10;
+    z-index: 1000;
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 25px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .slider-btn {
@@ -1943,7 +1926,7 @@ body {
 
     /* Hero Section Mobile Fixes */
     .hero, .hero-section {
-        padding-top: 80px; /* Mobile'da biraz daha fazla padding */
+        padding-top: 50px; /* Mobile'da biraz daha fazla padding - azaltıldı */
         min-height: calc(100vh - 70px); /* Header yüksekliğini çıkar */
     }
 
@@ -2071,8 +2054,42 @@ body {
         padding: 0 15px;
     }
 
+    .hero, .hero-section {
+        padding-top: 40px; /* Mobile'da daha az padding */
+    }
+
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-slogan {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-description {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-buttons {
+        gap: 0.5rem;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .hero-slider {
+        height: 70vh;
+        margin-top: 10px;
     }
 
     .section-header h2 {
@@ -2474,12 +2491,13 @@ html {
 .pallet-lift-animation {
     position: relative;
     width: 100%;
-    height: 700px;
+    height: 60vh;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     margin: 30px 0;
+    transform-origin: center bottom;
 }
 
 /* Building Structure */
@@ -2657,11 +2675,11 @@ html {
 /* Counterweight */
 .counterweight {
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 20px;
     width: 60px;
     height: 100px;
-    transition: top 2s ease-in-out;
+    transition: bottom 2s ease-in-out;
 }
 
 .weight-block {
@@ -2727,14 +2745,15 @@ html {
 /* Control Panel */
 .elevator-control-panel {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 100px;
+    right: 10%;
     width: 200px;
-    height: 250px;
+    height: 280px;
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     padding: 15px;
+    opacity: 0.7;
 }
 
 .panel-header {
@@ -2754,6 +2773,8 @@ html {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-bottom: 20px;
+    margin-left: 15%;
+    margin-top: 30px;
 }
 
 .floor-btn {
@@ -2780,7 +2801,7 @@ html {
 }
 
 .control-display {
-    height: 80px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -2821,15 +2842,17 @@ html {
 }
 
 .loading-platform {
-    width: 100%;
+    width: 100px;
     height: 100%;
     background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding: 20px;
+    justify-content: flex-start;
+    padding: 20px 10px;
+    margin-left: 0;
+    opacity: 0.4;
 }
 
 .pallet {
@@ -2890,16 +2913,16 @@ html {
 /* Safety Systems */
 .safety-systems {
     position: absolute;
-    top: 20px;
+    top: 5px;
     left: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 15px;
 }
 
 .safety-light {
-    width: 20px;
-    height: 20px;
+    width: 45px;
+    height: 45px;
     background: #2ecc71;
     border-radius: 50%;
     animation: safetyBlink 2s ease-in-out infinite;
@@ -2912,13 +2935,13 @@ html {
 }
 
 .emergency-stop {
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
 }
 
 .stop-button {
-    width: 100%;
-    height: 100%;
+    width: 45px;
+    height: 45px;
     background: #e74c3c;
     border-radius: 50%;
     border: 3px solid #c0392b;
@@ -2933,34 +2956,7 @@ html {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .pallet-lift-animation {
-        height: 500px;
-    }
-    
-    .elevator-shaft {
-        width: 200px;
-    }
-    
-    .elevator-car {
-        width: 150px;
-        height: 120px;
-    }
-    
-    .elevator-control-panel {
-        width: 150px;
-        height: 200px;
-        bottom: 10px;
-        right: 10px;
-    }
-    
-    .loading-area {
-        width: 200px;
-        height: 100px;
-        bottom: 10px;
-        left: 10px;
-    }
-}
+
 
 /* Pick to Light Animation Styles */
 .pick-to-light-animation {
@@ -2971,6 +2967,7 @@ html {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
+    align-self: flex-start;
 }
 
 .pick-station {
@@ -3934,6 +3931,7 @@ html {
     overflow: hidden;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    align-self: flex-start;
 }
 
 /* Storage Rack System */
@@ -3984,7 +3982,7 @@ html {
     z-index: 10;
     transition: transform 0.3s ease;
     cursor: pointer;
-    transform: translate(600px, 350px); /* Initial position using transform */
+    transform: translate(600px, 150px); /* Moved up from 350px to 150px */
 }
 
 .shuttle::before {
@@ -4308,11 +4306,12 @@ html {
     position: relative;
     width: 100%;
     height: 600px;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    margin: 30px 0;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    align-self: flex-start;
 }
 
 .kasa-lift-machine {
@@ -4652,12 +4651,13 @@ html {
 .continuous-lift-animation {
     position: relative;
     width: 100%;
-    height: 600px;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    height: 700px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    margin: 30px 0;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    align-self: flex-start;
 }
 
 .continuous-lift-machine {
@@ -5069,12 +5069,13 @@ html {
 .miniload-animation {
     position: relative;
     width: 100%;
-    height: 700px;
+    height: 800px;
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     border-radius: 15px;
     overflow: hidden;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    align-self: flex-start;
 }
 
 /* Storage Rack System */
@@ -6094,37 +6095,9 @@ html {
 /* Responsive basket sizes */
 @media (max-width: 768px) {
     .drop-baskets {
-        bottom: 60px;
-        gap: 8px;
-        padding: 0 15px;
-    }
-    
-    .drop-basket {
-        width: 65px;
-        height: 65px;
-    }
-    
-    .basket-icon {
-        font-size: 14px;
-    }
-    
-    .basket-count {
-        font-size: 10px;
-        padding: 1px 4px;
-        min-width: 16px;
-    }
-    
-    .basket-label {
-        font-size: 8px;
-        bottom: -20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .drop-baskets {
-        bottom: 50px;
-        gap: 5px;
-        padding: 0 10px;
+        bottom: 25px;
+        gap: 6px;
+        padding: 0 12px;
     }
     
     .drop-basket {
@@ -6145,6 +6118,34 @@ html {
     .basket-label {
         font-size: 7px;
         bottom: -18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .drop-baskets {
+        bottom: 15px;
+        gap: 4px;
+        padding: 0 8px;
+    }
+    
+    .drop-basket {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .basket-icon {
+        font-size: 10px;
+    }
+    
+    .basket-count {
+        font-size: 8px;
+        padding: 1px 2px;
+        min-width: 12px;
+    }
+    
+    .basket-label {
+        font-size: 6px;
+        bottom: -16px;
     }
 }
 
@@ -6259,5 +6260,170 @@ html {
 
 .sorter-hero-animation .indicator-value {
     font-size: 11px;
+}
+
+/* Pick to Light Animation Styles */
+.pick-to-light-animation {
+    background: var(--gradient-primary);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    align-self: flex-start;
+}
+
+.hero-animation .pick-to-light-animation {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* --- PALLET LIFT ANIMATION --- */
+.pallet-lift-animation {
+    height: 60vh;
+    align-self: flex-start;
+}
+
+/* --- MINILOAD ANIMATION --- */
+.miniload-animation {
+    height: 60vh;
+    align-self: flex-start;
+}
+
+/* --- PICK TO LIGHT ANIMATION --- */
+.pick-to-light-animation {
+    height: 60vh;
+    align-self: flex-start;
+}
+
+/* --- KASA LIFT ANIMATION --- */
+.kasa-lift-animation {
+    height: 60vh;
+    align-self: flex-start;
+}
+
+/* --- CONTINUOUS LIFT ANIMATION --- */
+.continuous-lift-animation {
+    height: 60vh;
+    align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+    .pallet-lift-animation,
+    .miniload-animation,
+    .pick-to-light-animation,
+    .kasa-lift-animation,
+    .continuous-lift-animation,
+    .sorter-animation-container,
+    .intralogistics-animation,
+    .sorter-hero-animation,
+    .hero-animation,
+    .animation-container,
+    .animation-screen {
+        transform: scale(0.8);
+        transform-origin: center top;
+    }
+    
+    /* Slider controls also scale */
+    .slider-controls,
+    .slider-btn,
+    .slider-dots,
+    .dot {
+        transform: scale(0.8);
+        transform-origin: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .pallet-lift-animation {
+        transform: scale(1);
+        transform-origin: center bottom;
+    }
+    
+    .pallet-lift-animation .elevator-shaft {
+        width: 150px;
+    }
+    
+    .pallet-lift-animation .elevator-car {
+        width: 100px;
+    }
+    
+    .pallet-lift-animation .elevator-control-panel {
+        width: 180px;
+        height: 250px;
+        bottom: 5px;
+        right: 1%;
+    }
+    
+    .pallet-lift-animation .floor-buttons {
+        margin-top: 15px;
+        margin-left: 10%;
+    }
+    
+    .pallet-lift-animation .floor-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .pallet-lift-animation .safety-light {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .pallet-lift-animation .emergency-stop {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .pallet-lift-animation .stop-button {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .pallet-lift-animation .motor-pulley {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .miniload-animation,
+    .pick-to-light-animation,
+    .kasa-lift-animation,
+    .continuous-lift-animation,
+    .sorter-animation-container,
+    .intralogistics-animation,
+    .sorter-hero-animation,
+    .hero-animation,
+    .animation-container,
+    .animation-screen {
+        transform: scale(0.9);
+        transform-origin: center top;
+    }
+    
+    /* Slider controls also scale */
+    .slider-controls,
+    .slider-btn,
+    .slider-dots,
+    .dot {
+        transform: scale(0.9);
+        transform-origin: center;
+    }
+}
+
+.safety-systems {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
 }
 

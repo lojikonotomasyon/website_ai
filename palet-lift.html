@@ -110,125 +110,106 @@
                     için güvenli ve verimli çözümler.
                 </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Animation Section -->
-    <section id="animation" class="animation-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Palet Lift Sistemi Nasıl Çalışır?</h2>
-                <p>İnteraktif animasyon ile palet lift sisteminin çalışma prensibini keşfedin</p>
-            </div>
-            <div class="pallet-lift-animation">
-                <!-- Building Structure -->
-                <div class="building-structure">
-                    <div class="building-frame">
-                        <div class="floor floor-1" data-floor="1">
-                            <div class="floor-indicator">1. KAT</div>
-                            <div class="floor-platform"></div>
-                        </div>
-                        <div class="floor floor-2" data-floor="2">
-                            <div class="floor-indicator">2. KAT</div>
-                            <div class="floor-platform"></div>
-                        </div>
-                        <div class="floor floor-3" data-floor="3">
-                            <div class="floor-indicator">3. KAT</div>
-                            <div class="floor-platform"></div>
-                        </div>
-                        <div class="floor floor-4" data-floor="4">
-                            <div class="floor-indicator">4. KAT</div>
-                            <div class="floor-platform"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Elevator Shaft -->
-                <div class="elevator-shaft">
-                    <div class="shaft-guides">
-                        <div class="guide-rail left"></div>
-                        <div class="guide-rail right"></div>
-                    </div>
-                    
-                    <!-- Elevator Car -->
-                    <div class="elevator-car" id="elevatorCar">
-                        <div class="car-frame">
-                            <div class="car-door left-door"></div>
-                            <div class="car-door right-door"></div>
-                            <div class="car-floor"></div>
-                            <div class="car-ceiling"></div>
-                        </div>
-                        <div class="car-indicator">
-                            <span class="current-floor" id="currentFloor">1</span>
+            <!-- Hero Animation -->
+            <div class="hero-animation">
+                <div class="pallet-lift-animation">
+                    <!-- Building Structure -->
+                    <div class="building-structure">
+                        <div class="building-frame">
+                            <div class="floor floor-1" data-floor="1">
+                                <div class="floor-indicator">1. KAT</div>
+                                <div class="floor-platform"></div>
+                            </div>
+                            <div class="floor floor-2" data-floor="2">
+                                <div class="floor-indicator">2. KAT</div>
+                                <div class="floor-platform"></div>
+                            </div>
+                            <div class="floor floor-3" data-floor="3">
+                                <div class="floor-indicator">3. KAT</div>
+                                <div class="floor-platform"></div>
+                            </div>
+                            <div class="floor floor-4" data-floor="4">
+                                <div class="floor-indicator">4. KAT</div>
+                                <div class="floor-platform"></div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Counterweight -->
-                    <div class="counterweight" id="counterweight">
-                        <div class="weight-block"></div>
-                        <div class="cable"></div>
+                    <!-- Elevator Shaft -->
+                    <div class="elevator-shaft">
+                        <div class="shaft-guides">
+                            <div class="guide-rail left"></div>
+                            <div class="guide-rail right"></div>
+                        </div>
+                        
+                        <!-- Elevator Car -->
+                        <div class="elevator-car" id="elevatorCar">
+                            <div class="car-frame">
+                                <div class="car-door left-door"></div>
+                                <div class="car-door right-door"></div>
+                                <div class="car-floor"></div>
+                                <div class="car-ceiling"></div>
+                            </div>
+                            <div class="car-indicator">
+                                <span class="current-floor" id="currentFloor">1</span>
+                            </div>
+                        </div>
+
+                        <!-- Counterweight -->
+                        <div class="counterweight" id="counterweight">
+                            <div class="weight-block"></div>
+                            <div class="cable"></div>
+                        </div>
+
+                        <!-- Hoisting Mechanism -->
+                        <div class="hoisting-mechanism">
+                            <div class="motor-pulley"></div>
+                        </div>
                     </div>
 
-                    <!-- Hoisting Mechanism -->
-                    <div class="hoisting-mechanism">
-                        <div class="motor-pulley"></div>
-                        <div class="cable-system">
-                            <div class="main-cable"></div>
-                            <div class="counterweight-cable"></div>
+                    <!-- Control Panel -->
+                    <div class="elevator-control-panel">
+                        <div class="panel-header">
+                            <h4>ASANSÖR KONTROL</h4>
+                        </div>
+                        <div class="control-display">
+                            <div class="display-row">
+                                <span class="label">Durum:</span>
+                                <span class="value" id="elevatorStatus">HAZIR</span>
+                            </div>
+                            <div class="display-row">
+                                <span class="label">Hız:</span>
+                                <span class="value" id="elevatorSpeed">2.5 m/s</span>
+                            </div>
+                            <div class="display-row">
+                                <span class="label">Kapasite:</span>
+                                <span class="value" id="elevatorCapacity">2000 kg</span>
+                            </div>
+                        </div>
+                        <div class="floor-buttons">
+                            <button class="floor-btn" data-floor="1">1</button>
+                            <button class="floor-btn" data-floor="2">2</button>
+                            <button class="floor-btn" data-floor="3">3</button>
+                            <button class="floor-btn" data-floor="4">4</button>
                         </div>
                     </div>
-                </div>
 
-                <!-- Control Panel -->
-                <div class="elevator-control-panel">
-                    <div class="panel-header">
-                        <h4>ASANSÖR KONTROL</h4>
-                    </div>
-                    <div class="floor-buttons">
-                        <button class="floor-btn" data-floor="1">1</button>
-                        <button class="floor-btn" data-floor="2">2</button>
-                        <button class="floor-btn" data-floor="3">3</button>
-                        <button class="floor-btn" data-floor="4">4</button>
-                    </div>
-                    <div class="control-display">
-                        <div class="display-row">
-                            <span class="label">Durum:</span>
-                            <span class="value" id="elevatorStatus">HAZIR</span>
-                        </div>
-                        <div class="display-row">
-                            <span class="label">Hız:</span>
-                            <span class="value" id="elevatorSpeed">2.5 m/s</span>
-                        </div>
-                        <div class="display-row">
-                            <span class="label">Kapasite:</span>
-                            <span class="value" id="elevatorCapacity">2000 kg</span>
+                    <!-- Pallet Loading Area -->
+                    <div class="loading-area">
+                        <div class="loading-platform">
+                            <div class="pallet" data-pallet-id="1">
+                                <div class="pallet-body"></div>
+                                <div class="pallet-label">PALET-1</div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Pallet Loading Area -->
-                <div class="loading-area">
-                    <div class="loading-platform">
-                        <div class="pallet pallet-1" data-pallet="1">
-                            <div class="pallet-body"></div>
-                            <div class="pallet-label">PALET 1</div>
+                    <!-- Safety Systems -->
+                    <div class="safety-systems">
+                        <div class="emergency-stop">
+                            <div class="stop-button"></div>
                         </div>
-                        <div class="pallet pallet-2" data-pallet="2">
-                            <div class="pallet-body"></div>
-                            <div class="pallet-label">PALET 2</div>
-                        </div>
-                        <div class="pallet pallet-3" data-pallet="3">
-                            <div class="pallet-body"></div>
-                            <div class="pallet-label">PALET 3</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Safety Systems -->
-                <div class="safety-systems">
-                    <div class="safety-light" id="safetyLight"></div>
-                    <div class="emergency-stop" id="emergencyStop">
-                        <div class="stop-button"></div>
+                        <div class="safety-light"></div>
                     </div>
                 </div>
             </div>
