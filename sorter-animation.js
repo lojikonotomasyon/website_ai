@@ -115,9 +115,9 @@ function startSorterAnimation() {
                 animationSpeed = parseFloat(e.target.value);
                 speedDisplay.textContent = `${animationSpeed}x`;
                 
-                // Animasyon hızını güncelle
-                updateAnimationSpeed();
-                startProductCreation(); // Hız değiştiğinde ürün oluşturma aralığını güncelle
+                // CSS'teki responsive animasyon hızlarını koru
+                // Sadece dashboard değerlerini güncelle
+                updateDashboard();
             });
         }
     }
@@ -141,18 +141,24 @@ function startSorterAnimation() {
     
     // Animasyon hızını güncelle
     function updateAnimationSpeed() {
+        // CSS'teki responsive animasyon hızlarını koru, JavaScript ile override etme
+        // Sadece pause/resume durumunu kontrol et
+        
         if (heroBeltSurface) {
-            heroBeltSurface.style.animationDuration = `${3 / animationSpeed}s`;
+            // CSS'teki animasyon süresini koru, sadece play state'i değiştir
+            heroBeltSurface.style.animationPlayState = (isPaused || !isPageVisible) ? 'paused' : 'running';
         }
         
         heroRollers.forEach(roller => {
-            roller.style.animationDuration = `${1 / animationSpeed}s`;
+            // CSS'teki animasyon süresini koru, sadece play state'i değiştir
+            roller.style.animationPlayState = (isPaused || !isPageVisible) ? 'paused' : 'running';
         });
         
-        // Hareket eden ürünlerin hızını güncelle
+        // Hareket eden ürünlerin hızını CSS'teki responsive değerlere bırak
         const movingProducts = document.querySelectorAll('.sorter-product.moving');
         movingProducts.forEach(product => {
-            product.style.animationDuration = `${3 / animationSpeed}s`;
+            // CSS'teki animasyon süresini koru, sadece play state'i değiştir
+            product.style.animationPlayState = (isPaused || !isPageVisible) ? 'paused' : 'running';
         });
     }
     
@@ -188,7 +194,9 @@ function startSorterAnimation() {
     function updateBasketCount(productType) {
         basketCounts[productType]++;
         
-        const basket = document.querySelector(`.${basketMapping[productType]}-basket .basket-count`);
+        const basketSelector = `.${basketMapping[productType]} .basket-count`;
+        const basket = document.querySelector(basketSelector);
+        
         if (basket) {
             basket.textContent = basketCounts[productType];
         }
@@ -199,13 +207,12 @@ function startSorterAnimation() {
     
     // Ürün düşüş animasyonu
     function dropProduct(product, productType) {
-        // Ürünün mevcut pozisyonunu al
-        const currentLeft = parseFloat(product.style.left) || -50;
-        const currentTop = parseInt(product.style.top) || 25;
-        const startTime = Date.now();
-        const dropDuration = 500; // 0.5 saniye düşüş (2 kat hızlı)
+        // Ürünün mevcut pozisyonunu al (computed style'dan)
+        const computedStyle = window.getComputedStyle(product);
+        const currentLeft = parseFloat(computedStyle.left) || 0;
+        const currentTop = parseFloat(computedStyle.top) || 0;
 
-        // Düşüş class'ını ekle
+        // Düşüş class'ını ekle - CSS animasyonu kullanacak
         product.classList.add('dropping');
 
         // Divertor pozisyonunu hesapla (merkez noktası)
@@ -215,7 +222,7 @@ function startSorterAnimation() {
         
         // Ürünün düşüş pozisyonunu ayarla (divertor merkezine)
         product.style.left = `${divertorCenterX}px`;
-        product.style.top = `${currentTop}px`;
+        product.style.top = `${currentTop}px`; // Mevcut pozisyonu koru
 
         // İlgili divertor'ı aktif hale getir
         const divertorSelector = basketMapping[productType].replace('-basket', '-divertor');
@@ -230,34 +237,16 @@ function startSorterAnimation() {
             }, 750);
         }
 
-        function animateDrop() {
-            const elapsed = Date.now() - startTime;
-            const progress = Math.min(elapsed / dropDuration, 1);
-
-            // Easing fonksiyonu (daha doğal düşüş)
-            const easeProgress = 1 - Math.pow(1 - progress, 3);
-
-            // Dinamik düşüş mesafesi hesapla
-            const conveyorHeight = conveyorSystem.offsetHeight;
-            const basketTop = 250; // Sepetlerin üst kısmı (conveyor yüksekliği - bottom - basket yüksekliği)
-            const dropDistance = basketTop - currentTop; // Sepetlere kadar olan mesafe
-            
-            const newTop = currentTop + (easeProgress * dropDistance);
-            product.style.top = `${newTop}px`;
-
-            if (progress < 1) {
-                animationId = requestAnimationFrame(animateDrop);
-            } else {
-                // Düşüş tamamlandı, ürünü kaldır ve sayacı güncelle
-                updateBasketCount(productType);
-                
-                if (product.parentNode) {
-                    product.parentNode.removeChild(product);
-                }
+        // CSS animasyonu ile düşüş - JavaScript animasyonu kullanma
+        // CSS'teki dropping class'ı animasyonu kullanacak
+        
+        // Düşüş tamamlandıktan sonra ürünü kaldır
+        setTimeout(() => {
+            updateBasketCount(productType);
+            if (product.parentNode) {
+                product.parentNode.removeChild(product);
             }
-        }
-
-        animateDrop();
+        }, 500); // 0.5 saniye sonra kaldır (CSS animasyon süresi)
     }
     
     // Ürün pozisyonunu takip et ve düşüş kontrolü yap
@@ -309,10 +298,14 @@ function startSorterAnimation() {
         
         // Ürünü konveyor sisteminin sol kenarından başlat
         product.style.position = 'absolute';
-        product.style.left = '0px'; // Conveyor-system'in sol kenarından başla
+        product.style.left = '-50px'; // Conveyor-system'in sol kenarından biraz dışarıdan başla
         
-        // Ürünün dikey pozisyonunu belt-surface'ın alt kenarına yakın ayarla
-        product.style.top = '45px'; // Belt-surface'ın alt kenarına yakın (20px + 30px - 5px = 45px)
+        // Ürünün dikey pozisyonunu conveyor-belt'in ortasına ayarla
+        // Conveyor-belt CSS'te top: 40% ve transform: translateY(-50%) ile ortalanmış
+        // Bu durumda gerçek merkezi 40% olur
+        const conveyorHeight = conveyorSystem.offsetHeight;
+        const beltCenterTop = conveyorHeight * 0.4; // Conveyor-belt'in merkezi (40%)
+        product.style.top = `${beltCenterTop}px`;
         
         product.style.zIndex = '999';
         
@@ -322,8 +315,8 @@ function startSorterAnimation() {
         // Ürünü hareket ettir
         setTimeout(() => {
             product.classList.add('moving');
-            // Yeni ürünün hızını ayarla
-            product.style.animationDuration = `${3 / animationSpeed}s`;
+            // CSS'teki responsive animasyon hızını kullan, JavaScript ile override etme
+            // product.style.animationDuration = `${3 / animationSpeed}s`;
         }, 100);
         
         // Ürün pozisyonunu sürekli kontrol et
