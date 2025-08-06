@@ -848,8 +848,62 @@ class HeroSlider {
     }
 }
 
+// Slogan verileri
+const sloganData = [
+    { var1: "Sistemler", var2: "Yarın" },
+    { var1: "Çözümler", var2: "Dönüşüm" },
+    { var1: "Teknolojiler", var2: "Vizyon" },
+    { var1: "Endüstri", var2: "Gelişim" },
+    { var1: "Projeler", var2: "Süreç" },
+    { var1: "Altyapılar", var2: "Hedef" },
+    { var1: "Entegrasyonlar", var2: "Zaman" },
+    { var1: "Hizmetler", var2: "Yaşam" }
+];
+
+let currentIndex = 0;
+const var1Element = document.getElementById('var1');
+const var2Element = document.getElementById('var2');
+
+// Değişken kelimeleri değiştiren fonksiyon
+function changeWords() {
+    // Fade out efekti
+    var1Element.classList.add('fade-out');
+    var2Element.classList.add('fade-out');
+
+    setTimeout(() => {
+        // Kelimeleri değiştir
+        var1Element.textContent = sloganData[currentIndex].var1;
+        var2Element.textContent = sloganData[currentIndex].var2;
+        
+        // Fade in efekti
+        var1Element.classList.remove('fade-out');
+        var2Element.classList.remove('fade-out');
+        var1Element.classList.add('fade-in');
+        var2Element.classList.add('fade-in');
+
+        // Bir sonraki indekse geç
+        currentIndex = (currentIndex + 1) % sloganData.length;
+
+        // Fade in sınıfını kaldır
+        setTimeout(() => {
+            var1Element.classList.remove('fade-in');
+            var2Element.classList.remove('fade-in');
+        }, 500);
+
+    }, 300);
+}
+
 // Initialize hero slider when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Slogan animasyonunu başlat
+    if (var1Element && var2Element) {
+        // İlk değişimi hemen yap
+        changeWords();
+        
+        // Her 3 saniyede bir değiştir
+        setInterval(changeWords, 3000);
+    }
+    
     // Check if we're on the homepage (has hero slider)
     const heroSlider = document.querySelector('.hero-slider');
     if (heroSlider) {

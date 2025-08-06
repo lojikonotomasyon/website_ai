@@ -327,21 +327,13 @@ body {
     z-index: 10; /* Header'ın üstünde görünmesi için */
 }
 
-.hero-slogan {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    color: var(--accent);
-    text-align: center;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
+
 
 .hero-subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+    text-align: center;
 }
 
 .highlight {
@@ -6562,6 +6554,76 @@ html {
         animation-fill-mode: forwards !important;
     }
 }
+
+/* Çözümler sayfalarında hero-content layout'unu düzelt */
+.hero-container.solution-page .hero-content {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+}
+
+.hero-container.solution-page .hero-animation {
+    width: 100%;
+    max-width: 100%;
+    height: 60vh;
+    min-height: 60vh;
+    margin-top: 2rem;
+}
+
+@keyframes sloganChange {
+    0%, 10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    12%, 100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.hero-slogan {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1.4;
+}
+
+.fixed-text {
+    color: #ffffff; /* White color for static "Akıllı" parts */
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.variable-1 {
+    color: #ff6b35; /* Orange color for changing parts */
+    font-weight: 400;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.variable-2 {
+    color: #ff6b35; /* Orange color for changing parts */
+    font-weight: 400;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 
 
 

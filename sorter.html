@@ -128,92 +128,98 @@
                 <h1 class="hero-title">
                     <span class="highlight">Sorter</span> Sistemleri
                 </h1>
-                <p class="hero-slogan">Akıllı Çözümler, Akıllı Gelecek</p>
+                <div class="hero-slogan">
+                    <span class="fixed-text">Akıllı</span>
+                    <span class="variable-1" id="var1">Sistemler</span>
+                    <span class="fixed-text">, Akıllı</span>
+                    <span class="variable-2" id="var2">Yarın</span>
+                </div>
                 <p class="hero-description">
                     Cross belt sorter, tilt tray sorter, narrow belt sorter, conveyör sorter ve shoe sorter sistemleri ile 
                     otomatik sınıflandırma, ayırma, ayrıştırma ve yönlendirme. Yüksek hızda ve doğrulukta sıralama işlemleri.
                 </p>
-            </div>
-            <!-- Hero Animation -->
-            <div class="hero-animation">
-                <div class="sorter-hero-animation">
-                    <!-- Konveyor Bandı -->
-                    <div class="conveyor-system">
-                        <div class="conveyor-belt">
-                            <div class="belt-surface"></div>
-                            <div class="belt-rollers">
-                                <div class="roller"></div>
-                                <div class="roller"></div>
-                                <div class="roller"></div>
-                                <div class="roller"></div>
-                                <div class="roller"></div>
-                                <div class="roller"></div>
-                                <div class="roller"></div>
-                                <div class="roller"></div>
+                
+                <!-- Hero Animation -->
+                <div class="hero-animation">
+                    <div class="sorter-hero-animation">
+                        <!-- Konveyor Bandı -->
+                        <div class="conveyor-system">
+                            <div class="conveyor-belt">
+                                <div class="belt-surface"></div>
+                                <div class="belt-rollers">
+                                    <div class="roller"></div>
+                                    <div class="roller"></div>
+                                    <div class="roller"></div>
+                                    <div class="roller"></div>
+                                    <div class="roller"></div>
+                                    <div class="roller"></div>
+                                    <div class="roller"></div>
+                                    <div class="roller"></div>
+                                </div>
+                                
+                                <!-- Divertor'lar -->
+                                <div class="divertors">
+                                    <div class="divertor red-divertor" data-type="box"></div>
+                                    <div class="divertor blue-divertor" data-type="envelope"></div>
+                                    <div class="divertor green-divertor" data-type="tote"></div>
+                                    <div class="divertor pink-divertor" data-type="package"></div>
+                                </div>
                             </div>
                             
-                            <!-- Divertor'lar -->
-                            <div class="divertors">
-                                <div class="divertor red-divertor" data-type="box"></div>
-                                <div class="divertor blue-divertor" data-type="envelope"></div>
-                                <div class="divertor green-divertor" data-type="tote"></div>
-                                <div class="divertor pink-divertor" data-type="package"></div>
+                            <!-- Performance Dashboard -->
+                            <div class="performance-indicators">
+                                <div class="indicator">
+                                    <span class="indicator-label">Hız</span>
+                                    <span class="indicator-value" id="speed-value">60</span>
+                                </div>
+                                <div class="indicator">
+                                    <span class="indicator-label">Kapasite</span>
+                                    <span class="indicator-value" id="capacity-value">1200</span>
+                                </div>
+                                <div class="indicator">
+                                    <span class="indicator-label">Verimlilik</span>
+                                    <span class="indicator-value" id="efficiency-value">98.5</span>
+                                </div>
+                                <div class="indicator">
+                                    <span class="indicator-label">Toplam</span>
+                                    <span class="indicator-value" id="total-value">0</span>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <!-- Performance Dashboard -->
-                        <div class="performance-indicators">
-                            <div class="indicator">
-                                <span class="indicator-label">Hız</span>
-                                <span class="indicator-value" id="speed-value">60</span>
+                            
+                            <!-- Animation Controls -->
+                            <div class="animation-controls">
+                                <button class="control-button" id="pause-btn" title="Duraklat/Devam Et">
+                                    <i class="fas fa-pause"></i>
+                                </button>
+                                <div class="speed-control">
+                                    <label>Hız:</label>
+                                    <input type="range" id="speed-slider" min="0.5" max="3" step="0.1" value="1">
+                                    <span id="speed-display">1x</span>
+                                </div>
                             </div>
-                            <div class="indicator">
-                                <span class="indicator-label">Kapasite</span>
-                                <span class="indicator-value" id="capacity-value">1200</span>
-                            </div>
-                            <div class="indicator">
-                                <span class="indicator-label">Verimlilik</span>
-                                <span class="indicator-value" id="efficiency-value">98.5</span>
-                            </div>
-                            <div class="indicator">
-                                <span class="indicator-label">Toplam</span>
-                                <span class="indicator-value" id="total-value">0</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Animation Controls -->
-                        <div class="animation-controls">
-                            <button class="control-button" id="pause-btn" title="Duraklat/Devam Et">
-                                <i class="fas fa-pause"></i>
-                            </button>
-                            <div class="speed-control">
-                                <label>Hız:</label>
-                                <input type="range" id="speed-slider" min="0.5" max="3" step="0.1" value="1">
-                                <span id="speed-display">1x</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Düşüş Sepetleri -->
-                        <div class="drop-baskets">
-                            <div class="drop-basket red-basket" data-type="box">
-                                <div class="basket-icon">📦</div>
-                                <div class="basket-count">0</div>
-                                <div class="basket-label">Kırmızı Sepet</div>
-                            </div>
-                            <div class="drop-basket blue-basket" data-type="envelope">
-                                <div class="basket-icon">✉️</div>
-                                <div class="basket-count">0</div>
-                                <div class="basket-label">Mavi Sepet</div>
-                            </div>
-                            <div class="drop-basket green-basket" data-type="tote">
-                                <div class="basket-icon">🧺</div>
-                                <div class="basket-count">0</div>
-                                <div class="basket-label">Yeşil Sepet</div>
-                            </div>
-                            <div class="drop-basket pink-basket" data-type="package">
-                                <div class="basket-icon">📦</div>
-                                <div class="basket-count">0</div>
-                                <div class="basket-label">Pembe Sepet</div>
+                            
+                            <!-- Düşüş Sepetleri -->
+                            <div class="drop-baskets">
+                                <div class="drop-basket red-basket" data-type="box">
+                                    <div class="basket-icon">📦</div>
+                                    <div class="basket-count">0</div>
+                                    <div class="basket-label">Kırmızı Sepet</div>
+                                </div>
+                                <div class="drop-basket blue-basket" data-type="envelope">
+                                    <div class="basket-icon">✉️</div>
+                                    <div class="basket-count">0</div>
+                                    <div class="basket-label">Mavi Sepet</div>
+                                </div>
+                                <div class="drop-basket green-basket" data-type="tote">
+                                    <div class="basket-icon">🧺</div>
+                                    <div class="basket-count">0</div>
+                                    <div class="basket-label">Yeşil Sepet</div>
+                                </div>
+                                <div class="drop-basket pink-basket" data-type="package">
+                                    <div class="basket-icon">📦</div>
+                                    <div class="basket-count">0</div>
+                                    <div class="basket-label">Pembe Sepet</div>
+                                </div>
                             </div>
                         </div>
                     </div>
