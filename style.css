@@ -192,13 +192,14 @@ body {
 
 /* Hero Section */
 .hero, .hero-section {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    padding-top: 75px;
+    padding: 0;
+    margin: 0;
     overflow: hidden;
     background: var(--gradient-primary);
     color: var(--white);
@@ -223,10 +224,31 @@ body {
     position: relative;
     z-index: 10;
     width: 100%;
-    height: auto;
-    min-height: 80vh;
-    padding-top: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px;
     padding-bottom: 20px;
+}
+
+/* Çözüm sayfaları için güvenli selector */
+.hero-container.solution-page {
+    padding-top: 120px;
+    justify-content: flex-start;
+}
+
+/* Çözüm sayfaları için güvenli selector */
+.hero-container.solution-page {
+    padding-top: 120px;
+    justify-content: flex-start;
+}
+
+/* Alternatif: Çözüm sayfalarında hero-content'i yukarı al */
+.hero-container .hero-content {
+    margin-bottom: 50px;
+    text-align: center;
 }
 
 /* Hero Slider - Animation Area */
@@ -236,11 +258,11 @@ body {
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
-    height: auto;
+    height: 60vh;
     min-height: 60vh;
-    overflow: visible;
-    margin-top: 20px;
-    margin-bottom: 80px;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 40px;
 }
 
 .hero-slide {
@@ -252,7 +274,9 @@ body {
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
 }
 
 .hero-slide.active {
@@ -264,7 +288,33 @@ body {
     position: relative;
     z-index: 10;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    min-height: 80vh;
+}
+
+.hero-text-content {
+    flex: 1;
+    text-align: left;
+    max-width: 50%;
+}
+
+.hero-slider {
+    flex: 1;
+    max-width: 50%;
+    position: relative;
+    max-width: 600px;
+    margin: 0;
+    padding: 0 20px;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .hero-title {
@@ -389,14 +439,18 @@ body {
 
 /* Hero Image */
 .hero-image {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .hero-img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
@@ -430,11 +484,10 @@ body {
 .hero-animation {
     position: relative;
     width: 100%;
-    height: 50vh; /* Reduced height */
+    height: 100%;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding-top: 25px;
     z-index: 1;
 }
 
@@ -543,7 +596,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: 400px;
+    height: 80%;
 }
 
 .intralogistics-animation {
@@ -1274,7 +1327,7 @@ body {
 /* Slider Controls */
 .slider-controls {
     position: absolute;
-    bottom: -60px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -1287,35 +1340,6 @@ body {
     border-radius: 30px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.slider-btn {
-    background: rgba(59, 130, 246, 0.2);
-    border: 2px solid rgba(59, 130, 246, 0.5);
-    color: var(--white);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.slider-btn:hover {
-    background: rgba(59, 130, 246, 0.4);
-    border-color: rgba(59, 130, 246, 0.8);
-    transform: scale(1.1);
-}
-
-.slider-btn:active {
-    transform: scale(0.95);
-}
-
-.slider-btn i {
-    font-size: 1.2rem;
 }
 
 .slider-dots {
@@ -1926,15 +1950,42 @@ body {
 
     /* Hero Section Mobile Fixes */
     .hero, .hero-section {
-        padding-top: 50px; /* Mobile'da biraz daha fazla padding - azaltıldı */
-        min-height: calc(100vh - 70px); /* Header yüksekliğini çıkar */
+        height: 100vh;
+        padding: 0;
+        margin: 0;
     }
 
     .hero-container {
-        grid-template-columns: 1fr;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding-top: 70px;
+        padding-bottom: 20px;
+    }
+    
+    /* Ana sayfa için hero-container'ı 25px aşağı al - ID ile */
+    #main-hero-container {
+        padding-top: 95px !important;
+    }
+
+    .hero-content {
+        flex-direction: column;
         gap: 2rem;
         text-align: center;
-        padding-top: 20px; /* Ekstra üst boşluk */
+    }
+
+    .hero-text-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-slider {
+        max-width: 100%;
+        height: 40vh;
+        min-height: 40vh;
     }
 
     .hero-title {
@@ -2001,16 +2052,6 @@ body {
 
     .slider-controls {
         bottom: 20px;
-        gap: 1rem;
-    }
-
-    .slider-btn {
-        width: 40px;
-        height: 40px;
-    }
-
-    .slider-btn i {
-        font-size: 1rem;
     }
 
     .dot {
@@ -2055,7 +2096,9 @@ body {
     }
 
     .hero, .hero-section {
-        padding-top: 40px; /* Mobile'da daha az padding */
+        height: 100vh;
+        padding: 0;
+        margin: 0;
     }
 
     .hero-title {
@@ -2090,6 +2133,11 @@ body {
     .hero-slider {
         height: 70vh;
         margin-top: 10px;
+    }
+    
+    /* Ana sayfa için hero-container'ı 25px aşağı al - ID ile */
+    #main-hero-container {
+        padding-top: 95px !important;
     }
 
     .section-header h2 {
@@ -6332,13 +6380,9 @@ html {
         transform-origin: center top;
     }
     
-    /* Slider controls also scale */
-    .slider-controls,
-    .slider-btn,
-    .slider-dots,
-    .dot {
-        transform: scale(0.8);
-        transform-origin: center;
+    /* Slider controls */
+    .slider-controls {
+        bottom: 20px;
     }
 }
 
@@ -6408,13 +6452,9 @@ html {
         transform-origin: center top;
     }
     
-    /* Slider controls also scale */
-    .slider-controls,
-    .slider-btn,
-    .slider-dots,
-    .dot {
-        transform: scale(0.9);
-        transform-origin: center;
+    /* Slider controls */
+    .slider-controls {
+        bottom: 20px;
     }
 }
 

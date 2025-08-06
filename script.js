@@ -728,9 +728,12 @@ createScrollToTopButton();
 class HeroSlider {
     constructor() {
         this.currentSlide = 1;
-        this.totalSlides = 4;
         this.autoPlayInterval = null;
         this.autoPlayDelay = 5000; // 5 seconds
+        
+        // Dynamically calculate total slides
+        const slides = document.querySelectorAll('.hero-slide');
+        this.totalSlides = slides.length;
         
         this.init();
     }
@@ -815,13 +818,15 @@ class HeroSlider {
         const nextBtn = document.getElementById('nextSlide');
         
         if (prevBtn) {
-            prevBtn.style.opacity = this.currentSlide === 1 ? '0.5' : '1';
-            prevBtn.disabled = this.currentSlide === 1;
+            const prevDisabled = this.currentSlide === 1;
+            prevBtn.style.opacity = prevDisabled ? '0.5' : '1';
+            prevBtn.disabled = prevDisabled;
         }
         
         if (nextBtn) {
-            nextBtn.style.opacity = this.currentSlide === this.totalSlides ? '0.5' : '1';
-            nextBtn.disabled = this.currentSlide === this.totalSlides;
+            const nextDisabled = this.currentSlide === this.totalSlides;
+            nextBtn.style.opacity = nextDisabled ? '0.5' : '1';
+            nextBtn.disabled = nextDisabled;
         }
     }
     
@@ -849,296 +854,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroSlider = document.querySelector('.hero-slider');
     if (heroSlider) {
         const slider = new HeroSlider();
-        
-        // Initialize pallet lift animation for homepage slider
-        if (typeof ProfessionalElevator !== 'undefined') {
-            // Wait for the pallet lift slide to be active, then initialize
-            const initPalletLiftForSlider = () => {
-                const palletLiftSlide = document.querySelector('[data-slide="4"]');
-                if (palletLiftSlide && palletLiftSlide.classList.contains('active')) {
-                    const elevatorContainer = palletLiftSlide.querySelector('.pallet-lift-animation');
-                    if (elevatorContainer && !elevatorContainer.hasAttribute('data-initialized')) {
-                        elevatorContainer.setAttribute('data-initialized', 'true');
-                        
-                        // Create a modified version for the slider
-                        const sliderElevator = new (class {
-                            constructor(container) {
-                                this.container = container;
-                                this.currentFloor = 1;
-                                this.targetFloor = 1;
-                                this.isMoving = false;
-                                this.isDoorOpen = false;
-                                this.totalFloors = 4;
-                                this.floorHeight = this.calculateFloorHeight(); // Responsive floor height
-                                this.moveSpeed = 2000; // ms per floor
-                                this.doorSpeed = 500; // ms for door operation
-                                this.demoInterval = null;
-                                
-                                this.init();
-                            }
-                            
-                            calculateFloorHeight() {
-                                const screenWidth = window.innerWidth;
-                                const container = this.container;
-                                const containerHeight = container.offsetHeight;
-                                
-                                // CSS'te her kat 25% yükseklik kullanıyor (4 kat toplam)
-                                // Scale yaklaşımı kullandığımız için sabit değer kullanabiliriz
-                                const baseFloorHeight = containerHeight * 0.25;
-                                
-                                // Scale faktörüne göre ayarlama
-                                let scaleFactor = 1;
-                                if (screenWidth <= 480) {
-                                    scaleFactor = 0.6; // Mobile scale
-                                } else if (screenWidth <= 768) {
-                                    scaleFactor = 0.8; // Tablet scale
-                                }
-                                
-                                return baseFloorHeight * scaleFactor;
-                            }
-                            
-                            init() {
-                                this.bindEvents();
-                                
-                                // Wait for container to be rendered, then calculate floor height
-                                setTimeout(() => {
-                                    this.floorHeight = this.calculateFloorHeight();
-                                    this.updateDisplay();
-                                    this.setElevatorPosition();
-                                    this.setCounterweightPosition();
-                                }, 100);
-                                
-                                // Add resize listener to recalculate floor height
-                                window.addEventListener('resize', () => {
-                                    this.floorHeight = this.calculateFloorHeight();
-                                    this.setElevatorPosition();
-                                    this.setCounterweightPosition();
-                                });
-                            }
-                            
-                            // Override methods to use container-specific selectors
-                            bindEvents() {
-                                // Floor buttons within this container
-                                const floorButtons = this.container.querySelectorAll('.floor-btn');
-                                floorButtons.forEach(btn => {
-                                    btn.addEventListener('click', (e) => {
-                                        const floor = parseInt(e.target.dataset.floor);
-                                        this.callElevator(floor);
-                                    });
-                                });
-
-                                // Emergency stop within this container
-                                const emergencyStop = this.container.querySelector('.emergency-stop');
-                                if (emergencyStop) {
-                                    emergencyStop.addEventListener('click', () => this.emergencyStop());
-                                }
-
-                                // Pallet loading within this container
-                                const pallets = this.container.querySelectorAll('.pallet');
-                                pallets.forEach(pallet => {
-                                    pallet.addEventListener('click', (e) => {
-                                        this.loadPallet(pallet);
-                                    });
-                                });
-                            }
-                            
-                            callElevator(targetFloor) {
-                                if (this.isMoving || targetFloor === this.currentFloor) return;
-
-                                this.targetFloor = targetFloor;
-                                this.updateFloorButtons();
-                                this.moveElevator();
-                            }
-                            
-                            loadPallet(pallet) {
-                                // Pallet loading logic
-                                console.log('Loading pallet:', pallet.dataset.palletId);
-                            }
-                            
-                            emergencyStop() {
-                                this.isMoving = false;
-                                this.updateStatus('ACİL DURDURMA');
-                                console.log('Emergency stop activated');
-                            }
-                            
-                            // Override all methods that use getElementById
-                            moveElevator() {
-                                if (this.isMoving) return;
-
-                                console.log('moveElevator called - currentFloor:', this.currentFloor, 'targetFloor:', this.targetFloor);
-                                this.isMoving = true;
-                                this.updateStatus('HAREKET HALİNDE');
-                                this.closeDoors();
-
-                                const direction = this.targetFloor > this.currentFloor ? 'up' : 'down';
-                                const floorsToMove = Math.abs(this.targetFloor - this.currentFloor);
-                                const totalMoveTime = floorsToMove * this.moveSpeed;
-
-                                // Calculate new positions
-                                const newElevatorPosition = (this.totalFloors - this.targetFloor) * this.floorHeight;
-                                const newCounterweightPosition = (this.targetFloor - 1) * this.floorHeight;
-
-                                console.log('New elevator position:', newElevatorPosition, 'px');
-                                console.log('New counterweight position:', newCounterweightPosition, 'px');
-
-                                // Animate elevator car
-                                const elevatorCar = this.container.querySelector('.elevator-car');
-                                console.log('Elevator car element:', elevatorCar);
-                                if (elevatorCar) {
-                                    elevatorCar.style.transition = `bottom ${totalMoveTime}ms ease-in-out`;
-                                    elevatorCar.style.bottom = `${newElevatorPosition}px`;
-                                    console.log('Set elevator car bottom to:', newElevatorPosition, 'px');
-                                }
-
-                                // Animate counterweight (moves in opposite direction)
-                                const counterweight = this.container.querySelector('.counterweight');
-                                console.log('Counterweight element:', counterweight);
-                                if (counterweight) {
-                                    counterweight.style.transition = `bottom ${totalMoveTime}ms ease-in-out`;
-                                    counterweight.style.bottom = `${newCounterweightPosition}px`;
-                                    console.log('Set counterweight bottom to:', newCounterweightPosition, 'px');
-                                }
-
-                                // Update floor display during movement
-                                this.animateFloorDisplay(totalMoveTime);
-
-                                // Complete movement
-                                setTimeout(() => {
-                                    this.currentFloor = this.targetFloor;
-                                    this.isMoving = false;
-                                    this.updateStatus('HAZIR');
-                                    this.openDoors();
-                                    this.updateFloorButtons();
-                                    console.log('Movement completed - currentFloor:', this.currentFloor);
-                                }, totalMoveTime);
-                            }
-                            
-                            updateStatus(status) {
-                                const statusElement = this.container.querySelector('#elevatorStatus');
-                                if (statusElement) {
-                                    statusElement.textContent = status;
-                                }
-                            }
-                            
-                            updateFloorButtons() {
-                                const floorButtons = this.container.querySelectorAll('.floor-btn');
-                                floorButtons.forEach(btn => {
-                                    const floor = parseInt(btn.dataset.floor);
-                                    if (floor === this.currentFloor) {
-                                        btn.classList.add('active');
-                                    } else {
-                                        btn.classList.remove('active');
-                                    }
-                                });
-                            }
-                            
-                            updateDisplay() {
-                                const currentFloorElement = this.container.querySelector('.current-floor');
-                                if (currentFloorElement) {
-                                    currentFloorElement.textContent = this.currentFloor;
-                                }
-                            }
-                            
-                            setElevatorPosition() {
-                                const elevatorCar = this.container.querySelector('.elevator-car');
-                                if (elevatorCar) {
-                                    const position = (this.totalFloors - this.currentFloor) * this.floorHeight;
-                                    elevatorCar.style.bottom = `${position}px`;
-                                }
-                            }
-                            
-                            setCounterweightPosition() {
-                                const counterweight = this.container.querySelector('.counterweight');
-                                if (counterweight) {
-                                    const position = (this.currentFloor - 1) * this.floorHeight;
-                                    counterweight.style.bottom = `${position}px`;
-                                }
-                            }
-                            
-                            openDoors() {
-                                const leftDoor = this.container.querySelector('.left-door');
-                                const rightDoor = this.container.querySelector('.right-door');
-                                if (leftDoor && rightDoor) {
-                                    leftDoor.classList.add('open');
-                                    rightDoor.classList.add('open');
-                                    this.isDoorOpen = true;
-                                }
-                            }
-                            
-                            closeDoors() {
-                                const leftDoor = this.container.querySelector('.left-door');
-                                const rightDoor = this.container.querySelector('.right-door');
-                                if (leftDoor && rightDoor) {
-                                    leftDoor.classList.remove('open');
-                                    rightDoor.classList.remove('open');
-                                    this.isDoorOpen = false;
-                                }
-                            }
-                            
-                            animateFloorDisplay(duration) {
-                                const currentFloorElement = this.container.querySelector('.current-floor');
-                                if (currentFloorElement) {
-                                    const startFloor = this.currentFloor;
-                                    const endFloor = this.targetFloor;
-                                    const steps = 10;
-                                    const stepTime = duration / steps;
-                                    
-                                    let currentStep = 0;
-                                    const interval = setInterval(() => {
-                                        currentStep++;
-                                        const progress = currentStep / steps;
-                                        const currentFloor = Math.round(startFloor + (endFloor - startFloor) * progress);
-                                        currentFloorElement.textContent = currentFloor;
-                                        
-                                        if (currentStep >= steps) {
-                                            clearInterval(interval);
-                                            currentFloorElement.textContent = this.targetFloor;
-                                        }
-                                    }, stepTime);
-                                }
-                            }
-                            
-                            startDemo() {
-                                console.log('Starting demo for slider elevator');
-                                this.demoInterval = setInterval(() => {
-                                    const randomFloor = Math.floor(Math.random() * this.totalFloors) + 1;
-                                    if (randomFloor !== this.currentFloor && !this.isMoving) {
-                                        console.log('Demo: Moving to floor', randomFloor);
-                                        this.callElevator(randomFloor);
-                                    }
-                                }, 5000);
-                            }
-                            
-                            stopDemo() {
-                                if (this.demoInterval) {
-                                    clearInterval(this.demoInterval);
-                                    this.demoInterval = null;
-                                }
-                            }
-                        })(elevatorContainer);
-                        
-                        // Start demo after a short delay
-                        setTimeout(() => {
-                            sliderElevator.startDemo();
-                        }, 1000);
-                    }
-                }
-            };
-            
-            // Check initially
-            initPalletLiftForSlider();
-            
-            // Listen for slide changes
-            const observer = new MutationObserver(() => {
-                initPalletLiftForSlider();
-            });
-            
-            observer.observe(heroSlider, {
-                attributes: true,
-                subtree: true,
-                attributeFilter: ['class']
-            });
-        }
     }
 });
 

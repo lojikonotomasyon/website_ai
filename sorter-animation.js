@@ -1,14 +1,49 @@
 // Sorter Animation - Konveyor Sistemi
 // Soldan sağa hareket eden konveyor bandı ve ürünler
 
-document.addEventListener('DOMContentLoaded', () => {
+// Global değişkenler
+let heroBeltSurface, heroRollers, conveyorBelt, conveyorSystem;
+let productCounter = 0;
+let isPageVisible = true;
+let animationId;
+let isPaused = false;
+let animationSpeed = 1;
+let productInterval;
+
+// Ürün türleri ve sepet eşleştirmeleri
+const productTypes = ['box', 'envelope', 'tote', 'package'];
+const basketMapping = {
+    'box': 'red-basket',
+    'envelope': 'blue-basket', 
+    'tote': 'green-basket',
+    'package': 'pink-basket'
+};
+
+// Sepet pozisyonları (divertor pozisyonlarıyla eşleştirildi)
+const basketPositions = {
+    'box': 0.09,      // %9 pozisyonu - Kırmızı divertor
+    'envelope': 0.35, // %35 pozisyonu - Mavi divertor
+    'tote': 0.61,     // %61 pozisyonu - Yeşil divertor
+    'package': 0.86   // %86 pozisyonu - Pembe divertor
+};
+
+// Sepet sayaçları
+const basketCounts = {
+    'box': 0,
+    'envelope': 0,
+    'tote': 0,
+    'package': 0
+};
+
+// Sorter animasyonunu başlat
+function startSorterAnimation() {
     console.log('Sorter konveyor sistemi başlatılıyor...');
     
     // Hero animasyon elementlerini al
-    const heroBeltSurface = document.querySelector('.sorter-hero-animation .belt-surface');
-    const heroRollers = document.querySelectorAll('.sorter-hero-animation .roller');
-    const conveyorBelt = document.querySelector('.sorter-hero-animation .conveyor-belt');
-    const conveyorSystem = document.querySelector('.sorter-hero-animation .conveyor-system');
+    heroBeltSurface = document.querySelector('.sorter-hero-animation .belt-surface');
+    heroRollers = document.querySelectorAll('.sorter-hero-animation .roller');
+    conveyorBelt = document.querySelector('.sorter-hero-animation .conveyor-belt');
+    conveyorSystem = document.querySelector('.sorter-hero-animation .conveyor-system');
     
     // Animasyonları başlat
     if (heroBeltSurface) {
@@ -360,4 +395,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Kontrol butonlarını ayarla
     setupControls();
+}
+
+// DOMContentLoaded event'inde otomatik başlat (sorter.html sayfası için)
+document.addEventListener('DOMContentLoaded', () => {
+    // Eğer sorter.html sayfasındaysak otomatik başlat
+    if (document.querySelector('.sorter-hero-animation')) {
+        startSorterAnimation();
+    }
 }); 
