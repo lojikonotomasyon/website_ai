@@ -17,7 +17,10 @@ class MiniloadAnimation {
     
     init() {
         this.setupControls();
+        this.setupPageVisibilityHandling();
         this.updateDisplay();
+        this.updatePerformanceIndicators();
+        this.startAnimation(); // Auto start
     }
     
     setupControls() {
@@ -42,6 +45,19 @@ class MiniloadAnimation {
                 this.resetAnimation();
             });
         }
+    }
+    
+    setupPageVisibilityHandling() {
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.stopAnimation();
+            } else {
+                if (!this.isRunning) {
+                    this.startAnimation();
+                }
+            }
+        });
     }
     
     startAnimation() {
@@ -153,7 +169,7 @@ class MiniloadAnimation {
     }
     
     updatePerformanceIndicators() {
-        setInterval(() => {
+        const updateIndicators = () => {
             const speedElement = document.getElementById('speed-value');
             const capacityElement = document.getElementById('capacity-value');
             const efficiencyElement = document.getElementById('efficiency-value');
@@ -174,7 +190,12 @@ class MiniloadAnimation {
             if (uptimeElement) {
                 uptimeElement.textContent = (99.8 + Math.random() * 0.2).toFixed(2) + '%';
             }
-        }, 1000);
+            
+            // Continue updating
+            this.performanceId = requestAnimationFrame(updateIndicators);
+        };
+        
+        this.performanceId = requestAnimationFrame(updateIndicators);
     }
 }
 

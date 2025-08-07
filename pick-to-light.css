@@ -201,6 +201,7 @@
     padding: 15px;
     backdrop-filter: blur(10px);
     color: white;
+    opacity: 0.6;
 }
 
 .panel-display {
@@ -279,6 +280,7 @@
     border-radius: 10px;
     backdrop-filter: blur(10px);
     color: white;
+    opacity: 0.6;
 }
 
 .indicator {

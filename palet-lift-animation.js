@@ -28,8 +28,24 @@ class PalletLiftAnimation {
     
     init() {
         this.setupControls();
+        this.setInitialPosition();
         this.updateDisplay();
         this.startAutoMode();
+    }
+    
+    setInitialPosition() {
+        const liftPlatform = document.getElementById('lift-platform');
+        const pallet = document.getElementById('pallet');
+        const counterweight = document.getElementById('counterweight');
+        
+        if (liftPlatform && pallet && counterweight) {
+            const initialHeight = this.floorHeights[1];
+            
+            // Set initial positions with transform3d
+            liftPlatform.style.transform = `translate3d(-50%, ${initialHeight}px, 0)`;
+            pallet.style.transform = `translate3d(-50%, ${initialHeight + 20}px, 0)`;
+            counterweight.style.transform = `translate3d(0, ${this.floorHeights[4] - initialHeight}px, 0)`;
+        }
     }
     
     setupControls() {
@@ -86,24 +102,20 @@ class PalletLiftAnimation {
         if (liftPlatform && pallet && counterweight) {
             const targetHeight = this.floorHeights[floor];
             
-            // Use transform3d for hardware acceleration
-            liftPlatform.style.transform = `translate3d(0, 0, 0)`;
-            liftPlatform.style.bottom = `${targetHeight}px`;
-            
-            pallet.style.transform = `translate3d(0, 0, 0)`;
-            pallet.style.bottom = `${targetHeight + 20}px`;
-            
-            counterweight.style.transform = `translate3d(0, 0, 0)`;
-            counterweight.style.top = `${this.floorHeights[4] - targetHeight}px`;
+            // Use transform3d for hardware acceleration - avoid layout changes
+            requestAnimationFrame(() => {
+                liftPlatform.style.transform = `translate3d(-50%, ${targetHeight}px, 0)`;
+                pallet.style.transform = `translate3d(-50%, ${targetHeight + 20}px, 0)`;
+                counterweight.style.transform = `translate3d(0, ${this.floorHeights[4] - targetHeight}px, 0)`;
+            });
         }
         
         // Open doors after movement
         setTimeout(() => {
             this.openDoors(floor);
-            this.currentFloor = floor;
             this.isMoving = false;
+            this.currentFloor = floor;
             this.updateStatus('Hazır');
-            this.updateDisplay();
         }, 3000);
     }
     

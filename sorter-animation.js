@@ -16,17 +16,28 @@ class SorterAnimation {
         this.animationId = null;
         
         // Responsive position calculations
+        this.updateResponsiveSettings();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            this.updateResponsiveSettings();
+        });
+        
+        this.init();
+    }
+    
+    updateResponsiveSettings() {
         this.isMobile = window.innerWidth <= 768;
         this.basketPositions = this.isMobile ? {
-            box: { x: 20, y: 85 },
-            envelope: { x: 45, y: 85 },
-            tote: { x: 70, y: 85 },
-            package: { x: 95, y: 85 }
+            box: { x: 15, y: 85 },
+            envelope: { x: 35, y: 85 },
+            tote: { x: 55, y: 85 },
+            package: { x: 75, y: 85 }
         } : {
-            box: { x: 25, y: 85 },
-            envelope: { x: 50, y: 85 },
-            tote: { x: 75, y: 85 },
-            package: { x: 100, y: 85 }
+            box: { x: 20, y: 85 },
+            envelope: { x: 40, y: 85 },
+            tote: { x: 60, y: 85 },
+            package: { x: 80, y: 85 }
         };
         
         this.divertorPositions = this.isMobile ? [
@@ -40,12 +51,19 @@ class SorterAnimation {
             { x: 75, y: 30 },
             { x: 100, y: 30 }
         ];
-        
-        this.init();
     }
     
     init() {
         this.setupControls();
+        this.setupPageVisibilityHandling();
+        
+        // Initialize belt animation speed (faster than product speed)
+        const beltSurface = document.querySelector('.belt-surface');
+        if (beltSurface) {
+            const beltSpeed = this.isMobile ? 0.8 : 1; // Slower on mobile
+            beltSurface.style.animationDuration = (beltSpeed / this.animationSpeed) + 's';
+        }
+        
         this.startAnimation();
         this.updateDashboard();
     }
@@ -71,6 +89,23 @@ class SorterAnimation {
         }
     }
     
+    setupPageVisibilityHandling() {
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.isRunning = false;
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+            } else {
+                if (!this.isRunning) {
+                    this.isRunning = true;
+                    this.startAnimation();
+                }
+            }
+        });
+    }
+    
     togglePause() {
         this.isRunning = !this.isRunning;
         const pauseBtn = document.getElementById('pause-btn');
@@ -93,16 +128,18 @@ class SorterAnimation {
     updateAnimationSpeed(speed) {
         this.animationSpeed = speed;
         
-        // Update belt animation speed
+        // Update belt animation speed (faster than product speed)
         const beltSurface = document.querySelector('.belt-surface');
         if (beltSurface) {
-            beltSurface.style.animationDuration = (8 / speed) + 's';
+            const beltSpeed = this.isMobile ? 0.8 : 1; // Slower on mobile
+            beltSurface.style.animationDuration = (beltSpeed / speed) + 's';
         }
         
         // Update roller animation speed
         const rollers = document.querySelectorAll('.roller');
         rollers.forEach(roller => {
-            roller.style.animationDuration = (2 / speed) + 's';
+            const rollerSpeed = this.isMobile ? 3 : 2; // Slower on mobile
+            roller.style.animationDuration = (rollerSpeed / speed) + 's';
         });
     }
     
@@ -130,10 +167,14 @@ class SorterAnimation {
         
         const product = document.createElement('div');
         product.className = `product ${randomType}`;
+        product.dataset.type = randomType; // Store the type in dataset
         product.style.left = '0%';
         product.style.top = '50%';
         product.style.transform = 'translateY(-50%)';
-        product.style.transition = `left ${3 / this.animationSpeed}s linear`;
+        
+        // Adjust product speed for mobile
+        const productSpeed = this.isMobile ? 5 : 4; // Slower on mobile
+        product.style.transition = `left ${productSpeed / this.animationSpeed}s linear`;
         
         const label = document.createElement('div');
         label.className = 'product-label';
@@ -150,32 +191,78 @@ class SorterAnimation {
                 product.style.left = '100%';
             });
             
-            // Check for drop
-            setTimeout(() => {
-                this.dropProduct(product, randomType);
-            }, 3000 / this.animationSpeed);
+            // Check for drop when product reaches divertor position
+            this.checkForDrop(product, randomType);
         }
     }
     
+    checkForDrop(product, type) {
+        const divertor = document.querySelector(`.divertor[data-type="${type}"]`);
+        if (!divertor) return;
+        
+        const divertorRect = divertor.getBoundingClientRect();
+        const conveyorRect = document.querySelector('.conveyor-belt').getBoundingClientRect();
+        const divertorX = divertorRect.left - conveyorRect.left;
+        const dropX = (divertorX / conveyorRect.width) * 100;
+        
+        // Check if product has reached the divertor position
+        const checkPosition = () => {
+            const productRect = product.getBoundingClientRect();
+            const productX = productRect.left - conveyorRect.left;
+            const productXPercent = (productX / conveyorRect.width) * 100;
+            
+            if (productXPercent >= dropX - 5 && productXPercent <= dropX + 5) {
+                // Product has reached divertor position, drop it
+                this.dropProduct(product, type);
+            } else if (productXPercent < 100) {
+                // Continue checking
+                requestAnimationFrame(checkPosition);
+            }
+        };
+        
+        requestAnimationFrame(checkPosition);
+    }
+    
     dropProduct(product, type) {
-        const divertor = document.querySelector(`[data-type="${type}"]`);
+        // Get the actual product type from the product element
+        const actualType = product.dataset.type || type;
+        
+        // Find the correct divertor based on actual product type
+        const divertor = document.querySelector(`.divertor[data-type="${actualType}"]`);
+        
         if (divertor) {
+            // Get divertor position
+            const divertorRect = divertor.getBoundingClientRect();
+            const conveyorRect = document.querySelector('.conveyor-belt').getBoundingClientRect();
+            const divertorX = divertorRect.left - conveyorRect.left;
+            const divertorY = divertorRect.top - conveyorRect.top;
+            
             // Activate divertor
             divertor.classList.add('active');
             
-            // Drop animation with transform3d for hardware acceleration
-            product.style.transition = `all ${0.5 / this.animationSpeed}s ease-in`;
-            product.style.transform = 'translate3d(0, 100px, 0) scale(0.8)';
+            // Stop the left animation first
+            product.style.transition = 'none';
+            
+            // Move product to divertor position
+            const dropX = (divertorX / conveyorRect.width) * 100; // Convert to percentage
+            product.style.left = `${dropX}%`;
+            
+            // Force a reflow to apply the position change
+            product.offsetHeight;
+            
+            // Now apply the drop animation
+            product.style.transition = `all ${0.6 / this.animationSpeed}s ease-in`;
+            product.style.transform = `translate3d(0, 80px, 0) scale(0.5)`;
             product.style.opacity = '0';
             
             // Update basket count
-            this.basketCounts[type]++;
-            this.updateBasketCount(type);
+            this.basketCounts[actualType]++;
+            this.updateBasketCount(actualType);
             
             // Deactivate divertor
             setTimeout(() => {
                 divertor.classList.remove('active');
-            }, 500 / this.animationSpeed);
+            }, 600 / this.animationSpeed);
             
             // Remove product
             setTimeout(() => {
@@ -183,12 +270,12 @@ class SorterAnimation {
                     product.parentNode.removeChild(product);
                 }
                 this.products = this.products.filter(p => p.element !== product);
-            }, 500 / this.animationSpeed);
+            }, 600 / this.animationSpeed);
         }
     }
     
     updateBasketCount(type) {
-        const basket = document.querySelector(`[data-type="${type}"] .basket-count`);
+        const basket = document.querySelector(`.drop-basket[data-type="${type}"] .basket-count`);
         if (basket) {
             basket.textContent = this.basketCounts[type];
         }
