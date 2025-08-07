@@ -15,8 +15,9 @@
 .pallet-lift-hero-animation .lift-system {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding: 20px;
 }
@@ -686,7 +687,6 @@
     }
     
     .pallet-lift-hero-animation .lift-system {
-        flex-direction: column;
         padding: 15px;
         height: 100%;
     }
@@ -694,7 +694,6 @@
     .lift-structure {
         height: 60%;
         min-height: 200px;
-        margin-bottom: 10px;
     }
     
     .lift-tower {
