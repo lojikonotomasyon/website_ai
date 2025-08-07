@@ -2,7 +2,7 @@
 
 // EmailJS Configuration
 (function() {
-    emailjs.init("YOUR_EMAILJS_USER_ID"); // Buraya EmailJS User ID'nizi ekleyin
+    emailjs.init("pMn_T_QHghVJklt3q");
 })();
 
 // Mobile menu initialization
@@ -260,7 +260,7 @@ function initializeContactForm() {
             };
             
             // Send email using EmailJS
-            emailjs.send('service_lojikon', 'template_contact', templateParams)
+            emailjs.send('service_myv14au', 'template_j48q9zh', templateParams)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     showNotification('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success');
@@ -344,17 +344,21 @@ function initializeScrollToTop() {
         right: 30px;
         width: 50px;
         height: 50px;
-        background: var(--accent);
+        background: #3b82f6;
         color: white;
         border: none;
         border-radius: 50%;
         font-size: 1.5rem;
+        font-weight: bold;
         cursor: pointer;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
-        z-index: 1000;
-        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     `;
     
     document.body.appendChild(scrollToTopBtn);
@@ -381,12 +385,14 @@ function initializeScrollToTop() {
     // Hover effects
     scrollToTopBtn.addEventListener('mouseenter', () => {
         scrollToTopBtn.style.transform = 'translateY(-3px)';
-        scrollToTopBtn.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.4)';
+        scrollToTopBtn.style.background = '#1d4ed8';
+        scrollToTopBtn.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
     });
     
     scrollToTopBtn.addEventListener('mouseleave', () => {
         scrollToTopBtn.style.transform = 'translateY(0)';
-        scrollToTopBtn.style.boxShadow = '0 5px 15px rgba(59, 130, 246, 0.3)';
+        scrollToTopBtn.style.background = '#3b82f6';
+        scrollToTopBtn.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
     });
 }
 
