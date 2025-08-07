@@ -277,6 +277,7 @@ Bu proje Lojikon için özel olarak geliştirilmiştir.
 
 ## 🔄 Versiyon Geçmişi
 
+- **v2.0.5** - Miniload sayfasını Miniload ve Shuttle olarak yeniden adlandırma ve SEO optimizasyonu
 - **v2.0.4** - UI/UX iyileştirmeleri ve EmailJS entegrasyonu
 - **v2.0.3** - Sorter animasyon layout optimizasyonu
 - **v2.0.2** - Animasyon düzeltmeleri ve responsive iyileştirmeler
@@ -287,4 +288,4 @@ Bu proje Lojikon için özel olarak geliştirilmiştir.
 
 **Lojikon** - Endüstriyel Otomasyon ve Intralogistics Çözümleri
 **Son Güncelleme**: 19 Aralık 2024
-**Versiyon**: v2.0.4 
+**Versiyon**: v2.0.5 
