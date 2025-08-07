@@ -1,0 +1,288 @@
+/* ===== MINILOAD SAYFASI ÖZEL CSS ===== */
+
+.miniload-hero-animation {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    position: relative;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.miniload-system {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 20px;
+}
+
+/* Storage Racks */
+.storage-racks {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 100px;
+}
+
+.rack {
+    width: 200px;
+    height: 300px;
+    background: #4a5568;
+    border-radius: 5px;
+    position: relative;
+}
+
+.rack-levels {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.level {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #718096;
+    border-radius: 2px;
+    margin: 10px 0;
+}
+
+.level:nth-child(1) { top: 10px; }
+.level:nth-child(2) { top: 80px; }
+.level:nth-child(3) { top: 150px; }
+.level:nth-child(4) { top: 220px; }
+
+/* Shuttle */
+.shuttle {
+    position: absolute;
+    left: 50%;
+    bottom: 20%;
+    width: 60px;
+    height: 40px;
+    transform: translateX(-50%);
+    transition: all 2s ease-in-out;
+    z-index: 10;
+}
+
+.shuttle-body {
+    width: 100%;
+    height: 100%;
+    background: #60a5fa;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.shuttle-wheels {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.wheel {
+    width: 8px;
+    height: 8px;
+    background: #2d3748;
+    border-radius: 50%;
+    animation: wheelSpin 1s linear infinite;
+}
+
+@keyframes wheelSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.shuttle-arm {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 20px;
+    background: #a0aec0;
+    border-radius: 2px;
+}
+
+/* Products */
+.products {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.product-box {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #d69e2e;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 1s ease;
+    z-index: 5;
+}
+
+/* Control Panel */
+.control-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+.panel-display {
+    margin-bottom: 15px;
+}
+
+.display-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.display-item .label {
+    opacity: 0.8;
+}
+
+.display-item .value {
+    font-weight: bold;
+    color: #60a5fa;
+}
+
+.display-item .unit {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #4a5568;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.control-btn:hover {
+    background: #60a5fa;
+    transform: scale(1.05);
+}
+
+/* Performance Indicators */
+.performance-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+.indicator {
+    text-align: center;
+    min-width: 80px;
+}
+
+.indicator-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.indicator-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #60a5fa;
+}
+
+.indicator-unit {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .miniload-hero-animation {
+        height: 400px;
+        min-height: 350px;
+    }
+    
+    .miniload-system {
+        padding: 15px;
+        height: 100%;
+    }
+    
+    .storage-racks {
+        gap: 40px;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    
+    .rack {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .shuttle {
+        width: 50px;
+        height: 35px;
+    }
+    
+    .control-panel {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    
+    .performance-indicators {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .indicator {
+        font-size: 0.7rem;
+        padding: 5px 8px;
+        min-width: 60px;
+    }
+} 

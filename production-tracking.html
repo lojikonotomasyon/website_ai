@@ -3,267 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Üretim Takip Sistemleri - Lojikon</title>
-    <meta name="description" content="Üretim süreçlerinizi detaylı olarak takip eden ve optimize eden sistemler. OEE hesaplama, performans takibi, kalite kontrol ve maliyet analizi çözümleri.">
-    <meta name="keywords" content="üretim takibi, OEE, performans takibi, kalite kontrol, maliyet analizi, üretim optimizasyonu, endüstriyel otomasyon">
+    <title>Üretim Takibi - Lojikon | Endüstriyel Otomasyon ve Üretim Yönetimi</title>
+    <meta name="description" content="Lojikon üretim takibi sistemleri ile gerçek zamanlı üretim izleme, kalite kontrol ve verimlilik analizi.">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lojikon.com/production-tracking.html">
-    <meta property="og:title" content="Üretim Takip Sistemleri - Lojikon">
-    <meta property="og:description" content="Üretim süreçlerinizi detaylı olarak takip eden ve optimize eden sistemler.">
-    <meta property="og:image" content="https://lojikon.com/img/production-tracking.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://lojikon.com/production-tracking.html">
-    <meta property="twitter:title" content="Üretim Takip Sistemleri - Lojikon">
-    <meta property="twitter:description" content="Üretim süreçlerinizi detaylı olarak takip eden ve optimize eden sistemler.">
-    <meta property="twitter:image" content="https://lojikon.com/img/production-tracking.jpg">
-
-    <!-- SEO Meta Tags -->
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Lojikon">
-    <meta name="geo.region" content="TR-34">
-    <link rel="canonical" href="https://lojikon.com/production-tracking.html">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-    <!-- Font Awesome -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- CSS -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "Üretim Takip Sistemleri",
-        "description": "Üretim süreçlerinizi detaylı olarak takip eden ve optimize eden sistemler",
-        "brand": {
-            "@type": "Brand",
-            "name": "Lojikon"
-        },
-        "manufacturer": {
-            "@type": "Organization",
-            "name": "Lojikon"
-        },
-        "offers": {
-            "@type": "Offer",
-            "availability": "https://schema.org/InStock"
-        }
-    }
-    </script>
+    <link rel="stylesheet" href="production-tracking.css">
 </head>
 <body>
-    <!-- Header Template Container -->
-    <div id="header-container"></div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h2>Lojikon</h2>
+                <p class="header-slogan">Endüstriyel Otomasyon</p>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#about">Hakkımızda</a></li>
+                <li><a href="index.html#solutions">Çözümler</a></li>
+                <li><a href="index.html#services">Hizmetler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+            
+            <div class="header-social-links">
+                <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
+    <section id="home" class="hero">
+        <div class="hero-container solution-page">
             <div class="hero-content">
-                <h1 class="hero-title">Üretim Takip Sistemleri</h1>
-                <div class="hero-slogan">
-                    <span class="fixed-text">Akıllı</span>
-                    <span class="variable-1" id="var1">Sistemler</span>
-                    <span class="fixed-text">, Akıllı</span>
-                    <span class="variable-2" id="var2">Yarın</span>
+                <div class="hero-text-content">
+                    <h1 class="hero-title">
+                        <span class="highlight">Üretim</span> Takibi
+                    </h1>
+                    
+                    <div class="hero-slogan">
+                        <span class="fixed-text">Akıllı</span>
+                        <span class="variable-1" id="var1">İzleme</span>
+                        <span class="fixed-text">, Akıllı</span>
+                        <span class="variable-2" id="var2">Kontrol</span>
+                    </div>
+                    
+                    <p class="hero-description">
+                        Gerçek zamanlı üretim izleme, kalite kontrol ve verimlilik analizi. 
+                        Akıllı üretim takibi ile maksimum verimlilik.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#how-it-works" class="btn btn-primary">
+                            <i class="fas fa-cogs"></i>
+                            Nasıl Çalışır?
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-phone"></i>
+                            İletişim
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>%99.5</h3>
+                            <p>Kalite</p>
+                        </div>
+                        <div class="stat">
+                            <h3>%25</h3>
+                            <p>Verimlilik</p>
+                        </div>
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>İzleme</p>
+                        </div>
+                    </div>
                 </div>
-                <p class="hero-subtitle">Üretim süreçlerinizi <span class="highlight">detaylı</span> olarak takip edin ve optimize edin</p>
-                <p class="hero-description">
-                    Üretim takip sistemlerimiz ile OEE hesaplama, performans takibi, kalite kontrol ve 
-                    maliyet analizi yaparak üretim süreçlerinizi sürekli iyileştirin. Gerçek zamanlı 
-                    veriler ile karar verme süreçlerinizi hızlandırın ve verimliliğinizi artırın.
-                </p>
+                
+                <!-- Production Line Animation -->
+                <div class="production-hero-animation">
+                    <div class="production-line">
+                        <!-- Production Header -->
+                        <div class="production-header">
+                            <div class="header-title">
+                                <i class="fas fa-industry"></i>
+                                <span>ÜRETİM HATTI A</span>
+                            </div>
+                            <div class="production-time" id="production-time">00:00:00</div>
+                        </div>
+                        
+                        <!-- Production Line -->
+                        <div class="production-stations">
+                            <div class="station" data-station="1">
+                                <div class="station-icon">
+                                    <i class="fas fa-box"></i>
+                                </div>
+                                <div class="station-info">
+                                    <div class="station-name">Hammadde</div>
+                                    <div class="station-status" id="station-1-status">Hazır</div>
+                                </div>
+                                <div class="station-indicator active"></div>
+                            </div>
+                            
+                            <div class="station" data-station="2">
+                                <div class="station-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <div class="station-info">
+                                    <div class="station-name">İşleme</div>
+                                    <div class="station-status" id="station-2-status">Çalışıyor</div>
+                                </div>
+                                <div class="station-indicator active"></div>
+                            </div>
+                            
+                            <div class="station" data-station="3">
+                                <div class="station-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="station-info">
+                                    <div class="station-name">Kalite</div>
+                                    <div class="station-status" id="station-3-status">Kontrol</div>
+                                </div>
+                                <div class="station-indicator active"></div>
+                            </div>
+                            
+                            <div class="station" data-station="4">
+                                <div class="station-icon">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div class="station-info">
+                                    <div class="station-name">Paketleme</div>
+                                    <div class="station-status" id="station-4-status">Hazır</div>
+                                </div>
+                                <div class="station-indicator"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Conveyor Belt -->
+                        <div class="conveyor-belt">
+                            <div class="belt-surface"></div>
+                            <div class="belt-rollers">
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                                <div class="roller"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Products on Conveyor -->
+                        <div class="products-container" id="products-container">
+                            <!-- Products will be added dynamically -->
+                        </div>
+                        
+                        <!-- Quality Control -->
+                        <div class="quality-control">
+                            <div class="qc-station">
+                                <div class="qc-camera">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <div class="qc-lights">
+                                    <div class="qc-light green"></div>
+                                    <div class="qc-light red"></div>
+                                    <div class="qc-light yellow"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Production Metrics -->
+                        <div class="production-metrics">
+                            <div class="metric-card">
+                                <div class="metric-title">Üretim Hızı</div>
+                                <div class="metric-value" id="production-rate">125</div>
+                                <div class="metric-unit">parça/saat</div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-title">Kalite Oranı</div>
+                                <div class="metric-value" id="quality-rate">99.5</div>
+                                <div class="metric-unit">%</div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-title">Verimlilik</div>
+                                <div class="metric-value" id="efficiency-rate">87.3</div>
+                                <div class="metric-unit">%</div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-title">Toplam Üretim</div>
+                                <div class="metric-value" id="total-production">2,847</div>
+                                <div class="metric-unit">parça</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Control Panel -->
+                        <div class="control-panel">
+                            <div class="control-buttons">
+                                <button class="control-btn" id="start-production">
+                                    <i class="fas fa-play"></i>
+                                    <span>BAŞLAT</span>
+                                </button>
+                                <button class="control-btn" id="stop-production">
+                                    <i class="fas fa-pause"></i>
+                                    <span>DURDUR</span>
+                                </button>
+                                <button class="control-btn" id="reset-production">
+                                    <i class="fas fa-redo"></i>
+                                    <span>SIFIRLA</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
         <div class="container">
             <div class="section-header">
-                <h2>Üretim Takip Sistemleri Hakkında</h2>
-                <p>Üretim süreçlerinizi veri odaklı yönetin</p>
+                <h2>Nasıl Çalışır?</h2>
+                <p>Üretim takibi sisteminin çalışma prensibi ve adımları</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Nedir?</h3>
-                    <p>Üretim takip sistemleri, üretim süreçlerinizin her aşamasını detaylı olarak 
-                       izleyen, analiz eden ve raporlayan endüstriyel otomasyon çözümleridir. 
-                       OEE (Overall Equipment Effectiveness), performans metrikleri, kalite kontrol 
-                       ve maliyet analizi ile üretim verimliliğinizi maksimize eder.</p>
-                    
-                    <h3>Nasıl Çalışır?</h3>
-                    <p>Sistem, üretim hattınızdaki makinelerden, sensörlerden ve operatörlerden 
-                       veri toplar. Bu veriler gerçek zamanlı olarak işlenir ve analiz edilir. 
-                       Dashboard'lar aracılığıyla üretim performansınızı izleyebilir, darboğazları 
-                       tespit edebilir ve sürekli iyileştirme süreçlerinizi yönetebilirsiniz.</p>
-                    
-                    <h3>Nerede Kullanılır?</h3>
-                    <ul>
-                        <li><strong>Üretim Tesisleri:</strong> Otomotiv, gıda, ilaç, tekstil, elektronik</li>
-                        <li><strong>Montaj Hatları:</strong> Seri üretim, esnek üretim sistemleri</li>
-                        <li><strong>Paketleme Tesisleri:</strong> Otomatik paketleme, etiketleme</li>
-                        <li><strong>Kalite Kontrol:</strong> Test laboratuvarları, kalite güvence</li>
-                        <li><strong>Depo Operasyonları:</strong> Lojistik merkezleri, dağıtım</li>
-                    </ul>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-sensors"></i>
+                    </div>
+                    <h3>Veri Toplama</h3>
+                    <p>Sensörlerden ve makinelerden gerçek zamanlı veri toplanır.</p>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
                         <i class="fas fa-chart-line"></i>
-                        <p>Üretim Takip Sistemleri</p>
                     </div>
+                    <h3>Analiz</h3>
+                    <p>Toplanan veriler analiz edilir ve performans hesaplanır.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>İzleme</h3>
+                    <p>Üretim süreci gerçek zamanlı olarak izlenir.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Uyarı</h3>
+                    <p>Anormal durumlar için otomatik uyarılar verilir.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Photos Section -->
-    <section id="photos" class="photos-section">
+    <!-- Why Use Section -->
+    <section id="why-use" class="why-use">
         <div class="container">
             <div class="section-header">
-                <h2>Üretim Takip Sistemleri Galerisi</h2>
-                <p>Gerçek projelerimizden örnekler</p>
+                <h2>Neden Kullanılır?</h2>
+                <p>Üretim takibi sistemlerinin avantajları ve faydaları</p>
             </div>
-            <div class="photos-grid">
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_1.PNG" alt="Üretim Takip HMI Dashboard">
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-bar"></i>
                     </div>
-                    <div class="photo-description">
-                        <h4>Üretim Takip HMI Dashboard</h4>
-                        <p>Gerçek zamanlı üretim performansı izleme ve kontrol arayüzü</p>
-                    </div>
+                    <h3>Verimlilik Artışı</h3>
+                    <p>Üretim verimliliğini %25'e kadar artırır.</p>
                 </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_2.PNG" alt="Üretim Takip HMI Kontrol">
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <div class="photo-description">
-                        <h4>Üretim Takip HMI Kontrol Paneli</h4>
-                        <p>Üretim süreçlerini yöneten gelişmiş HMI kontrol sistemi</p>
-                    </div>
+                    <h3>Kalite Kontrolü</h3>
+                    <p>Otomatik kalite kontrol ile hata oranını düşürür.</p>
                 </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_3.PNG" alt="Üretim Takip HMI İzleme">
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <div class="photo-description">
-                        <h4>Üretim Takip HMI İzleme Ekranı</h4>
-                        <p>Detaylı üretim izleme ve performans analizi arayüzü</p>
-                    </div>
+                    <h3>Zaman Tasarrufu</h3>
+                    <p>Manuel kontrolleri otomatikleştirir.</p>
                 </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_4.PNG" alt="Üretim Takip HMI Analiz">
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-coins"></i>
                     </div>
-                    <div class="photo-description">
-                        <h4>Üretim Takip HMI Analiz Dashboard</h4>
-                        <p>OEE analizi ve detaylı performans raporlama sistemi</p>
-                    </div>
+                    <h3>Maliyet Azaltma</h3>
+                    <p>Operasyonel maliyetleri önemli ölçüde azaltır.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technical Specifications Section -->
-    <section id="specs" class="specs-section">
+    <!-- Where Used Section -->
+    <section id="where-used" class="where-used">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nerede Kullanılır?</h2>
+                <p>Üretim takibi sistemlerinin kullanım alanları</p>
+            </div>
+            
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Otomotiv</h3>
+                    <p>Araç üretim hatlarında kalite kontrolü.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>İlaç</h3>
+                    <p>İlaç üretiminde güvenlik ve kalite takibi.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Tekstil</h3>
+                    <p>Kumaş üretiminde verimlilik optimizasyonu.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h3>Gıda</h3>
+                    <p>Gıda üretiminde hijyen ve kalite kontrolü.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs Section -->
+    <section id="technical-specs" class="technical-specs">
         <div class="container">
             <div class="section-header">
                 <h2>Teknik Özellikler</h2>
-                <p>Üretim takip sistemlerimizin teknik detayları</p>
+                <p>Üretim takibi sistemlerinin teknik detayları</p>
             </div>
+            
             <div class="specs-grid">
-                <div class="spec-item">
-                    <h4>OEE Hesaplama</h4>
-                    <p>Otomatik OEE hesaplama, kullanılabilirlik, performans, kalite analizi</p>
+                <div class="spec-card">
+                    <h3>Sensör Teknolojileri</h3>
+                    <ul>
+                        <li><strong>Sıcaklık:</strong> -40°C ile +85°C</li>
+                        <li><strong>Basınç:</strong> 0-10 bar</li>
+                        <li><strong>Hız:</strong> 0-5000 RPM</li>
+                        <li><strong>Mesafe:</strong> 0-100m</li>
+                    </ul>
                 </div>
-                <div class="spec-item">
-                    <h4>Performans Takibi</h4>
-                    <p>Gerçek zamanlı performans metrikleri, trend analizi, karşılaştırma</p>
+                
+                <div class="spec-card">
+                    <h3>İletişim Protokolleri</h3>
+                    <ul>
+                        <li><strong>Ethernet:</strong> 100/1000 Mbps</li>
+                        <li><strong>Modbus:</strong> TCP/RTU</li>
+                        <li><strong>OPC UA:</strong> Client/Server</li>
+                        <li><strong>Profinet:</strong> Real-time</li>
+                    </ul>
                 </div>
-                <div class="spec-item">
-                    <h4>Kalite Kontrol</h4>
-                    <p>Otomatik kalite kontrol, hata tespiti, kalite raporlama</p>
+                
+                <div class="spec-card">
+                    <h3>Performans</h3>
+                    <ul>
+                        <li><strong>Veri Hızı:</strong> 1000 nokta/saniye</li>
+                        <li><strong>Gecikme:</strong> < 10ms</li>
+                        <li><strong>Doğruluk:</strong> %99.9</li>
+                        <li><strong>Uptime:</strong> %99.99</li>
+                    </ul>
                 </div>
-                <div class="spec-item">
-                    <h4>Maliyet Analizi</h4>
-                    <p>Üretim maliyeti hesaplama, maliyet optimizasyonu, ROI analizi</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Veri Toplama</h4>
-                    <p>1000+ noktadan veri toplama, milisaniye hassasiyetinde ölçüm</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Raporlama</h4>
-                    <p>Özelleştirilebilir raporlar, otomatik rapor gönderimi, PDF/Excel</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Alarm Yönetimi</h4>
-                    <p>Performans alarmları, e-posta/SMS bildirimleri, alarm geçmişi</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Mobil Erişim</h4>
-                    <p>Web tabanlı arayüz, mobil uyumlu tasarım, uzaktan erişim</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="benefits-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Faydalar</h2>
-                <p>Üretim takip sistemlerinin işletmenize sağlayacağı avantajlar</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h4>OEE Artışı</h4>
-                    <p>OEE değerlerinizi %15-25 oranında artırarak verimliliği maksimize edin</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <h4>Şeffaflık</h4>
-                    <p>Tüm üretim süreçlerini görünür hale getirin ve darboğazları tespit edin</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <h4>Erken Uyarı</h4>
-                    <p>Performans düşüşlerini önceden tespit edin ve önleyici aksiyonlar alın</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <h4>Maliyet Tasarrufu</h4>
-                    <p>Operasyonel maliyetleri %20-30 oranında düşürün</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h4>Kalite İyileştirme</h4>
-                    <p>Kalite kontrol süreçlerini otomatikleştirin ve hata oranlarını azaltın</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-cog"></i>
-                    </div>
-                    <h4>Sürekli İyileştirme</h4>
-                    <p>Veri odaklı karar verme ile sürekli iyileştirme süreçlerinizi yönetin</p>
+                
+                <div class="spec-card">
+                    <h3>Raporlama</h3>
+                    <ul>
+                        <li><strong>Gerçek Zamanlı:</strong> Anlık</li>
+                        <li><strong>Günlük:</strong> Otomatik</li>
+                        <li><strong>Aylık:</strong> Detaylı</li>
+                        <li><strong>Yıllık:</strong> Trend</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -273,27 +426,130 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2>Üretim Takip Sistemi Teklifi Alın</h2>
-                <p>İhtiyaçlarınıza özel üretim takip sistemi çözümü için bizimle iletişime geçin</p>
+                <h2>İletişim</h2>
+                <p>Bizimle iletişime geçin</p>
             </div>
+            
             <div class="contact-content">
-                <div id="contact-info-container"></div>
-                <div id="contact-form-container"></div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adres</h4>
+                            <p>Silivri - İSTANBUL TÜRKİYE<br>Endüstriyel Otomasyon Merkezi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p>+90 212 657 18 03<br>+90 533 388 33 92</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@lojikon.com<br>yusuf@lojikon.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Çalışma Saatleri</h4>
+                            <p>Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 13:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Adınız *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email Adresiniz *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Telefon Numaranız">
+                    </div>
+                    <div class="form-group">
+                        <select name="service_type">
+                            <option value="">Hizmet Türü Seçin</option>
+                            <option value="production-tracking">Üretim Takibi</option>
+                            <option value="quality-control">Kalite Kontrolü</option>
+                            <option value="efficiency-analysis">Verimlilik Analizi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Mesajınız *" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Gönder
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer Template Container -->
-    <div id="footer-container"></div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lojikon</h3>
+                    <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@lojikonotomasyonveyazlmticltds" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Çözümler</h4>
+                    <ul>
+                        <li><a href="sorter.html">Sorter Sistemleri</a></li>
+                        <li><a href="palet-lift.html">Pallet Lift</a></li>
+                        <li><a href="miniload.html">Miniload</a></li>
+                        <li><a href="pick-to-light.html">Pick to Light</a></li>
+                        <li><a href="scada.html">SCADA Sistemleri</a></li>
+                        <li><a href="production-tracking.html">Üretim Takibi</a></li>
+                        <li><a href="data-collection.html">Veri Toplama</a></li>
+                        <li><a href="custom-software.html">Özel Yazılım</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Hizmetler</h4>
+                    <ul>
+                        <li><a href="plc-programlama.html">PLC Programlama</a></li>
+                        <li><a href="scada.html">SCADA Sistemleri</a></li>
+                        <li><a href="sistem-entegrasyonu.html">Sistem Entegrasyonu</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <p>Silivri - İSTANBUL TÜRKİYE</p>
+                    <p>+90 212 657 18 03</p>
+                    <p>info@lojikon.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
-    <script src="include-templates.js"></script>
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init("pMn_T_QHghVJklt3q");
-        })();
-    </script>
+    <script src="script.js"></script>
+    <script src="production-tracking-animation.js"></script>
 </body>
 </html> 

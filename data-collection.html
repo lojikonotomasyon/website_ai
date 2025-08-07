@@ -3,267 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veri Toplama Sistemleri - Lojikon</title>
-    <meta name="description" content="Üretim süreçlerinden gerçek zamanlı veri toplama, analiz ve raporlama sistemleri. OEE hesaplama, performans takibi ve dashboard görselleştirme çözümleri.">
-    <meta name="keywords" content="veri toplama, data collection, OEE, performans takibi, üretim analizi, dashboard, gerçek zamanlı veri, endüstriyel otomasyon">
+    <title>Veri Toplama - Lojikon | Endüstriyel Otomasyon ve Sensör Veri Yönetimi</title>
+    <meta name="description" content="Lojikon veri toplama sistemleri ile endüstriyel sensör verilerinin toplanması, işlenmesi ve analizi.">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lojikon.com/data-collection.html">
-    <meta property="og:title" content="Veri Toplama Sistemleri - Lojikon">
-    <meta property="og:description" content="Üretim süreçlerinden gerçek zamanlı veri toplama, analiz ve raporlama sistemleri.">
-    <meta property="og:image" content="https://lojikon.com/img/data-collection.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://lojikon.com/data-collection.html">
-    <meta property="twitter:title" content="Veri Toplama Sistemleri - Lojikon">
-    <meta property="twitter:description" content="Üretim süreçlerinden gerçek zamanlı veri toplama, analiz ve raporlama sistemleri.">
-    <meta property="twitter:image" content="https://lojikon.com/img/data-collection.jpg">
-
-    <!-- SEO Meta Tags -->
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Lojikon">
-    <meta name="geo.region" content="TR-34">
-    <link rel="canonical" href="https://lojikon.com/data-collection.html">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-    <!-- Font Awesome -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- CSS -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "Veri Toplama Sistemleri",
-        "description": "Üretim süreçlerinden gerçek zamanlı veri toplama, analiz ve raporlama sistemleri",
-        "brand": {
-            "@type": "Brand",
-            "name": "Lojikon"
-        },
-        "manufacturer": {
-            "@type": "Organization",
-            "name": "Lojikon"
-        },
-        "offers": {
-            "@type": "Offer",
-            "availability": "https://schema.org/InStock"
-        }
-    }
-    </script>
+    <link rel="stylesheet" href="data-collection.css">
 </head>
 <body>
-    <!-- Header Template Container -->
-    <div id="header-container"></div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h2>Lojikon</h2>
+                <p class="header-slogan">Endüstriyel Otomasyon</p>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#about">Hakkımızda</a></li>
+                <li><a href="index.html#solutions">Çözümler</a></li>
+                <li><a href="index.html#services">Hizmetler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+            
+            <div class="header-social-links">
+                <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
+    <section id="home" class="hero">
+        <div class="hero-container solution-page">
             <div class="hero-content">
-                <h1 class="hero-title">Veri Toplama Sistemleri</h1>
-                <div class="hero-slogan">
-                    <span class="fixed-text">Akıllı</span>
-                    <span class="variable-1" id="var1">Sistemler</span>
-                    <span class="fixed-text">, Akıllı</span>
-                    <span class="variable-2" id="var2">Yarın</span>
-                </div>
-                <p class="hero-subtitle">Üretim süreçlerinizi <span class="highlight">gerçek zamanlı</span> olarak izleyin, analiz edin ve optimize edin</p>
-                <p class="hero-description">
-                    Modern üretim tesislerinde veri, en değerli varlıktır. Veri toplama sistemlerimiz ile 
-                    üretim süreçlerinizden anlık veri toplayarak, performansınızı artıran ve maliyetlerinizi 
-                    düşüren akıllı çözümler sunuyoruz.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2>Veri Toplama Sistemleri Hakkında</h2>
-                <p>Üretim süreçlerinizi dijital dönüşüm ile optimize edin</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Nedir?</h3>
-                    <p>Veri toplama sistemleri, üretim süreçlerinizden otomatik olarak veri toplayan, 
-                       bu verileri analiz eden ve anlamlı raporlar üreten endüstriyel otomasyon çözümleridir. 
-                       PLC'ler, sensörler, makineler ve diğer endüstriyel ekipmanlardan gerçek zamanlı veri 
-                       toplayarak, üretim performansınızı sürekli izlemenizi sağlar.</p>
+                <div class="hero-text-content">
+                    <h1 class="hero-title">
+                        <span class="highlight">Veri</span> Toplama
+                    </h1>
                     
-                    <h3>Nasıl Çalışır?</h3>
-                    <p>Sistem, üretim hattınızdaki tüm makinelerden ve sensörlerden veri toplar. 
-                       Bu veriler merkezi bir sunucuda işlenir ve analiz edilir. Dashboard'lar aracılığıyla 
-                       anlık performans metriklerini görüntüleyebilir, geçmiş verileri analiz edebilir ve 
-                       gelecekteki üretim planlarınızı optimize edebilirsiniz.</p>
+                    <div class="hero-slogan">
+                        <span class="fixed-text">Akıllı</span>
+                        <span class="variable-1" id="var1">Sensörler</span>
+                        <span class="fixed-text">, Akıllı</span>
+                        <span class="variable-2" id="var2">Veriler</span>
+                    </div>
                     
-                    <h3>Nerede Kullanılır?</h3>
-                    <ul>
-                        <li><strong>Üretim Tesisleri:</strong> Otomotiv, gıda, ilaç, tekstil sektörleri</li>
-                        <li><strong>Depo Operasyonları:</strong> Lojistik merkezleri, dağıtım merkezleri</li>
-                        <li><strong>Enerji Sektörü:</strong> Elektrik üretim tesisleri, enerji dağıtımı</li>
-                        <li><strong>Su ve Atık Yönetimi:</strong> Arıtma tesisleri, su dağıtım sistemleri</li>
-                        <li><strong>Bina Otomasyonu:</strong> Akıllı binalar, ticari kompleksler</li>
-                    </ul>
+                    <p class="hero-description">
+                        Endüstriyel sensörlerden veri toplama, işleme ve analiz. 
+                        Gerçek zamanlı veri yönetimi ile akıllı kararlar.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#how-it-works" class="btn btn-primary">
+                            <i class="fas fa-cogs"></i>
+                            Nasıl Çalışır?
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-phone"></i>
+                            İletişim
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>1000+</h3>
+                            <p>Sensör</p>
+                        </div>
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>İzleme</p>
+                        </div>
+                        <div class="stat">
+                            <h3>%99.9</h3>
+                            <p>Doğruluk</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-database"></i>
-                        <p>Veri Toplama Sistemleri</p>
+                
+                <!-- Data Collection Animation -->
+                <div class="data-collection-hero-animation">
+                    <div class="data-network">
+                        <!-- Network Header -->
+                        <div class="network-header">
+                            <div class="header-title">
+                                <i class="fas fa-network-wired"></i>
+                                <span>VERİ TOPLAMA AĞI</span>
+                            </div>
+                            <div class="network-time" id="network-time">00:00:00</div>
+                        </div>
+                        
+                        <!-- Sensor Nodes -->
+                        <div class="sensor-nodes">
+                            <div class="sensor-node" data-sensor="temp1">
+                                <div class="sensor-icon">
+                                    <i class="fas fa-thermometer-half"></i>
+                                </div>
+                                <div class="sensor-info">
+                                    <div class="sensor-name">Sıcaklık 1</div>
+                                    <div class="sensor-value" id="temp1-value">24.5°C</div>
+                                </div>
+                                <div class="sensor-status active"></div>
+                            </div>
+                            
+                            <div class="sensor-node" data-sensor="pressure1">
+                                <div class="sensor-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                <div class="sensor-info">
+                                    <div class="sensor-name">Basınç 1</div>
+                                    <div class="sensor-value" id="pressure1-value">2.3 bar</div>
+                                </div>
+                                <div class="sensor-status active"></div>
+                            </div>
+                            
+                            <div class="sensor-node" data-sensor="flow1">
+                                <div class="sensor-icon">
+                                    <i class="fas fa-water"></i>
+                                </div>
+                                <div class="sensor-info">
+                                    <div class="sensor-name">Debi 1</div>
+                                    <div class="sensor-value" id="flow1-value">150 L/min</div>
+                                </div>
+                                <div class="sensor-status active"></div>
+                            </div>
+                            
+                            <div class="sensor-node" data-sensor="level1">
+                                <div class="sensor-icon">
+                                    <i class="fas fa-arrows-alt-v"></i>
+                                </div>
+                                <div class="sensor-info">
+                                    <div class="sensor-name">Seviye 1</div>
+                                    <div class="sensor-value" id="level1-value">75%</div>
+                                </div>
+                                <div class="sensor-status active"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Data Flow Lines -->
+                        <div class="data-flow-lines">
+                            <div class="flow-line" data-from="temp1" data-to="gateway"></div>
+                            <div class="flow-line" data-from="pressure1" data-to="gateway"></div>
+                            <div class="flow-line" data-from="flow1" data-to="gateway"></div>
+                            <div class="flow-line" data-from="level1" data-to="gateway"></div>
+                        </div>
+                        
+                        <!-- Gateway -->
+                        <div class="gateway">
+                            <div class="gateway-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="gateway-info">
+                                <div class="gateway-name">Veri Geçidi</div>
+                                <div class="gateway-status" id="gateway-status">Aktif</div>
+                            </div>
+                            <div class="gateway-indicator active"></div>
+                        </div>
+                        
+                        <!-- Data Processing -->
+                        <div class="data-processing">
+                            <div class="processing-unit">
+                                <div class="unit-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <div class="unit-info">
+                                    <div class="unit-name">İşlemci</div>
+                                    <div class="unit-status" id="processor-status">Çalışıyor</div>
+                                </div>
+                                <div class="unit-indicator active"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Database -->
+                        <div class="database">
+                            <div class="db-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="db-info">
+                                <div class="db-name">Veritabanı</div>
+                                <div class="db-status" id="db-status">Kaydediliyor</div>
+                            </div>
+                            <div class="db-indicator active"></div>
+                        </div>
+                        
+                        <!-- Data Metrics -->
+                        <div class="data-metrics">
+                            <div class="metric-card">
+                                <div class="metric-title">Veri Hızı</div>
+                                <div class="metric-value" id="data-rate">1,247</div>
+                                <div class="metric-unit">nokta/saniye</div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-title">Bağlantı</div>
+                                <div class="metric-value" id="connection-count">24</div>
+                                <div class="metric-unit">aktif</div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-title">Depolama</div>
+                                <div class="metric-value" id="storage-used">67.3</div>
+                                <div class="metric-unit">%</div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-title">Uptime</div>
+                                <div class="metric-value" id="uptime">99.9</div>
+                                <div class="metric-unit">%</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Control Panel -->
+                        <div class="control-panel">
+                            <div class="control-buttons">
+                                <button class="control-btn" id="start-collection">
+                                    <i class="fas fa-play"></i>
+                                    <span>BAŞLAT</span>
+                                </button>
+                                <button class="control-btn" id="stop-collection">
+                                    <i class="fas fa-pause"></i>
+                                    <span>DURDUR</span>
+                                </button>
+                                <button class="control-btn" id="export-data">
+                                    <i class="fas fa-download"></i>
+                                    <span>DİŞA AKTAR</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Photos Section -->
-    <section id="photos" class="photos-section">
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
         <div class="container">
             <div class="section-header">
-                <h2>Veri Toplama Sistemleri Galerisi</h2>
-                <p>Gerçek projelerimizden örnekler</p>
+                <h2>Nasıl Çalışır?</h2>
+                <p>Veri toplama sisteminin çalışma prensibi ve adımları</p>
             </div>
-            <div class="photos-grid">
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_1.PNG" alt="Veri Toplama Sistemi HMI Dashboard">
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-sensors"></i>
                     </div>
-                    <div class="photo-description">
-                        <h4>HMI Dashboard</h4>
-                        <p>Gerçek zamanlı veri toplama ve görselleştirme arayüzü</p>
-                    </div>
+                    <h3>Sensör Okuma</h3>
+                    <p>Endüstriyel sensörlerden veri okunur.</p>
                 </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_2.PNG" alt="Veri Toplama Sistemi HMI Kontrol">
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-wifi"></i>
                     </div>
-                    <div class="photo-description">
-                        <h4>HMI Kontrol Paneli</h4>
-                        <p>Üretim süreçlerini kontrol eden gelişmiş HMI arayüzü</p>
-                    </div>
+                    <h3>Veri İletimi</h3>
+                    <p>Veriler ağ üzerinden iletilir.</p>
                 </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_3.PNG" alt="Veri Toplama Sistemi HMI İzleme">
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-cogs"></i>
                     </div>
-                    <div class="photo-description">
-                        <h4>HMI İzleme Ekranı</h4>
-                        <p>Detaylı süreç izleme ve alarm yönetimi sistemi</p>
-                    </div>
+                    <h3>İşleme</h3>
+                    <p>Veriler işlenir ve analiz edilir.</p>
                 </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_4.PNG" alt="Veri Toplama Sistemi HMI Analiz">
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-save"></i>
                     </div>
-                    <div class="photo-description">
-                        <h4>HMI Analiz Dashboard</h4>
-                        <p>Performans analizi ve raporlama arayüzü</p>
-                    </div>
+                    <h3>Depolama</h3>
+                    <p>Veriler güvenli şekilde saklanır.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technical Specifications Section -->
-    <section id="specs" class="specs-section">
+    <!-- Why Use Section -->
+    <section id="why-use" class="why-use">
         <div class="container">
             <div class="section-header">
-                <h2>Teknik Özellikler</h2>
-                <p>Veri toplama sistemlerimizin teknik detayları</p>
+                <h2>Neden Kullanılır?</h2>
+                <p>Veri toplama sistemlerinin avantajları ve faydaları</p>
             </div>
-            <div class="specs-grid">
-                <div class="spec-item">
-                    <h4>Veri Toplama Kapasitesi</h4>
-                    <p>10,000+ noktadan eş zamanlı veri toplama, saniyede 1000+ ölçüm</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Veri Saklama</h4>
-                    <p>10 yıla kadar veri saklama, sıkıştırılmış arşivleme sistemi</p>
-                </div>
-                <div class="spec-item">
-                    <h4>İletişim Protokolleri</h4>
-                    <p>Modbus TCP/RTU, OPC UA, Profinet, Ethernet/IP, Profibus DP</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Dashboard Özellikleri</h4>
-                    <p>Gerçek zamanlı grafikler, alarm yönetimi, trend analizi</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Raporlama</h4>
-                    <p>PDF, Excel, CSV formatlarında otomatik raporlama</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Güvenlik</h4>
-                    <p>SSL şifreleme, kullanıcı yetkilendirme, veri yedekleme</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Mobil Erişim</h4>
-                    <p>Web tabanlı arayüz, mobil uyumlu tasarım</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Entegrasyon</h4>
-                    <p>ERP, MES, SCADA sistemleri ile tam entegrasyon</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="benefits-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Faydalar</h2>
-                <p>Veri toplama sistemlerinin işletmenize sağlayacağı avantajlar</p>
-            </div>
+            
             <div class="benefits-grid">
-                <div class="benefit-item">
+                <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h4>Performans Artışı</h4>
-                    <p>Gerçek zamanlı veri analizi ile üretim performansını %25'e kadar artırır</p>
+                    <h3>Gerçek Zamanlı Analiz</h3>
+                    <p>Anlık veri analizi ile hızlı kararlar.</p>
                 </div>
-                <div class="benefit-item">
+                
+                <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-eye"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h4>Şeffaflık</h4>
-                    <p>Tüm üretim süreçlerini görünür hale getirir ve karar verme süreçlerini hızlandırır</p>
+                    <h3>Güvenli Veri</h3>
+                    <p>Şifreli ve güvenli veri iletimi.</p>
                 </div>
-                <div class="benefit-item">
+                
+                <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
+                        <i class="fas fa-expand-arrows-alt"></i>
                     </div>
-                    <h4>Erken Uyarı</h4>
-                    <p>Potansiyel sorunları önceden tespit eder ve planlı duruşları minimize eder</p>
+                    <h3>Ölçeklenebilir</h3>
+                    <p>Binlerce sensör desteği.</p>
                 </div>
-                <div class="benefit-item">
+                
+                <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-calculator"></i>
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <h4>OEE Hesaplama</h4>
-                    <p>Otomatik OEE hesaplama ile ekipman verimliliğini sürekli izler</p>
+                    <h3>7/24 İzleme</h3>
+                    <p>Kesintisiz veri toplama.</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-dollar-sign"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where Used Section -->
+    <section id="where-used" class="where-used">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nerede Kullanılır?</h2>
+                <p>Veri toplama sistemlerinin kullanım alanları</p>
+            </div>
+            
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-industry"></i>
                     </div>
-                    <h4>Maliyet Tasarrufu</h4>
-                    <p>Operasyonel maliyetleri %15-20 oranında düşürür</p>
+                    <h3>Üretim</h3>
+                    <p>Fabrikalarda makine verilerinin izlenmesi.</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-cog"></i>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-leaf"></i>
                     </div>
-                    <h4>Kolay Entegrasyon</h4>
-                    <p>Mevcut sistemlerinizle kolayca entegre olur</p>
+                    <h3>Çevre</h3>
+                    <p>Çevresel parametrelerin takibi.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Bina Otomasyonu</h3>
+                    <p>Akıllı bina sistemlerinde veri toplama.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3>Ulaşım</h3>
+                    <p>Trafik ve ulaşım verilerinin izlenmesi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs Section -->
+    <section id="technical-specs" class="technical-specs">
+        <div class="container">
+            <div class="section-header">
+                <h2>Teknik Özellikler</h2>
+                <p>Veri toplama sistemlerinin teknik detayları</p>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h3>Sensör Desteği</h3>
+                    <ul>
+                        <li><strong>Sıcaklık:</strong> -40°C ile +125°C</li>
+                        <li><strong>Basınç:</strong> 0-100 bar</li>
+                        <li><strong>Nem:</strong> 0-100% RH</li>
+                        <li><strong>Seviye:</strong> 0-20m</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>İletişim Protokolleri</h3>
+                    <ul>
+                        <li><strong>Modbus:</strong> RTU/TCP</li>
+                        <li><strong>OPC UA:</strong> Client/Server</li>
+                        <li><strong>Ethernet:</strong> TCP/IP</li>
+                        <li><strong>Wireless:</strong> WiFi/LoRa</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Performans</h3>
+                    <ul>
+                        <li><strong>Örnekleme:</strong> 1000 Hz</li>
+                        <li><strong>Gecikme:</strong> < 10ms</li>
+                        <li><strong>Doğruluk:</strong> %99.9</li>
+                        <li><strong>Kapasite:</strong> 10,000 sensör</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Güvenlik</h3>
+                    <ul>
+                        <li><strong>Şifreleme:</strong> AES-256</li>
+                        <li><strong>Kimlik Doğrulama:</strong> SSL/TLS</li>
+                        <li><strong>Yetkilendirme:</strong> Role-based</li>
+                        <li><strong>Yedekleme:</strong> Otomatik</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -273,27 +440,130 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2>Veri Toplama Sistemi Teklifi Alın</h2>
-                <p>İhtiyaçlarınıza özel veri toplama sistemi çözümü için bizimle iletişime geçin</p>
+                <h2>İletişim</h2>
+                <p>Bizimle iletişime geçin</p>
             </div>
+            
             <div class="contact-content">
-                <div id="contact-info-container"></div>
-                <div id="contact-form-container"></div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adres</h4>
+                            <p>Silivri - İSTANBUL TÜRKİYE<br>Endüstriyel Otomasyon Merkezi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p>+90 212 657 18 03<br>+90 533 388 33 92</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@lojikon.com<br>yusuf@lojikon.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Çalışma Saatleri</h4>
+                            <p>Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 13:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Adınız *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email Adresiniz *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Telefon Numaranız">
+                    </div>
+                    <div class="form-group">
+                        <select name="service_type">
+                            <option value="">Hizmet Türü Seçin</option>
+                            <option value="data-collection">Veri Toplama</option>
+                            <option value="sensor-integration">Sensör Entegrasyonu</option>
+                            <option value="data-analysis">Veri Analizi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Mesajınız *" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Gönder
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer Template Container -->
-    <div id="footer-container"></div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lojikon</h3>
+                    <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@lojikonotomasyonveyazlmticltds" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Çözümler</h4>
+                    <ul>
+                        <li><a href="sorter.html">Sorter Sistemleri</a></li>
+                        <li><a href="palet-lift.html">Pallet Lift</a></li>
+                        <li><a href="miniload.html">Miniload</a></li>
+                        <li><a href="pick-to-light.html">Pick to Light</a></li>
+                        <li><a href="scada.html">SCADA Sistemleri</a></li>
+                        <li><a href="production-tracking.html">Üretim Takibi</a></li>
+                        <li><a href="data-collection.html">Veri Toplama</a></li>
+                        <li><a href="custom-software.html">Özel Yazılım</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Hizmetler</h4>
+                    <ul>
+                        <li><a href="plc-programlama.html">PLC Programlama</a></li>
+                        <li><a href="scada.html">SCADA Sistemleri</a></li>
+                        <li><a href="sistem-entegrasyonu.html">Sistem Entegrasyonu</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <p>Silivri - İSTANBUL TÜRKİYE</p>
+                    <p>+90 212 657 18 03</p>
+                    <p>info@lojikon.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
-    <script src="include-templates.js"></script>
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init("pMn_T_QHghVJklt3q");
-        })();
-    </script>
+    <script src="script.js"></script>
+    <script src="data-collection-animation.js"></script>
 </body>
 </html> 

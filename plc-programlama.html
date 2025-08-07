@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLC Programlama - Lojikon | Endüstriyel Otomasyon ve PLC Çözümleri</title>
+    <meta name="description" content="Lojikon PLC programlama hizmetleri ile Siemens, Allen Bradley, Schneider ve diğer markalar için özel çözümler.">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="PLC programlama, Siemens PLC, Allen Bradley, Schneider, ladder logic, function block, structured text, endüstriyel otomasyon">
+    <meta name="author" content="Lojikon">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="PLC Programlama - Lojikon">
+    <meta property="og:description" content="Siemens, Allen Bradley, Schneider PLC programlama hizmetleri">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lojikon.com/plc-programlama">
+    <meta property="og:image" content="https://lojikon.com/img/plc-programming.jpg">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PLC Programlama - Lojikon">
+    <meta name="twitter:description" content="Endüstriyel otomasyon PLC programlama çözümleri">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="plc-programlama.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="Lojikon Logo">
+                    </a>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="index.html#about">Hakkımızda</a></li>
+                        <li><a href="index.html#solutions">Çözümler</a></li>
+                        <li><a href="#services">Hizmetler</a></li>
+                        <li><a href="index.html#contact">İletişim</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero plc-hero">
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text">
+                    <h1>PLC Programlama</h1>
+                    <p class="hero-subtitle">Siemens, Allen Bradley, Schneider ve diğer PLC markaları için profesyonel programlama hizmetleri</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Teklif Al</a>
+                        <a href="#how-it-works" class="btn btn-secondary">Nasıl Çalışır?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PLC Programming Animation -->
+        <div class="plc-hero-animation">
+            <div class="plc-ide">
+                <div class="ide-header">
+                    <div class="ide-tabs">
+                        <div class="tab active" data-file="main.lad">main.lad</div>
+                        <div class="tab" data-file="functions.fbd">functions.fbd</div>
+                        <div class="tab" data-file="variables.scl">variables.scl</div>
+                    </div>
+                    <div class="ide-controls">
+                        <button class="compile-btn"><i class="fas fa-play"></i></button>
+                        <button class="debug-btn"><i class="fas fa-bug"></i></button>
+                        <button class="download-btn"><i class="fas fa-download"></i></button>
+                    </div>
+                </div>
+                <div class="code-editor">
+                    <div class="line-numbers">
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                        <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line"><span class="keyword">NETWORK</span> <span class="number">1</span></div>
+                        <div class="code-line"><span class="indent">|</span><span class="input">I0.0</span><span class="operator">--| |--</span><span class="output">Q0.0</span></div>
+                        <div class="code-line"><span class="keyword">NETWORK</span> <span class="number">2</span></div>
+                        <div class="code-line"><span class="indent">|</span><span class="input">I0.1</span><span class="operator">--| |--</span><span class="function">TON</span><span class="parameter">(T1, 1000ms)</span></div>
+                        <div class="code-line"><span class="indent">|</span><span class="timer">T1</span><span class="operator">--| |--</span><span class="output">Q0.1</span></div>
+                        <div class="code-line"><span class="keyword">NETWORK</span> <span class="number">3</span></div>
+                        <div class="code-line"><span class="indent">|</span><span class="input">I0.2</span><span class="operator">--| |--</span><span class="function">CTU</span><span class="parameter">(C1, 100)</span></div>
+                        <div class="code-line"><span class="indent">|</span><span class="counter">C1</span><span class="operator">--| |--</span><span class="output">Q0.2</span></div>
+                    </div>
+                </div>
+                <div class="plc-status">
+                    <div class="status-item">
+                        <span class="status-label">CPU:</span>
+                        <span class="status-value online">ONLINE</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">RUN:</span>
+                        <span class="status-value running">RUNNING</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">I/O:</span>
+                        <span class="status-value">24/16</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nasıl Çalışır?</h2>
+                <p>PLC programlama sürecimiz</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Analiz ve Planlama</h3>
+                        <p>Müşteri ihtiyaçlarını analiz eder, sistem gereksinimlerini belirler ve programlama stratejisini planlarız.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Programlama</h3>
+                        <p>Ladder Logic, Function Block veya Structured Text kullanarak PLC programını geliştiririz.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Test ve Doğrulama</h3>
+                        <p>Programı simülasyon ortamında test eder, hataları düzeltir ve performansını optimize ederiz.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Kurulum ve Eğitim</h3>
+                        <p>Programı PLC'ye yükler, sistem entegrasyonunu sağlar ve kullanıcı eğitimi veririz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Use Section -->
+    <section class="why-use">
+        <div class="container">
+            <div class="section-header">
+                <h2>Neden Lojikon?</h2>
+                <p>PLC programlama hizmetlerimizi tercih etmenizin nedenleri</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Uzman Ekip</h3>
+                    <p>10+ yıl deneyimli PLC programcıları ile profesyonel hizmet</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Çoklu Marka</h3>
+                    <p>Siemens, Allen Bradley, Schneider, Mitsubishi ve diğer tüm markalar</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Güvenilir</h3>
+                    <p>Endüstriyel standartlara uygun, güvenli ve stabil programlar</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>7/24 Destek</h3>
+                    <p>Kurulum sonrası teknik destek ve bakım hizmetleri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where Used Section -->
+    <section class="where-used">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kullanım Alanları</h2>
+                <p>PLC programlama hizmetlerimizin kullanıldığı sektörler</p>
+            </div>
+            
+            <div class="industries-grid">
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Üretim Otomasyonu</h3>
+                    <p>Montaj hatları, paketleme sistemleri, kalite kontrol</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Depo Otomasyonu</h3>
+                    <p>AS/RS sistemleri, konveyör kontrolü, sorter sistemleri</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Proses Kontrolü</h3>
+                    <p>Kimyasal işlemler, su arıtma, enerji yönetimi</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Otomotiv</h3>
+                    <p>Üretim hatları, robot kontrolü, test sistemleri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs Section -->
+    <section class="technical-specs">
+        <div class="container">
+            <div class="section-header">
+                <h2>Teknik Özellikler</h2>
+                <p>Desteklediğimiz PLC markaları ve programlama dilleri</p>
+            </div>
+            
+            <div class="specs-content">
+                <div class="specs-column">
+                    <h3>PLC Markaları</h3>
+                    <ul class="specs-list">
+                        <li><strong>Siemens:</strong> S7-1200, S7-1500, S7-300, S7-400</li>
+                        <li><strong>Allen Bradley:</strong> ControlLogix, CompactLogix, MicroLogix</li>
+                        <li><strong>Schneider:</strong> Modicon M340, M580, Premium</li>
+                        <li><strong>Mitsubishi:</strong> FX, Q, L serisi</li>
+                        <li><strong>Omron:</strong> CJ, CP, CS serisi</li>
+                        <li><strong>Beckhoff:</strong> CX, CP serisi</li>
+                    </ul>
+                </div>
+                
+                <div class="specs-column">
+                    <h3>Programlama Dilleri</h3>
+                    <ul class="specs-list">
+                        <li><strong>Ladder Logic (LD):</strong> Elektriksel şema benzeri programlama</li>
+                        <li><strong>Function Block (FBD):</strong> Blok tabanlı programlama</li>
+                        <li><strong>Structured Text (ST):</strong> Metin tabanlı programlama</li>
+                        <li><strong>Instruction List (IL):</strong> Assembly benzeri programlama</li>
+                        <li><strong>Sequential Function Chart (SFC):</strong> Durum makinesi programlama</li>
+                    </ul>
+                </div>
+                
+                <div class="specs-column">
+                    <h3>Özellikler</h3>
+                    <ul class="specs-list">
+                        <li><strong>I/O Sayısı:</strong> 8-8192 arası dijital/analog I/O</li>
+                        <li><strong>İletişim:</strong> Profinet, EtherNet/IP, Modbus TCP</li>
+                        <li><strong>Güvenlik:</strong> Şifreleme, erişim kontrolü</li>
+                        <li><strong>Backup:</strong> Otomatik yedekleme ve geri yükleme</li>
+                        <li><strong>Monitoring:</strong> Gerçek zamanlı izleme ve hata ayıklama</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>İletişim</h2>
+                <p>PLC programlama hizmetlerimiz hakkında bilgi alın</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adres</h4>
+                            <p>Silivri - İSTANBUL TÜRKİYE<br>Endüstriyel Otomasyon Merkezi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p>+90 212 657 18 03<br>+90 533 388 33 92</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@lojikon.com<br>yusuf@lojikon.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Çalışma Saatleri</h4>
+                            <p>Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 13:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Adınız *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email Adresiniz *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Telefon Numaranız">
+                    </div>
+                    <div class="form-group">
+                        <select name="plc_brand" required>
+                            <option value="">PLC Markası Seçin *</option>
+                            <option value="siemens">Siemens</option>
+                            <option value="allen-bradley">Allen Bradley</option>
+                            <option value="schneider">Schneider</option>
+                            <option value="mitsubishi">Mitsubishi</option>
+                            <option value="omron">Omron</option>
+                            <option value="beckhoff">Beckhoff</option>
+                            <option value="other">Diğer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Proje detaylarınızı ve ihtiyaçlarınızı belirtin *" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Teklif Al</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Lojikon</h4>
+                    <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Çözümler</h4>
+                    <ul>
+                        <li><a href="sorter.html">Sorter Sistemleri</a></li>
+                        <li><a href="palet-lift.html">Palet Lift Sistemleri</a></li>
+                        <li><a href="miniload.html">Miniload Sistemleri</a></li>
+                        <li><a href="pick-to-light.html">Pick-to-Light</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Hizmetler</h4>
+                    <ul>
+                        <li><a href="plc-programlama.html">PLC Programlama</a></li>
+                        <li><a href="scada.html">SCADA Sistemleri</a></li>
+                        <li><a href="custom-software.html">Özel Yazılım</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <p>Silivri - İSTANBUL TÜRKİYE<br>
+                    Tel: +90 212 657 18 03<br>
+                    Email: info@lojikon.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lojikon. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+    <script src="plc-programlama-animation.js"></script>
+</body>
+</html> 

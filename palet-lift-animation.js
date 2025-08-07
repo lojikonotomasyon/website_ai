@@ -1,284 +1,238 @@
-// Professional Pallet Lift Animation System
-class ProfessionalElevator {
+// ===== PALLET LİFT ANİMASYONU JAVASCRIPT =====
+
+class PalletLiftAnimation {
     constructor() {
         this.currentFloor = 1;
         this.targetFloor = 1;
         this.isMoving = false;
-        this.isDoorOpen = false;
-        this.totalFloors = 4;
-        this.floorHeight = 150; // pixels per floor
-        this.moveSpeed = 2000; // ms per floor
-        this.doorSpeed = 500; // ms for door operation
+        this.isAutoMode = false;
+        this.autoInterval = null;
+        this.animationId = null;
+        
+        // Responsive floor height calculations
+        this.isMobile = window.innerWidth <= 768;
+        this.floorHeights = this.isMobile ? {
+            1: 15,
+            2: 110,
+            3: 205,
+            4: 300
+        } : {
+            1: 20,
+            2: 150,
+            3: 280,
+            4: 410
+        };
         
         this.init();
     }
-
+    
     init() {
-        this.bindEvents();
+        this.setupControls();
         this.updateDisplay();
-        this.setElevatorPosition();
-        this.setCounterweightPosition();
-        
-        // Add page visibility handling
-        this.setupPageVisibilityHandling();
+        this.startAutoMode();
     }
-
-    setupPageVisibilityHandling() {
-        // Handle page visibility changes
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                // Page is hidden, stop demo
-                this.stopDemo();
-            } else {
-                // Page is visible, start demo
-                this.startDemo();
-            }
-        });
-    }
-
-    bindEvents() {
+    
+    setupControls() {
         // Floor buttons
         const floorButtons = document.querySelectorAll('.floor-btn');
         floorButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const floor = parseInt(e.target.dataset.floor);
-                this.callElevator(floor);
+            btn.addEventListener('click', () => {
+                const floor = parseInt(btn.dataset.floor);
+                this.goToFloor(floor);
             });
         });
-
-        // Emergency stop
-        const emergencyStop = document.getElementById('emergencyStop');
+        
+        // Control buttons
+        const emergencyStop = document.getElementById('emergency-stop');
+        const autoMode = document.getElementById('auto-mode');
+        
         if (emergencyStop) {
-            emergencyStop.addEventListener('click', () => this.emergencyStop());
-        }
-
-        // Pallet loading
-        const pallets = document.querySelectorAll('.pallet');
-        pallets.forEach(pallet => {
-            pallet.addEventListener('click', (e) => {
-                this.loadPallet(pallet);
+            emergencyStop.addEventListener('click', () => {
+                this.emergencyStop();
             });
-        });
+        }
+        
+        if (autoMode) {
+            autoMode.addEventListener('click', () => {
+                this.toggleAutoMode();
+            });
+        }
     }
-
-    callElevator(targetFloor) {
-        if (this.isMoving || targetFloor === this.currentFloor) return;
-
-        this.targetFloor = targetFloor;
-        this.updateFloorButtons();
-        this.moveElevator();
-    }
-
-    moveElevator() {
-        if (this.isMoving) return;
-
+    
+    goToFloor(floor) {
+        if (this.isMoving || floor === this.currentFloor) return;
+        
+        this.targetFloor = floor;
         this.isMoving = true;
-        this.updateStatus('HAREKET HALİNDE');
-        this.closeDoors();
-
-        const direction = this.targetFloor > this.currentFloor ? 'up' : 'down';
-        const floorsToMove = Math.abs(this.targetFloor - this.currentFloor);
-        const totalMoveTime = floorsToMove * this.moveSpeed;
-
-        // Calculate new positions
-        const newElevatorPosition = (this.totalFloors - this.targetFloor) * this.floorHeight;
-        const newCounterweightPosition = (this.targetFloor - 1) * this.floorHeight;
-
-        // Animate elevator car
-        const elevatorCar = document.getElementById('elevatorCar');
-        if (elevatorCar) {
-            elevatorCar.style.transition = `bottom ${totalMoveTime}ms ease-in-out`;
-            elevatorCar.style.bottom = `${newElevatorPosition}px`;
-        }
-
-        // Animate counterweight (moves in opposite direction)
+        this.updateStatus('Hareket Ediyor');
+        
+        // Update floor buttons
+        document.querySelectorAll('.floor-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`[data-floor="${floor}"]`).classList.add('active');
+        
+        // Update floors
+        document.querySelectorAll('.floor').forEach(floorEl => {
+            floorEl.classList.remove('active');
+        });
+        document.querySelector(`[data-floor="${floor}"]`).classList.add('active');
+        
+        // Move lift platform with hardware acceleration
+        const liftPlatform = document.getElementById('lift-platform');
+        const pallet = document.getElementById('pallet');
         const counterweight = document.getElementById('counterweight');
-        if (counterweight) {
-            counterweight.style.transition = `bottom ${totalMoveTime}ms ease-in-out`;
-            counterweight.style.bottom = `${newCounterweightPosition}px`;
+        
+        if (liftPlatform && pallet && counterweight) {
+            const targetHeight = this.floorHeights[floor];
+            
+            // Use transform3d for hardware acceleration
+            liftPlatform.style.transform = `translate3d(0, 0, 0)`;
+            liftPlatform.style.bottom = `${targetHeight}px`;
+            
+            pallet.style.transform = `translate3d(0, 0, 0)`;
+            pallet.style.bottom = `${targetHeight + 20}px`;
+            
+            counterweight.style.transform = `translate3d(0, 0, 0)`;
+            counterweight.style.top = `${this.floorHeights[4] - targetHeight}px`;
         }
-
-        // Update floor display during movement
-        this.animateFloorDisplay(totalMoveTime);
-
-        // Complete movement
+        
+        // Open doors after movement
         setTimeout(() => {
-            this.currentFloor = this.targetFloor;
+            this.openDoors(floor);
+            this.currentFloor = floor;
             this.isMoving = false;
-            this.updateStatus('HAZIR');
-            this.openDoors();
+            this.updateStatus('Hazır');
             this.updateDisplay();
-        }, totalMoveTime);
-    }
-
-    animateFloorDisplay(duration) {
-        const floorDisplay = document.getElementById('currentFloor');
-        if (!floorDisplay) return;
-
-        const startFloor = this.currentFloor;
-        const endFloor = this.targetFloor;
-        const steps = 10;
-        const stepTime = duration / steps;
-
-        let step = 0;
-        const interval = setInterval(() => {
-            step++;
-            const progress = step / steps;
-            const currentDisplayFloor = Math.round(startFloor + (endFloor - startFloor) * progress);
-            floorDisplay.textContent = currentDisplayFloor;
-
-            if (step >= steps) {
-                clearInterval(interval);
-            }
-        }, stepTime);
-    }
-
-    openDoors() {
-        if (this.isDoorOpen) return;
-
-        this.isDoorOpen = true;
-        const leftDoor = document.querySelector('.car-door.left-door');
-        const rightDoor = document.querySelector('.car-door.right-door');
-
-        if (leftDoor) leftDoor.classList.add('open');
-        if (rightDoor) rightDoor.classList.add('open');
-
-        // Close doors after a delay
-        setTimeout(() => {
-            this.closeDoors();
         }, 3000);
     }
-
-    closeDoors() {
-        if (!this.isDoorOpen) return;
-
-        this.isDoorOpen = false;
-        const leftDoor = document.querySelector('.car-door.left-door');
-        const rightDoor = document.querySelector('.car-door.right-door');
-
-        if (leftDoor) leftDoor.classList.remove('open');
-        if (rightDoor) rightDoor.classList.remove('open');
+    
+    openDoors(floor) {
+        const floorElement = document.querySelector(`[data-floor="${floor}"]`);
+        if (floorElement) {
+            const leftDoor = floorElement.querySelector('.left-door');
+            const rightDoor = floorElement.querySelector('.right-door');
+            
+            if (leftDoor && rightDoor) {
+                leftDoor.classList.add('open');
+                rightDoor.classList.add('open');
+                
+                // Close doors after delay
+                setTimeout(() => {
+                    leftDoor.classList.remove('open');
+                    rightDoor.classList.remove('open');
+                }, 2000);
+            }
+        }
     }
-
-    loadPallet(pallet) {
-        if (this.isMoving || !this.isDoorOpen) return;
-
-        // Animate pallet loading
-        pallet.style.transition = 'all 1s ease-in-out';
-        pallet.style.transform = 'scale(0.8) translateY(-20px)';
-        pallet.style.opacity = '0.7';
-
-        // Simulate loading process
-        setTimeout(() => {
-            pallet.style.transform = 'scale(1) translateY(0)';
-            pallet.style.opacity = '1';
-            this.updateStatus('YÜKLEME TAMAMLANDI');
-        }, 1000);
-    }
-
+    
     emergencyStop() {
         this.isMoving = false;
-        this.updateStatus('ACİL DURDURMA');
+        this.isAutoMode = false;
+        this.updateStatus('Acil Durum');
         
-        // Reset elevator position
-        this.setElevatorPosition();
-        this.setCounterweightPosition();
+        if (this.autoInterval) {
+            clearInterval(this.autoInterval);
+            this.autoInterval = null;
+        }
         
-        // Close doors
-        this.closeDoors();
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+        }
         
-        // Update display
-        this.updateDisplay();
-        
-        // Reset status after delay
-        setTimeout(() => {
-            this.updateStatus('HAZIR');
-        }, 3000);
-    }
-
-    updateFloorButtons() {
-        const floorButtons = document.querySelectorAll('.floor-btn');
-        floorButtons.forEach(btn => {
-            btn.classList.remove('active');
-            if (parseInt(btn.dataset.floor) === this.targetFloor) {
-                btn.classList.add('active');
-            }
-        });
-    }
-
-    updateStatus(status) {
-        const statusElement = document.getElementById('elevatorStatus');
-        if (statusElement) {
-            statusElement.textContent = status;
-            
-            // Color coding for status
-            switch (status) {
-                case 'HAZIR':
-                    statusElement.style.color = '#2ecc71';
-                    break;
-                case 'HAREKET HALİNDE':
-                    statusElement.style.color = '#f39c12';
-                    break;
-                case 'ACİL DURDURMA':
-                    statusElement.style.color = '#e74c3c';
-                    break;
-                case 'YÜKLEME TAMAMLANDI':
-                    statusElement.style.color = '#3498db';
-                    break;
-                default:
-                    statusElement.style.color = '#2ecc71';
-            }
+        // Reset auto mode button
+        const autoModeBtn = document.getElementById('auto-mode');
+        if (autoModeBtn) {
+            autoModeBtn.classList.remove('active');
         }
     }
-
-    updateDisplay() {
-        const floorElement = document.getElementById('currentFloor');
-        if (floorElement) {
-            floorElement.textContent = this.currentFloor;
-        }
-    }
-
-    setElevatorPosition() {
-        const elevatorCar = document.getElementById('elevatorCar');
-        if (elevatorCar) {
-            const position = (this.totalFloors - this.currentFloor) * this.floorHeight;
-            elevatorCar.style.bottom = `${position}px`;
-        }
-    }
-
-    setCounterweightPosition() {
-        const counterweight = document.getElementById('counterweight');
-        if (counterweight) {
-            const position = (this.currentFloor - 1) * this.floorHeight;
-            counterweight.style.bottom = `${position}px`;
-        }
-    }
-
-    // Auto-demo mode
-    startDemo() {
-        this.demoInterval = setInterval(() => {
-            if (!this.isMoving) {
-                const randomFloor = Math.floor(Math.random() * this.totalFloors) + 1;
-                if (randomFloor !== this.currentFloor) {
-                    this.callElevator(randomFloor);
+    
+    toggleAutoMode() {
+        this.isAutoMode = !this.isAutoMode;
+        const autoModeBtn = document.getElementById('auto-mode');
+        
+        if (autoModeBtn) {
+            if (this.isAutoMode) {
+                autoModeBtn.classList.add('active');
+                this.startAutoMode();
+            } else {
+                autoModeBtn.classList.remove('active');
+                if (this.autoInterval) {
+                    clearInterval(this.autoInterval);
+                    this.autoInterval = null;
                 }
+            }
+        }
+    }
+    
+    startAutoMode() {
+        if (!this.isAutoMode) return;
+        
+        this.autoInterval = setInterval(() => {
+            if (!this.isMoving) {
+                const randomFloor = Math.floor(Math.random() * 4) + 1;
+                this.goToFloor(randomFloor);
             }
         }, 5000);
     }
-
-    stopDemo() {
-        if (this.demoInterval) {
-            clearInterval(this.demoInterval);
+    
+    updateStatus(status) {
+        const statusElement = document.getElementById('status-value');
+        if (statusElement) {
+            statusElement.textContent = status;
         }
+    }
+    
+    updateDisplay() {
+        const currentFloorElement = document.getElementById('current-floor');
+        const targetFloorElement = document.getElementById('target-floor');
+        const directionElement = document.getElementById('direction');
+        
+        if (currentFloorElement) {
+            currentFloorElement.textContent = this.currentFloor;
+        }
+        
+        if (targetFloorElement) {
+            targetFloorElement.textContent = this.targetFloor;
+        }
+        
+        if (directionElement) {
+            if (this.isMoving) {
+                directionElement.textContent = this.targetFloor > this.currentFloor ? 'Yukarı' : 'Aşağı';
+            } else {
+                directionElement.textContent = 'Durdu';
+            }
+        }
+    }
+    
+    updatePerformanceIndicators() {
+        setInterval(() => {
+            const speedElement = document.getElementById('speed-value');
+            const capacityElement = document.getElementById('capacity-value');
+            const efficiencyElement = document.getElementById('efficiency-value');
+            const uptimeElement = document.getElementById('uptime-value');
+            
+            if (speedElement) {
+                speedElement.textContent = this.isMoving ? '2.5 m/s' : '0 m/s';
+            }
+            
+            if (capacityElement) {
+                capacityElement.textContent = Math.floor(Math.random() * 50) + 150;
+            }
+            
+            if (efficiencyElement) {
+                efficiencyElement.textContent = (95 + Math.random() * 5).toFixed(1) + '%';
+            }
+            
+            if (uptimeElement) {
+                uptimeElement.textContent = (99.5 + Math.random() * 0.5).toFixed(2) + '%';
+            }
+        }, 1000);
     }
 }
 
-// Initialize the elevator when the page loads
+// Initialize animation when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const elevator = new ProfessionalElevator();
-    
-    // Start demo mode after 3 seconds
-    setTimeout(() => {
-        elevator.startDemo();
-    }, 3000);
+    const animation = new PalletLiftAnimation();
+    animation.updatePerformanceIndicators();
 }); 

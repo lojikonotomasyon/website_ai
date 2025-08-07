@@ -3,268 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCADA Sistemleri - Lojikon</title>
-    <meta name="description" content="Endüstriyel süreçlerinizi izlemek ve kontrol etmek için modern SCADA çözümleri. Gerçek zamanlı izleme, alarm yönetimi ve uzaktan kontrol sistemleri.">
-    <meta name="keywords" content="SCADA, endüstriyel otomasyon, gerçek zamanlı izleme, alarm yönetimi, uzaktan kontrol, veri arşivleme, HMI, PLC">
+    <title>SCADA Sistemleri - Lojikon | Endüstriyel Otomasyon ve Süpervizyon Sistemleri</title>
+    <meta name="description" content="Lojikon SCADA sistemleri ile endüstriyel otomasyon ve süpervizyon. Gerçek zamanlı izleme, kontrol ve raporlama çözümleri.">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lojikon.com/scada.html">
-    <meta property="og:title" content="SCADA Sistemleri - Lojikon">
-    <meta property="og:description" content="Endüstriyel süreçlerinizi izlemek ve kontrol etmek için modern SCADA çözümleri.">
-    <meta property="og:image" content="https://lojikon.com/img/scada.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://lojikon.com/scada.html">
-    <meta property="twitter:title" content="SCADA Sistemleri - Lojikon">
-    <meta property="twitter:description" content="Endüstriyel süreçlerinizi izlemek ve kontrol etmek için modern SCADA çözümleri.">
-    <meta property="twitter:image" content="https://lojikon.com/img/scada.jpg">
-
-    <!-- SEO Meta Tags -->
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Lojikon">
-    <meta name="geo.region" content="TR-34">
-    <link rel="canonical" href="https://lojikon.com/scada.html">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-    <!-- Font Awesome -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- CSS -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "SCADA Sistemleri",
-        "description": "Endüstriyel süreçlerinizi izlemek ve kontrol etmek için modern SCADA çözümleri",
-        "brand": {
-            "@type": "Brand",
-            "name": "Lojikon"
-        },
-        "manufacturer": {
-            "@type": "Organization",
-            "name": "Lojikon"
-        },
-        "offers": {
-            "@type": "Offer",
-            "availability": "https://schema.org/InStock"
-        }
-    }
-    </script>
+    <link rel="stylesheet" href="scada.css">
 </head>
 <body>
-    <!-- Header Template Container -->
-    <div id="header-container"></div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h2>Lojikon</h2>
+                <p class="header-slogan">Endüstriyel Otomasyon</p>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#about">Hakkımızda</a></li>
+                <li><a href="index.html#solutions">Çözümler</a></li>
+                <li><a href="index.html#services">Hizmetler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+            
+            <div class="header-social-links">
+                <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
+    <section id="home" class="hero">
+        <div class="hero-container solution-page">
             <div class="hero-content">
-                <h1 class="hero-title">SCADA Sistemleri</h1>
-                <div class="hero-slogan">
-                    <span class="fixed-text">Akıllı</span>
-                    <span class="variable-1" id="var1">Sistemler</span>
-                    <span class="fixed-text">, Akıllı</span>
-                    <span class="variable-2" id="var2">Yarın</span>
+                <div class="hero-text-content">
+                    <h1 class="hero-title">
+                        <span class="highlight">SCADA</span> Sistemleri
+                    </h1>
+                    
+                    <div class="hero-slogan">
+                        <span class="fixed-text">Akıllı</span>
+                        <span class="variable-1" id="var1">İzleme</span>
+                        <span class="fixed-text">, Akıllı</span>
+                        <span class="variable-2" id="var2">Kontrol</span>
+                    </div>
+                    
+                    <p class="hero-description">
+                        Endüstriyel otomasyon ve süpervizyon sistemleri ile gerçek zamanlı izleme, kontrol ve raporlama. 
+                        Akıllı SCADA çözümleri ile verimli üretim.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#how-it-works" class="btn btn-primary">
+                            <i class="fas fa-cogs"></i>
+                            Nasıl Çalışır?
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-phone"></i>
+                            İletişim
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>İzleme</p>
+                        </div>
+                        <div class="stat">
+                            <h3>%99.9</h3>
+                            <p>Güvenilirlik</p>
+                        </div>
+                        <div class="stat">
+                            <h3>1000+</h3>
+                            <p>Nokta</p>
+                        </div>
+                    </div>
                 </div>
-                <p class="hero-subtitle">Endüstriyel süreçlerinizi <span class="highlight">gerçek zamanlı</span> olarak izleyin ve kontrol edin</p>
-                <p class="hero-description">
-                    SCADA (Supervisory Control and Data Acquisition) sistemlerimiz ile üretim süreçlerinizi 
-                    merkezi bir noktadan izleyebilir, kontrol edebilir ve optimize edebilirsiniz. 
-                    Modern HMI arayüzleri ve güçlü veri yönetimi özellikleri ile endüstriyel otomasyonun 
-                    geleceğini yaşayın.
-                </p>
+                
+                <!-- SCADA Dashboard Animation -->
+                <div class="scada-hero-animation">
+                    <div class="scada-dashboard">
+                        <!-- Header -->
+                        <div class="dashboard-header">
+                            <div class="header-title">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>LOJIKON SCADA</span>
+                            </div>
+                            <div class="header-time" id="dashboard-time">00:00:00</div>
+                        </div>
+                        
+                        <!-- Main Content -->
+                        <div class="dashboard-content">
+                            <!-- Process Overview -->
+                            <div class="process-overview">
+                                <div class="process-item" data-process="sorter">
+                                    <div class="process-icon">
+                                        <i class="fas fa-sort"></i>
+                                    </div>
+                                    <div class="process-info">
+                                        <div class="process-name">Sorter</div>
+                                        <div class="process-status" id="sorter-status">Çalışıyor</div>
+                                    </div>
+                                    <div class="process-indicator active"></div>
+                                </div>
+                                
+                                <div class="process-item" data-process="lift">
+                                    <div class="process-icon">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </div>
+                                    <div class="process-info">
+                                        <div class="process-name">Lift</div>
+                                        <div class="process-status" id="lift-status">Hazır</div>
+                                    </div>
+                                    <div class="process-indicator"></div>
+                                </div>
+                                
+                                <div class="process-item" data-process="conveyor">
+                                    <div class="process-icon">
+                                        <i class="fas fa-conveyor-belt"></i>
+                                    </div>
+                                    <div class="process-info">
+                                        <div class="process-name">Konveyor</div>
+                                        <div class="process-status" id="conveyor-status">Çalışıyor</div>
+                                    </div>
+                                    <div class="process-indicator active"></div>
+                                </div>
+                                
+                                <div class="process-item" data-process="robot">
+                                    <div class="process-icon">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="process-info">
+                                        <div class="process-name">Robot</div>
+                                        <div class="process-status" id="robot-status">Beklemede</div>
+                                    </div>
+                                    <div class="process-indicator warning"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Real-time Data -->
+                            <div class="real-time-data">
+                                <div class="data-card">
+                                    <div class="data-title">Sıcaklık</div>
+                                    <div class="data-value" id="temperature">24.5°C</div>
+                                    <div class="data-trend up">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+0.2°C</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="data-card">
+                                    <div class="data-title">Nem</div>
+                                    <div class="data-value" id="humidity">45%</div>
+                                    <div class="data-trend down">
+                                        <i class="fas fa-arrow-down"></i>
+                                        <span>-2%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="data-card">
+                                    <div class="data-title">Enerji</div>
+                                    <div class="data-value" id="energy">125 kW</div>
+                                    <div class="data-trend up">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+5 kW</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="data-card">
+                                    <div class="data-title">Üretim</div>
+                                    <div class="data-value" id="production">1,247</div>
+                                    <div class="data-trend up">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+23</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Alarms -->
+                            <div class="alarms-panel">
+                                <div class="alarms-header">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>Aktif Alarmlar</span>
+                                </div>
+                                <div class="alarms-list" id="alarms-list">
+                                    <div class="alarm-item warning">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <span>Robot 2 - Bakım Gerekli</span>
+                                        <span class="alarm-time">2 dk önce</span>
+                                    </div>
+                                    <div class="alarm-item info">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span>Sorter - Yüksek Verimlilik</span>
+                                        <span class="alarm-time">5 dk önce</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Control Panel -->
+                        <div class="control-panel">
+                            <div class="control-buttons">
+                                <button class="control-btn" id="emergency-stop">
+                                    <i class="fas fa-stop"></i>
+                                    <span>ACİL DURDUR</span>
+                                </button>
+                                <button class="control-btn" id="system-reset">
+                                    <i class="fas fa-redo"></i>
+                                    <span>SİSTEM SIFIRLA</span>
+                                </button>
+                                <button class="control-btn" id="maintenance-mode">
+                                    <i class="fas fa-tools"></i>
+                                    <span>BAKIM MODU</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
         <div class="container">
             <div class="section-header">
-                <h2>SCADA Sistemleri Hakkında</h2>
-                <p>Endüstriyel süreçlerinizi merkezi kontrol ile yönetin</p>
+                <h2>Nasıl Çalışır?</h2>
+                <p>SCADA sisteminin çalışma prensibi ve adımları</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Nedir?</h3>
-                    <p>SCADA (Supervisory Control and Data Acquisition), endüstriyel süreçleri izlemek, 
-                       kontrol etmek ve yönetmek için kullanılan bilgisayar tabanlı sistemlerdir. 
-                       Uzaktan izleme, veri toplama, alarm yönetimi ve otomatik kontrol fonksiyonları 
-                       ile üretim süreçlerinizi optimize eder.</p>
-                    
-                    <h3>Nasıl Çalışır?</h3>
-                    <p>SCADA sistemi, sahada bulunan PLC'ler, RTU'lar ve sensörlerden veri toplar. 
-                       Bu veriler merkezi sunucuda işlenir ve HMI (Human Machine Interface) arayüzleri 
-                       aracılığıyla operatörlere sunulur. Sistem, kritik durumlarda otomatik alarm 
-                       verebilir ve önceden tanımlanmış kurallara göre kontrol kararları alabilir.</p>
-                    
-                    <h3>Nerede Kullanılır?</h3>
-                    <ul>
-                        <li><strong>Üretim Tesisleri:</strong> Otomotiv, gıda, ilaç, kimya sektörleri</li>
-                        <li><strong>Enerji Sektörü:</strong> Elektrik üretim ve dağıtım tesisleri</li>
-                        <li><strong>Su ve Atık Yönetimi:</strong> Su arıtma, kanalizasyon sistemleri</li>
-                        <li><strong>Petrol ve Gaz:</strong> Boru hattı izleme, rafineri kontrolü</li>
-                        <li><strong>Bina Otomasyonu:</strong> Akıllı binalar, ticari kompleksler</li>
-                    </ul>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Veri Toplama</h3>
+                    <p>PLC'lerden ve sensörlerden gerçek zamanlı veri toplanır.</p>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>İşleme</h3>
+                    <p>Toplanan veriler işlenir ve analiz edilir.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
                         <i class="fas fa-desktop"></i>
-                        <p>SCADA Sistemleri</p>
                     </div>
+                    <h3>Görselleştirme</h3>
+                    <p>Veriler kullanıcı dostu arayüzde görselleştirilir.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Kontrol</h3>
+                    <p>Sistemler uzaktan kontrol edilir ve yönetilir.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Photos Section -->
-    <section id="photos" class="photos-section">
+    <!-- Why Use Section -->
+    <section id="why-use" class="why-use">
         <div class="container">
             <div class="section-header">
-                <h2>SCADA Sistemleri Galerisi</h2>
-                <p>Gerçek projelerimizden örnekler</p>
+                <h2>Neden Kullanılır?</h2>
+                <p>SCADA sistemlerinin avantajları ve faydaları</p>
             </div>
-            <div class="photos-grid">
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_1.PNG" alt="SCADA HMI Dashboard">
-                    </div>
-                    <div class="photo-description">
-                        <h4>SCADA HMI Dashboard</h4>
-                        <p>Merkezi kontrol ve izleme için gelişmiş HMI arayüzü</p>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_2.PNG" alt="SCADA HMI Kontrol">
-                    </div>
-                    <div class="photo-description">
-                        <h4>SCADA HMI Kontrol Paneli</h4>
-                        <p>Endüstriyel süreçleri kontrol eden profesyonel HMI sistemi</p>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_3.PNG" alt="SCADA HMI İzleme">
-                    </div>
-                    <div class="photo-description">
-                        <h4>SCADA HMI İzleme Ekranı</h4>
-                        <p>Gerçek zamanlı süreç izleme ve alarm yönetimi</p>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/hmi_4.PNG" alt="SCADA HMI Analiz">
-                    </div>
-                    <div class="photo-description">
-                        <h4>SCADA HMI Analiz Dashboard</h4>
-                        <p>Performans analizi ve detaylı raporlama arayüzü</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Specifications Section -->
-    <section id="specs" class="specs-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Teknik Özellikler</h2>
-                <p>SCADA sistemlerimizin teknik detayları</p>
-            </div>
-            <div class="specs-grid">
-                <div class="spec-item">
-                    <h4>İletişim Protokolleri</h4>
-                    <p>Modbus TCP/RTU, OPC UA, Profinet, Ethernet/IP, Profibus DP, DNP3</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Veri Toplama</h4>
-                    <p>100,000+ I/O noktası, milisaniye hassasiyetinde veri toplama</p>
-                </div>
-                <div class="spec-item">
-                    <h4>HMI Özellikleri</h4>
-                    <p>Çoklu ekran desteği, dokunmatik arayüz, mobil uyumluluk</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Alarm Yönetimi</h4>
-                    <p>Hiyerarşik alarm sistemi, e-posta/SMS bildirimleri</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Veri Arşivleme</h4>
-                    <p>10 yıla kadar veri saklama, sıkıştırılmış arşivleme</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Güvenlik</h4>
-                    <p>SSL şifreleme, kullanıcı yetkilendirme, audit trail</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Uzaktan Erişim</h4>
-                    <p>Web tabanlı erişim, VPN desteği, mobil uygulama</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Raporlama</h4>
-                    <p>Özelleştirilebilir raporlar, otomatik rapor gönderimi</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="benefits-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Faydalar</h2>
-                <p>SCADA sistemlerinin işletmenize sağlayacağı avantajlar</p>
-            </div>
+            
             <div class="benefits-grid">
-                <div class="benefit-item">
+                <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-eye"></i>
                     </div>
-                    <h4>Merkezi İzleme</h4>
-                    <p>Tüm üretim süreçlerini tek noktadan izleyin ve kontrol edin</p>
+                    <h3>Gerçek Zamanlı İzleme</h3>
+                    <p>7/24 sürekli izleme ve kontrol imkanı.</p>
                 </div>
-                <div class="benefit-item">
+                
+                <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
+                        <i class="fas fa-chart-bar"></i>
                     </div>
-                    <h4>Hızlı Müdahale</h4>
-                    <p>Kritik durumlarda anında alarm alın ve hızlı müdahale edin</p>
+                    <h3>Detaylı Raporlama</h3>
+                    <p>Kapsamlı analiz ve raporlama özellikleri.</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h4>Performans Analizi</h4>
-                    <p>Detaylı performans raporları ile süreçlerinizi optimize edin</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h4>Uzaktan Erişim</h4>
-                    <p>Mobil cihazlardan süreçlerinizi izleyin ve kontrol edin</p>
-                </div>
-                <div class="benefit-item">
+                
+                <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h4>Güvenlik</h4>
-                    <p>Güvenli veri iletişimi ve kullanıcı yetkilendirme sistemi</p>
+                    <h3>Güvenlik</h3>
+                    <p>Güvenli uzaktan erişim ve kontrol.</p>
                 </div>
-                <div class="benefit-item">
+                
+                <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h4>Kolay Entegrasyon</h4>
-                    <p>Mevcut sistemlerinizle kolayca entegre olur</p>
+                    <h3>Verimlilik</h3>
+                    <p>Operasyonel verimliliği artırır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where Used Section -->
+    <section id="where-used" class="where-used">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nerede Kullanılır?</h2>
+                <p>SCADA sistemlerinin kullanım alanları</p>
+            </div>
+            
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Üretim</h3>
+                    <p>Fabrikalarda üretim süreçlerinin izlenmesi ve kontrolü.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Su Arıtma</h3>
+                    <p>Su arıtma tesislerinde süreç kontrolü.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Enerji</h3>
+                    <p>Elektrik santrallerinde enerji yönetimi.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Depo Yönetimi</h3>
+                    <p>Depolarda otomasyon sistemlerinin kontrolü.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs Section -->
+    <section id="technical-specs" class="technical-specs">
+        <div class="container">
+            <div class="section-header">
+                <h2>Teknik Özellikler</h2>
+                <p>SCADA sistemlerinin teknik detayları</p>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h3>Yazılım Özellikleri</h3>
+                    <ul>
+                        <li><strong>Platform:</strong> Windows Server</li>
+                        <li><strong>Veritabanı:</strong> SQL Server</li>
+                        <li><strong>İletişim:</strong> OPC UA, Modbus</li>
+                        <li><strong>Güvenlik:</strong> SSL/TLS</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Donanım Gereksinimleri</h3>
+                    <ul>
+                        <li><strong>CPU:</strong> Intel i7 veya üzeri</li>
+                        <li><strong>RAM:</strong> 16GB minimum</li>
+                        <li><strong>Depolama:</strong> SSD 500GB</li>
+                        <li><strong>Ağ:</strong> Gigabit Ethernet</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Performans</h3>
+                    <ul>
+                        <li><strong>Veri Noktası:</strong> 1000+</li>
+                        <li><strong>Güncelleme Hızı:</strong> 100ms</li>
+                        <li><strong>Kullanıcı:</strong> 50+ eş zamanlı</li>
+                        <li><strong>Uptime:</strong> %99.9</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Entegrasyon</h3>
+                    <ul>
+                        <li><strong>PLC:</strong> Siemens, Allen Bradley</li>
+                        <li><strong>HMI:</strong> Touch Panel</li>
+                        <li><strong>MES:</strong> Entegre</li>
+                        <li><strong>ERP:</strong> API Bağlantısı</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -274,27 +429,130 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2>SCADA Sistemi Teklifi Alın</h2>
-                <p>İhtiyaçlarınıza özel SCADA sistemi çözümü için bizimle iletişime geçin</p>
+                <h2>İletişim</h2>
+                <p>Bizimle iletişime geçin</p>
             </div>
+            
             <div class="contact-content">
-                <div id="contact-info-container"></div>
-                <div id="contact-form-container"></div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adres</h4>
+                            <p>Silivri - İSTANBUL TÜRKİYE<br>Endüstriyel Otomasyon Merkezi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p>+90 212 657 18 03<br>+90 533 388 33 92</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@lojikon.com<br>yusuf@lojikon.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Çalışma Saatleri</h4>
+                            <p>Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 13:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Adınız *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email Adresiniz *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Telefon Numaranız">
+                    </div>
+                    <div class="form-group">
+                        <select name="service_type">
+                            <option value="">Hizmet Türü Seçin</option>
+                            <option value="scada">SCADA Sistemleri</option>
+                            <option value="hmi">HMI Geliştirme</option>
+                            <option value="integration">Sistem Entegrasyonu</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Mesajınız *" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Gönder
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer Template Container -->
-    <div id="footer-container"></div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lojikon</h3>
+                    <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@lojikonotomasyonveyazlmticltds" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Çözümler</h4>
+                    <ul>
+                        <li><a href="sorter.html">Sorter Sistemleri</a></li>
+                        <li><a href="palet-lift.html">Pallet Lift</a></li>
+                        <li><a href="miniload.html">Miniload</a></li>
+                        <li><a href="pick-to-light.html">Pick to Light</a></li>
+                        <li><a href="scada.html">SCADA Sistemleri</a></li>
+                        <li><a href="production-tracking.html">Üretim Takibi</a></li>
+                        <li><a href="data-collection.html">Veri Toplama</a></li>
+                        <li><a href="custom-software.html">Özel Yazılım</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Hizmetler</h4>
+                    <ul>
+                        <li><a href="plc-programlama.html">PLC Programlama</a></li>
+                        <li><a href="scada.html">SCADA Sistemleri</a></li>
+                        <li><a href="sistem-entegrasyonu.html">Sistem Entegrasyonu</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <p>Silivri - İSTANBUL TÜRKİYE</p>
+                    <p>+90 212 657 18 03</p>
+                    <p>info@lojikon.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
-    <script src="include-templates.js"></script>
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init("pMn_T_QHghVJklt3q");
-        })();
-    </script>
+    <script src="script.js"></script>
+    <script src="scada-animation.js"></script>
 </body>
 </html> 

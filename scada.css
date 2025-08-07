@@ -1,0 +1,599 @@
+/* ===== SCADA SAYFASI ÖZEL CSS ===== */
+
+.scada-hero-animation {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    position: relative;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.scada-dashboard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 20px;
+    color: white;
+    font-family: 'Courier New', monospace;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #60a5fa;
+}
+
+.header-title i {
+    font-size: 1.5rem;
+}
+
+.header-time {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #10b981;
+    font-family: 'Courier New', monospace;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: calc(100% - 120px);
+}
+
+/* Process Overview */
+.process-overview {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.process-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.process-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.process-icon {
+    width: 40px;
+    height: 40px;
+    background: #4a5568;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #a0aec0;
+}
+
+.process-info {
+    flex: 1;
+}
+
+.process-name {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.process-status {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.process-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #718096;
+    transition: all 0.3s ease;
+}
+
+.process-indicator.active {
+    background: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.process-indicator.warning {
+    background: #f59e0b;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Real-time Data */
+.real-time-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.data-card {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.data-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.data-title {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.data-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #60a5fa;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+.data-trend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.data-trend.up {
+    color: #10b981;
+}
+
+.data-trend.down {
+    color: #ef4444;
+}
+
+/* Alarms Panel */
+.alarms-panel {
+    grid-column: 1 / -1;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.alarms-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: #f59e0b;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.alarms-list {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.alarm-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.alarm-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.alarm-item.warning {
+    border-left: 4px solid #f59e0b;
+}
+
+.alarm-item.info {
+    border-left: 4px solid #60a5fa;
+}
+
+.alarm-item.error {
+    border-left: 4px solid #ef4444;
+}
+
+.alarm-time {
+    margin-left: auto;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Control Panel */
+.control-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.control-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.control-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #4a5568;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: bold;
+    min-width: 120px;
+}
+
+.control-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.control-btn#emergency-stop {
+    background: #ef4444;
+}
+
+.control-btn#emergency-stop:hover {
+    background: #dc2626;
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+}
+
+.control-btn#system-reset {
+    background: #f59e0b;
+}
+
+.control-btn#system-reset:hover {
+    background: #d97706;
+}
+
+.control-btn#maintenance-mode {
+    background: #60a5fa;
+}
+
+.control-btn#maintenance-mode:hover {
+    background: #3b82f6;
+}
+
+.control-btn i {
+    font-size: 1.5rem;
+}
+
+/* ===== SAYFA ÖZEL BÖLÜMLER ===== */
+
+/* How It Works Section */
+.how-it-works {
+    padding: 5rem 0;
+    background: var(--light-bg);
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.step-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.step-number {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.step-icon i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.step-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.step-card p {
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+/* Why Use Section */
+.why-use {
+    padding: 5rem 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.benefit-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.benefit-icon i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.benefit-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.benefit-card p {
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+/* Where Used Section */
+.where-used {
+    padding: 5rem 0;
+    background: var(--light-bg);
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.application-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.application-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.application-icon i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.application-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.application-card p {
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+/* Technical Specs Section */
+.technical-specs {
+    padding: 5rem 0;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.spec-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--accent);
+}
+
+.spec-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.spec-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.spec-card ul {
+    list-style: none;
+}
+
+.spec-card li {
+    padding: 0.5rem 0;
+    color: var(--secondary);
+    border-bottom: 1px solid var(--border);
+}
+
+.spec-card li:last-child {
+    border-bottom: none;
+}
+
+.spec-card strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .scada-hero-animation {
+        height: 400px;
+        min-height: 350px;
+    }
+    
+    .scada-dashboard {
+        padding: 15px;
+        height: 100%;
+    }
+    
+    .dashboard-content {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .real-time-data {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .data-card {
+        padding: 10px;
+    }
+    
+    .data-value {
+        font-size: 1.2rem;
+    }
+    
+    .control-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+    
+    .control-btn {
+        min-width: auto;
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+    
+    .steps-grid,
+    .benefits-grid,
+    .applications-grid,
+    .specs-grid {
+        grid-template-columns: 1fr;
+    }
+} 

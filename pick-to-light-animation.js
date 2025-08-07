@@ -1,269 +1,228 @@
-// Pick to Light Animation
+// ===== PICK-TO-LIGHT ANİMASYONU JAVASCRIPT =====
+
 class PickToLightAnimation {
     constructor() {
-        this.currentItemIndex = 0;
-        this.isAnimating = true; // Changed to true for auto-start
-        this.pickOrder = [
-            { id: 1, name: 'Ürün A', quantity: 2 },
-            { id: 3, name: 'Ürün C', quantity: 3 },
-            { id: 2, name: 'Ürün B', quantity: 1 },
-            { id: 5, name: 'Ürün E', quantity: 2 },
-            { id: 4, name: 'Ürün D', quantity: 1 },
-            { id: 6, name: 'Ürün F', quantity: 1 }
-        ];
-        this.pickedItems = [];
-        this.animationSpeed = 2000; // ms
+        this.isRunning = false;
+        this.currentStation = 0;
+        this.completedPicks = 0;
+        this.errorCount = 0;
+        this.pickSequence = [];
+        this.currentPick = 0;
         
-        this.initializeElements();
-        this.bindEvents();
-        // Auto-start the animation
-        this.startAnimation();
-        
-        // Add page visibility handling
-        this.setupPageVisibilityHandling();
+        this.init();
     }
     
-    setupPageVisibilityHandling() {
-        // Handle page visibility changes
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                // Page is hidden, pause animation
-                this.resetAnimation();
-            } else {
-                // Page is visible, resume animation
-                this.startAnimation();
-            }
-        });
+    init() {
+        this.setupControls();
+        this.generatePickSequence();
+        this.updateDisplay();
     }
     
-    initializeElements() {
-        this.shelfCells = document.querySelectorAll('.shelf-cell');
-        this.lightIndicators = document.querySelectorAll('.light-indicator');
-        this.cartItems = document.getElementById('cartItems');
-        this.pickStatus = document.getElementById('pickStatus');
-        this.pickSpeed = document.getElementById('pickSpeed');
-        this.pickAccuracy = document.getElementById('pickAccuracy');
+    setupControls() {
+        const startBtn = document.getElementById('start-pick');
+        const stopBtn = document.getElementById('stop-pick');
+        const resetBtn = document.getElementById('reset-pick');
         
-        // Control buttons
-        this.startButton = document.getElementById('startPickAnimation');
-        this.resetButton = document.getElementById('resetPickAnimation');
-        this.nextButton = document.getElementById('nextItem');
-        this.completeButton = document.getElementById('completeOrder');
-    }
-    
-    bindEvents() {
-        if (this.startButton) {
-            this.startButton.addEventListener('click', () => this.startAnimation());
-        }
-        if (this.resetButton) {
-            this.resetButton.addEventListener('click', () => this.resetAnimation());
-        }
-        if (this.nextButton) {
-            this.nextButton.addEventListener('click', () => this.nextItem());
-        }
-        if (this.completeButton) {
-            this.completeButton.addEventListener('click', () => this.completeOrder());
+        if (startBtn) {
+            startBtn.addEventListener('click', () => {
+                this.startPicking();
+            });
         }
         
-        // Add click events to shelf cells
-        this.shelfCells.forEach((cell, index) => {
-            cell.addEventListener('click', () => this.pickItem(index + 1));
-        });
-    }
-    
-    startAnimation() {
-        if (this.isAnimating) return;
+        if (stopBtn) {
+            stopBtn.addEventListener('click', () => {
+                this.stopPicking();
+            });
+        }
         
-        this.isAnimating = true;
-        this.currentItemIndex = 0;
-        this.pickedItems = [];
-        this.updateStatus('Toplama başladı');
-        this.updateSpeed('0');
-        this.updateAccuracy('100');
-        
-        this.startButton.disabled = true;
-        this.nextButton.disabled = false;
-        this.completeButton.disabled = true;
-        
-        this.highlightCurrentItem();
-    }
-    
-    resetAnimation() {
-        this.isAnimating = false;
-        this.currentItemIndex = 0;
-        this.pickedItems = [];
-        
-        // Reset all indicators
-        this.lightIndicators.forEach(indicator => {
-            indicator.classList.remove('active');
-        });
-        
-        this.shelfCells.forEach(cell => {
-            cell.classList.remove('active');
-        });
-        
-        // Clear cart
-        this.cartItems.innerHTML = '';
-        
-        // Reset status
-        this.updateStatus('Hazır');
-        this.updateSpeed('0');
-        this.updateAccuracy('100');
-        
-        // Reset buttons
-        this.startButton.disabled = false;
-        this.nextButton.disabled = true;
-        this.completeButton.disabled = true;
-    }
-    
-    nextItem() {
-        if (!this.isAnimating || this.currentItemIndex >= this.pickOrder.length) return;
-        
-        this.highlightCurrentItem();
-        this.updateStatus(`Toplanacak: ${this.pickOrder[this.currentItemIndex].name}`);
-    }
-    
-    pickItem(itemId) {
-        if (!this.isAnimating) return;
-        
-        const currentOrder = this.pickOrder[this.currentItemIndex];
-        if (currentOrder && currentOrder.id === itemId) {
-            // Correct item picked
-            this.addToCart(currentOrder);
-            this.pickedItems.push(currentOrder);
-            
-            // Move to next item
-            this.currentItemIndex++;
-            
-            if (this.currentItemIndex < this.pickOrder.length) {
-                this.highlightCurrentItem();
-                this.updateStatus(`Toplanacak: ${this.pickOrder[this.currentItemIndex].name}`);
-            } else {
-                this.completeOrder();
-            }
-            
-            // Update performance metrics
-            const speed = Math.round((this.pickedItems.length / 6) * 300); // 300 items/hour base
-            this.updateSpeed(speed.toString());
-            this.updateAccuracy('100');
-        } else {
-            // Wrong item picked
-            this.updateAccuracy('95');
-            this.updateStatus('Yanlış ürün seçildi!');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                this.resetPicking();
+            });
         }
     }
     
-    highlightCurrentItem() {
-        // Remove all active states
-        this.lightIndicators.forEach(indicator => {
-            indicator.classList.remove('active');
-        });
+    generatePickSequence() {
+        this.pickSequence = [];
+        const stations = [1, 2, 3, 4];
         
-        this.shelfCells.forEach(cell => {
-            cell.classList.remove('active');
-        });
-        
-        if (this.currentItemIndex < this.pickOrder.length) {
-            const currentOrder = this.pickOrder[this.currentItemIndex];
-            const targetCell = document.querySelector(`[data-item-id="${currentOrder.id}"]`);
-            const targetIndicator = targetCell.querySelector('.light-indicator');
-            
-            if (targetCell && targetIndicator) {
-                targetCell.classList.add('active');
-                targetIndicator.classList.add('active');
-            }
+        // Generate random pick sequence
+        for (let i = 0; i < 8; i++) {
+            const randomStation = stations[Math.floor(Math.random() * stations.length)];
+            const randomQuantity = Math.floor(Math.random() * 5) + 1;
+            this.pickSequence.push({
+                station: randomStation,
+                quantity: randomQuantity
+            });
         }
     }
     
-    addToCart(item) {
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <i class="fas fa-box"></i>
-            <span>${item.name} (${item.quantity} adet)</span>
-        `;
+    startPicking() {
+        if (this.isRunning) return;
         
-        this.cartItems.appendChild(cartItem);
+        this.isRunning = true;
+        this.currentPick = 0;
+        this.updateStatus('Toplama Başladı');
+        this.processNextPick();
     }
     
-    completeOrder() {
-        if (this.pickedItems.length === this.pickOrder.length) {
-            this.updateStatus('Sipariş tamamlandı!');
-            this.updateSpeed('300');
-            this.updateAccuracy('100');
-            
-            this.startButton.disabled = false;
-            this.nextButton.disabled = true;
-            this.completeButton.disabled = true;
-            
-            this.isAnimating = false;
-            
-            // Show completion animation
-            setTimeout(() => {
-                this.showCompletionMessage();
-            }, 1000);
-        } else {
-            this.updateStatus('Tüm ürünler toplanmadı!');
+    stopPicking() {
+        this.isRunning = false;
+        this.updateStatus('Durduruldu');
+        this.deactivateAllStations();
+    }
+    
+    resetPicking() {
+        this.isRunning = false;
+        this.completedPicks = 0;
+        this.errorCount = 0;
+        this.currentPick = 0;
+        this.generatePickSequence();
+        this.updateStatus('Sıfırlandı');
+        this.updateDisplay();
+        this.deactivateAllStations();
+        this.resetCartPosition();
+    }
+    
+    processNextPick() {
+        if (!this.isRunning || this.currentPick >= this.pickSequence.length) {
+            this.isRunning = false;
+            this.updateStatus('Tamamlandı');
+            this.deactivateAllStations();
+            return;
         }
-    }
-    
-    showCompletionMessage() {
-        const message = document.createElement('div');
-        message.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--accent);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            z-index: 1000;
-            animation: fadeInOut 3s ease-in-out;
-        `;
-        message.textContent = '🎉 Sipariş başarıyla tamamlandı!';
         
-        document.body.appendChild(message);
+        const pick = this.pickSequence[this.currentPick];
+        this.activateStation(pick.station, pick.quantity);
+        this.moveCartToStation(pick.station);
         
+        // Simulate pick completion
         setTimeout(() => {
-            document.body.removeChild(message);
+            if (this.isRunning) {
+                this.completePick(pick.station);
+                this.currentPick++;
+                this.processNextPick();
+            }
         }, 3000);
     }
     
+    activateStation(stationNumber, quantity) {
+        // Deactivate all stations first
+        this.deactivateAllStations();
+        
+        // Activate target station
+        const station = document.querySelector(`[data-station="${stationNumber}"]`);
+        const lightIndicator = station.querySelector('.light-indicator');
+        const productSlot = station.querySelector('.product-slot');
+        const quantityDisplay = station.querySelector('.quantity-display');
+        
+        if (station && lightIndicator && productSlot && quantityDisplay) {
+            station.classList.add('active');
+            lightIndicator.classList.add('active');
+            productSlot.classList.add('active');
+            quantityDisplay.textContent = quantity;
+        }
+    }
+    
+    deactivateAllStations() {
+        const stations = document.querySelectorAll('.station');
+        stations.forEach(station => {
+            station.classList.remove('active');
+            const lightIndicator = station.querySelector('.light-indicator');
+            const productSlot = station.querySelector('.product-slot');
+            if (lightIndicator) lightIndicator.classList.remove('active');
+            if (productSlot) productSlot.classList.remove('active');
+        });
+    }
+    
+    moveCartToStation(stationNumber) {
+        const cart = document.getElementById('pick-cart');
+        if (cart) {
+            // Calculate position based on station
+            const positions = {
+                1: { left: '25%', bottom: '20px' },
+                2: { left: '40%', bottom: '20px' },
+                3: { left: '55%', bottom: '20px' },
+                4: { left: '70%', bottom: '20px' }
+            };
+            
+            const position = positions[stationNumber];
+            if (position) {
+                cart.style.left = position.left;
+                cart.style.bottom = position.bottom;
+            }
+        }
+    }
+    
+    resetCartPosition() {
+        const cart = document.getElementById('pick-cart');
+        if (cart) {
+            cart.style.left = '20px';
+            cart.style.bottom = '20px';
+        }
+    }
+    
+    completePick(stationNumber) {
+        this.completedPicks++;
+        
+        // Simulate occasional errors
+        if (Math.random() < 0.1) {
+            this.errorCount++;
+        }
+        
+        this.updateDisplay();
+        this.updateStatus(`A${stationNumber} Tamamlandı`);
+    }
+    
     updateStatus(status) {
-        if (this.pickStatus) {
-            this.pickStatus.textContent = status;
+        const statusElement = document.getElementById('pick-status');
+        if (statusElement) {
+            statusElement.textContent = status;
         }
     }
     
-    updateSpeed(speed) {
-        if (this.pickSpeed) {
-            this.pickSpeed.textContent = `${speed} ürün/saat`;
+    updateDisplay() {
+        const completedElement = document.getElementById('completed-picks');
+        const errorElement = document.getElementById('error-count');
+        const efficiencyElement = document.getElementById('pick-efficiency');
+        
+        if (completedElement) {
+            completedElement.textContent = this.completedPicks;
+        }
+        
+        if (errorElement) {
+            errorElement.textContent = this.errorCount;
+        }
+        
+        if (efficiencyElement) {
+            const totalPicks = this.completedPicks + this.errorCount;
+            const efficiency = totalPicks > 0 ? ((this.completedPicks / totalPicks) * 100) : 98.5;
+            efficiencyElement.textContent = efficiency.toFixed(1);
         }
     }
     
-    updateAccuracy(accuracy) {
-        if (this.pickAccuracy) {
-            this.pickAccuracy.textContent = `%${accuracy}`;
-        }
+    updatePerformanceIndicators() {
+        setInterval(() => {
+            const speedElement = document.getElementById('pick-speed');
+            const accuracyElement = document.getElementById('pick-accuracy');
+            
+            if (speedElement) {
+                speedElement.textContent = this.isRunning ? '800' : '0';
+            }
+            
+            if (accuracyElement) {
+                const accuracy = 99.9 - (this.errorCount * 0.1);
+                accuracyElement.textContent = Math.max(99.0, accuracy).toFixed(1);
+            }
+        }, 1000);
     }
 }
 
 // Initialize animation when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new PickToLightAnimation();
-});
-
-// Add CSS for completion message animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInOut {
-        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-        20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-        80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+document.addEventListener('DOMContentLoaded', function() {
+    const pickToLightAnimation = document.querySelector('.pick-to-light-hero-animation');
+    if (pickToLightAnimation) {
+        const pickToLight = new PickToLightAnimation();
+        pickToLight.updatePerformanceIndicators();
     }
-`;
-document.head.appendChild(style); 
+}); 

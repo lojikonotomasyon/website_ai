@@ -1,769 +1,94 @@
-// Mobile menu initialization function
+// ===== ANA JAVASCRIPT - LOJIKON WEBSITE =====
+
+// EmailJS Configuration
+(function() {
+    emailjs.init("YOUR_EMAILJS_USER_ID"); // Buraya EmailJS User ID'nizi ekleyin
+})();
+
+// Mobile menu initialization
 function initializeMobileMenu() {
-    // Önceki event listener'ları temizle
-    const existingHamburger = document.querySelector('.hamburger');
-    if (existingHamburger) {
-        const newHamburger = existingHamburger.cloneNode(true);
-        existingHamburger.parentNode.replaceChild(newHamburger, existingHamburger);
-    }
-    
-    // Mobil menü toggle - çoklu fallback yöntemi
-    let hamburger = document.querySelector('.hamburger');
-    let navMenu = document.querySelector('.nav-menu');
-    
-    // Fallback selectors
-    if (!hamburger) {
-        hamburger = document.querySelector('[class*="hamburger"]');
-    }
-    if (!hamburger) {
-        hamburger = document.querySelector('div[class*="hamburger"]');
-    }
-    
-    if (!navMenu) {
-        navMenu = document.querySelector('ul[class*="nav-menu"]');
-    }
-    if (!navMenu) {
-        navMenu = document.querySelector('[class*="nav-menu"]');
-    }
-    
-    // Mobile menu function
-    function toggleMobileMenu() {
-        if (hamburger && navMenu) {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        }
-    }
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
     
     if (hamburger && navMenu) {
-        // Event listener'ları temizle ve yeniden ekle
-        const newHamburger = hamburger.cloneNode(true);
-        hamburger.parentNode.replaceChild(newHamburger, hamburger);
-        hamburger = newHamburger;
-        
-        // Primary click handler
         hamburger.addEventListener('click', function(e) {
             e.preventDefault();
-            e.stopPropagation();
-            toggleMobileMenu();
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
         
-        // Menü linklerine tıklandığında mobil menüyü kapat
+        // Close menu when clicking on links
         const menuLinks = document.querySelectorAll('.nav-menu a');
-        
         menuLinks.forEach(link => {
-            // Önceki event listener'ları temizle
-            const newLink = link.cloneNode(true);
-            link.parentNode.replaceChild(newLink, link);
-            
-            newLink.addEventListener('click', () => {
-                if (hamburger) hamburger.classList.remove('active');
-                if (navMenu) navMenu.classList.remove('active');
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
             });
         });
         
-        // Menü dışına tıklandığında menüyü kapat - global handler
-        const closeMenuOnOutsideClick = (e) => {
-            if (hamburger && navMenu && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
             }
-        };
-        
-        // Önceki global handler'ı kaldır
-        document.removeEventListener('click', closeMenuOnOutsideClick);
-        document.addEventListener('click', closeMenuOnOutsideClick);
-        
-    } else {
-        // Alternative approach - global click handler
-        const globalClickHandler = function(e) {
-            const clickedElement = e.target;
-            const hamburgerElement = clickedElement.closest('.hamburger') || 
-                                   clickedElement.closest('[class*="hamburger"]');
-            
-            if (hamburgerElement) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const navElement = document.querySelector('.nav-menu') || 
-                                 document.querySelector('[class*="nav-menu"]');
-                
-                if (navElement) {
-                    hamburgerElement.classList.toggle('active');
-                    navElement.classList.toggle('active');
-                }
-            }
-        };
-        
-        // Önceki global handler'ı kaldır
-        document.removeEventListener('click', globalClickHandler);
-        document.addEventListener('click', globalClickHandler);
+        });
     }
-    
-    // Test function
-    window.testMobileMenu = function() {
-        toggleMobileMenu();
-    };
 }
 
-// DOM yüklendiğinde çalışacak fonksiyonlar
-document.addEventListener('DOMContentLoaded', function() {
-    // Header yüklendikten sonra mobile menu'yu başlat
-    const checkHeaderLoaded = setInterval(() => {
-        const hamburger = document.querySelector('.hamburger');
-        if (hamburger) {
-            clearInterval(checkHeaderLoaded);
-            initializeMobileMenu();
-        }
-    }, 100);
-    
-    // 10 saniye sonra timeout
-    setTimeout(() => {
-        clearInterval(checkHeaderLoaded);
-        initializeMobileMenu();
-    }, 10000);
-
-    // Scroll animasyonları
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-            }
-        });
-    }, observerOptions);
-
-    // Animasyon için gözlemlenecek elementler
-    const animateElements = document.querySelectorAll('.solution-card, .service-card, .project-card, .contact-item');
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
-
-    // Header scroll efekti
-    const header = document.querySelector('.header');
-    let lastScroll = 0;
-
-    if (header) {
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                header.style.background = 'rgba(30, 58, 138, 0.98)';
-            } else {
-                header.style.background = 'rgba(30, 58, 138, 0.95)';
-            }
-
-            if (currentScroll > lastScroll && currentScroll > 200) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScroll = currentScroll;
-        });
-    }
-
-    // Smooth scroll için
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+// Smooth scrolling for anchor links
+function initializeSmoothScrolling() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             }
         });
     });
-
-    // İletişim formu işlemleri
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                company: document.getElementById('company').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
-            submitBtn.disabled = true;
-            
-            // Send email using EmailJS
-            emailjs.send('service_myv14au', 'template_j48q9zh', {
-                to_email: 'yusuf@lojikon.com',
-                from_name: formData.name,
-                from_email: formData.email,
-                from_phone: formData.phone,
-                from_company: formData.company,
-                service_type: formData.service,
-                message: formData.message
-            })
-            .then(function(response) {
-                // Success
-                alert('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.');
-                contactForm.reset();
-            })
-            .catch(function(error) {
-                // Error
-                alert('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
-                console.error('EmailJS Error:', error);
-            })
-            .finally(function() {
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-        });
-    }
-
-    // Çözüm kartları hover efektleri
-    const solutionCards = document.querySelectorAll('.solution-card');
-    if (solutionCards.length > 0) {
-        solutionCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    }
-
-    // Hizmet kartları hover efektleri
-    const serviceCards = document.querySelectorAll('.service-card');
-    if (serviceCards.length > 0) {
-        serviceCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.01)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    }
-
-    // Proje kartları hover efektleri
-    const projectCards = document.querySelectorAll('.project-card');
-    if (projectCards.length > 0) {
-        projectCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.01)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    }
-
-    // İstatistik sayaç animasyonu
-    const stats = document.querySelectorAll('.stat h3');
-    if (stats.length > 0 && !window.statsAnimated) {
-        window.statsAnimated = true;
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        stats.forEach(stat => {
-            statsObserver.observe(stat);
-        });
-    }
-
-    // Sosyal medya linkleri hover efektleri
-    const socialLinks = document.querySelectorAll('.social-links a');
-    if (socialLinks.length > 0) {
-        socialLinks.forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px) rotate(5deg)';
-            });
-            
-            link.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) rotate(0deg)';
-            });
-        });
-    }
-
-    // Sayfa yükleme animasyonu
-    setTimeout(() => {
-        document.body.classList.add('loaded');
-    }, 100);
-});
-
-// Sayaç animasyonu fonksiyonu
-function animateCounter(element) {
-    // Eğer animasyon zaten çalıştıysa tekrar çalıştırma
-    if (element.dataset.animated === 'true') {
-        return;
-    }
-    
-    // Animasyon çalıştı olarak işaretle
-    element.dataset.animated = 'true';
-    
-    const target = parseInt(element.textContent.replace(/\D/g, '')) || 10;
-    const duration = 2000;
-    const step = target / (duration / 16);
-    let current = 0;
-    
-    const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
-        element.textContent = Math.floor(current) + '+';
-    }, 16);
-    
-    // Animasyon tamamlandığında final değeri garanti et
-    setTimeout(() => {
-        element.textContent = target + '+';
-    }, duration + 100);
 }
 
-// Bildirim gösterme fonksiyonu
-function showNotification(message, type = 'info') {
-    // Mevcut bildirimleri temizle
-    const existingNotifications = document.querySelectorAll('.notification');
-    existingNotifications.forEach(notification => notification.remove());
-    
-    // Yeni bildirim oluştur
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
-    `;
-    
-    // Bildirim stilleri
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === 'success' ? '#10b981' : '#3b82f6'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 400px;
-    `;
-    
-    // Bildirimi sayfaya ekle
-    document.body.appendChild(notification);
-    
-    // Animasyonla göster
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // Kapatma butonu
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => notification.remove(), 300);
-    });
-    
-    // Otomatik kapatma
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 5000);
-}
-
-// Çözüm kartları için detay modalı
-function showSolutionDetails(solutionType) {
-    const solutions = {
-        'sorter': {
-            title: 'Sorter Sistemleri',
-            description: 'Otomatik sınıflandırma ve yönlendirme sistemleri',
-            features: [
-                'Yüksek hızda sıralama (3000+ parça/saat)',
-                'Doğru sınıflandırma oranı %99.9+',
-                'Esnek konfigürasyon seçenekleri',
-                'Entegre WMS bağlantısı',
-                'Gerçek zamanlı izleme ve raporlama'
-            ],
-            benefits: [
-                'Manuel sıralama maliyetlerini %80 azaltır',
-                'Sıralama hatalarını minimize eder',
-                'Depo verimliliğini artırır',
-                '7/24 kesintisiz operasyon'
-            ]
-        },
-        'palet-lift': {
-            title: 'Palet Lift Sistemleri',
-            description: 'Otomatik palet yükleme, boşaltma ve transfer',
-            features: [
-                'Güvenli palet yükleme/boşaltma',
-                'Yüksek kapasite (1000+ palet/gün)',
-                'Otomatik kontrol ve güvenlik',
-                'Çoklu katman desteği',
-                'Entegre güvenlik sistemleri'
-            ],
-            benefits: [
-                'İşçi güvenliğini maksimize eder',
-                'Palet hasarını önler',
-                'Operasyon hızını artırır',
-                'Enerji verimliliği sağlar'
-            ]
-        },
-        'pick-to-light': {
-            title: 'Pick to Light Sistemleri',
-            description: 'Görsel yönlendirme ile hızlı toplama',
-            features: [
-                'LED ışık yönlendirmesi',
-                'Sesli uyarı sistemi',
-                'Hata önleme algoritmaları',
-                'Mobil cihaz entegrasyonu',
-                'Gerçek zamanlı performans takibi'
-            ],
-            benefits: [
-                'Toplama hızını %60 artırır',
-                'Hata oranını %90 azaltır',
-                'Eğitim süresini kısaltır',
-                'Esnek konfigürasyon'
-            ]
-        }
-    };
-    
-    const solution = solutions[solutionType];
-    if (!solution) return;
-    
-    // Modal oluştur
-    const modal = document.createElement('div');
-    modal.className = 'solution-modal';
-    modal.innerHTML = `
-        <div class="modal-overlay">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>${solution.title}</h3>
-                    <button class="modal-close">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p class="modal-description">${solution.description}</p>
-                    
-                    <div class="modal-section">
-                        <h4>Özellikler</h4>
-                        <ul>
-                            ${solution.features.map(feature => `<li>${feature}</li>`).join('')}
-                        </ul>
-                    </div>
-                    
-                    <div class="modal-section">
-                        <h4>Faydalar</h4>
-                        <ul>
-                            ${solution.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" onclick="contactUs('${solutionType}')">Teklif Alın</button>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // Modal stilleri
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 10000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    `;
-    
-    const overlay = modal.querySelector('.modal-overlay');
-    overlay.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    `;
-    
-    const content = modal.querySelector('.modal-content');
-    content.style.cssText = `
-        background: white;
-        border-radius: 16px;
-        max-width: 600px;
-        width: 100%;
-        max-height: 80vh;
-        overflow-y: auto;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    `;
-    
-    // Modalı sayfaya ekle
-    document.body.appendChild(modal);
-    
-    // Kapatma işlemleri
-    const closeBtn = modal.querySelector('.modal-close');
-    const closeModal = () => {
-        modal.style.opacity = '0';
-        setTimeout(() => modal.remove(), 300);
-    };
-    
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeModal();
-    });
-    
-    // ESC tuşu ile kapatma
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeModal();
-    });
-}
-
-// İletişim formuna yönlendirme
-function contactUs(solutionType) {
-    const contactSection = document.getElementById('contact');
-    const serviceSelect = document.getElementById('service');
-    
-    if (contactSection && serviceSelect) {
-        // Servis seçimini ayarla
-        serviceSelect.value = solutionType;
-        
-        // İletişim bölümüne scroll yap
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-        
-        // Modalı kapat
-        const modal = document.querySelector('.solution-modal');
-        if (modal) {
-            modal.style.opacity = '0';
-            setTimeout(() => modal.remove(), 300);
-        }
-    }
-}
-
-// Çözüm kartlarına tıklama olayı ekle
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.solution-card')) {
-        const card = e.target.closest('.solution-card');
-        const solutionType = card.dataset.solution;
-        if (solutionType) {
-            showSolutionDetails(solutionType);
-        }
-    }
-});
-
-// Sayfa yükleme performansı
-window.addEventListener('load', function() {
-    // Sayfa yüklendiğinde ek animasyonlar
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        heroContent.style.opacity = '0';
-        heroContent.style.transform = 'translateY(30px)';
-        
-        setTimeout(() => {
-            heroContent.style.transition = 'all 0.8s ease';
-            heroContent.style.opacity = '1';
-            heroContent.style.transform = 'translateY(0)';
-        }, 300);
-    }
-});
-
-// Responsive tasarım için ek kontroller
-window.addEventListener('resize', function() {
-    // Mobil menüyü kapat
-    const hamburger = document.querySelector('.hamburger, .mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (window.innerWidth > 768) {
-        if (hamburger) hamburger.classList.remove('active');
-        if (navMenu) navMenu.classList.remove('active');
-    }
-});
-
-// Scroll to top ve WhatsApp butonları
-function createScrollToTopButton() {
-    // Container oluştur
-    const container = document.createElement('div');
-    container.className = 'floating-buttons';
-    container.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    `;
-    
-    // Scroll to top butonu
-    const scrollButton = document.createElement('button');
-    scrollButton.innerHTML = '↑';
-    scrollButton.className = 'scroll-to-top';
-    scrollButton.style.cssText = `
-        width: 50px;
-        height: 50px;
-        background: var(--primary);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    `;
-    
-    // WhatsApp butonu
-    const whatsappButton = document.createElement('a');
-    whatsappButton.href = 'https://wa.me/902126571803?text=Merhaba! Lojikon hakkında bilgi almak istiyorum.';
-    whatsappButton.target = '_blank';
-    whatsappButton.rel = 'noopener noreferrer';
-    whatsappButton.className = 'whatsapp-button';
-    whatsappButton.innerHTML = '<i class="fab fa-whatsapp"></i>';
-    whatsappButton.style.cssText = `
-        width: 50px;
-        height: 50px;
-        background: #25D366;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-    `;
-    
-    container.appendChild(scrollButton);
-    container.appendChild(whatsappButton);
-    document.body.appendChild(container);
-    
-    // Scroll olayını dinle
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            container.style.opacity = '1';
-            container.style.visibility = 'visible';
-            scrollButton.style.opacity = '1';
-            scrollButton.style.visibility = 'visible';
-        } else {
-            // WhatsApp butonu her zaman görünür, sadece scroll-to-top butonu gizlenir
-            scrollButton.style.opacity = '0';
-            scrollButton.style.visibility = 'hidden';
-            // Container'ın opacity'sini 1'de tut ki WhatsApp butonu görünsün
-            container.style.opacity = '1';
-            container.style.visibility = 'visible';
-        }
-    });
-    
-    // Scroll to top tıklama olayı
-    scrollButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    // Scroll to top hover efekti
-    scrollButton.addEventListener('mouseenter', () => {
-        scrollButton.style.transform = 'translateY(-3px)';
-        scrollButton.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
-    });
-    
-    scrollButton.addEventListener('mouseleave', () => {
-        scrollButton.style.transform = 'translateY(0)';
-        scrollButton.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
-    });
-    
-    // WhatsApp hover efekti
-    whatsappButton.addEventListener('mouseenter', () => {
-        whatsappButton.style.transform = 'translateY(-3px)';
-        whatsappButton.style.boxShadow = '0 8px 20px rgba(37, 211, 102, 0.4)';
-        whatsappButton.style.background = '#128C7E';
-    });
-    
-    whatsappButton.addEventListener('mouseleave', () => {
-        whatsappButton.style.transform = 'translateY(0)';
-        whatsappButton.style.boxShadow = '0 5px 15px rgba(37, 211, 102, 0.3)';
-        whatsappButton.style.background = '#25D366';
-    });
-}
-
-// Scroll to top butonunu oluştur
-createScrollToTopButton();
-
-// Hero Slider Functionality
+// Hero Slider for main page
 class HeroSlider {
     constructor() {
-        this.currentSlide = 1;
+        this.currentSlide = 0;
+        this.slides = document.querySelectorAll('.hero-slide');
+        this.dots = document.querySelectorAll('.dot');
+        this.totalSlides = this.slides.length;
         this.autoPlayInterval = null;
-        this.autoPlayDelay = 5000; // 5 seconds
         
-        // Dynamically calculate total slides
-        const slides = document.querySelectorAll('.hero-slide');
-        this.totalSlides = slides.length;
-        
-        this.init();
+        if (this.totalSlides > 0) {
+            this.init();
+        }
     }
     
     init() {
         this.bindEvents();
-        this.startAutoPlay();
         this.updateSlide();
+        this.startAutoPlay();
     }
     
     bindEvents() {
-        // Previous button
-        const prevBtn = document.getElementById('prevSlide');
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => this.prevSlide());
-        }
+        // Previous/Next buttons
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
         
-        // Next button
-        const nextBtn = document.getElementById('nextSlide');
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => this.nextSlide());
-        }
+        if (prevBtn) prevBtn.addEventListener('click', () => this.prevSlide());
+        if (nextBtn) nextBtn.addEventListener('click', () => this.nextSlide());
         
-        // Dot navigation
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index + 1));
+        // Dots
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => this.goToSlide(index));
         });
         
-        // Pause auto-play on hover
+        // Pause on hover
         const slider = document.querySelector('.hero-slider');
         if (slider) {
             slider.addEventListener('mouseenter', () => this.pauseAutoPlay());
@@ -772,12 +97,12 @@ class HeroSlider {
     }
     
     nextSlide() {
-        this.currentSlide = this.currentSlide >= this.totalSlides ? 1 : this.currentSlide + 1;
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
         this.updateSlide();
     }
     
     prevSlide() {
-        this.currentSlide = this.currentSlide <= 1 ? this.totalSlides : this.currentSlide - 1;
+        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
         this.updateSlide();
     }
     
@@ -788,56 +113,38 @@ class HeroSlider {
     
     updateSlide() {
         // Hide all slides
-        const slides = document.querySelectorAll('.hero-slide');
-        slides.forEach(slide => {
-            slide.classList.remove('active');
-        });
+        this.slides.forEach(slide => slide.classList.remove('active'));
+        this.dots.forEach(dot => dot.classList.remove('active'));
         
         // Show current slide
-        const currentSlideElement = document.querySelector(`[data-slide="${this.currentSlide}"]`);
-        if (currentSlideElement) {
-            currentSlideElement.classList.add('active');
+        if (this.slides[this.currentSlide]) {
+            this.slides[this.currentSlide].classList.add('active');
+        }
+        if (this.dots[this.currentSlide]) {
+            this.dots[this.currentSlide].classList.add('active');
         }
         
-        // Update dots
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            if (index + 1 === this.currentSlide) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-        
-        // Update buttons
         this.updateButtonStates();
     }
     
     updateButtonStates() {
-        const prevBtn = document.getElementById('prevSlide');
-        const nextBtn = document.getElementById('nextSlide');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
         
         if (prevBtn) {
-            const prevDisabled = this.currentSlide === 1;
-            prevBtn.style.opacity = prevDisabled ? '0.5' : '1';
-            prevBtn.disabled = prevDisabled;
+            prevBtn.style.opacity = this.currentSlide === 0 ? '0.5' : '1';
+            prevBtn.style.pointerEvents = this.currentSlide === 0 ? 'none' : 'auto';
         }
         
         if (nextBtn) {
-            const nextDisabled = this.currentSlide === this.totalSlides;
-            nextBtn.style.opacity = nextDisabled ? '0.5' : '1';
-            nextBtn.disabled = nextDisabled;
+            nextBtn.style.opacity = this.currentSlide === this.totalSlides - 1 ? '0.5' : '1';
+            nextBtn.style.pointerEvents = this.currentSlide === this.totalSlides - 1 ? 'none' : 'auto';
         }
     }
     
     startAutoPlay() {
-        if (this.autoPlayInterval) {
-            clearInterval(this.autoPlayInterval);
-        }
-        
-        this.autoPlayInterval = setInterval(() => {
-            this.nextSlide();
-        }, this.autoPlayDelay);
+        if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
+        this.autoPlayInterval = setInterval(() => this.nextSlide(), 5000);
     }
     
     pauseAutoPlay() {
@@ -848,87 +155,289 @@ class HeroSlider {
     }
 }
 
-// Slogan verileri
-const sloganData = [
-    { var1: "Sistemler", var2: "Yarın" },
-    { var1: "Çözümler", var2: "Dönüşüm" },
-    { var1: "Teknolojiler", var2: "Vizyon" },
-    { var1: "Endüstri", var2: "Gelişim" },
-    { var1: "Projeler", var2: "Süreç" },
-    { var1: "Altyapılar", var2: "Hedef" },
-    { var1: "Entegrasyonlar", var2: "Zaman" },
-    { var1: "Hizmetler", var2: "Yaşam" }
-];
+// Slogan animation
+function initializeSloganAnimation() {
+    const var1Element = document.getElementById('var1');
+    const var2Element = document.getElementById('var2');
+    
+    if (!var1Element || !var2Element) return;
+    
+    // Slogan verileri
+    const sloganData = [
+        { var1: "Sistemler", var2: "Yarın" },
+        { var1: "Çözümler", var2: "Dönüşüm" },
+        { var1: "Teknolojiler", var2: "Vizyon" },
+        { var1: "Endüstri", var2: "Gelişim" },
+        { var1: "Projeler", var2: "Süreç" },
+        { var1: "Altyapılar", var2: "Hedef" },
+        { var1: "Entegrasyonlar", var2: "Zaman" },
+        { var1: "Hizmetler", var2: "Yaşam" }
+    ];
 
-let currentIndex = 0;
-const var1Element = document.getElementById('var1');
-const var2Element = document.getElementById('var2');
+    let currentIndex = 0;
 
-// Değişken kelimeleri değiştiren fonksiyon
-function changeWords() {
-    // Fade out efekti
-    var1Element.classList.add('fade-out');
-    var2Element.classList.add('fade-out');
+    // Değişken kelimeleri değiştiren fonksiyon
+    function changeWords() {
+        // Fade out efekti
+        var1Element.classList.add('fade-out');
+        var2Element.classList.add('fade-out');
 
-    setTimeout(() => {
-        // Kelimeleri değiştir
-        var1Element.textContent = sloganData[currentIndex].var1;
-        var2Element.textContent = sloganData[currentIndex].var2;
-        
-        // Fade in efekti
-        var1Element.classList.remove('fade-out');
-        var2Element.classList.remove('fade-out');
-        var1Element.classList.add('fade-in');
-        var2Element.classList.add('fade-in');
-
-        // Bir sonraki indekse geç
-        currentIndex = (currentIndex + 1) % sloganData.length;
-
-        // Fade in sınıfını kaldır
         setTimeout(() => {
-            var1Element.classList.remove('fade-in');
-            var2Element.classList.remove('fade-in');
-        }, 500);
+            // Kelimeleri değiştir
+            var1Element.textContent = sloganData[currentIndex].var1;
+            var2Element.textContent = sloganData[currentIndex].var2;
+            
+            // Fade in efekti
+            var1Element.classList.remove('fade-out');
+            var2Element.classList.remove('fade-out');
+            var1Element.classList.add('fade-in');
+            var2Element.classList.add('fade-in');
 
-    }, 300);
+            // Bir sonraki indekse geç
+            currentIndex = (currentIndex + 1) % sloganData.length;
+
+            // Fade in sınıfını kaldır
+            setTimeout(() => {
+                var1Element.classList.remove('fade-in');
+                var2Element.classList.remove('fade-in');
+            }, 500);
+
+        }, 300);
+    }
+
+    // İlk değişimi hemen yap
+    changeWords();
+    
+    // Her 3 saniyede bir değiştir
+    setInterval(changeWords, 3000);
 }
 
-// Initialize hero slider when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Slogan animasyonunu başlat
-    if (var1Element && var2Element) {
-        // İlk değişimi hemen yap
-        changeWords();
-        
-        // Her 3 saniyede bir değiştir
-        setInterval(changeWords, 3000);
-    }
+// Contact form initialization with EmailJS
+function initializeContactForm() {
+    const contactForm = document.getElementById('contactForm');
     
-    // Check if we're on the homepage (has hero slider)
-    const heroSlider = document.querySelector('.hero-slider');
-    if (heroSlider) {
-        const slider = new HeroSlider();
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Form validation
+            const formData = new FormData(this);
+            const requiredFields = ['name', 'email', 'message'];
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const value = formData.get(field);
+                if (!value || value.trim() === '') {
+                    isValid = false;
+                    showNotification(`${field.charAt(0).toUpperCase() + field.slice(1)} alanı zorunludur.`, 'error');
+                }
+            });
+            
+            if (!isValid) return;
+            
+            // Email validation
+            const email = formData.get('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Geçerli bir email adresi giriniz.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
+            submitBtn.disabled = true;
+            
+            // EmailJS Template Parameters
+            const templateParams = {
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
+                from_phone: formData.get('phone') || 'Belirtilmemiş',
+                service_type: formData.get('service_type') || 'Genel İletişim',
+                message: formData.get('message'),
+                to_name: 'Lojikon Ekibi'
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('service_lojikon', 'template_contact', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    showNotification('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success');
+                    contactForm.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    showNotification('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.', 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
     }
-});
+}
 
-// Add page visibility handling for CSS animations
-setupPageVisibilityHandling();
+// Notification system
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-message">${message}</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 400px;
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Close button functionality
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => notification.remove(), 300);
+    });
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        }
+    }, 5000);
+}
 
-// Page visibility handling for CSS animations
-function setupPageVisibilityHandling() {
-    document.addEventListener('visibilitychange', () => {
-        const animations = document.querySelectorAll('.conveyor-belt, .divertor-arm, .package, .shuttle-vehicle, .lift-car, .counterweight');
-        
-        if (document.hidden) {
-            // Page is hidden, pause all CSS animations
-            animations.forEach(animation => {
-                animation.style.animationPlayState = 'paused';
-            });
+// Scroll to top functionality
+function initializeScrollToTop() {
+    const scrollToTopBtn = document.createElement('button');
+    scrollToTopBtn.innerHTML = '↑';
+    scrollToTopBtn.className = 'scroll-to-top';
+    scrollToTopBtn.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+    `;
+    
+    document.body.appendChild(scrollToTopBtn);
+    
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.style.opacity = '1';
+            scrollToTopBtn.style.visibility = 'visible';
         } else {
-            // Page is visible, resume all CSS animations
-            animations.forEach(animation => {
-                animation.style.animationPlayState = 'running';
-            });
+            scrollToTopBtn.style.opacity = '0';
+            scrollToTopBtn.style.visibility = 'hidden';
         }
     });
-} 
+    
+    // Scroll to top functionality
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Hover effects
+    scrollToTopBtn.addEventListener('mouseenter', () => {
+        scrollToTopBtn.style.transform = 'translateY(-3px)';
+        scrollToTopBtn.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.4)';
+    });
+    
+    scrollToTopBtn.addEventListener('mouseleave', () => {
+        scrollToTopBtn.style.transform = 'translateY(0)';
+        scrollToTopBtn.style.boxShadow = '0 5px 15px rgba(59, 130, 246, 0.3)';
+    });
+}
+
+// Page visibility handling
+function setupPageVisibilityHandling() {
+    let isPageVisible = true;
+    
+    function handleVisibilityChange() {
+        if (document.hidden) {
+            isPageVisible = false;
+            // Pause animations when page is hidden
+            const animations = document.querySelectorAll('[style*="animation"]');
+            animations.forEach(element => {
+                element.style.animationPlayState = 'paused';
+            });
+        } else {
+            isPageVisible = true;
+            // Resume animations when page is visible
+            const animations = document.querySelectorAll('[style*="animation"]');
+            animations.forEach(element => {
+                element.style.animationPlayState = 'running';
+            });
+        }
+    }
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+}
+
+// Initialize all functions when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize mobile menu
+    initializeMobileMenu();
+    
+    // Initialize smooth scrolling
+    initializeSmoothScrolling();
+    
+    // Initialize hero slider (only on main page)
+    const heroSlider = document.querySelector('.hero-slider');
+    if (heroSlider) {
+        new HeroSlider();
+    }
+    
+    // Initialize slogan animation
+    initializeSloganAnimation();
+    
+    // Initialize contact form
+    initializeContactForm();
+    
+    // Initialize scroll to top
+    initializeScrollToTop();
+    
+    // Setup page visibility handling
+    setupPageVisibilityHandling();
+}); 

@@ -1,0 +1,578 @@
+/* ===== SORTER SAYFASI ÖZEL CSS ===== */
+
+/* Sorter Hero Animation */
+.sorter-hero-animation {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    position: relative;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.sorter-hero-animation .conveyor-system {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.sorter-hero-animation .conveyor-belt {
+    width: 100%;
+    height: 60%;
+    position: relative;
+    background: #2d3748;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sorter-hero-animation .belt-surface {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        #4a5568 0px,
+        #4a5568 20px,
+        #2d3748 20px,
+        #2d3748 40px
+    );
+    animation: beltMoveLeftToRight 8s linear infinite;
+    position: relative;
+}
+
+@keyframes beltMoveLeftToRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-40px); }
+}
+
+.sorter-hero-animation .belt-rollers {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.sorter-hero-animation .roller {
+    width: 15px;
+    height: 15px;
+    background: #718096;
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: rollerSpin 2s linear infinite;
+}
+
+@keyframes rollerSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Divertors */
+.divertors {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 10;
+}
+
+.divertor {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #e53e3e;
+    box-shadow: 0 0 10px rgba(229, 62, 62, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.divertor.active {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(229, 62, 62, 0.8);
+}
+
+.red-divertor { background: #e53e3e; }
+.blue-divertor { background: #3182ce; }
+.green-divertor { background: #38a169; }
+.pink-divertor { background: #d69e2e; }
+
+/* Ürünler */
+.product {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.product.box {
+    background: #e53e3e;
+}
+
+.product.envelope {
+    background: #3182ce;
+}
+
+.product.tote {
+    background: #38a169;
+}
+
+.product.package {
+    background: #d69e2e;
+}
+
+.product-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Sepetler */
+.drop-baskets {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 5;
+}
+
+.drop-basket {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.drop-basket:hover {
+    transform: scale(1.1);
+}
+
+.red-basket {
+    background: #e53e3e;
+}
+
+.blue-basket {
+    background: #3182ce;
+}
+
+.green-basket {
+    background: #38a169;
+}
+
+.pink-basket {
+    background: #d69e2e;
+}
+
+.basket-count {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.basket-label {
+    font-size: 0.6rem;
+    opacity: 0.9;
+}
+
+/* Performance Indicators */
+.performance-indicators {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+.indicator {
+    text-align: center;
+    min-width: 80px;
+}
+
+.indicator-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.indicator-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #60a5fa;
+}
+
+/* Animation Controls */
+.animation-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.control-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #4a5568;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.control-button:hover {
+    background: #60a5fa;
+    transform: scale(1.05);
+}
+
+.control-button.paused {
+    background: #38a169;
+}
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.speed-control input[type="range"] {
+    width: 80px;
+}
+
+.speed-control span {
+    min-width: 30px;
+    text-align: center;
+}
+
+/* ===== SAYFA ÖZEL BÖLÜMLER ===== */
+
+/* How It Works Section */
+.how-it-works {
+    padding: 5rem 0;
+    background: var(--light-bg);
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.step-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.step-number {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.step-icon i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.step-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.step-card p {
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+/* Why Use Section */
+.why-use {
+    padding: 5rem 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.benefit-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.benefit-icon i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.benefit-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.benefit-card p {
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+/* Where Used Section */
+.where-used {
+    padding: 5rem 0;
+    background: var(--light-bg);
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.application-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.application-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.application-icon i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.application-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.application-card p {
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+/* Technical Specs Section */
+.technical-specs {
+    padding: 5rem 0;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.spec-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--accent);
+}
+
+.spec-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.spec-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.spec-card ul {
+    list-style: none;
+}
+
+.spec-card li {
+    padding: 0.5rem 0;
+    color: var(--secondary);
+    border-bottom: 1px solid var(--border);
+}
+
+.spec-card li:last-child {
+    border-bottom: none;
+}
+
+.spec-card strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sorter-hero-animation {
+        height: 400px;
+        min-height: 350px;
+    }
+    
+    .sorter-hero-animation .conveyor-system {
+        padding: 15px;
+        height: 100%;
+    }
+    
+    .sorter-hero-animation .conveyor-belt {
+        height: 50%;
+        min-height: 150px;
+    }
+    
+    .performance-indicators {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        top: 10px;
+    }
+    
+    .indicator {
+        min-width: 60px;
+        font-size: 0.7rem;
+        padding: 5px 8px;
+    }
+    
+    .animation-controls {
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .drop-baskets {
+        bottom: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+    
+    .drop-basket {
+        width: 70px;
+        height: 70px;
+        min-width: 60px;
+    }
+    
+    .steps-grid,
+    .benefits-grid,
+    .applications-grid,
+    .specs-grid {
+        grid-template-columns: 1fr;
+    }
+} 

@@ -1,0 +1,430 @@
+/* ===== PLC PROGRAMLAMA SAYFASI ÖZEL CSS ===== */
+
+/* Hero Section */
+.plc-hero {
+    background: var(--g-p);
+    position: relative;
+    overflow: hidden;
+}
+
+.plc-hero-animation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.plc-ide {
+    background: #1e1e1e;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.ide-header {
+    background: #2d2d30;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #3e3e42;
+}
+
+.ide-tabs {
+    display: flex;
+    gap: 5px;
+}
+
+.tab {
+    background: #3e3e42;
+    color: #cccccc;
+    padding: 8px 15px;
+    border-radius: 4px 4px 0 0;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background: #007acc;
+    color: white;
+}
+
+.ide-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.ide-controls button {
+    background: #3e3e42;
+    border: none;
+    color: #cccccc;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ide-controls button:hover {
+    background: #007acc;
+    color: white;
+}
+
+.code-editor {
+    display: flex;
+    height: 300px;
+}
+
+.line-numbers {
+    background: #252526;
+    color: #858585;
+    padding: 15px 10px;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: right;
+    border-right: 1px solid #3e3e42;
+}
+
+.line-numbers span {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.code-content {
+    flex: 1;
+    padding: 15px;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #d4d4d4;
+    overflow-y: auto;
+}
+
+.code-line {
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+.keyword {
+    color: #569cd6;
+    font-weight: bold;
+}
+
+.number {
+    color: #b5cea8;
+}
+
+.input {
+    color: #9cdcfe;
+}
+
+.output {
+    color: #4ec9b0;
+}
+
+.function {
+    color: #dcdcaa;
+}
+
+.parameter {
+    color: #ce9178;
+}
+
+.timer {
+    color: #4fc1ff;
+}
+
+.counter {
+    color: #c586c0;
+}
+
+.operator {
+    color: #d4d4d4;
+}
+
+.indent {
+    color: #858585;
+    margin-left: 20px;
+}
+
+.plc-status {
+    background: #2d2d30;
+    padding: 10px 15px;
+    display: flex;
+    gap: 20px;
+    border-top: 1px solid #3e3e42;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-label {
+    color: #858585;
+    font-size: 12px;
+}
+
+.status-value {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-value.online {
+    color: #4ec9b0;
+}
+
+.status-value.running {
+    color: #4fc1ff;
+}
+
+/* ===== SAYFA ÖZEL BÖLÜMLER ===== */
+
+/* How It Works Section */
+.how-it-works {
+    padding: 80px 0;
+    background: var(--bg);
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.step {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--g-a);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto 20px;
+}
+
+.step h3 {
+    color: var(--p);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.step p {
+    color: var(--s);
+    line-height: 1.6;
+}
+
+/* Why Use Section */
+.why-use {
+    padding: 80px 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.benefit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--g-a);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+}
+
+.benefit-card h3 {
+    color: var(--p);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.benefit-card p {
+    color: var(--s);
+    line-height: 1.6;
+}
+
+/* Where Used Section */
+.where-used {
+    padding: 80px 0;
+    background: var(--bg);
+}
+
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.industry-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.industry-card:hover {
+    transform: translateY(-5px);
+}
+
+.industry-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--g-a);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+}
+
+.industry-card h3 {
+    color: var(--p);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.industry-card p {
+    color: var(--s);
+    line-height: 1.6;
+}
+
+/* Technical Specs Section */
+.technical-specs {
+    padding: 80px 0;
+}
+
+.specs-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.specs-column h3 {
+    color: var(--p);
+    margin-bottom: 20px;
+    font-size: 22px;
+    border-bottom: 2px solid var(--a);
+    padding-bottom: 10px;
+}
+
+.specs-list {
+    list-style: none;
+    padding: 0;
+}
+
+.specs-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+    color: var(--s);
+    line-height: 1.6;
+}
+
+.specs-list li:last-child {
+    border-bottom: none;
+}
+
+.specs-list strong {
+    color: var(--p);
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .plc-hero-animation {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        margin-top: 30px;
+    }
+    
+    .plc-ide {
+        width: 95%;
+    }
+    
+    .code-editor {
+        height: 250px;
+    }
+    
+    .process-steps,
+    .benefits-grid,
+    .industries-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .specs-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .plc-status {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .code-content {
+        font-size: 10px;
+    }
+    
+    .line-numbers {
+        font-size: 10px;
+    }
+    
+    .ide-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .tab {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+} 

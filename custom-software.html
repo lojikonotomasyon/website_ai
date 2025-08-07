@@ -3,294 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Özel Makine Yazılımları - Lojikon</title>
-    <meta name="description" content="Makinelerinize özel geliştirilen PLC ve HMI yazılımları. PLC programlama, HMI tasarımı, sistem entegrasyonu ve bakım desteği.">
-    <meta name="keywords" content="PLC programlama, HMI tasarımı, özel yazılım, endüstriyel otomasyon, sistem entegrasyonu, makine yazılımı">
+    <title>Özel Yazılım - Lojikon | Endüstriyel Otomasyon ve Yazılım Geliştirme</title>
+    <meta name="description" content="Lojikon özel yazılım geliştirme hizmetleri ile endüstriyel otomasyon çözümleri ve özel projeler.">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lojikon.com/custom-software.html">
-    <meta property="og:title" content="Özel Makine Yazılımları - Lojikon">
-    <meta property="og:description" content="Makinelerinize özel geliştirilen PLC ve HMI yazılımları.">
-    <meta property="og:image" content="https://lojikon.com/img/custom-software.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://lojikon.com/custom-software.html">
-    <meta property="twitter:title" content="Özel Makine Yazılımları - Lojikon">
-    <meta property="twitter:description" content="Makinelerinize özel geliştirilen PLC ve HMI yazılımları.">
-    <meta property="twitter:image" content="https://lojikon.com/img/custom-software.jpg">
-
-    <!-- SEO Meta Tags -->
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Lojikon">
-    <meta name="geo.region" content="TR-34">
-    <link rel="canonical" href="https://lojikon.com/custom-software.html">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-    <!-- Font Awesome -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- CSS -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "Özel Makine Yazılımları",
-        "description": "Makinelerinize özel geliştirilen PLC ve HMI yazılımları",
-        "brand": {
-            "@type": "Brand",
-            "name": "Lojikon"
-        },
-        "manufacturer": {
-            "@type": "Organization",
-            "name": "Lojikon"
-        },
-        "offers": {
-            "@type": "Offer",
-            "availability": "https://schema.org/InStock"
-        }
-    }
-    </script>
+    <link rel="stylesheet" href="custom-software.css">
 </head>
 <body>
-    <!-- Header Template Container -->
-    <div id="header-container"></div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h2>Lojikon</h2>
+                <p class="header-slogan">Endüstriyel Otomasyon</p>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#about">Hakkımızda</a></li>
+                <li><a href="index.html#solutions">Çözümler</a></li>
+                <li><a href="index.html#services">Hizmetler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+            
+            <div class="header-social-links">
+                <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
+    <section id="home" class="hero">
+        <div class="hero-container solution-page">
             <div class="hero-content">
-                <h1 class="hero-title">Özel Makine Yazılımları</h1>
-                <div class="hero-slogan">
-                    <span class="fixed-text">Akıllı</span>
-                    <span class="variable-1" id="var1">Sistemler</span>
-                    <span class="fixed-text">, Akıllı</span>
-                    <span class="variable-2" id="var2">Yarın</span>
+                <div class="hero-text-content">
+                    <h1 class="hero-title">
+                        <span class="highlight">Özel</span> Yazılım
+                    </h1>
+                    
+                    <div class="hero-slogan">
+                        <span class="fixed-text">Akıllı</span>
+                        <span class="variable-1" id="var1">Kodlar</span>
+                        <span class="fixed-text">, Akıllı</span>
+                        <span class="variable-2" id="var2">Çözümler</span>
+                    </div>
+                    
+                    <p class="hero-description">
+                        Endüstriyel otomasyon için özel yazılım geliştirme. 
+                        İhtiyaçlarınıza özel çözümler ile verimlilik artışı.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#how-it-works" class="btn btn-primary">
+                            <i class="fas fa-cogs"></i>
+                            Nasıl Çalışır?
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-phone"></i>
+                            İletişim
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>100+</h3>
+                            <p>Proje</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>Teknoloji</p>
+                        </div>
+                        <div class="stat">
+                            <h3>%100</h3>
+                            <p>Müşteri Memnuniyeti</p>
+                        </div>
+                    </div>
                 </div>
-                <p class="hero-subtitle">Makinelerinize <span class="highlight">özel</span> geliştirilen PLC ve HMI yazılımları</p>
-                <p class="hero-description">
-                    Makinelerinizin ihtiyaçlarına özel olarak geliştirilen PLC programlama ve HMI tasarım 
-                    çözümlerimiz ile üretim süreçlerinizi optimize edin. Deneyimli ekibimiz ile 
-                    makinelerinizin performansını maksimize eden yazılımlar geliştiriyoruz.
-                </p>
+                
+                <!-- Custom Software Animation -->
+                <div class="custom-software-hero-animation">
+                    <div class="development-environment">
+                        <!-- IDE Header -->
+                        <div class="ide-header">
+                            <div class="header-title">
+                                <i class="fas fa-code"></i>
+                                <span>LOJIKON IDE</span>
+                            </div>
+                            <div class="file-tabs">
+                                <div class="tab active">main.py</div>
+                                <div class="tab">config.js</div>
+                                <div class="tab">database.sql</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Code Editor -->
+                        <div class="code-editor">
+                            <div class="line-numbers">
+                                <div class="line-number">1</div>
+                                <div class="line-number">2</div>
+                                <div class="line-number">3</div>
+                                <div class="line-number">4</div>
+                                <div class="line-number">5</div>
+                                <div class="line-number">6</div>
+                                <div class="line-number">7</div>
+                                <div class="line-number">8</div>
+                                <div class="line-number">9</div>
+                                <div class="line-number">10</div>
+                            </div>
+                            <div class="code-content">
+                                <div class="code-line" id="line1"><span class="keyword">class</span> <span class="class-name">LojikonSystem</span>:</div>
+                                <div class="code-line" id="line2">    <span class="keyword">def</span> <span class="function-name">__init__</span>(<span class="parameter">self</span>):</div>
+                                <div class="code-line" id="line3">        <span class="variable">self</span>.<span class="property">version</span> = <span class="string">"4.0.0"</span></div>
+                                <div class="code-line" id="line4">        <span class="variable">self</span>.<span class="property">status</span> = <span class="string">"active"</span></div>
+                                <div class="code-line" id="line5"></div>
+                                <div class="code-line" id="line6">    <span class="keyword">def</span> <span class="function-name">start_production</span>(<span class="parameter">self</span>):</div>
+                                <div class="code-line" id="line7">        <span class="comment"># Akıllı üretim başlat</span></div>
+                                <div class="code-line" id="line8">        <span class="keyword">return</span> <span class="string">"Üretim başlatıldı"</span></div>
+                                <div class="code-line" id="line9"></div>
+                                <div class="code-line" id="line10"><span class="variable">system</span> = <span class="class-name">LojikonSystem</span>()</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Terminal -->
+                        <div class="terminal">
+                            <div class="terminal-header">
+                                <i class="fas fa-terminal"></i>
+                                <span>Terminal</span>
+                            </div>
+                            <div class="terminal-content" id="terminal-content">
+                                <div class="terminal-line">$ python main.py</div>
+                                <div class="terminal-line">Lojikon System v4.0.0</div>
+                                <div class="terminal-line">Status: Active</div>
+                                <div class="terminal-line">Production: Started</div>
+                                <div class="terminal-line">$</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Development Tools -->
+                        <div class="dev-tools">
+                            <div class="tool-panel">
+                                <div class="tool-item">
+                                    <i class="fab fa-python"></i>
+                                    <span>Python</span>
+                                </div>
+                                <div class="tool-item">
+                                    <i class="fab fa-js"></i>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="tool-item">
+                                    <i class="fab fa-react"></i>
+                                    <span>React</span>
+                                </div>
+                                <div class="tool-item">
+                                    <i class="fab fa-node"></i>
+                                    <span>Node.js</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Progress Indicators -->
+                        <div class="progress-indicators">
+                            <div class="progress-card">
+                                <div class="progress-title">Kod Tamamlanma</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="code-progress" style="width: 85%"></div>
+                                </div>
+                                <div class="progress-value">85%</div>
+                            </div>
+                            
+                            <div class="progress-card">
+                                <div class="progress-title">Test Geçme</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="test-progress" style="width: 92%"></div>
+                                </div>
+                                <div class="progress-value">92%</div>
+                            </div>
+                            
+                            <div class="progress-card">
+                                <div class="progress-title">Performans</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="performance-progress" style="width: 78%"></div>
+                                </div>
+                                <div class="progress-value">78%</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Control Panel -->
+                        <div class="control-panel">
+                            <div class="control-buttons">
+                                <button class="control-btn" id="run-code">
+                                    <i class="fas fa-play"></i>
+                                    <span>ÇALIŞTIR</span>
+                                </button>
+                                <button class="control-btn" id="debug-code">
+                                    <i class="fas fa-bug"></i>
+                                    <span>DEBUG</span>
+                                </button>
+                                <button class="control-btn" id="deploy-code">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>DEPLOY</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
         <div class="container">
             <div class="section-header">
-                <h2>Özel Makine Yazılımları Hakkında</h2>
-                <p>Makinelerinizin ihtiyaçlarına özel yazılım çözümleri</p>
+                <h2>Nasıl Çalışır?</h2>
+                <p>Özel yazılım geliştirme sürecinin adımları</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Nedir?</h3>
-                    <p>Özel makine yazılımları, makinelerinizin spesifik ihtiyaçlarına göre 
-                       geliştirilen PLC (Programmable Logic Controller) programları ve HMI 
-                       (Human Machine Interface) arayüzleridir. Bu yazılımlar, makinelerinizin 
-                       otomasyon seviyesini artırır ve operatör etkileşimini kolaylaştırır.</p>
-                    
-                    <h3>Nasıl Çalışır?</h3>
-                    <p>Önce makinelerinizin mevcut durumu ve ihtiyaçları analiz edilir. 
-                       Ardından PLC programı geliştirilir ve HMI arayüzü tasarlanır. 
-                       Sistem entegrasyonu yapılır ve kapsamlı testler gerçekleştirilir. 
-                       Son olarak eğitim ve bakım desteği sağlanır.</p>
-                    
-                    <h3>Nerede Kullanılır?</h3>
-                    <ul>
-                        <li><strong>Üretim Makineleri:</strong> Paketleme, etiketleme, dolum makineleri</li>
-                        <li><strong>Montaj Sistemleri:</strong> Otomatik montaj hatları, robotik sistemler</li>
-                        <li><strong>Test Ekipmanları:</strong> Kalite kontrol, test sistemleri</li>
-                        <li><strong>Konveyör Sistemleri:</strong> Taşıma, sıralama, yönlendirme</li>
-                        <li><strong>Özel Makineler:</strong> Endüstriyel ihtiyaçlara özel makineler</li>
-                    </ul>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Analiz</h3>
+                    <p>İhtiyaçlar analiz edilir ve planlanır.</p>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3>Tasarım</h3>
+                    <p>Yazılım mimarisi ve arayüz tasarlanır.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
                         <i class="fas fa-code"></i>
-                        <p>Özel Makine Yazılımları</p>
                     </div>
+                    <h3>Geliştirme</h3>
+                    <p>Kod yazılır ve test edilir.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Deploy</h3>
+                    <p>Yazılım canlıya alınır ve desteklenir.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Photos Section -->
-    <section id="photos" class="photos-section">
+    <!-- Why Use Section -->
+    <section id="why-use" class="why-use">
         <div class="container">
             <div class="section-header">
-                <h2>Özel Makine Yazılımları Galerisi</h2>
-                <p>Gerçek projelerimizden örnekler</p>
+                <h2>Neden Kullanılır?</h2>
+                <p>Özel yazılım geliştirmenin avantajları</p>
             </div>
-            <div class="photos-grid">
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/Pano_1.jpeg" alt="Özel Makine Yazılımı Pano 1">
-                    </div>
-                    <div class="photo-description">
-                        <h4>Kontrol Paneli 1</h4>
-                        <p>Özel tasarlanmış endüstriyel kontrol paneli ve yazılım arayüzü</p>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/Pano_2.jpeg" alt="Özel Makine Yazılımı Pano 2">
-                    </div>
-                    <div class="photo-description">
-                        <h4>Kontrol Paneli 2</h4>
-                        <p>Gelişmiş PLC programlama ve HMI tasarımı örneği</p>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/Pano_3.jpeg" alt="Özel Makine Yazılımı Pano 3">
-                    </div>
-                    <div class="photo-description">
-                        <h4>Kontrol Paneli 3</h4>
-                        <p>Profesyonel endüstriyel otomasyon çözümü</p>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/Pano_4.jpeg" alt="Özel Makine Yazılımı Pano 4">
-                    </div>
-                    <div class="photo-description">
-                        <h4>Kontrol Paneli 4</h4>
-                        <p>Özelleştirilmiş makine kontrol sistemi</p>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/Pano_5.jpeg" alt="Özel Makine Yazılımı Pano 5">
-                    </div>
-                    <div class="photo-description">
-                        <h4>Kontrol Paneli 5</h4>
-                        <p>Modern endüstriyel yazılım ve donanım entegrasyonu</p>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/Pano_6.jpeg" alt="Özel Makine Yazılımı Pano 6">
-                    </div>
-                    <div class="photo-description">
-                        <h4>Kontrol Paneli 6</h4>
-                        <p>Kullanıcı dostu operatör arayüzü ve kontrol sistemi</p>
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="solution-photo">
-                        <img src="img/Pano_7.jpeg" alt="Özel Makine Yazılımı Pano 7">
-                    </div>
-                    <div class="photo-description">
-                        <h4>Kontrol Paneli 7</h4>
-                        <p>Gelişmiş otomasyon ve veri yönetimi çözümü</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Specifications Section -->
-    <section id="specs" class="specs-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Teknik Özellikler</h2>
-                <p>Özel makine yazılımlarımızın teknik detayları</p>
-            </div>
-            <div class="specs-grid">
-                <div class="spec-item">
-                    <h4>PLC Programlama</h4>
-                    <p>Siemens, Allen Bradley, Schneider, Mitsubishi PLC programlama</p>
-                </div>
-                <div class="spec-item">
-                    <h4>HMI Tasarımı</h4>
-                    <p>WinCC, FactoryTalk View, Vijeo Designer, GT Designer</p>
-                </div>
-                <div class="spec-item">
-                    <h4>İletişim Protokolleri</h4>
-                    <p>Modbus, Profinet, Ethernet/IP, Profibus, OPC UA</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Güvenlik</h4>
-                    <p>Kullanıcı yetkilendirme, güvenli erişim, veri koruma</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Veri Yönetimi</h4>
-                    <p>Veri toplama, arşivleme, raporlama, alarm yönetimi</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Uzaktan Erişim</h4>
-                    <p>Web tabanlı erişim, mobil uygulama, VPN desteği</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Bakım ve Destek</h4>
-                    <p>7/24 teknik destek, uzaktan bakım, güncelleme hizmetleri</p>
-                </div>
-                <div class="spec-item">
-                    <h4>Dokümantasyon</h4>
-                    <p>Detaylı teknik dokümantasyon, kullanım kılavuzları</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="benefits-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Faydalar</h2>
-                <p>Özel makine yazılımlarının işletmenize sağlayacağı avantajlar</p>
-            </div>
+            
             <div class="benefits-grid">
-                <div class="benefit-item">
+                <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
-                    <h4>Otomasyon Artışı</h4>
-                    <p>Makinelerinizin otomasyon seviyesini artırarak verimliliği maksimize edin</p>
+                    <h3>Özelleştirilebilir</h3>
+                    <p>İhtiyaçlarınıza tam uyumlu çözümler.</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h4>Kolay Kullanım</h4>
-                    <p>Kullanıcı dostu arayüzler ile operatör eğitim süresini kısaltın</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h4>Hızlı Bakım</h4>
-                    <p>Uzaktan bakım özellikleri ile bakım sürelerini minimize edin</p>
-                </div>
-                <div class="benefit-item">
+                
+                <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h4>Performans Takibi</h4>
-                    <p>Gerçek zamanlı performans izleme ile makinelerinizi optimize edin</p>
+                    <h3>Verimlilik</h3>
+                    <p>İş süreçlerinizi optimize eder.</p>
                 </div>
-                <div class="benefit-item">
+                
+                <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h4>Güvenlik</h4>
-                    <p>Güvenli erişim ve veri koruma ile sistem güvenliğini sağlayın</p>
+                    <h3>Güvenlik</h3>
+                    <p>Güvenli ve güvenilir yazılım.</p>
                 </div>
-                <div class="benefit-item">
+                
+                <div class="benefit-card">
                     <div class="benefit-icon">
                         <i class="fas fa-headset"></i>
                     </div>
-                    <h4>Teknik Destek</h4>
-                    <p>7/24 teknik destek ile kesintisiz operasyon sağlayın</p>
+                    <h3>Destek</h3>
+                    <p>7/24 teknik destek ve bakım.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where Used Section -->
+    <section id="where-used" class="where-used">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nerede Kullanılır?</h2>
+                <p>Özel yazılım çözümlerinin kullanım alanları</p>
+            </div>
+            
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Üretim Otomasyonu</h3>
+                    <p>Fabrika otomasyon sistemleri.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Depo Yönetimi</h3>
+                    <p>Akıllı depo yönetim sistemleri.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Raporlama</h3>
+                    <p>Özel raporlama ve analiz araçları.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobil Uygulamalar</h3>
+                    <p>Endüstriyel mobil çözümler.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs Section -->
+    <section id="technical-specs" class="technical-specs">
+        <div class="container">
+            <div class="section-header">
+                <h2>Teknik Özellikler</h2>
+                <p>Özel yazılım geliştirme teknolojileri</p>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h3>Backend Teknolojileri</h3>
+                    <ul>
+                        <li><strong>Python:</strong> Django, Flask</li>
+                        <li><strong>Node.js:</strong> Express, NestJS</li>
+                        <li><strong>Java:</strong> Spring Boot</li>
+                        <li><strong>C#:</strong> .NET Core</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Frontend Teknolojileri</h3>
+                    <ul>
+                        <li><strong>React:</strong> Modern UI</li>
+                        <li><strong>Vue.js:</strong> Progressive Framework</li>
+                        <li><strong>Angular:</strong> Enterprise</li>
+                        <li><strong>TypeScript:</strong> Type Safety</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Veritabanı</h3>
+                    <ul>
+                        <li><strong>PostgreSQL:</strong> Relational</li>
+                        <li><strong>MongoDB:</strong> NoSQL</li>
+                        <li><strong>Redis:</strong> Cache</li>
+                        <li><strong>InfluxDB:</strong> Time Series</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>DevOps</h3>
+                    <ul>
+                        <li><strong>Docker:</strong> Containerization</li>
+                        <li><strong>Kubernetes:</strong> Orchestration</li>
+                        <li><strong>CI/CD:</strong> Automation</li>
+                        <li><strong>Monitoring:</strong> Prometheus</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -300,27 +416,130 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2>Özel Yazılım Teklifi Alın</h2>
-                <p>İhtiyaçlarınıza özel yazılım çözümü için bizimle iletişime geçin</p>
+                <h2>İletişim</h2>
+                <p>Bizimle iletişime geçin</p>
             </div>
+            
             <div class="contact-content">
-                <div id="contact-info-container"></div>
-                <div id="contact-form-container"></div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adres</h4>
+                            <p>Silivri - İSTANBUL TÜRKİYE<br>Endüstriyel Otomasyon Merkezi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p>+90 212 657 18 03<br>+90 533 388 33 92</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@lojikon.com<br>yusuf@lojikon.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Çalışma Saatleri</h4>
+                            <p>Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 13:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Adınız *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email Adresiniz *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Telefon Numaranız">
+                    </div>
+                    <div class="form-group">
+                        <select name="service_type">
+                            <option value="">Hizmet Türü Seçin</option>
+                            <option value="web-development">Web Geliştirme</option>
+                            <option value="mobile-app">Mobil Uygulama</option>
+                            <option value="automation-software">Otomasyon Yazılımı</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Mesajınız *" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Gönder
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer Template Container -->
-    <div id="footer-container"></div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lojikon</h3>
+                    <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@lojikonotomasyonveyazlmticltds" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Çözümler</h4>
+                    <ul>
+                        <li><a href="sorter.html">Sorter Sistemleri</a></li>
+                        <li><a href="palet-lift.html">Pallet Lift</a></li>
+                        <li><a href="miniload.html">Miniload</a></li>
+                        <li><a href="pick-to-light.html">Pick to Light</a></li>
+                        <li><a href="scada.html">SCADA Sistemleri</a></li>
+                        <li><a href="production-tracking.html">Üretim Takibi</a></li>
+                        <li><a href="data-collection.html">Veri Toplama</a></li>
+                        <li><a href="custom-software.html">Özel Yazılım</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Hizmetler</h4>
+                    <ul>
+                        <li><a href="plc-programlama.html">PLC Programlama</a></li>
+                        <li><a href="scada.html">SCADA Sistemleri</a></li>
+                        <li><a href="sistem-entegrasyonu.html">Sistem Entegrasyonu</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <p>Silivri - İSTANBUL TÜRKİYE</p>
+                    <p>+90 212 657 18 03</p>
+                    <p>info@lojikon.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
-    <script src="include-templates.js"></script>
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init("pMn_T_QHghVJklt3q");
-        })();
-    </script>
+    <script src="script.js"></script>
+    <script src="custom-software-animation.js"></script>
 </body>
 </html> 
