@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miniload Sistemleri - Lojikon | Otomatik Depolama ve Geri Alma Sistemleri</title>
-    <meta name="description" content="Lojikon miniload sistemleri ile otomatik depolama ve geri alma. Shuttle teknolojisi ile yüksek yoğunluklu depolama çözümleri.">
+    <title>Palet ve Kasa Asansörü Sistemleri - Lojikon | Otomatik Pallet ve Kasa Yükleme, Boşaltma ve Transfer Sistemleri</title>
+    <meta name="description" content="Lojikon palet ve kasa asansörü sistemleri ile otomatik yükleme, boşaltma ve transfer. Çok katlı, güvenli ve hızlı palet ve kasa asansörü çözümleri.">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="miniload.css">
+    <link rel="stylesheet" href="palet-ve-kasa-asansoru.css">
 </head>
 <body>
     <!-- Header -->
@@ -51,19 +51,19 @@
             <div class="hero-content">
                 <div class="hero-text-content">
                     <h1 class="hero-title">
-                        <span class="highlight">Miniload</span> Sistemleri
+                        <span class="highlight">Palet ve Kasa Asansörü</span> Sistemleri
                     </h1>
                     
                     <div class="hero-slogan">
                         <span class="fixed-text">Akıllı</span>
-                        <span class="variable-1" id="var1">Depolama</span>
+                        <span class="variable-1" id="var1">Yükleme</span>
                         <span class="fixed-text">, Akıllı</span>
-                        <span class="variable-2" id="var2">Erişim</span>
+                        <span class="variable-2" id="var2">Transfer</span>
                     </div>
                     
                     <p class="hero-description">
-                        Shuttle teknolojisi ile otomatik depolama ve geri alma sistemleri. 
-                        Yüksek yoğunluklu, hızlı ve verimli depolama çözümleri.
+                        Otomatik palet ve kasa yükleme, boşaltma ve transfer sistemleri ile verimli depo yönetimi. 
+                        Çok katlı, güvenli ve hızlı palet ve kasa asansörü çözümleri.
                     </p>
                     
                     <div class="hero-buttons">
@@ -79,12 +79,12 @@
                     
                     <div class="hero-stats">
                         <div class="stat">
-                            <h3>500+</h3>
-                            <p>Kutu/Saat</p>
+                            <h3>1000+</h3>
+                            <p>Pallet/Gün</p>
                         </div>
                         <div class="stat">
-                            <h3>%99.8</h3>
-                            <p>Doğruluk</p>
+                            <h3>%99.9</h3>
+                            <p>Güvenlik</p>
                         </div>
                         <div class="stat">
                             <h3>24/7</h3>
@@ -93,79 +93,109 @@
                     </div>
                 </div>
                 
-                <!-- Miniload Animation -->
-                <div class="miniload-hero-animation">
-                    <div class="miniload-system">
-                        <!-- Storage Racks -->
-                        <div class="storage-racks">
-                            <div class="rack rack-1">
-                                <div class="rack-levels">
-                                    <div class="level" data-level="1"></div>
-                                    <div class="level" data-level="2"></div>
-                                    <div class="level" data-level="3"></div>
-                                    <div class="level" data-level="4"></div>
+                <!-- Palet ve Kasa Asansörü Animation -->
+                <div class="pallet-lift-hero-animation">
+                    <div class="lift-system">
+                        <!-- Lift Structure -->
+                        <div class="lift-structure">
+                            <div class="lift-tower">
+                                <div class="tower-column left-column"></div>
+                                <div class="tower-column right-column"></div>
+                                <div class="tower-beams">
+                                    <div class="beam"></div>
+                                    <div class="beam"></div>
+                                    <div class="beam"></div>
+                                    <div class="beam"></div>
                                 </div>
                             </div>
-                            <div class="rack rack-2">
-                                <div class="rack-levels">
-                                    <div class="level" data-level="1"></div>
-                                    <div class="level" data-level="2"></div>
-                                    <div class="level" data-level="3"></div>
-                                    <div class="level" data-level="4"></div>
+                            
+                            <!-- Lift Platform -->
+                            <div class="lift-platform" id="lift-platform">
+                                <div class="platform-surface"></div>
+                                <div class="platform-rails">
+                                    <div class="rail left-rail"></div>
+                                    <div class="rail right-rail"></div>
+                                </div>
+                                <div class="platform-gate front-gate"></div>
+                                <div class="platform-gate back-gate"></div>
+                            </div>
+                            
+                            <!-- Counterweight -->
+                            <div class="counterweight" id="counterweight">
+                                <div class="counterweight-body"></div>
+                                <div class="counterweight-cable"></div>
+                            </div>
+                            
+                            <!-- Floors -->
+                            <div class="floors">
+                                <div class="floor floor-1" data-floor="1">
+                                    <div class="floor-surface"></div>
+                                    <div class="floor-door left-door"></div>
+                                    <div class="floor-door right-door"></div>
+                                    <div class="floor-indicator">1</div>
+                                </div>
+                                <div class="floor floor-2" data-floor="2">
+                                    <div class="floor-surface"></div>
+                                    <div class="floor-door left-door"></div>
+                                    <div class="floor-door right-door"></div>
+                                    <div class="floor-indicator">2</div>
+                                </div>
+                                <div class="floor floor-3" data-floor="3">
+                                    <div class="floor-surface"></div>
+                                    <div class="floor-door left-door"></div>
+                                    <div class="floor-door right-door"></div>
+                                    <div class="floor-indicator">3</div>
+                                </div>
+                                <div class="floor floor-4" data-floor="4">
+                                    <div class="floor-surface"></div>
+                                    <div class="floor-door left-door"></div>
+                                    <div class="floor-door right-door"></div>
+                                    <div class="floor-indicator">4</div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- Shuttle -->
-                        <div class="shuttle" id="shuttle">
-                            <div class="shuttle-body"></div>
-                            <div class="shuttle-wheels">
-                                <div class="wheel"></div>
-                                <div class="wheel"></div>
-                                <div class="wheel"></div>
-                                <div class="wheel"></div>
+                            
+                            <!-- Pallet -->
+                            <div class="pallet" id="pallet">
+                                <div class="pallet-top"></div>
+                                <div class="pallet-sides">
+                                    <div class="pallet-side front"></div>
+                                    <div class="pallet-side back"></div>
+                                    <div class="pallet-side left"></div>
+                                    <div class="pallet-side right"></div>
+                                </div>
                             </div>
-                            <div class="shuttle-arm"></div>
-                        </div>
-                        
-                        <!-- Products -->
-                        <div class="products">
-                            <div class="product-box" data-position="1,1">📦</div>
-                            <div class="product-box" data-position="1,2">📦</div>
-                            <div class="product-box" data-position="2,1">📦</div>
-                            <div class="product-box" data-position="2,2">📦</div>
-                            <div class="product-box" data-position="3,1">📦</div>
-                            <div class="product-box" data-position="3,2">📦</div>
                         </div>
                         
                         <!-- Control Panel -->
                         <div class="control-panel">
                             <div class="panel-display">
                                 <div class="display-item">
+                                    <span class="label">Kat:</span>
+                                    <span class="value" id="current-floor">1</span>
+                                </div>
+                                <div class="display-item">
                                     <span class="label">Durum:</span>
-                                    <span class="value" id="shuttle-status">Hazır</span>
+                                    <span class="value" id="lift-status">Hazır</span>
                                 </div>
                                 <div class="display-item">
-                                    <span class="label">Hız:</span>
-                                    <span class="value" id="shuttle-speed">2.0</span>
-                                    <span class="unit">m/s</span>
-                                </div>
-                                <div class="display-item">
-                                    <span class="label">Kapasite:</span>
-                                    <span class="value" id="shuttle-capacity">50</span>
-                                    <span class="unit">kutu</span>
+                                    <span class="label">Yük:</span>
+                                    <span class="value" id="load-weight">1500 kg</span>
                                 </div>
                             </div>
                             
+                            <div class="floor-buttons">
+                                <button class="floor-btn" data-floor="1">1</button>
+                                <button class="floor-btn" data-floor="2">2</button>
+                                <button class="floor-btn" data-floor="3">3</button>
+                                <button class="floor-btn" data-floor="4">4</button>
+                            </div>
+                            
                             <div class="control-buttons">
-                                <button class="control-btn" id="start-btn">
-                                    <i class="fas fa-play"></i>
-                                </button>
-                                <button class="control-btn" id="stop-btn">
+                                <button class="control-btn" id="emergency-stop">
                                     <i class="fas fa-stop"></i>
                                 </button>
-                                <button class="control-btn" id="reset-btn">
-                                    <i class="fas fa-redo"></i>
+                                <button class="control-btn" id="auto-mode">
+                                    <i class="fas fa-play"></i>
                                 </button>
                             </div>
                         </div>
@@ -173,16 +203,18 @@
                         <!-- Performance Indicators -->
                         <div class="performance-indicators">
                             <div class="indicator">
-                                <span class="indicator-label">Depolanan</span>
-                                <span class="indicator-value" id="stored-count">0</span>
+                                <span class="indicator-label">Hız</span>
+                                <span class="indicator-value" id="lift-speed">2.5</span>
+                                <span class="indicator-unit">m/s</span>
                             </div>
                             <div class="indicator">
-                                <span class="indicator-label">Alınan</span>
-                                <span class="indicator-value" id="retrieved-count">0</span>
+                                <span class="indicator-label">Kapasite</span>
+                                <span class="indicator-value" id="lift-capacity">2000</span>
+                                <span class="indicator-unit">kg</span>
                             </div>
                             <div class="indicator">
                                 <span class="indicator-label">Verimlilik</span>
-                                <span class="indicator-value" id="efficiency">98.5</span>
+                                <span class="indicator-value" id="lift-efficiency">99.2</span>
                                 <span class="indicator-unit">%</span>
                             </div>
                         </div>
@@ -197,7 +229,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Nasıl Çalışır?</h2>
-                <p>Miniload sisteminin çalışma prensibi ve adımları</p>
+                <p>Palet ve kasa asansörü sisteminin çalışma prensibi ve adımları</p>
             </div>
             
             <div class="steps-grid">
@@ -207,7 +239,7 @@
                         <i class="fas fa-upload"></i>
                     </div>
                     <h3>Yükleme</h3>
-                    <p>Ürünler shuttle'a yüklenir ve depolama pozisyonu belirlenir.</p>
+                    <p>Pallet platforma yüklenir ve güvenlik kontrolleri yapılır.</p>
                 </div>
                 
                 <div class="step-card">
@@ -215,17 +247,17 @@
                     <div class="step-icon">
                         <i class="fas fa-route"></i>
                     </div>
-                    <h3>Taşıma</h3>
-                    <p>Shuttle belirlenen raf seviyesine hareket eder.</p>
+                    <h3>Hedef Belirleme</h3>
+                    <p>PLC sistemi hedef katı belirler ve rotayı planlar.</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <div class="step-icon">
-                        <i class="fas fa-box"></i>
+                        <i class="fas fa-arrow-up"></i>
                     </div>
-                    <h3>Depolama</h3>
-                    <p>Ürünler raf seviyesine yerleştirilir ve kaydedilir.</p>
+                    <h3>Yükselme</h3>
+                    <p>Platform güvenli bir şekilde hedef kata yükselir.</p>
                 </div>
                 
                 <div class="step-card">
@@ -233,8 +265,8 @@
                     <div class="step-icon">
                         <i class="fas fa-download"></i>
                     </div>
-                    <h3>Geri Alma</h3>
-                    <p>İstenen ürünler hızlıca bulunur ve alınır.</p>
+                    <h3>Boşaltma</h3>
+                    <p>Pallet hedef kattan alınır ve transfer tamamlanır.</p>
                 </div>
             </div>
         </div>
@@ -245,16 +277,24 @@
         <div class="container">
             <div class="section-header">
                 <h2>Neden Kullanılır?</h2>
-                <p>Miniload sistemlerinin avantajları ve faydaları</p>
+                <p>Palet ve kasa asansörü sistemlerinin avantajları ve faydaları</p>
             </div>
             
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <i class="fas fa-compress-arrows-alt"></i>
+                        <i class="fas fa-arrow-up"></i>
                     </div>
-                    <h3>Yüksek Yoğunluk</h3>
-                    <p>Maksimum depolama alanı kullanımı ile yoğun depolama.</p>
+                    <h3>Dikey Taşıma</h3>
+                    <p>Çok katlı binalarda dikey pallet taşıma imkanı.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Güvenlik</h3>
+                    <p>%99.9 güvenlik oranı ile güvenli pallet transferi.</p>
                 </div>
                 
                 <div class="benefit-card">
@@ -262,15 +302,7 @@
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
                     <h3>Yüksek Hız</h3>
-                    <p>500+ kutu/saat kapasite ile hızlı işlem.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3>Yüksek Doğruluk</h3>
-                    <p>%99.8 doğruluk oranı ile hatasız operasyon.</p>
+                    <p>2.5 m/s hız ile hızlı pallet transfer işlemleri.</p>
                 </div>
                 
                 <div class="benefit-card">
@@ -278,7 +310,7 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>İnsan Gücü Tasarrufu</h3>
-                    <p>Otomatik sistem ile işçi maliyetlerini azaltır.</p>
+                    <p>Otomatik transfer ile işçi maliyetlerini azaltır.</p>
                 </div>
             </div>
         </div>
@@ -289,7 +321,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Nerede Kullanılır?</h2>
-                <p>Miniload sistemlerinin kullanım alanları</p>
+                <p>Palet ve kasa asansörü sistemlerinin kullanım alanları</p>
             </div>
             
             <div class="applications-grid">
@@ -298,7 +330,7 @@
                         <i class="fas fa-warehouse"></i>
                     </div>
                     <h3>Depo Yönetimi</h3>
-                    <p>Büyük depolar ve dağıtım merkezlerinde otomatik depolama.</p>
+                    <p>Çok katlı depolar ve dağıtım merkezlerinde pallet transferi.</p>
                 </div>
                 
                 <div class="application-card">
@@ -306,15 +338,7 @@
                         <i class="fas fa-industry"></i>
                     </div>
                     <h3>Üretim</h3>
-                    <p>Fabrikalarda hammadde ve yarı mamul depolama.</p>
-                </div>
-                
-                <div class="application-card">
-                    <div class="application-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>E-ticaret</h3>
-                    <p>Online satış platformlarında hızlı sipariş hazırlama.</p>
+                    <p>Fabrikalarda katlar arası malzeme ve ürün transferi.</p>
                 </div>
                 
                 <div class="application-card">
@@ -322,7 +346,15 @@
                         <i class="fas fa-shipping-fast"></i>
                     </div>
                     <h3>Lojistik</h3>
-                    <p>Kargo merkezlerinde paket depolama ve sıralama.</p>
+                    <p>Kargo merkezlerinde pallet yükleme ve boşaltma.</p>
+                </div>
+                
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Ticari Binalar</h3>
+                    <p>AVM ve ofis binalarında malzeme transferi.</p>
                 </div>
             </div>
         </div>
@@ -333,46 +365,46 @@
         <div class="container">
             <div class="section-header">
                 <h2>Teknik Özellikler</h2>
-                <p>Miniload sistemlerinin teknik detayları</p>
+                <p>Palet ve kasa asansörü sistemlerinin teknik detayları</p>
             </div>
             
             <div class="specs-grid">
                 <div class="spec-card">
-                    <h3>Shuttle Özellikleri</h3>
+                    <h3>Yük Kapasitesi</h3>
                     <ul>
-                        <li><strong>Maksimum Hız:</strong> 2.0 m/s</li>
-                        <li><strong>Yük Kapasitesi:</strong> 50 kg</li>
-                        <li><strong>Pil Ömrü:</strong> 8 saat</li>
-                        <li><strong>Şarj Süresi:</strong> 2 saat</li>
+                        <li><strong>Maksimum Yük:</strong> 2000 kg</li>
+                        <li><strong>Platform Boyutu:</strong> 1200 x 1000 mm</li>
+                        <li><strong>Pallet Boyutu:</strong> 1200 x 800 mm</li>
+                        <li><strong>Yük Yüksekliği:</strong> 1500 mm</li>
                     </ul>
                 </div>
                 
                 <div class="spec-card">
-                    <h3>Raf Sistemi</h3>
+                    <h3>Hareket Özellikleri</h3>
                     <ul>
-                        <li><strong>Maksimum Yükseklik:</strong> 12 m</li>
-                        <li><strong>Raf Derinliği:</strong> 30 m</li>
-                        <li><strong>Seviye Sayısı:</strong> 8-12</li>
-                        <li><strong>Kutu Boyutu:</strong> 600x400x300 mm</li>
+                        <li><strong>Maksimum Hız:</strong> 2.5 m/s</li>
+                        <li><strong>İvme:</strong> 0.5 m/s²</li>
+                        <li><strong>Duraklama Mesafesi:</strong> 500 mm</li>
+                        <li><strong>Kat Sayısı:</strong> 4-20 kat</li>
                     </ul>
                 </div>
                 
                 <div class="spec-card">
-                    <h3>Performans</h3>
+                    <h3>Güvenlik Özellikleri</h3>
                     <ul>
-                        <li><strong>Depolama Kapasitesi:</strong> 500+ kutu/saat</li>
-                        <li><strong>Geri Alma Kapasitesi:</strong> 500+ kutu/saat</li>
-                        <li><strong>Doğruluk Oranı:</strong> %99.8</li>
-                        <li><strong>Çalışma Süresi:</strong> 24/7</li>
+                        <li><strong>Güvenlik Oranı:</strong> %99.9</li>
+                        <li><strong>Acil Durum:</strong> Manuel iniş</li>
+                        <li><strong>Kapı Kilidi:</strong> Otomatik</li>
+                        <li><strong>Yük Kontrolü:</strong> Sensörlü</li>
                     </ul>
                 </div>
                 
                 <div class="spec-card">
                     <h3>Kontrol Sistemi</h3>
                     <ul>
-                        <li><strong>PLC:</strong> Siemens S7-1500</li>
-                        <li><strong>WMS:</strong> Entegre</li>
-                        <li><strong>Kontrol:</strong> Otomatik</li>
+                        <li><strong>PLC:</strong> Siemens S7-1200</li>
+                        <li><strong>HMI:</strong> Touch Panel</li>
+                        <li><strong>Kontrol:</strong> Otomatik/Manuel</li>
                         <li><strong>İletişim:</strong> Profinet</li>
                     </ul>
                 </div>
@@ -436,9 +468,9 @@
                     <div class="form-group">
                         <select name="service_type">
                             <option value="">Hizmet Türü Seçin</option>
-                            <option value="miniload">Miniload Sistemleri</option>
-                            <option value="shuttle">Shuttle Teknolojisi</option>
-                            <option value="asrs">AS/RS Sistemleri</option>
+                            <option value="pallet-lift">Palet ve Kasa Asansörü</option>
+                            <option value="continuous-lift">Continuous Lift</option>
+                            <option value="kasa-lift">Kasa Lift</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -472,8 +504,8 @@
                     <h4>Çözümler</h4>
                     <ul>
                         <li><a href="sorter.html">Sorter Sistemleri</a></li>
-                        <li><a href="palet-lift.html">Pallet Lift</a></li>
-                        <li><a href="miniload.html">Miniload</a></li>
+                        <li><a href="palet-ve-kasa-asansoru.html">Palet ve Kasa Asansörü</a></li>
+                        <li><a href="miniload-ve-shuttle.html">Miniload ve Shuttle</a></li>
                         <li><a href="pick-to-light.html">Pick to Light</a></li>
                         <li><a href="scada.html">SCADA Sistemleri</a></li>
                         <li><a href="production-tracking.html">Üretim Takibi</a></li>
@@ -508,6 +540,6 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js"></script>
-    <script src="miniload-animation.js"></script>
+                    <script src="palet-ve-kasa-asansoru-animation.js"></script>
 </body>
 </html> 

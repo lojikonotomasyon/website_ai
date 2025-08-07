@@ -2,14 +2,26 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://lojikonotomasyonveyazlmticltds.github.io/website_ai/sitemap.xml
+Sitemap: https://lojikon.com/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
 
-# Allow images for better SEO
+# Allow important directories
 Allow: /img/
+Allow: /css/
+Allow: /js/
 
 # Disallow specific files
 Disallow: /*.js$
-Disallow: /*.css$ 
+Disallow: /*.css$
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+# Allow search engines to index images
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.webp$ 
