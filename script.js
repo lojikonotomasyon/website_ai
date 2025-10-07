@@ -217,6 +217,13 @@ function initializeContactForm() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
+        // Real-time validation
+        const inputs = contactForm.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => validateField(input));
+            input.addEventListener('input', () => clearFieldError(input));
+        });
+        
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -224,22 +231,53 @@ function initializeContactForm() {
             const formData = new FormData(this);
             const requiredFields = ['name', 'email', 'message'];
             let isValid = true;
+            let firstErrorField = null;
+            
+            // Clear previous errors
+            contactForm.querySelectorAll('.field-error').forEach(error => error.remove());
+            contactForm.querySelectorAll('.error').forEach(field => field.classList.remove('error'));
             
             requiredFields.forEach(field => {
+                const input = contactForm.querySelector(`[name="${field}"]`);
                 const value = formData.get(field);
+                
                 if (!value || value.trim() === '') {
                     isValid = false;
-                    showNotification(`${field.charAt(0).toUpperCase() + field.slice(1)} alanı zorunludur.`, 'error');
+                    showFieldError(input, `${getFieldLabel(field)} alanı zorunludur.`);
+                    if (!firstErrorField) firstErrorField = input;
                 }
             });
             
-            if (!isValid) return;
-            
             // Email validation
+            const emailInput = contactForm.querySelector('[name="email"]');
             const email = formData.get('email');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showNotification('Geçerli bir email adresi giriniz.', 'error');
+            if (email && email.trim()) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    isValid = false;
+                    showFieldError(emailInput, 'Geçerli bir email adresi giriniz.');
+                    if (!firstErrorField) firstErrorField = emailInput;
+                }
+            }
+            
+            // Phone validation (optional but if provided, should be valid)
+            const phoneInput = contactForm.querySelector('[name="phone"]');
+            const phone = formData.get('phone');
+            if (phone && phone.trim()) {
+                const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+                if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+                    isValid = false;
+                    showFieldError(phoneInput, 'Geçerli bir telefon numarası giriniz.');
+                    if (!firstErrorField) firstErrorField = phoneInput;
+                }
+            }
+            
+            if (!isValid) {
+                if (firstErrorField) {
+                    firstErrorField.focus();
+                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                showNotification('Lütfen form hatalarını düzeltin.', 'error');
                 return;
             }
             
@@ -275,6 +313,74 @@ function initializeContactForm() {
                 });
         });
     }
+}
+
+// Form validation helper functions
+function validateField(input) {
+    const value = input.value.trim();
+    const name = input.name;
+    
+    clearFieldError(input);
+    
+    if (input.hasAttribute('required') && !value) {
+        showFieldError(input, `${getFieldLabel(name)} alanı zorunludur.`);
+        return false;
+    }
+    
+    if (name === 'email' && value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+            showFieldError(input, 'Geçerli bir email adresi giriniz.');
+            return false;
+        }
+    }
+    
+    if (name === 'phone' && value) {
+        const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+        if (!phoneRegex.test(value.replace(/\s/g, ''))) {
+            showFieldError(input, 'Geçerli bir telefon numarası giriniz.');
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+function showFieldError(input, message) {
+    input.classList.add('error');
+    
+    let errorElement = input.parentNode.querySelector('.field-error');
+    if (!errorElement) {
+        errorElement = document.createElement('div');
+        errorElement.className = 'field-error';
+        errorElement.style.cssText = `
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: block;
+        `;
+        input.parentNode.appendChild(errorElement);
+    }
+    errorElement.textContent = message;
+}
+
+function clearFieldError(input) {
+    input.classList.remove('error');
+    const errorElement = input.parentNode.querySelector('.field-error');
+    if (errorElement) {
+        errorElement.remove();
+    }
+}
+
+function getFieldLabel(fieldName) {
+    const labels = {
+        'name': 'Ad',
+        'email': 'Email',
+        'phone': 'Telefon',
+        'message': 'Mesaj',
+        'service_type': 'Hizmet Türü'
+    };
+    return labels[fieldName] || fieldName;
 }
 
 // Notification system
@@ -421,29 +527,39 @@ function setupPageVisibilityHandling() {
     document.addEventListener('visibilitychange', handleVisibilityChange);
 }
 
-// Initialize all functions when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize mobile menu
+// Performance optimized initialization
+function initializeWebsite() {
+    // Critical path - initialize immediately
     initializeMobileMenu();
-    
-    // Initialize smooth scrolling
     initializeSmoothScrolling();
     
-    // Initialize hero slider (only on main page)
-    const heroSlider = document.querySelector('.hero-slider');
-    if (heroSlider) {
-        new HeroSlider();
-    }
+    // Non-critical - defer to next frame
+    requestAnimationFrame(() => {
+        // Initialize hero slider (only on main page)
+        const heroSlider = document.querySelector('.hero-slider');
+        if (heroSlider) {
+            new HeroSlider();
+        }
+        
+        // Initialize slogan animation
+        initializeSloganAnimation();
+        
+        // Initialize contact form
+        initializeContactForm();
+        
+        // Setup page visibility handling
+        setupPageVisibilityHandling();
+    });
     
-    // Initialize slogan animation
-    initializeSloganAnimation();
-    
-    // Initialize contact form
-    initializeContactForm();
-    
-    // Initialize scroll to top
-    initializeScrollToTop();
-    
-    // Setup page visibility handling
-    setupPageVisibilityHandling();
-}); 
+    // Low priority - defer more
+    setTimeout(() => {
+        initializeScrollToTop();
+    }, 100);
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeWebsite);
+} else {
+    initializeWebsite();
+} 
