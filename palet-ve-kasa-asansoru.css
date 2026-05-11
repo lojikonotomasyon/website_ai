@@ -1,464 +1,649 @@
-/* ===== PALLET LİFT SAYFASI ÖZEL CSS ===== */
+/* ===== PALET VE KASA ASANSÖRÜ – ANİMASYON CSS ===== */
 
-/* Palet ve Kasa Asansörü Hero Animation */
+/* ─── KAPSAYICI ─────────────────────────────────────── */
 .pallet-lift-hero-animation {
     width: 100%;
-    height: 100%;
     min-height: 500px;
+    height: 500px;
     position: relative;
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    border-radius: 15px;
+    background: radial-gradient(ellipse at 30% 20%, #0f2240 0%, #0a1628 60%, #060e1a 100%);
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(59,130,246,0.12);
 }
 
-.pallet-lift-hero-animation .lift-system {
+.lift-system {
     width: 100%;
     height: 100%;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-/* Lift Structure */
-.lift-structure {
-    flex: 1;
     position: relative;
-    height: 100%;
-    background: #2d3748;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Lift Tower */
+/* ─── ASANSÖR KUYUSU (SHAFT) ─────────────────────────── */
+.lift-structure {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateX(-50px); /* hafif sola kaydır, sağda panel için yer */
+    top: 20px;
+    width: 200px;
+    height: 440px;
+}
+
+/* Kuyu arka planı + yan duvarlar */
 .lift-tower {
     position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        #070f1c 0%,
+        #0c1828 50%,
+        #070f1c 100%
+    );
+    border-left:  4px solid #1e3a5f;
+    border-right: 4px solid #1e3a5f;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Yatay beton çizgileri (arka plan dokusu) */
+.lift-tower::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 27px,
+        rgba(30,58,95,0.25) 27px,
+        rgba(30,58,95,0.25) 28px
+    );
+}
+
+/* Kasnak / makara (üstte) */
+.lift-tower::after {
+    content: '';
+    position: absolute;
+    top: -6px;
     left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 200px;
     transform: translateX(-50%);
-    background: #4a5568;
-    border-radius: 5px;
-    z-index: 10;
-}
-
-.tower-column {
-    position: absolute;
-    width: 20px;
-    background: #718096;
-    border-radius: 2px;
-    z-index: 10;
-}
-
-.left-column {
-    left: 20px;
-    top: 0;
-    bottom: 0;
-}
-
-.right-column {
-    right: 20px;
-    top: 0;
-    bottom: 0;
-}
-
-.tower-beams {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 10;
-}
-
-.beam {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 8px;
-    background: #a0aec0;
-    border-radius: 2px;
-    z-index: 10;
-}
-
-.beam:nth-child(1) { top: 20%; }
-.beam:nth-child(2) { top: 40%; }
-.beam:nth-child(3) { top: 60%; }
-.beam:nth-child(4) { top: 80%; }
-
-/* Lift Platform */
-.lift-platform {
-    position: absolute;
-    left: 50%;
-    bottom: 20%;
-    width: 120px;
-    height: 80px;
-    transition: bottom 3s ease-in-out;
-    z-index: 15;
-}
-
-.platform-surface {
-    width: 100%;
-    height: 100%;
-    background: #e2e8f0;
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    position: relative;
-}
-
-.platform-rails {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.rail {
-    position: absolute;
-    width: 8px;
-    background: #4a5568;
-    border-radius: 2px;
-}
-
-.left-rail {
-    left: 10px;
-    top: 0;
-    bottom: 0;
-}
-
-.right-rail {
-    right: 10px;
-    top: 0;
-    bottom: 0;
-}
-
-.platform-gate {
-    position: absolute;
-    width: 100%;
-    height: 20px;
-    background: #a0aec0;
-    border-radius: 2px;
-    transition: all 0.5s ease;
-}
-
-.front-gate {
-    top: -10px;
-}
-
-.back-gate {
-    bottom: -10px;
-}
-
-.platform-gate.open {
-    transform: translateY(10px);
-    opacity: 0.5;
-}
-
-/* Counterweight */
-.counterweight {
-    position: absolute;
-    right: 20px;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    transition: top 3s ease-in-out;
-}
-
-.counterweight-body {
-    position: absolute;
-    bottom: 20%;
-    width: 100%;
-    height: 60px;
-    background: #718096;
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.counterweight-cable {
-    position: absolute;
-    top: 0;
-    bottom: 20%;
-    left: 50%;
-    width: 4px;
-    background: #a0aec0;
-    transform: translateX(-50%);
-}
-
-/* Floors */
-.floors {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    width: 44px;
+    height: 22px;
+    background: radial-gradient(ellipse at center, #3b82f6 0%, #1d4ed8 60%, #1e3a8a 100%);
+    border-radius: 22px 22px 4px 4px;
+    box-shadow: 0 0 18px rgba(59,130,246,0.5), 0 4px 8px rgba(0,0,0,0.4);
     z-index: 5;
 }
 
+/* Kilavuz ray (sol) */
+.tower-column {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 14px;
+    background: linear-gradient(to right, #1e3a5f, #2563eb, #1e3a5f);
+    box-shadow: 0 0 10px rgba(37,99,235,0.4);
+    z-index: 2;
+}
+
+.tower-column::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 16px,
+        rgba(0,0,0,0.45) 16px,
+        rgba(0,0,0,0.45) 18px
+    );
+}
+
+.left-column  { left:  16px; }
+.right-column { right: 16px; }
+
+/* Yatay çubukları gizle (tower-beams) */
+.tower-beams { display: none; }
+
+/* ─── KATLAR ─────────────────────────────────────────── */
+.floors {
+    position: absolute;
+    /* Kuyu dışına taşar: kat etiketleri ve kapılar için */
+    left: -90px;
+    right: -90px;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 8;
+}
+
+/* Her kat: yatay çizgi + kapılar + etiket */
 .floor {
     position: absolute;
     left: 0;
     right: 0;
-    height: 120px;
-    background: #2d3748;
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    z-index: 5;
+    height: 6px;
+    background: linear-gradient(90deg,
+        rgba(30,58,95,0.5) 0%,
+        rgba(59,130,246,0.85) 25%,
+        rgba(59,130,246,0.85) 75%,
+        rgba(30,58,95,0.5) 100%
+    );
+    border-radius: 3px;
+    transition: box-shadow 0.35s ease, background 0.35s ease;
 }
 
-.floor-1 { bottom: 0; }
-.floor-2 { bottom: 130px; }
-.floor-3 { bottom: 260px; }
-.floor-4 { bottom: 390px; }
+.floor-1 { bottom: 8px;   }
+.floor-2 { bottom: 118px; }
+.floor-3 { bottom: 228px; }
+.floor-4 { bottom: 338px; }
 
 .floor.active {
-    background: #60a5fa;
-    box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+    background: linear-gradient(90deg,
+        rgba(96,165,250,0.6) 0%,
+        #60a5fa 25%,
+        #60a5fa 75%,
+        rgba(96,165,250,0.6) 100%
+    );
+    box-shadow: 0 0 18px rgba(96,165,250,0.7), 0 0 40px rgba(96,165,250,0.3);
 }
 
-.floor-surface {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 20px;
-    background: #a0aec0;
-    border-radius: 0 0 5px 5px;
-}
+.floor-surface { display: none; }
 
+/* ─── KAT KAPILAR (kuyu içinde, iki yanda) ──────────── */
 .floor-door {
     position: absolute;
-    top: 20px;
-    width: 40px;
-    height: 80px;
-    background: #718096;
+    top: -52px;
+    width: 62px;
+    height: 56px;
+    background: linear-gradient(160deg, #1a3050 0%, #243d5e 60%, #1a3050 100%);
+    border: 1px solid #2563eb;
+    transition: transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.45s;
+    pointer-events: none;
+    z-index: 9;
+    overflow: hidden;
+}
+
+/* Panel çerçevesi */
+.floor-door::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(37,99,235,0.35);
     border-radius: 2px;
-    transition: all 0.5s ease;
 }
 
-.floor-door.left-door {
-    left: 20px;
+/* Dikey şerit */
+.floor-door::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    background: rgba(37,99,235,0.5);
+    border-radius: 2px;
 }
 
-.floor-door.right-door {
-    right: 20px;
-}
+.left-door  { left:  90px; transform-origin: left  center; border-radius: 3px 0 0 3px; }
+.right-door { right: 90px; transform-origin: right center; border-radius: 0 3px 3px 0; }
 
-.floor-door.open {
-    transform: translateY(-20px);
-    opacity: 0.5;
-}
+.left-door::after  { right: 8px; }
+.right-door::after { left:  8px; }
 
+.left-door.open  { transform: scaleX(0.04); opacity: 0.25; }
+.right-door.open { transform: scaleX(0.04); opacity: 0.25; }
+
+/* ─── KAT ETİKETİ ────────────────────────────────────── */
 .floor-indicator {
     position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    background: #60a5fa;
-    color: white;
-    border-radius: 50%;
+    top: -34px;
+    left: -88px;
+    width: 30px;
+    height: 30px;
+    background: #060e1a;
+    border: 2px solid #2563eb;
+    border-radius: 6px;
+    color: #60a5fa;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 10px rgba(37,99,235,0.35);
+    pointer-events: none;
 }
 
-/* Pallet */
-.pallet {
+/* ─── PLATFORM (TAŞIYICI TABLA) ─────────────────────── */
+#lift-platform {
     position: absolute;
     left: 50%;
-    bottom: 20%;
-    width: 80px;
-    height: 60px;
     transform: translateX(-50%);
-    transition: bottom 3s ease-in-out;
+    width: 148px;
+    height: 85px;
+    bottom: 8px;                                          /* JS tarafından güncellenir */
+    transition: bottom 2.0s cubic-bezier(0.45,0.05,0.55,0.95);
     z-index: 20;
 }
 
+.platform-surface {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #fbbf24 0%, #f59e0b 45%, #d97706 100%);
+    border: 2px solid #92400e;
+    border-radius: 5px;
+    box-shadow:
+        0 6px 16px rgba(0,0,0,0.5),
+        0 0 24px rgba(251,191,36,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.25);
+    overflow: hidden;
+}
+
+/* Güvenlik şeritleri */
+.platform-surface::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent 0px,
+        transparent 7px,
+        rgba(0,0,0,0.12) 7px,
+        rgba(0,0,0,0.12) 11px
+    );
+}
+
+/* Durum lambası */
+.platform-surface::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 11px;
+    height: 11px;
+    background: var(--status-color, #22c55e);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--status-color, #22c55e), 0 0 18px rgba(34,197,94,0.5);
+    animation: statusPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1;   transform: scale(1);    }
+    50%       { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Durum: hareket ediyor → kırmızı */
+#lift-platform[data-state="moving"] .platform-surface::after {
+    --status-color: #ef4444;
+    animation: movingBlink 0.6s ease-in-out infinite;
+}
+
+@keyframes movingBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+}
+
+#lift-platform[data-state="stopped"] .platform-surface::after {
+    background: #f97316;
+    box-shadow: 0 0 8px #f97316;
+    animation: none;
+}
+
+/* Kilavuz raylar (platformun iki yanında, raya kılavuzlanır) */
+.platform-rails { position: absolute; inset: 0; }
+
+.rail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 7px;
+    background: linear-gradient(to right, #374151, #4b5563, #374151);
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.6);
+    z-index: 3;
+}
+
+.left-rail  { left:  -4px; }
+.right-rail { right: -4px; }
+
+/* Platform halatı (üste uzayan) */
+.platform-gate { display: none; }
+
+/* Halat */
+#lift-platform::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 1px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 500px;                          /* kuyu tavanına kadar uzar */
+    background: linear-gradient(to top, #9ca3af 0%, #6b7280 60%, transparent 100%);
+    border-radius: 2px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ─── KARŞI AĞIRLIK ──────────────────────────────────── */
+#counterweight {
+    position: absolute;
+    right: 8px;
+    width: 28px;
+    bottom: 338px;                                        /* JS tarafından güncellenir */
+    transition: bottom 2.0s cubic-bezier(0.45,0.05,0.55,0.95);
+    z-index: 18;
+}
+
+.counterweight-cable {
+    position: absolute;
+    bottom: calc(100% - 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 500px;
+    background: linear-gradient(to top, #6b7280, #9ca3af 30%, transparent 90%);
+    border-radius: 1px;
+}
+
+.counterweight-body {
+    width: 100%;
+    height: 52px;
+    background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #2d3748 100%);
+    border: 1px solid #6b7280;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.counterweight-body::after {
+    content: 'CW';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 7px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    color: #9ca3af;
+    letter-spacing: 1px;
+}
+
+/* ─── PALET ──────────────────────────────────────────── */
+#pallet {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 46px;
+    bottom: 89px;                                         /* JS tarafından güncellenir */
+    transition: bottom 2.0s cubic-bezier(0.45,0.05,0.55,0.95);
+    z-index: 25;
+}
+
+/* Palet yüzeyi (ahşap görünümü) */
 .pallet-top {
     position: absolute;
-    top: 0;
     left: 0;
     right: 0;
-    height: 40px;
-    background: #d69e2e;
-    border-radius: 3px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.pallet-sides {
-    position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    height: 26px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px, transparent 11px,
+            rgba(0,0,0,0.12) 11px, rgba(0,0,0,0.12) 12px
+        ),
+        linear-gradient(160deg, #a16207 0%, #ca8a04 40%, #854d0e 100%);
+    border-radius: 3px 3px 0 0;
+    border: 1px solid #451a03;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
-.pallet-side {
-    position: absolute;
-    background: #b7791f;
-    border-radius: 2px;
-}
+/* Taşıyıcı ayaklar */
+.pallet-sides { position: absolute; bottom: 0; left: 0; right: 0; height: 20px; }
 
+.pallet-side         { position: absolute; background: #78350f; border: 1px solid #431407; border-radius: 2px; }
+.pallet-side.left    { left: 4px; width: 16px; height: 20px; bottom: 0; }
+.pallet-side.right   { right: 4px; width: 16px; height: 20px; bottom: 0; }
 .pallet-side.front,
-.pallet-side.back {
-    width: 100%;
-    height: 20px;
-}
+.pallet-side.back    { display: none; }
 
-.pallet-side.left,
-.pallet-side.right {
-    width: 20px;
-    height: 100%;
-}
-
-.pallet-side.front { top: 0; }
-.pallet-side.back { bottom: 0; }
-.pallet-side.left { left: 0; }
-.pallet-side.right { right: 0; }
-
-/* Control Panel */
+/* ─── KONTROL PANELİ ─────────────────────────────────── */
 .control-panel {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 200px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    padding: 15px;
-    backdrop-filter: blur(10px);
-    color: white;
-    z-index: 25;
-    opacity: 0.6;
+    top: 18px;
+    right: 14px;
+    width: 118px;
+    background: rgba(6,14,26,0.92);
+    border: 1px solid rgba(37,99,235,0.3);
+    border-radius: 12px;
+    padding: 13px 11px;
+    backdrop-filter: blur(12px);
+    color: #e2e8f0;
+    z-index: 35;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.5), 0 0 0 1px rgba(37,99,235,0.08);
+}
+
+/* Panel başlık çizgisi */
+.control-panel::before {
+    content: 'KONTROL';
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #3b82f6;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(37,99,235,0.2);
+    padding-bottom: 8px;
 }
 
 .panel-display {
-    margin-bottom: 15px;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 7px;
+    padding: 8px 9px;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
 }
 
 .display-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
+    align-items: center;
+    margin-bottom: 5px;
 }
+.display-item:last-child { margin-bottom: 0; }
 
 .display-item .label {
-    opacity: 0.8;
+    font-size: 0.6rem;
+    opacity: 0.55;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .display-item .value {
-    font-weight: bold;
+    font-size: 0.78rem;
+    font-weight: 700;
     color: #60a5fa;
 }
 
+/* Kat butonları */
 .floor-buttons {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin-bottom: 15px;
+    gap: 5px;
+    margin-bottom: 8px;
 }
 
 .floor-btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    background: #4a5568;
-    color: white;
+    padding: 7px 0;
+    border: 1px solid rgba(37,99,235,0.35);
+    border-radius: 6px;
+    background: rgba(15,33,63,0.8);
+    color: #93c5fd;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    transition: all 0.18s ease;
 }
 
 .floor-btn:hover {
-    background: #60a5fa;
-    transform: scale(1.05);
+    background: rgba(37,99,235,0.4);
+    border-color: #60a5fa;
+    color: #fff;
+    transform: scale(1.06);
 }
 
 .floor-btn.active {
-    background: #60a5fa;
-    box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+    background: rgba(37,99,235,0.55);
+    border-color: #60a5fa;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(59,130,246,0.4);
 }
 
+/* Kontrol butonları */
 .control-buttons {
     display: flex;
-    gap: 8px;
+    gap: 5px;
 }
 
 .control-btn {
     flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: #4a5568;
-    color: white;
+    padding: 8px 0;
+    border: 1px solid rgba(37,99,235,0.3);
+    border-radius: 6px;
+    background: rgba(15,33,63,0.8);
+    color: #93c5fd;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
+    transition: all 0.18s ease;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .control-btn:hover {
-    background: #60a5fa;
-    transform: scale(1.05);
+    background: rgba(37,99,235,0.4);
 }
 
-.control-btn#emergency-stop {
-    background: #e53e3e;
+#emergency-stop {
+    background: rgba(127,29,29,0.6);
+    border-color: rgba(239,68,68,0.5);
+    color: #fca5a5;
 }
 
-.control-btn#emergency-stop:hover {
-    background: #c53030;
+#emergency-stop:hover {
+    background: rgba(220,38,38,0.5);
 }
 
-/* Performance Indicators */
+#auto-mode.active {
+    background: rgba(6,78,59,0.6);
+    border-color: rgba(34,197,94,0.5);
+    color: #86efac;
+    box-shadow: 0 0 10px rgba(34,197,94,0.3);
+}
+
+/* ─── PERFORMANS GÖSTERGELERİ ────────────────────────── */
 .performance-indicators {
     position: absolute;
-    bottom: 20px;
+    bottom: 12px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateX(-50px);
     display: flex;
-    gap: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 15px;
+    gap: 16px;
+    background: rgba(6,14,26,0.88);
+    padding: 8px 16px;
     border-radius: 10px;
+    border: 1px solid rgba(37,99,235,0.2);
     backdrop-filter: blur(10px);
-    color: white;
-    z-index: 25;
-    opacity: 0.6;
+    color: #e2e8f0;
+    z-index: 35;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
 }
 
-.indicator {
-    text-align: center;
-    min-width: 80px;
-}
+.indicator { text-align: center; min-width: 52px; }
 
 .indicator-label {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    margin-bottom: 5px;
+    display: block;
+    font-size: 0.6rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
 }
 
 .indicator-value {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 700;
     color: #60a5fa;
+    font-family: 'Courier New', monospace;
 }
 
 .indicator-unit {
-    font-size: 0.7rem;
-    opacity: 0.7;
+    font-size: 0.6rem;
+    opacity: 0.55;
+    margin-left: 1px;
 }
 
-/* ===== SAYFA ÖZEL BÖLÜMLER ===== */
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 900px) {
+    .pallet-lift-hero-animation {
+        height: 430px;
+        min-height: 430px;
+    }
 
-/* How It Works Section */
+    .lift-structure {
+        transform: translateX(-50%) translateX(-30px);
+        width: 170px;
+    }
+
+    #lift-platform { width: 126px; }
+    #pallet        { width: 76px;  }
+
+    .control-panel {
+        right: 8px;
+        width: 106px;
+    }
+
+    .floor-door { width: 52px; }
+    .left-door  { left:  75px; }
+    .right-door { right: 75px; }
+}
+
+@media (max-width: 640px) {
+    .pallet-lift-hero-animation {
+        height: 420px;
+        min-height: 420px;
+    }
+
+    .lift-structure {
+        transform: translateX(-50%);   /* mobilde ortala */
+        top: 15px;
+        height: 360px;
+        width: 150px;
+    }
+
+    #lift-platform { width: 112px; height: 72px; }
+    #pallet        { width: 68px;  height: 38px; }
+
+    .control-panel {
+        top: auto;
+        bottom: 8px;
+        right: 8px;
+        width: auto;
+        padding: 8px 10px;
+    }
+
+    .control-panel::before { display: none; }
+    .panel-display { display: none; }
+    .performance-indicators { display: none; }
+    .floor-door,
+    .floor-indicator { display: none; }
+}
+
+/* ─── SAYFA BÖLÜM STİLLERİ ───────────────────────────── */
+
 .how-it-works {
     padding: 5rem 0;
     background: var(--light-bg);
@@ -474,7 +659,7 @@
     background: var(--white);
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
     position: relative;
     transition: all 0.3s ease;
@@ -482,7 +667,7 @@
 
 .step-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .step-number {
@@ -513,27 +698,11 @@
     margin: 0 auto 1.5rem;
 }
 
-.step-icon i {
-    font-size: 1.5rem;
-    color: var(--white);
-}
+.step-icon i  { font-size: 1.5rem; color: var(--white); }
+.step-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary); }
+.step-card p  { color: var(--secondary); line-height: 1.6; }
 
-.step-card h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--primary);
-}
-
-.step-card p {
-    color: var(--secondary);
-    line-height: 1.6;
-}
-
-/* Why Use Section */
-.why-use {
-    padding: 5rem 0;
-}
+.why-use { padding: 5rem 0; }
 
 .benefits-grid {
     display: grid;
@@ -545,15 +714,12 @@
     background: var(--white);
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
     transition: all 0.3s ease;
 }
 
-.benefit-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
+.benefit-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
 
 .benefit-icon {
     width: 60px;
@@ -566,28 +732,11 @@
     margin: 0 auto 1.5rem;
 }
 
-.benefit-icon i {
-    font-size: 1.5rem;
-    color: var(--white);
-}
+.benefit-icon i  { font-size: 1.5rem; color: var(--white); }
+.benefit-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary); }
+.benefit-card p  { color: var(--secondary); line-height: 1.6; }
 
-.benefit-card h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--primary);
-}
-
-.benefit-card p {
-    color: var(--secondary);
-    line-height: 1.6;
-}
-
-/* Where Used Section */
-.where-used {
-    padding: 5rem 0;
-    background: var(--light-bg);
-}
+.where-used { padding: 5rem 0; background: var(--light-bg); }
 
 .applications-grid {
     display: grid;
@@ -599,15 +748,12 @@
     background: var(--white);
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
     transition: all 0.3s ease;
 }
 
-.application-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
+.application-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
 
 .application-icon {
     width: 60px;
@@ -620,27 +766,11 @@
     margin: 0 auto 1.5rem;
 }
 
-.application-icon i {
-    font-size: 1.5rem;
-    color: var(--white);
-}
+.application-icon i  { font-size: 1.5rem; color: var(--white); }
+.application-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary); }
+.application-card p  { color: var(--secondary); line-height: 1.6; }
 
-.application-card h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--primary);
-}
-
-.application-card p {
-    color: var(--secondary);
-    line-height: 1.6;
-}
-
-/* Technical Specs Section */
-.technical-specs {
-    padding: 5rem 0;
-}
+.technical-specs { padding: 5rem 0; }
 
 .specs-grid {
     display: grid;
@@ -652,26 +782,14 @@
     background: var(--white);
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     border-left: 4px solid var(--accent);
 }
 
-.spec-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
-
-.spec-card h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: var(--primary);
-}
-
-.spec-card ul {
-    list-style: none;
-}
+.spec-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+.spec-card h3    { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); }
+.spec-card ul    { list-style: none; }
 
 .spec-card li {
     padding: 0.5rem 0;
@@ -679,71 +797,14 @@
     border-bottom: 1px solid var(--border);
 }
 
-.spec-card li:last-child {
-    border-bottom: none;
-}
+.spec-card li:last-child { border-bottom: none; }
+.spec-card strong        { color: var(--primary); font-weight: 600; }
 
-.spec-card strong {
-    color: var(--primary);
-    font-weight: 600;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-    .pallet-lift-hero-animation {
-        height: 400px;
-        min-height: 350px;
-    }
-    
-    .pallet-lift-hero-animation .lift-system {
-        padding: 15px;
-        height: 100%;
-    }
-    
-    .lift-structure {
-        height: 60%;
-        min-height: 200px;
-    }
-    
-    .lift-tower {
-        width: 150px;
-    }
-    
-    .lift-platform {
-        width: 100px;
-        height: 60px;
-    }
-    
-    .control-panel {
-        position: relative;
-        top: auto;
-        right: auto;
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 10px;
-    }
-    
-    .performance-indicators {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    
-    .indicator {
-        font-size: 0.7rem;
-        padding: 5px 8px;
-        min-width: 60px;
-    }
-    
     .steps-grid,
     .benefits-grid,
     .applications-grid,
     .specs-grid {
         grid-template-columns: 1fr;
     }
-} 
+}

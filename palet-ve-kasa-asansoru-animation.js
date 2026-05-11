@@ -1,250 +1,221 @@
-// ===== PALLET LİFT ANİMASYONU JAVASCRIPT =====
+// ===== PALET VE KASA ASANSÖRÜ ANİMASYONU =====
 
 class PalletLiftAnimation {
     constructor() {
-        this.currentFloor = 1;
-        this.targetFloor = 1;
-        this.isMoving = false;
-        this.isAutoMode = false;
-        this.autoInterval = null;
-        this.animationId = null;
-        
-        // Responsive floor height calculations
-        this.isMobile = window.innerWidth <= 768;
-        this.floorHeights = this.isMobile ? {
-            1: 15,
-            2: 110,
-            3: 205,
-            4: 300
-        } : {
-            1: 20,
-            2: 150,
-            3: 280,
-            4: 410
-        };
-        
+        this.currentFloor  = 1;
+        this.isMoving      = false;
+        this.isAutoMode    = true;
+        this.autoInterval  = null;
+
+        // Her kattaki platform "bottom" değerleri (px) — .lift-structure içinde
+        this.floorPos = { 1: 8, 2: 118, 3: 228, 4: 338 };
+
+        // Platform yüksekliği = 85px → palet platformun üstüne oturur
+        this.platformH = 85;
+
         this.init();
     }
-    
+
     init() {
         this.setupControls();
-        this.setInitialPosition();
-        this.updateDisplay();
-        this.startAutoMode();
+        this.snapToFloor(1);      // başlangıç konumu (transition yok)
+        this.updateDisplay(1);
+        this.updateFloorButtons(1);
+
+        setTimeout(() => {
+            this.startAutoMode();
+        }, 1500);
     }
-    
-    setInitialPosition() {
-        const liftPlatform = document.getElementById('lift-platform');
-        const pallet = document.getElementById('pallet');
+
+    /* Transition olmadan anında konumlandır (ilk yükleme için) */
+    snapToFloor(floor) {
+        const platform     = document.getElementById('lift-platform');
+        const pallet       = document.getElementById('pallet');
         const counterweight = document.getElementById('counterweight');
-        
-        if (liftPlatform && pallet && counterweight) {
-            const initialHeight = this.floorHeights[1];
-            
-            // Set initial positions with transform3d
-            liftPlatform.style.transform = `translate3d(-50%, ${initialHeight}px, 0)`;
-            pallet.style.transform = `translate3d(-50%, ${initialHeight + 20}px, 0)`;
-            counterweight.style.transform = `translate3d(0, ${this.floorHeights[4] - initialHeight}px, 0)`;
-        }
+        if (!platform || !pallet || !counterweight) return;
+
+        const disableTransition = (el) => {
+            el.style.transition = 'none';
+        };
+        [platform, pallet, counterweight].forEach(disableTransition);
+
+        this._applyPosition(floor);
+
+        // Sonraki frame'de transition'ı geri aç
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            platform.style.transition     = '';
+            pallet.style.transition       = '';
+            counterweight.style.transition = '';
+        }));
     }
-    
-    setupControls() {
-        // Floor buttons
-        const floorButtons = document.querySelectorAll('.floor-btn');
-        floorButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const floor = parseInt(btn.dataset.floor);
-                this.goToFloor(floor);
-            });
-        });
-        
-        // Control buttons
-        const emergencyStop = document.getElementById('emergency-stop');
-        const autoMode = document.getElementById('auto-mode');
-        
-        if (emergencyStop) {
-            emergencyStop.addEventListener('click', () => {
-                this.emergencyStop();
-            });
-        }
-        
-        if (autoMode) {
-            autoMode.addEventListener('click', () => {
-                this.toggleAutoMode();
-            });
-        }
+
+    _applyPosition(floor) {
+        const platform      = document.getElementById('lift-platform');
+        const pallet        = document.getElementById('pallet');
+        const counterweight = document.getElementById('counterweight');
+        if (!platform || !pallet || !counterweight) return;
+
+        const pos    = this.floorPos[floor];
+        const maxPos = this.floorPos[4];
+        const minPos = this.floorPos[1];
+
+        platform.style.bottom      = pos + 'px';
+        pallet.style.bottom        = (pos + this.platformH - 4) + 'px';  // paleti platforma oturtur
+        counterweight.style.bottom = (maxPos + minPos - pos) + 'px';     // ters yönde hareket
     }
-    
+
     goToFloor(floor) {
         if (this.isMoving || floor === this.currentFloor) return;
-        
-        this.targetFloor = floor;
+
+        const direction = floor > this.currentFloor ? 'up' : 'down';
         this.isMoving = true;
-        this.updateStatus('Hareket Ediyor');
-        
-        // Update floor buttons
-        document.querySelectorAll('.floor-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        document.querySelector(`[data-floor="${floor}"]`).classList.add('active');
-        
-        // Update floors
-        document.querySelectorAll('.floor').forEach(floorEl => {
-            floorEl.classList.remove('active');
-        });
-        document.querySelector(`[data-floor="${floor}"]`).classList.add('active');
-        
-        // Move lift platform with hardware acceleration
-        const liftPlatform = document.getElementById('lift-platform');
-        const pallet = document.getElementById('pallet');
-        const counterweight = document.getElementById('counterweight');
-        
-        if (liftPlatform && pallet && counterweight) {
-            const targetHeight = this.floorHeights[floor];
-            
-            // Use transform3d for hardware acceleration - avoid layout changes
-            requestAnimationFrame(() => {
-                liftPlatform.style.transform = `translate3d(-50%, ${targetHeight}px, 0)`;
-                pallet.style.transform = `translate3d(-50%, ${targetHeight + 20}px, 0)`;
-                counterweight.style.transform = `translate3d(0, ${this.floorHeights[4] - targetHeight}px, 0)`;
-            });
-        }
-        
-        // Open doors after movement
+
+        this.updateStatus(direction === 'up' ? '▲ Yükseliyor' : '▼ İniyor');
+        this.setStatusLight('moving');
+        this.updateFloorButtons(floor);
+        this._applyPosition(floor);
+
+        // CSS transition süresi: 2.0s + küçük buffer
+        const duration = 2150;
+
         setTimeout(() => {
-            this.openDoors(floor);
-            this.isMoving = false;
             this.currentFloor = floor;
+            this.isMoving     = false;
+            this.setStatusLight('ready');
             this.updateStatus('Hazır');
-        }, 3000);
+            this.updateDisplay(floor);
+            this.openDoors(floor);
+        }, duration);
     }
-    
+
     openDoors(floor) {
-        const floorElement = document.querySelector(`[data-floor="${floor}"]`);
-        if (floorElement) {
-            const leftDoor = floorElement.querySelector('.left-door');
-            const rightDoor = floorElement.querySelector('.right-door');
-            
-            if (leftDoor && rightDoor) {
-                leftDoor.classList.add('open');
-                rightDoor.classList.add('open');
-                
-                // Close doors after delay
-                setTimeout(() => {
-                    leftDoor.classList.remove('open');
-                    rightDoor.classList.remove('open');
-                }, 2000);
-            }
+        const floorEl = document.querySelector(`.floor[data-floor="${floor}"]`);
+        if (!floorEl) return;
+
+        floorEl.classList.add('active');
+        floorEl.querySelector('.left-door')?.classList.add('open');
+        floorEl.querySelector('.right-door')?.classList.add('open');
+
+        setTimeout(() => {
+            floorEl.querySelector('.left-door')?.classList.remove('open');
+            floorEl.querySelector('.right-door')?.classList.remove('open');
+            setTimeout(() => floorEl.classList.remove('active'), 400);
+        }, 1800);
+    }
+
+    updateFloorButtons(floor) {
+        document.querySelectorAll('.floor-btn').forEach(btn => {
+            btn.classList.toggle('active', parseInt(btn.dataset.floor) === floor);
+        });
+    }
+
+    updateDisplay(floor) {
+        const el = document.getElementById('current-floor');
+        if (el) el.textContent = floor;
+    }
+
+    updateStatus(text) {
+        const el = document.getElementById('lift-status');
+        if (el) el.textContent = text;
+    }
+
+    setStatusLight(state) {
+        const platform = document.getElementById('lift-platform');
+        if (platform) {
+            platform.dataset.state = state;
         }
     }
-    
+
     emergencyStop() {
-        this.isMoving = false;
         this.isAutoMode = false;
-        this.updateStatus('Acil Durum');
-        
         if (this.autoInterval) {
             clearInterval(this.autoInterval);
             this.autoInterval = null;
         }
-        
-        if (this.animationId) {
-            cancelAnimationFrame(this.animationId);
-        }
-        
-        // Reset auto mode button
-        const autoModeBtn = document.getElementById('auto-mode');
-        if (autoModeBtn) {
-            autoModeBtn.classList.remove('active');
-        }
+        // Mevcut konuma geri sabitle
+        this.isMoving = false;
+        this.snapToFloor(this.currentFloor);
+        this.updateStatus('DURDURULDU');
+        this.setStatusLight('stopped');
+
+        const autoBtn = document.getElementById('auto-mode');
+        if (autoBtn) autoBtn.classList.remove('active');
     }
-    
+
     toggleAutoMode() {
         this.isAutoMode = !this.isAutoMode;
-        const autoModeBtn = document.getElementById('auto-mode');
-        
-        if (autoModeBtn) {
-            if (this.isAutoMode) {
-                autoModeBtn.classList.add('active');
-                this.startAutoMode();
-            } else {
-                autoModeBtn.classList.remove('active');
-                if (this.autoInterval) {
-                    clearInterval(this.autoInterval);
-                    this.autoInterval = null;
-                }
-            }
+        const autoBtn = document.getElementById('auto-mode');
+        if (autoBtn) autoBtn.classList.toggle('active', this.isAutoMode);
+
+        if (this.isAutoMode) {
+            this.startAutoMode();
+        } else {
+            clearInterval(this.autoInterval);
+            this.autoInterval = null;
+            this.updateStatus('Manuel');
         }
     }
-    
+
     startAutoMode() {
         if (!this.isAutoMode) return;
-        
+        clearInterval(this.autoInterval);
+
+        // Sıralı kat sekansı: 1→3→2→4→1→…
+        const sequence = [1, 3, 2, 4];
+        let idx = sequence.indexOf(this.currentFloor);
+        if (idx === -1) idx = 0;
+
         this.autoInterval = setInterval(() => {
-            if (!this.isMoving) {
-                const randomFloor = Math.floor(Math.random() * 4) + 1;
-                this.goToFloor(randomFloor);
-            }
-        }, 5000);
+            if (this.isMoving) return;
+            idx = (idx + 1) % sequence.length;
+            this.goToFloor(sequence[idx]);
+        }, 4200);
     }
-    
-    updateStatus(status) {
-        const statusElement = document.getElementById('status-value');
-        if (statusElement) {
-            statusElement.textContent = status;
-        }
+
+    setupControls() {
+        document.querySelectorAll('.floor-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (this.isAutoMode) this.toggleAutoMode();
+                this.goToFloor(parseInt(btn.dataset.floor));
+            });
+        });
+
+        document.getElementById('emergency-stop')
+            ?.addEventListener('click', () => this.emergencyStop());
+
+        document.getElementById('auto-mode')
+            ?.addEventListener('click', () => this.toggleAutoMode());
     }
-    
-    updateDisplay() {
-        const currentFloorElement = document.getElementById('current-floor');
-        const targetFloorElement = document.getElementById('target-floor');
-        const directionElement = document.getElementById('direction');
-        
-        if (currentFloorElement) {
-            currentFloorElement.textContent = this.currentFloor;
-        }
-        
-        if (targetFloorElement) {
-            targetFloorElement.textContent = this.targetFloor;
-        }
-        
-        if (directionElement) {
-            if (this.isMoving) {
-                directionElement.textContent = this.targetFloor > this.currentFloor ? 'Yukarı' : 'Aşağı';
-            } else {
-                directionElement.textContent = 'Durdu';
+
+    startPerformanceUpdates() {
+        const update = () => {
+            const speedEl = document.getElementById('lift-speed');
+            if (speedEl) speedEl.textContent = this.isMoving ? '2.5' : '0.0';
+
+            const capEl = document.getElementById('lift-capacity');
+            if (capEl && !this.isMoving) {
+                capEl.textContent = (1800 + Math.floor(Math.random() * 400));
             }
-        }
-    }
-    
-    updatePerformanceIndicators() {
-        setInterval(() => {
-            const speedElement = document.getElementById('speed-value');
-            const capacityElement = document.getElementById('capacity-value');
-            const efficiencyElement = document.getElementById('efficiency-value');
-            const uptimeElement = document.getElementById('uptime-value');
-            
-            if (speedElement) {
-                speedElement.textContent = this.isMoving ? '2.5 m/s' : '0 m/s';
+
+            const effEl = document.getElementById('lift-efficiency');
+            if (effEl) effEl.textContent = (98.5 + Math.random() * 1.4).toFixed(1);
+
+            const weightEl = document.getElementById('load-weight');
+            if (weightEl && !this.isMoving) {
+                weightEl.textContent = (1200 + Math.floor(Math.random() * 800)) + ' kg';
             }
-            
-            if (capacityElement) {
-                capacityElement.textContent = Math.floor(Math.random() * 50) + 150;
-            }
-            
-            if (efficiencyElement) {
-                efficiencyElement.textContent = (95 + Math.random() * 5).toFixed(1) + '%';
-            }
-            
-            if (uptimeElement) {
-                uptimeElement.textContent = (99.5 + Math.random() * 0.5).toFixed(2) + '%';
-            }
-        }, 1000);
+        };
+
+        update();
+        setInterval(update, 1800);
     }
 }
 
-// Initialize animation when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const animation = new PalletLiftAnimation();
-    animation.updatePerformanceIndicators();
-}); 
+    const anim = new PalletLiftAnimation();
+    anim.startPerformanceUpdates();
+
+    // Auto mode başlangıçta aktif göster
+    const autoBtn = document.getElementById('auto-mode');
+    if (autoBtn) autoBtn.classList.add('active');
+});

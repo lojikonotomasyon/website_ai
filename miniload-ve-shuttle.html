@@ -3,9 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miniload ve Shuttle Sistemleri - Lojikon | Shuttle Teknolojisi ile Otomatik Depolama ve Geri Alma Sistemleri</title>
-    <meta name="description" content="Lojikon miniload ve shuttle sistemleri ile otomatik depolama ve geri alma. Shuttle teknolojisi ile yüksek yoğunluklu depolama çözümleri.">
+        <title>Miniload ve Shuttle | AS/RS Otomatik Depolama Sistemi | Lojikon</title>
+    <meta name="description" content="Miniload ve shuttle AS/RS sistemleri: saatte 500+ kutu, %99.8 doğruluk, 24/7 çalışma. Yüksek yoğunluklu otomatik depolama ve geri alma. Kompakt depo çözümleri.">
+    <meta name="keywords" content="miniload sistemi, shuttle sistemi, AS/RS depolama, otomatik depo, yüksek yoğunluklu raf, shuttle teknolojisi, mini-load">
+    <meta name="author" content="Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lojikon.com/miniload-ve-shuttle.html">
+    <meta property="og:title" content="Miniload ve Shuttle AS/RS Sistemleri – Lojikon">
+    <meta property="og:description" content="Saatte 500+ kutu işleme kapasitesi. %99.8 doğruluk ile yüksek yoğunluklu otomatik depolama ve geri alma.">
+    <meta property="og:image" content="https://lojikon.com/img/og-image.jpg">
+    <meta property="og:site_name" content="Lojikon">
+    <meta property="og:locale" content="tr_TR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Miniload ve Shuttle AS/RS Sistemleri – Lojikon">
+    <meta name="twitter:description" content="Saatte 500+ kutu işleme kapasitesi. %99.8 doğruluk ile yüksek yoğunluklu otomatik depolama ve geri alma.">
+    <meta property="twitter:image" content="https://lojikon.com/img/og-image.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://lojikon.com/miniload-ve-shuttle.html">
+
+    <!-- Yapısal Veri (Schema.org) -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Miniload ve Shuttle AS/RS Sistemleri",
+        "description": "Shuttle tabanlı miniload sistemleri ile saatte 500+ kutu işleme kapasitesi. Yüksek yoğunluklu otomatik depolama ve geri alma ile %99.8 doğrulukta kompakt depo yönetimi.",
+        "url": "https://lojikon.com/miniload-ve-shuttle.html",
+        "provider": {
+      "@type": "LocalBusiness",
+      "name": "Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.",
+      "url": "https://lojikon.com",
+      "telephone": "+90-212-657-18-03",
+      "email": "info@lojikon.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Endüstriyel Otomasyon Merkezi",
+        "addressLocality": "Silivri",
+        "addressRegion": "İstanbul",
+        "addressCountry": "TR"
+      }
+    },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Turkey"
+        },
+        "serviceType": "Industrial Automation - Miniload Shuttle AS/RS"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://lojikon.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Miniload ve Shuttle Sistemleri",
+            "item": "https://lojikon.com/miniload-ve-shuttle.html"
+          }
+        ]
+      }
+    ]
+    </script>
+
     
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -96,97 +169,48 @@
                 
                 <!-- Miniload Animation -->
                 <div class="miniload-hero-animation">
-                    <div class="miniload-system">
-                        <!-- Storage Racks -->
-                        <div class="storage-racks">
-                            <div class="rack rack-1">
-                                <div class="rack-levels">
-                                    <div class="level" data-level="1"></div>
-                                    <div class="level" data-level="2"></div>
-                                    <div class="level" data-level="3"></div>
-                                    <div class="level" data-level="4"></div>
-                                </div>
-                            </div>
-                            <div class="rack rack-2">
-                                <div class="rack-levels">
-                                    <div class="level" data-level="1"></div>
-                                    <div class="level" data-level="2"></div>
-                                    <div class="level" data-level="3"></div>
-                                    <div class="level" data-level="4"></div>
-                                </div>
-                            </div>
+                    <!-- Raf yapısı (JS ile doldurulur) -->
+                    <div class="rack-frame">
+                        <div class="rack-grid" id="rack-grid"></div>
+                    </div>
+
+                    <!-- Vinç: yatay ray + dikey ray + baş -->
+                    <div class="crane-h-bar" id="crane-h-bar"></div>
+                    <div class="crane-v-bar" id="crane-v-bar"></div>
+                    <div class="crane-head" id="crane-head"></div>
+
+                    <!-- Çıkış istasyonu -->
+                    <div class="output-station" id="output-station">
+                        <div class="output-tote" id="output-tote"></div>
+                        <div class="output-label">ÇIKIŞ</div>
+                    </div>
+
+                    <!-- Bilgi paneli -->
+                    <div class="ml-info-panel">
+                        <div class="ml-info-row">
+                            <span class="ml-label">DURUM</span>
+                            <span class="ml-value" id="crane-status">HAZIR</span>
                         </div>
-                        
-                        <!-- Shuttle -->
-                        <div class="shuttle" id="shuttle">
-                            <div class="shuttle-body"></div>
-                            <div class="shuttle-wheels">
-                                <div class="wheel"></div>
-                                <div class="wheel"></div>
-                                <div class="wheel"></div>
-                                <div class="wheel"></div>
-                            </div>
-                            <div class="shuttle-arm"></div>
+                        <div class="ml-separator"></div>
+                        <div class="ml-info-row">
+                            <span class="ml-label">İŞLEM</span>
+                            <span class="ml-value" id="retrieved-value">0</span>
                         </div>
-                        
-                        <!-- Products -->
-                        <div class="products">
-                            <div class="product-box" data-position="1,1">📦</div>
-                            <div class="product-box" data-position="1,2">📦</div>
-                            <div class="product-box" data-position="2,1">📦</div>
-                            <div class="product-box" data-position="2,2">📦</div>
-                            <div class="product-box" data-position="3,1">📦</div>
-                            <div class="product-box" data-position="3,2">📦</div>
+                        <div class="ml-info-row">
+                            <span class="ml-label">VERİM</span>
+                            <span class="ml-value" id="efficiency-value">98.5%</span>
                         </div>
-                        
-                        <!-- Control Panel -->
-                        <div class="control-panel">
-                            <div class="panel-display">
-                                <div class="display-item">
-                                    <span class="label">Durum:</span>
-                                    <span class="value" id="shuttle-status">Hazır</span>
-                                </div>
-                                <div class="display-item">
-                                    <span class="label">Hız:</span>
-                                    <span class="value" id="shuttle-speed">2.0</span>
-                                    <span class="unit">m/s</span>
-                                </div>
-                                <div class="display-item">
-                                    <span class="label">Kapasite:</span>
-                                    <span class="value" id="shuttle-capacity">50</span>
-                                    <span class="unit">kutu</span>
-                                </div>
-                            </div>
-                            
-                            <div class="control-buttons">
-                                <button class="control-btn" id="start-btn">
-                                    <i class="fas fa-play"></i>
-                                </button>
-                                <button class="control-btn" id="stop-btn">
-                                    <i class="fas fa-stop"></i>
-                                </button>
-                                <button class="control-btn" id="reset-btn">
-                                    <i class="fas fa-redo"></i>
-                                </button>
-                            </div>
+                        <div class="ml-info-row">
+                            <span class="ml-label">HIZ</span>
+                            <span class="ml-value" id="speed-value">3.2 m/s</span>
                         </div>
-                        
-                        <!-- Performance Indicators -->
-                        <div class="performance-indicators">
-                            <div class="indicator">
-                                <span class="indicator-label">Depolanan</span>
-                                <span class="indicator-value" id="stored-count">0</span>
-                            </div>
-                            <div class="indicator">
-                                <span class="indicator-label">Alınan</span>
-                                <span class="indicator-value" id="retrieved-count">0</span>
-                            </div>
-                            <div class="indicator">
-                                <span class="indicator-label">Verimlilik</span>
-                                <span class="indicator-value" id="efficiency">98.5</span>
-                                <span class="indicator-unit">%</span>
-                            </div>
-                        </div>
+                    </div>
+
+                    <!-- Kontroller -->
+                    <div class="ml-controls">
+                        <button class="ml-btn" id="start-btn" title="Başlat"><i class="fas fa-play"></i></button>
+                        <button class="ml-btn" id="stop-btn" title="Durdur"><i class="fas fa-stop"></i></button>
+                        <button class="ml-btn" id="reset-btn" title="Sıfırla"><i class="fas fa-redo"></i></button>
                     </div>
                 </div>
             </div>
@@ -465,7 +489,7 @@
                         <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
                         <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://youtube.com/@lojikonotomasyonveyazlmticltds" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.youtube.com/@LojikonOtomasyonVeYazlmTicLtdS" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
