@@ -1,303 +1,152 @@
-// ===== SCADA ANİMASYONU JAVASCRIPT =====
+// ===== SCADA ANİMASYONU =====
 
 class ScadaAnimation {
     constructor() {
         this.isRunning = true;
-        this.currentTime = new Date();
-        this.processStates = {
-            sorter: { status: 'Çalışıyor', active: true },
-            lift: { status: 'Hazır', active: false },
-            conveyor: { status: 'Çalışıyor', active: true },
-            robot: { status: 'Beklemede', active: false, warning: true }
+        this.temp      = 24.5;
+        this.humidity  = 45;
+        this.energy    = 125;
+        this.production = 1247;
+
+        this.procStates = {
+            sorter:   { state: 'run',  label: 'Çalışıyor' },
+            lift:     { state: 'idle', label: 'Hazır' },
+            conveyor: { state: 'run',  label: 'Çalışıyor' },
+            robot:    { state: 'warn', label: 'Beklemede' }
         };
-        
-        this.dataValues = {
-            temperature: 24.5,
-            humidity: 45,
-            energy: 125,
-            production: 1247
-        };
-        
-        this.alarms = [
-            { type: 'warning', message: 'Robot 2 - Bakım Gerekli', time: '2 dk önce' },
-            { type: 'info', message: 'Sorter - Yüksek Verimlilik', time: '5 dk önce' }
+
+        this.alarmPool = [
+            { type: 'info', msg: 'Sistem - Normal Çalışma' },
+            { type: 'warn', msg: 'Sıcaklık - Yüksek Değer' },
+            { type: 'info', msg: 'Enerji - Optimizasyon' },
+            { type: 'warn', msg: 'Konveyor - Bakım Gerekli' },
+            { type: 'err',  msg: 'Robot 2 - Bağlantı Kesildi' },
+            { type: 'info', msg: 'Sorter - Yüksek Verimlilik' },
         ];
-        
-        this.init();
-    }
-    
-    init() {
-        this.updateTime();
-        this.updateProcessStates();
-        this.updateRealTimeData();
-        this.updateAlarms();
-        this.setupControls();
-        
-        // Start real-time updates
-        setInterval(() => {
-            this.updateTime();
-            this.updateRealTimeData();
-        }, 1000);
-        
-        // Update process states every 5 seconds
-        setInterval(() => {
-            this.updateProcessStates();
-        }, 5000);
-        
-        // Add new alarms every 10 seconds
-        setInterval(() => {
-            this.addRandomAlarm();
-        }, 10000);
-    }
-    
-    updateTime() {
-        const timeElement = document.getElementById('dashboard-time');
-        if (timeElement) {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('tr-TR', {
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            timeElement.textContent = timeString;
-        }
-    }
-    
-    updateProcessStates() {
-        Object.keys(this.processStates).forEach(process => {
-            const statusElement = document.getElementById(`${process}-status`);
-            const indicator = document.querySelector(`[data-process="${process}"] .process-indicator`);
-            
-            if (statusElement && indicator) {
-                const state = this.processStates[process];
-                statusElement.textContent = state.status;
-                
-                // Update indicator
-                indicator.className = 'process-indicator';
-                if (state.active) {
-                    indicator.classList.add('active');
-                } else if (state.warning) {
-                    indicator.classList.add('warning');
-                }
-                
-                // Random state changes
-                if (Math.random() < 0.3) {
-                    this.randomizeProcessState(process);
-                }
-            }
-        });
-    }
-    
-    randomizeProcessState(process) {
-        const states = [
-            { status: 'Çalışıyor', active: true, warning: false },
-            { status: 'Hazır', active: false, warning: false },
-            { status: 'Beklemede', active: false, warning: true },
-            { status: 'Hata', active: false, warning: false }
+
+        this.activeAlarms = [
+            { type: 'warn', msg: 'Robot 2 - Bakım', time: '2dk' },
+            { type: 'info', msg: 'Sorter - Verimli',  time: '5dk' },
         ];
-        
-        this.processStates[process] = states[Math.floor(Math.random() * states.length)];
+
+        this._bindControls();
+        this._startClock();
+        this._startDataLoop();
+        this._startProcLoop();
+        this._startAlarmLoop();
     }
-    
-    updateRealTimeData() {
-        // Update temperature
-        this.dataValues.temperature += (Math.random() - 0.5) * 0.2;
-        this.dataValues.temperature = Math.max(20, Math.min(30, this.dataValues.temperature));
-        
-        // Update humidity
-        this.dataValues.humidity += (Math.random() - 0.5) * 1;
-        this.dataValues.humidity = Math.max(35, Math.min(55, this.dataValues.humidity));
-        
-        // Update energy
-        this.dataValues.energy += (Math.random() - 0.5) * 2;
-        this.dataValues.energy = Math.max(100, Math.min(150, this.dataValues.energy));
-        
-        // Update production
-        this.dataValues.production += Math.floor(Math.random() * 3);
-        
-        // Update DOM
-        this.updateDataElement('temperature', `${this.dataValues.temperature.toFixed(1)}°C`);
-        this.updateDataElement('humidity', `${Math.round(this.dataValues.humidity)}%`);
-        this.updateDataElement('energy', `${Math.round(this.dataValues.energy)} kW`);
-        this.updateDataElement('production', this.dataValues.production.toLocaleString());
-        
-        // Update trends
-        this.updateTrends();
-    }
-    
-    updateDataElement(id, value) {
-        const element = document.getElementById(id);
-        if (element) {
-            element.textContent = value;
-        }
-    }
-    
-    updateTrends() {
-        const trendElements = document.querySelectorAll('.data-trend');
-        trendElements.forEach(trend => {
-            const isUp = Math.random() > 0.5;
-            trend.className = `data-trend ${isUp ? 'up' : 'down'}`;
-            
-            const icon = trend.querySelector('i');
-            const span = trend.querySelector('span');
-            
-            if (icon && span) {
-                icon.className = isUp ? 'fas fa-arrow-up' : 'fas fa-arrow-down';
-                const value = isUp ? 
-                    `+${(Math.random() * 5).toFixed(1)}` : 
-                    `-${(Math.random() * 3).toFixed(1)}`;
-                span.textContent = value;
-            }
+
+    _bindControls() {
+        document.getElementById('sc-start')?.addEventListener('click', () => {
+            this.isRunning = true;
+            this._resetProcs();
+        });
+        document.getElementById('sc-stop')?.addEventListener('click', () => {
+            this.isRunning = false;
+            ['sorter','lift','conveyor','robot'].forEach(p => {
+                this.procStates[p] = { state: 'off', label: 'Durduruldu' };
+            });
+            this._renderProcs();
+        });
+        document.getElementById('sc-reset')?.addEventListener('click', () => {
+            this.isRunning = true;
+            this.temp = 24.5; this.humidity = 45; this.energy = 125; this.production = 1247;
+            this._resetProcs();
+            this._updateKPIs();
         });
     }
-    
-    updateAlarms() {
-        const alarmsList = document.getElementById('alarms-list');
-        if (alarmsList) {
-            alarmsList.innerHTML = '';
-            
-            this.alarms.forEach(alarm => {
-                const alarmElement = document.createElement('div');
-                alarmElement.className = `alarm-item ${alarm.type}`;
-                
-                const icon = alarm.type === 'warning' ? 'fas fa-exclamation-circle' :
-                           alarm.type === 'error' ? 'fas fa-times-circle' :
-                           'fas fa-info-circle';
-                
-                alarmElement.innerHTML = `
-                    <i class="${icon}"></i>
-                    <span>${alarm.message}</span>
-                    <span class="alarm-time">${alarm.time}</span>
-                `;
-                
-                alarmsList.appendChild(alarmElement);
-            });
-        }
-    }
-    
-    addRandomAlarm() {
-        const alarmTypes = [
-            { type: 'info', message: 'Sistem - Normal Çalışma', time: '1 dk önce' },
-            { type: 'warning', message: 'Sıcaklık - Yüksek Değer', time: '3 dk önce' },
-            { type: 'info', message: 'Enerji - Optimizasyon', time: '1 dk önce' },
-            { type: 'warning', message: 'Konveyor - Bakım Gerekli', time: '2 dk önce' }
-        ];
-        
-        const randomAlarm = alarmTypes[Math.floor(Math.random() * alarmTypes.length)];
-        this.alarms.unshift(randomAlarm);
-        
-        // Keep only last 5 alarms
-        if (this.alarms.length > 5) {
-            this.alarms.pop();
-        }
-        
-        this.updateAlarms();
-    }
-    
-    setupControls() {
-        const emergencyStop = document.getElementById('emergency-stop');
-        const systemReset = document.getElementById('system-reset');
-        const maintenanceMode = document.getElementById('maintenance-mode');
-        
-        if (emergencyStop) {
-            emergencyStop.addEventListener('click', () => {
-                this.emergencyStop();
-            });
-        }
-        
-        if (systemReset) {
-            systemReset.addEventListener('click', () => {
-                this.systemReset();
-            });
-        }
-        
-        if (maintenanceMode) {
-            maintenanceMode.addEventListener('click', () => {
-                this.toggleMaintenanceMode();
-            });
-        }
-    }
-    
-    emergencyStop() {
-        this.isRunning = false;
-        
-        // Stop all processes
-        Object.keys(this.processStates).forEach(process => {
-            this.processStates[process] = { status: 'DURDURULDU', active: false, warning: false };
-        });
-        
-        // Add emergency alarm
-        this.alarms.unshift({
-            type: 'error',
-            message: 'ACİL DURDUR - Sistem Durduruldu',
-            time: 'Şimdi'
-        });
-        
-        this.updateProcessStates();
-        this.updateAlarms();
-        
-        // Visual feedback
-        document.body.style.filter = 'grayscale(50%)';
-        
-        setTimeout(() => {
-            document.body.style.filter = 'none';
-        }, 2000);
-    }
-    
-    systemReset() {
-        this.isRunning = true;
-        
-        // Reset all processes
-        this.processStates = {
-            sorter: { status: 'Çalışıyor', active: true },
-            lift: { status: 'Hazır', active: false },
-            conveyor: { status: 'Çalışıyor', active: true },
-            robot: { status: 'Beklemede', active: false, warning: true }
+
+    _startClock() {
+        const tick = () => {
+            const el = document.getElementById('sc-clock');
+            if (el) el.textContent = new Date().toLocaleTimeString('tr-TR', { hour12: false });
         };
-        
-        // Reset data values
-        this.dataValues = {
-            temperature: 24.5,
-            humidity: 45,
-            energy: 125,
-            production: 1247
-        };
-        
-        // Add reset alarm
-        this.alarms.unshift({
-            type: 'info',
-            message: 'Sistem Sıfırlandı',
-            time: 'Şimdi'
-        });
-        
-        this.updateProcessStates();
-        this.updateRealTimeData();
-        this.updateAlarms();
+        tick();
+        setInterval(tick, 1000);
     }
-    
-    toggleMaintenanceMode() {
-        const maintenanceBtn = document.getElementById('maintenance-mode');
-        if (maintenanceBtn) {
-            const isMaintenance = maintenanceBtn.textContent.includes('BAKIM');
-            
-            if (isMaintenance) {
-                maintenanceBtn.innerHTML = '<i class="fas fa-tools"></i><span>BAKIM MODU</span>';
-                maintenanceBtn.style.background = '#60a5fa';
-                this.isRunning = true;
-            } else {
-                maintenanceBtn.innerHTML = '<i class="fas fa-check"></i><span>NORMAL MOD</span>';
-                maintenanceBtn.style.background = '#10b981';
-                this.isRunning = false;
-            }
+
+    _startDataLoop() {
+        setInterval(() => {
+            if (!this.isRunning) return;
+            this.temp       = Math.max(20, Math.min(30, this.temp   + (Math.random()-0.5)*0.4));
+            this.humidity   = Math.max(35, Math.min(55, this.humidity + (Math.random()-0.5)*1.5));
+            this.energy     = Math.max(100,Math.min(150,this.energy  + (Math.random()-0.5)*3));
+            this.production += Math.floor(Math.random() * 3);
+            this._updateKPIs();
+        }, 1500);
+    }
+
+    _updateKPIs() {
+        this._set('sc-temp',   `${this.temp.toFixed(1)}°C`);
+        this._set('sc-hum',    `${Math.round(this.humidity)}%`);
+        this._set('sc-energy', `${Math.round(this.energy)}`);
+        this._set('sc-prod',   this.production.toLocaleString('tr-TR'));
+        this._width('sc-fill-temp',   ((this.temp - 20) / 10 * 100).toFixed(0));
+        this._width('sc-fill-hum',    this.humidity.toFixed(0));
+        this._width('sc-fill-energy', ((this.energy - 100) / 50 * 100).toFixed(0));
+        this._width('sc-fill-prod',   Math.min(100, this.production / 3000 * 100).toFixed(0));
+    }
+
+    _startProcLoop() {
+        setInterval(() => {
+            if (!this.isRunning) return;
+            const keys = Object.keys(this.procStates);
+            const k = keys[Math.floor(Math.random() * keys.length)];
+            const opts = [
+                { state: 'run',  label: 'Çalışıyor' },
+                { state: 'idle', label: 'Hazır' },
+                { state: 'warn', label: 'Beklemede' },
+            ];
+            this.procStates[k] = opts[Math.floor(Math.random() * opts.length)];
+            this._renderProcs();
+        }, 4000);
+    }
+
+    _renderProcs() {
+        for (const [k, v] of Object.entries(this.procStates)) {
+            const dot = document.getElementById(`sc-dot-${k}`);
+            const st  = document.getElementById(`sc-st-${k}`);
+            if (dot) dot.dataset.state = v.state;
+            if (st)  st.textContent    = v.label;
         }
     }
+
+    _resetProcs() {
+        this.procStates = {
+            sorter:   { state: 'run',  label: 'Çalışıyor' },
+            lift:     { state: 'idle', label: 'Hazır' },
+            conveyor: { state: 'run',  label: 'Çalışıyor' },
+            robot:    { state: 'warn', label: 'Beklemede' }
+        };
+        this._renderProcs();
+    }
+
+    _startAlarmLoop() {
+        setInterval(() => {
+            if (!this.isRunning) return;
+            const a    = this.alarmPool[Math.floor(Math.random() * this.alarmPool.length)];
+            const mins = Math.floor(Math.random() * 5) + 1;
+            this.activeAlarms.unshift({ type: a.type, msg: a.msg, time: `${mins}dk` });
+            if (this.activeAlarms.length > 4) this.activeAlarms.pop();
+            this._renderAlarms();
+        }, 7000);
+    }
+
+    _renderAlarms() {
+        const list = document.getElementById('sc-alarm-list');
+        if (!list) return;
+        list.innerHTML = this.activeAlarms.map(a => `
+            <div class="sc-alarm ${a.type}">
+                <span class="sc-alarm-dot"></span>
+                <span class="sc-alarm-msg">${a.msg}</span>
+                <span class="sc-alarm-t">${a.time}</span>
+            </div>`).join('');
+    }
+
+    _set(id, txt) { const el = document.getElementById(id); if (el) el.textContent = txt; }
+    _width(id, pct) { const el = document.getElementById(id); if (el) el.style.width = `${pct}%`; }
 }
 
-// Initialize animation when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    const scadaAnimation = document.querySelector('.scada-hero-animation');
-    if (scadaAnimation) {
-        const scada = new ScadaAnimation();
-    }
-}); 
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('.scada-hero-animation')) new ScadaAnimation();
+});

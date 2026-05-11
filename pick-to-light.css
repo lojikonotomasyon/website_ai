@@ -1,309 +1,298 @@
 /* ===== PICK-TO-LIGHT SAYFASI ÖZEL CSS ===== */
 
+/* ─── HERO ANİMASYON CONTAINER ──────────────── */
 .pick-to-light-hero-animation {
     width: 100%;
-    height: 100%;
-    min-height: 500px;
+    height: 500px;
+    min-height: 460px;
     position: relative;
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    border-radius: 15px;
+    background: radial-gradient(ellipse at 50% 20%, #22262e 0%, #161820 55%, #13151a 100%);
+    border-radius: 16px;
+    box-shadow: 0 28px 65px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.pick-system {
-    width: 100%;
-    height: 100%;
+.pick-to-light-hero-animation::before {
+    content: '';
     position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background-image:
+        linear-gradient(rgba(212,160,23,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,160,23,0.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.pick-to-light-hero-animation::after {
+    content: 'PICK-TO-LIGHT SİSTEMİ';
+    position: absolute;
+    top: 6px; left: 0; right: 0;
+    text-align: center;
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: rgba(148,163,184,0.3);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ─── RAF / SHELF ────────────────────────────── */
+.ptl-shelf {
+    position: absolute;
+    top: 65px;
+    left: 12px; right: 12px;
+    height: 158px;
+    background: #17191e;
+    border: 2px solid #2a2010;
+    border-radius: 4px;
+    display: flex;
+    overflow: visible;
+    z-index: 5;
+}
+
+.ptl-bay {
+    flex: 1;
+    border-right: 1px solid rgba(26,51,82,0.9);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-/* Pick Stations */
-.pick-stations {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    gap: 40px;
-}
-
-.station {
-    width: 80px;
-    height: 120px;
-    background: #4a5568;
-    border-radius: 8px;
+    align-items: center;
+    padding-top: 12px;
+    gap: 6px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease;
 }
+.ptl-bay:last-child { border-right: none; }
+.ptl-bay.active { background: rgba(34,197,94,0.06); }
 
-.station.active {
-    background: #2d3748;
-    box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
-}
-
-/* Light Indicator */
-.light-indicator {
-    width: 20px;
-    height: 20px;
+/* LED */
+.ptl-led {
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background: #718096;
-    margin-bottom: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background: #0b1c2e;
+    border: 2px solid #2a2010;
+    transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    flex-shrink: 0;
 }
 
-.light-indicator.active {
-    background: #60a5fa;
-    box-shadow: 0 0 20px rgba(96, 165, 250, 0.8);
-    animation: lightPulse 1s ease-in-out infinite alternate;
+.ptl-led.active {
+    background: #22c55e;
+    border-color: #4ade80;
+    box-shadow: 0 0 12px rgba(34,197,94,0.9), 0 0 28px rgba(34,197,94,0.4);
+    animation: ptlLedPulse 0.7s ease-in-out infinite alternate;
 }
 
-@keyframes lightPulse {
-    0% { 
-        box-shadow: 0 0 20px rgba(96, 165, 250, 0.8);
-        transform: scale(1);
-    }
-    100% { 
-        box-shadow: 0 0 30px rgba(96, 165, 250, 1);
-        transform: scale(1.1);
-    }
+@keyframes ptlLedPulse {
+    from { box-shadow: 0 0 8px rgba(34,197,94,0.8), 0 0 20px rgba(34,197,94,0.3); }
+    to   { box-shadow: 0 0 18px rgba(34,197,94,1.0), 0 0 38px rgba(34,197,94,0.55); }
 }
 
-/* Product Slot */
-.product-slot {
-    width: 50px;
-    height: 50px;
-    background: #2d3748;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-    border: 2px solid #718096;
-    transition: all 0.3s ease;
+/* Qty display */
+.ptl-qty {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #e8c040;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    min-height: 1.6rem;
 }
 
-.product-slot.active {
-    border-color: #60a5fa;
-    box-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
-}
-
-.product {
-    font-size: 20px;
-    transition: all 0.3s ease;
-}
-
-.product-slot.active .product {
-    transform: scale(1.1);
-}
-
-/* Quantity Display */
-.quantity-display {
-    width: 30px;
-    height: 20px;
-    background: #1a202c;
-    color: #60a5fa;
+/* Bin area */
+.ptl-bin {
+    flex: 1;
+    width: calc(100% - 14px);
+    background: #07101c;
+    border: 1px solid #2a2010;
     border-radius: 3px;
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 7px;
+    box-shadow: inset 0 3px 8px rgba(0,0,0,0.5);
+    margin: 0 7px 7px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    position: relative;
+}
+.ptl-bin::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: #040c16;
+    border-radius: 2px;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
+}
+.ptl-bay.active .ptl-bin {
+    background: rgba(34,197,94,0.04);
+    border-color: rgba(34,197,94,0.25);
+}
+.ptl-bin-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: #2d4263;
+    letter-spacing: 0.12em;
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── RAIL ───────────────────────────────────── */
+.ptl-rail {
+    position: absolute;
+    top: 236px;
+    left: 12px; right: 12px;
+    height: 6px;
+    background: linear-gradient(180deg, #2e2510 0%, #22262e 100%);
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(232,192,64,0.12);
+    z-index: 5;
+}
+
+/* ─── CART ───────────────────────────────────── */
+.ptl-cart {
+    position: absolute;
+    top: 212px;
+    width: 70px;
+    height: 30px;
+    background: linear-gradient(180deg, #b07d10 0%, #2e2510 100%);
+    border: 1.5px solid #e8c040;
+    border-radius: 5px;
+    box-shadow: 0 0 14px rgba(232,192,64,0.45);
+    z-index: 10;
+    transition: left 0.9s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    font-family: 'Courier New', monospace;
 }
 
-/* Station Label */
-.station-label {
-    font-size: 10px;
-    color: #a0aec0;
-    font-weight: bold;
+.ptl-cart-screen {
+    font-size: 0.38rem;
+    font-weight: 700;
+    color: #f0d060;
+    letter-spacing: 0.06em;
     text-align: center;
+    padding: 0 3px;
 }
 
-/* Pick Cart */
-.pick-cart {
+/* ─── OUTPUT TRAY ────────────────────────────── */
+.ptl-tray {
     position: absolute;
-    left: 20px;
-    bottom: 20px;
-    width: 100px;
-    height: 60px;
-    transition: all 2s ease-in-out;
+    bottom: 42px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92px;
+    height: 52px;
+    background: linear-gradient(180deg, #111e30 0%, #0b1622 100%);
+    border: 1px solid #2a2010;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
     z-index: 10;
 }
 
-.cart-body {
-    width: 100%;
-    height: 100%;
-    background: #60a5fa;
+.ptl-order-label {
+    font-size: 0.44rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #334155;
+}
+
+.ptl-order-count {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #22c55e;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ─── INFO PANEL ─────────────────────────────── */
+.ptl-info-panel {
+    position: absolute;
+    top: 28px;
+    right: 12px;
+    background: rgba(6,13,24,0.88);
+    border: 1px solid rgba(212,160,23,0.13);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    position: relative;
-}
-
-.cart-wheels {
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
-}
-
-.wheel {
-    width: 12px;
-    height: 12px;
-    background: #2d3748;
-    border-radius: 50%;
-    animation: wheelSpin 1s linear infinite;
-}
-
-@keyframes wheelSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.cart-display {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 3px;
-    padding: 3px;
-}
-
-.display-text {
-    color: #60a5fa;
-    font-size: 8px;
-    font-weight: bold;
-    text-align: center;
-    font-family: 'Courier New', monospace;
-}
-
-/* Control Panel */
-.control-panel {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 200px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    padding: 15px;
+    padding: 8px 12px;
     backdrop-filter: blur(10px);
-    color: white;
-    opacity: 0.6;
+    z-index: 30;
+    min-width: 115px;
 }
 
-.panel-display {
-    margin-bottom: 15px;
-}
-
-.display-item {
+.ptl-info-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
+    align-items: center;
+    gap: 14px;
+    padding: 2px 0;
 }
 
-.display-item .label {
-    opacity: 0.8;
+.ptl-lbl {
+    font-size: 0.43rem;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
 }
 
-.display-item .value {
-    font-weight: bold;
-    color: #60a5fa;
+.ptl-val {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #e8c040;
 }
 
-.display-item .unit {
-    font-size: 0.7rem;
-    opacity: 0.7;
+.ptl-sep {
+    height: 1px;
+    background: rgba(212,160,23,0.1);
+    margin: 4px 0;
 }
 
-.control-buttons {
+/* ─── CONTROLS ───────────────────────────────── */
+.ptl-controls {
+    position: absolute;
+    top: 28px;
+    left: 12px;
     display: flex;
-    gap: 8px;
+    gap: 6px;
+    background: rgba(6,13,24,0.88);
+    border: 1px solid rgba(212,160,23,0.13);
+    border-radius: 8px;
+    padding: 6px 8px;
+    backdrop-filter: blur(10px);
+    z-index: 30;
 }
 
-.control-btn {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: #4a5568;
-    color: white;
+.ptl-btn {
+    width: 26px;
+    height: 26px;
+    border: 1px solid rgba(212,160,23,0.25);
+    border-radius: 6px;
+    background: rgba(212,160,23,0.12);
+    color: #f0d060;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-}
-
-.control-btn:hover {
-    background: #60a5fa;
-    transform: scale(1.05);
-}
-
-.control-btn#start-pick {
-    background: #38a169;
-}
-
-.control-btn#start-pick:hover {
-    background: #2f855a;
-}
-
-.control-btn#stop-pick {
-    background: #e53e3e;
-}
-
-.control-btn#stop-pick:hover {
-    background: #c53030;
-}
-
-/* Performance Indicators */
-.performance-indicators {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
-    gap: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 15px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    color: white;
-    opacity: 0.6;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    transition: all 0.2s ease;
 }
 
-.indicator {
-    text-align: center;
-    min-width: 80px;
+.ptl-btn:hover {
+    background: rgba(212,160,23,0.28);
+    color: #fff;
+    border-color: rgba(212,160,23,0.5);
 }
 
-.indicator-label {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    margin-bottom: 5px;
+/* ─── MOBİL ──────────────────────────────────── */
+@media (max-width: 768px) {
+    .pick-to-light-hero-animation { height: 420px; min-height: 380px; }
+    .ptl-shelf { top: 60px; height: 140px; }
+    .ptl-rail { top: 212px; }
+    .ptl-cart { top: 190px; width: 58px; height: 26px; }
+    .ptl-btn { width: 22px; height: 22px; font-size: 0.58rem; }
 }
 
-.indicator-value {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #60a5fa;
-}
-
-.indicator-unit {
-    font-size: 0.7rem;
-    opacity: 0.7;
-}
 
 /* ===== SAYFA ÖZEL BÖLÜMLER ===== */
 
@@ -539,61 +528,10 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-    .pick-to-light-hero-animation {
-        height: 400px;
-        min-height: 350px;
-    }
-    
-    .pick-system {
-        padding: 15px;
-        height: 100%;
-    }
-    
-    .pick-stations {
-        gap: 15px;
-        transform: scale(0.8);
-    }
-    
-    .station {
-        width: 50px;
-        height: 80px;
-    }
-    
-    .pick-cart {
-        width: 80px;
-        height: 60px;
-    }
-    
-    .control-panel {
-        position: relative;
-        top: auto;
-        right: auto;
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 10px;
-    }
-    
-    .performance-indicators {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    
-    .indicator {
-        font-size: 0.7rem;
-        padding: 5px 8px;
-        min-width: 60px;
-    }
-    
     .steps-grid,
     .benefits-grid,
     .applications-grid,
     .specs-grid {
         grid-template-columns: 1fr;
     }
-} 
+}

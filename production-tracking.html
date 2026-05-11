@@ -92,7 +92,7 @@
     <header class="header">
         <nav class="nav-container">
             <div class="logo">
-                <h2>Lojikon</h2>
+                <h2>Loji<span style="color:#d4a017">k</span>On</h2>
                 <p class="header-slogan">Endüstriyel Otomasyon</p>
             </div>
             
@@ -168,16 +168,88 @@
                 </div>
                 
                 <!-- Production Line Animation -->
-                <div class="production-hero-animation">
-                    <div class="production-line">
-                        <!-- Production Header -->
-                        <div class="production-header">
-                            <div class="header-title">
-                                <i class="fas fa-industry"></i>
-                                <span>ÜRETİM HATTI A</span>
+                <div class="production-hero-animation" id="pt-hero">
+                    <!-- 4 stations -->
+                    <div class="pt-stations">
+                        <div class="pt-station" id="pt-st-0">
+                            <div class="pt-st-dot" id="pt-dot-0" data-state="run"></div>
+                            <div>
+                                <div class="pt-st-name">Hammadde</div>
+                                <div class="pt-st-status" id="pt-sts-0">Hazır</div>
                             </div>
-                            <div class="production-time" id="production-time">00:00:00</div>
                         </div>
+                        <div class="pt-station" id="pt-st-1">
+                            <div class="pt-st-dot" id="pt-dot-1" data-state="run"></div>
+                            <div>
+                                <div class="pt-st-name">İşleme</div>
+                                <div class="pt-st-status" id="pt-sts-1">Çalışıyor</div>
+                            </div>
+                        </div>
+                        <div class="pt-station" id="pt-st-2">
+                            <div class="pt-st-dot" id="pt-dot-2" data-state="run"></div>
+                            <div>
+                                <div class="pt-st-name">Kalite</div>
+                                <div class="pt-st-status" id="pt-sts-2">Kontrol</div>
+                            </div>
+                        </div>
+                        <div class="pt-station" id="pt-st-3">
+                            <div class="pt-st-dot" id="pt-dot-3" data-state="idle"></div>
+                            <div>
+                                <div class="pt-st-name">Paketleme</div>
+                                <div class="pt-st-status" id="pt-sts-3">Hazır</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Belt -->
+                    <div class="pt-belt">
+                        <div class="pt-belt-surface"></div>
+                        <div class="pt-products" id="pt-products"></div>
+                    </div>
+                    <!-- QC traffic light -->
+                    <div class="pt-qc">
+                        <div class="pt-light" id="pt-light-g"></div>
+                        <div class="pt-light" id="pt-light-y"></div>
+                        <div class="pt-light" id="pt-light-r"></div>
+                    </div>
+                    <!-- Metrics -->
+                    <div class="pt-metrics">
+                        <div class="pt-metric">
+                            <div class="pt-metric-lbl">HIZ</div>
+                            <div class="pt-metric-val" id="pt-rate">125</div>
+                            <div class="pt-metric-unit">pç/saat</div>
+                        </div>
+                        <div class="pt-metric">
+                            <div class="pt-metric-lbl">KALİTE</div>
+                            <div class="pt-metric-val" id="pt-quality">99.5%</div>
+                        </div>
+                        <div class="pt-metric">
+                            <div class="pt-metric-lbl">VERİM</div>
+                            <div class="pt-metric-val" id="pt-eff">87.3%</div>
+                        </div>
+                        <div class="pt-metric">
+                            <div class="pt-metric-lbl">TOPLAM</div>
+                            <div class="pt-metric-val" id="pt-total">2,847</div>
+                        </div>
+                    </div>
+                    <!-- Info panel -->
+                    <div class="pt-info-panel">
+                        <div class="pt-info-row">
+                            <span class="pt-lbl">DURUM</span>
+                            <span class="pt-val" id="pt-status">HAZIR</span>
+                        </div>
+                        <div class="pt-sep"></div>
+                        <div class="pt-info-row">
+                            <span class="pt-lbl">ÜRETİLDİ</span>
+                            <span class="pt-val" id="pt-produced">0</span>
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    <div class="pt-controls">
+                        <button class="pt-btn" id="pt-start">&#9654;</button>
+                        <button class="pt-btn" id="pt-stop">&#9632;</button>
+                        <button class="pt-btn" id="pt-reset">&#8635;</button>
+                    </div>
+                    <div style="display:none">
                         
                         <!-- Production Line -->
                         <div class="production-stations">
@@ -574,7 +646,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Lojikon</h3>
+                    <h3>Loji<span style="color:#d4a017">k</span>On</h3>
                     <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>

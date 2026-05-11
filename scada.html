@@ -92,7 +92,7 @@
     <header class="header">
         <nav class="nav-container">
             <div class="logo">
-                <h2>Lojikon</h2>
+                <h2>Loji<span style="color:#d4a017">k</span>On</h2>
                 <p class="header-slogan">Endüstriyel Otomasyon</p>
             </div>
             
@@ -168,16 +168,93 @@
                 </div>
                 
                 <!-- SCADA Dashboard Animation -->
-                <div class="scada-hero-animation">
-                    <div class="scada-dashboard">
-                        <!-- Header -->
-                        <div class="dashboard-header">
-                            <div class="header-title">
-                                <i class="fas fa-tachometer-alt"></i>
-                                <span>LOJIKON SCADA</span>
+                <div class="scada-hero-animation" id="scada-hero">
+                    <!-- Top bar -->
+                    <div class="sc-topbar">
+                        <div class="sc-title"><i class="fas fa-tachometer-alt"></i>&nbsp;LOJIKON SCADA</div>
+                        <div class="sc-clock" id="sc-clock">00:00:00</div>
+                    </div>
+                    <!-- 3-column body -->
+                    <div class="sc-body">
+                        <!-- left: process list -->
+                        <div class="sc-procs">
+                            <div class="sc-panel-hdr">PROSESLER</div>
+                            <div class="sc-proc">
+                                <div class="sc-dot" id="sc-dot-sorter" data-state="run"></div>
+                                <div>
+                                    <div class="sc-proc-name">Sorter</div>
+                                    <div class="sc-proc-st" id="sc-st-sorter">Çalışıyor</div>
+                                </div>
                             </div>
-                            <div class="header-time" id="dashboard-time">00:00:00</div>
+                            <div class="sc-proc">
+                                <div class="sc-dot" id="sc-dot-lift" data-state="idle"></div>
+                                <div>
+                                    <div class="sc-proc-name">Lift</div>
+                                    <div class="sc-proc-st" id="sc-st-lift">Hazır</div>
+                                </div>
+                            </div>
+                            <div class="sc-proc">
+                                <div class="sc-dot" id="sc-dot-conveyor" data-state="run"></div>
+                                <div>
+                                    <div class="sc-proc-name">Konveyor</div>
+                                    <div class="sc-proc-st" id="sc-st-conveyor">Çalışıyor</div>
+                                </div>
+                            </div>
+                            <div class="sc-proc">
+                                <div class="sc-dot" id="sc-dot-robot" data-state="warn"></div>
+                                <div>
+                                    <div class="sc-proc-name">Robot</div>
+                                    <div class="sc-proc-st" id="sc-st-robot">Beklemede</div>
+                                </div>
+                            </div>
                         </div>
+                        <!-- center: KPI cards -->
+                        <div class="sc-kpis">
+                            <div class="sc-kpi">
+                                <div class="sc-kpi-lbl">SICAKLIK</div>
+                                <div class="sc-kpi-val" id="sc-temp">24.5°C</div>
+                                <div class="sc-kpi-bar"><div class="sc-kpi-fill" id="sc-fill-temp" style="width:45%"></div></div>
+                            </div>
+                            <div class="sc-kpi">
+                                <div class="sc-kpi-lbl">NEM</div>
+                                <div class="sc-kpi-val" id="sc-hum">45%</div>
+                                <div class="sc-kpi-bar"><div class="sc-kpi-fill" id="sc-fill-hum" style="width:45%"></div></div>
+                            </div>
+                            <div class="sc-kpi">
+                                <div class="sc-kpi-lbl">ENERJİ (kW)</div>
+                                <div class="sc-kpi-val" id="sc-energy">125</div>
+                                <div class="sc-kpi-bar"><div class="sc-kpi-fill" id="sc-fill-energy" style="width:50%"></div></div>
+                            </div>
+                            <div class="sc-kpi">
+                                <div class="sc-kpi-lbl">ÜRETİM</div>
+                                <div class="sc-kpi-val" id="sc-prod">1,247</div>
+                                <div class="sc-kpi-bar"><div class="sc-kpi-fill" id="sc-fill-prod" style="width:83%"></div></div>
+                            </div>
+                        </div>
+                        <!-- right: alarms -->
+                        <div class="sc-alarms">
+                            <div class="sc-panel-hdr">ALARMLAR</div>
+                            <div id="sc-alarm-list">
+                                <div class="sc-alarm warn">
+                                    <span class="sc-alarm-dot"></span>
+                                    <span class="sc-alarm-msg">Robot 2 - Bakım</span>
+                                    <span class="sc-alarm-t">2dk</span>
+                                </div>
+                                <div class="sc-alarm info">
+                                    <span class="sc-alarm-dot"></span>
+                                    <span class="sc-alarm-msg">Sorter - Verimli</span>
+                                    <span class="sc-alarm-t">5dk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- controls -->
+                    <div class="sc-controls">
+                        <button class="sc-btn" id="sc-start">&#9654;</button>
+                        <button class="sc-btn" id="sc-stop">&#9632;</button>
+                        <button class="sc-btn" id="sc-reset">&#8635;</button>
+                    </div>
+                    <div style="display:none">
                         
                         <!-- Main Content -->
                         <div class="dashboard-content">
@@ -577,7 +654,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Lojikon</h3>
+                    <h3>Loji<span style="color:#d4a017">k</span>On</h3>
                     <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>

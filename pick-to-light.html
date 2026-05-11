@@ -92,7 +92,7 @@
     <header class="header">
         <nav class="nav-container">
             <div class="logo">
-                <h2>Lojikon</h2>
+                <h2>Loji<span style="color:#d4a017">k</span>On</h2>
                 <p class="header-slogan">Endüstriyel Otomasyon</p>
             </div>
             
@@ -168,104 +168,67 @@
                 </div>
                 
                 <!-- Pick-to-Light Animation -->
-                <div class="pick-to-light-hero-animation">
-                    <div class="pick-system">
-                        <!-- Pick Stations -->
-                        <div class="pick-stations">
-                            <div class="station station-1" data-station="1">
-                                <div class="light-indicator"></div>
-                                <div class="product-slot">
-                                    <div class="product">📦</div>
-                                </div>
-                                <div class="quantity-display">5</div>
-                                <div class="station-label">A1</div>
-                            </div>
-                            <div class="station station-2" data-station="2">
-                                <div class="light-indicator"></div>
-                                <div class="product-slot">
-                                    <div class="product">📦</div>
-                                </div>
-                                <div class="quantity-display">3</div>
-                                <div class="station-label">A2</div>
-                            </div>
-                            <div class="station station-3" data-station="3">
-                                <div class="light-indicator"></div>
-                                <div class="product-slot">
-                                    <div class="product">📦</div>
-                                </div>
-                                <div class="quantity-display">7</div>
-                                <div class="station-label">A3</div>
-                            </div>
-                            <div class="station station-4" data-station="4">
-                                <div class="light-indicator"></div>
-                                <div class="product-slot">
-                                    <div class="product">📦</div>
-                                </div>
-                                <div class="quantity-display">2</div>
-                                <div class="station-label">A4</div>
-                            </div>
+                <div class="pick-to-light-hero-animation" id="ptl-hero">
+                    <!-- Shelf with 4 bays -->
+                    <div class="ptl-shelf">
+                        <div class="ptl-bay" data-bay="0">
+                            <div class="ptl-led" id="ptl-led-0"></div>
+                            <div class="ptl-qty" id="ptl-qty-0">—</div>
+                            <div class="ptl-bin"><span class="ptl-bin-label">A1</span></div>
                         </div>
-                        
-                        <!-- Pick Cart -->
-                        <div class="pick-cart" id="pick-cart">
-                            <div class="cart-body"></div>
-                            <div class="cart-wheels">
-                                <div class="wheel"></div>
-                                <div class="wheel"></div>
-                            </div>
-                            <div class="cart-display">
-                                <div class="display-text">Sipariş #1234</div>
-                            </div>
+                        <div class="ptl-bay" data-bay="1">
+                            <div class="ptl-led" id="ptl-led-1"></div>
+                            <div class="ptl-qty" id="ptl-qty-1">—</div>
+                            <div class="ptl-bin"><span class="ptl-bin-label">A2</span></div>
                         </div>
-                        
-                        <!-- Control Panel -->
-                        <div class="control-panel">
-                            <div class="panel-display">
-                                <div class="display-item">
-                                    <span class="label">Durum:</span>
-                                    <span class="value" id="pick-status">Hazır</span>
-                                </div>
-                                <div class="display-item">
-                                    <span class="label">Hız:</span>
-                                    <span class="value" id="pick-speed">800</span>
-                                    <span class="unit">picks/saat</span>
-                                </div>
-                                <div class="display-item">
-                                    <span class="label">Doğruluk:</span>
-                                    <span class="value" id="pick-accuracy">99.9</span>
-                                    <span class="unit">%</span>
-                                </div>
-                            </div>
-                            
-                            <div class="control-buttons">
-                                <button class="control-btn" id="start-pick">
-                                    <i class="fas fa-play"></i>
-                                </button>
-                                <button class="control-btn" id="stop-pick">
-                                    <i class="fas fa-stop"></i>
-                                </button>
-                                <button class="control-btn" id="reset-pick">
-                                    <i class="fas fa-redo"></i>
-                                </button>
-                            </div>
+                        <div class="ptl-bay" data-bay="2">
+                            <div class="ptl-led" id="ptl-led-2"></div>
+                            <div class="ptl-qty" id="ptl-qty-2">—</div>
+                            <div class="ptl-bin"><span class="ptl-bin-label">A3</span></div>
                         </div>
-                        
-                        <!-- Performance Indicators -->
-                        <div class="performance-indicators">
-                            <div class="indicator">
-                                <span class="indicator-label">Tamamlanan</span>
-                                <span class="indicator-value" id="completed-picks">0</span>
-                            </div>
-                            <div class="indicator">
-                                <span class="indicator-label">Hata</span>
-                                <span class="indicator-value" id="error-count">0</span>
-                            </div>
-                            <div class="indicator">
-                                <span class="indicator-label">Verimlilik</span>
-                                <span class="indicator-value" id="pick-efficiency">98.5</span>
-                                <span class="indicator-unit">%</span>
-                            </div>
+                        <div class="ptl-bay" data-bay="3">
+                            <div class="ptl-led" id="ptl-led-3"></div>
+                            <div class="ptl-qty" id="ptl-qty-3">—</div>
+                            <div class="ptl-bin"><span class="ptl-bin-label">A4</span></div>
                         </div>
+                    </div>
+
+                    <!-- Rail -->
+                    <div class="ptl-rail"></div>
+
+                    <!-- Cart -->
+                    <div class="ptl-cart" id="ptl-cart">
+                        <div class="ptl-cart-screen" id="ptl-cart-screen">SİPARİŞ</div>
+                    </div>
+
+                    <!-- Output tray -->
+                    <div class="ptl-tray">
+                        <div class="ptl-order-label">TAMAMLANAN</div>
+                        <div class="ptl-order-count" id="ptl-picked">0</div>
+                    </div>
+
+                    <!-- Info panel -->
+                    <div class="ptl-info-panel">
+                        <div class="ptl-info-row">
+                            <span class="ptl-lbl">DURUM</span>
+                            <span class="ptl-val" id="ptl-status">HAZIR</span>
+                        </div>
+                        <div class="ptl-sep"></div>
+                        <div class="ptl-info-row">
+                            <span class="ptl-lbl">HIZ</span>
+                            <span class="ptl-val">800/saat</span>
+                        </div>
+                        <div class="ptl-info-row">
+                            <span class="ptl-lbl">DOĞRULUK</span>
+                            <span class="ptl-val">%99.9</span>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="ptl-controls">
+                        <button class="ptl-btn" id="ptl-start">&#9654;</button>
+                        <button class="ptl-btn" id="ptl-stop">&#9632;</button>
+                        <button class="ptl-btn" id="ptl-reset">&#8635;</button>
                     </div>
                 </div>
             </div>
@@ -538,7 +501,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Lojikon</h3>
+                    <h3>Loji<span style="color:#d4a017">k</span>On</h3>
                     <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>

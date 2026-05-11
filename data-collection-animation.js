@@ -1,259 +1,102 @@
-// ===== VERİ TOPLAMA ANİMASYONU JAVASCRIPT =====
+// ===== VERİ TOPLAMA ANİMASYONU =====
 
 class DataCollectionAnimation {
     constructor() {
         this.isRunning = true;
-        this.dataRate = 1247;
-        this.connectionCount = 24;
-        this.storageUsed = 67.3;
-        this.uptime = 99.9;
-        
-        this.sensorData = {
-            temp1: { value: 24.5, unit: '°C', min: 20, max: 30 },
-            pressure1: { value: 2.3, unit: ' bar', min: 1, max: 5 },
-            flow1: { value: 150, unit: ' L/min', min: 100, max: 200 },
-            level1: { value: 75, unit: '%', min: 0, max: 100 }
-        };
-        
-        this.init();
+        this.rate      = 1247;
+        this.uptime    = 99.9;
+
+        this.sensors = [
+            { id: 0, val: 24.5, min: 20,  max: 30,  step: 0.3, fmt: v => v.toFixed(1) + '°C',   bar: (v,a,b) => (v-a)/(b-a) },
+            { id: 1, val: 2.3,  min: 1,   max: 5,   step: 0.1, fmt: v => v.toFixed(1) + ' bar',  bar: (v,a,b) => (v-a)/(b-a) },
+            { id: 2, val: 150,  min: 80,  max: 200, step: 5,   fmt: v => Math.round(v) + ' L/m', bar: (v,a,b) => (v-a)/(b-a) },
+            { id: 3, val: 75,   min: 10,  max: 100, step: 2,   fmt: v => Math.round(v) + '%',    bar: (v,a,b) => (v-a)/(b-a) },
+        ];
+
+        document.getElementById('dc-start')?.addEventListener('click', () => this.start());
+        document.getElementById('dc-stop')?.addEventListener('click',  () => this.stop());
+        document.getElementById('dc-reset')?.addEventListener('click', () => this.reset());
+
+        this._set('dc-status', 'ÇALIŞIYOR');
+        this._startLoop();
     }
-    
-    init() {
-        this.updateTime();
-        this.updateMetrics();
-        this.updateSensorData();
-        this.setupControls();
-        
-        // Update time every second
-        setInterval(() => {
-            this.updateTime();
-        }, 1000);
-        
-        // Update sensor data every 2 seconds
-        setInterval(() => {
-            this.updateSensorData();
-        }, 2000);
-        
-        // Update metrics every 3 seconds
-        setInterval(() => {
-            this.updateMetrics();
-        }, 3000);
-    }
-    
-    updateTime() {
-        const timeElement = document.getElementById('network-time');
-        if (timeElement) {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('tr-TR', {
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            timeElement.textContent = timeString;
-        }
-    }
-    
-    updateSensorData() {
-        Object.keys(this.sensorData).forEach(sensorId => {
-            const sensor = this.sensorData[sensorId];
-            
-            // Random value change
-            const change = (Math.random() - 0.5) * 2;
-            sensor.value += change;
-            
-            // Keep within bounds
-            sensor.value = Math.max(sensor.min, Math.min(sensor.max, sensor.value));
-            
-            // Update DOM
-            const valueElement = document.getElementById(`${sensorId}-value`);
-            if (valueElement) {
-                valueElement.textContent = `${sensor.value.toFixed(1)}${sensor.unit}`;
-            }
-            
-            // Update sensor status
-            const sensorNode = document.querySelector(`[data-sensor="${sensorId}"]`);
-            if (sensorNode) {
-                sensorNode.classList.add('active');
-            }
-        });
-    }
-    
-    updateMetrics() {
-        // Update data rate
-        this.dataRate += Math.floor((Math.random() - 0.5) * 50);
-        this.dataRate = Math.max(1000, Math.min(1500, this.dataRate));
-        
-        // Update connection count
-        this.connectionCount += Math.floor((Math.random() - 0.5) * 2);
-        this.connectionCount = Math.max(20, Math.min(30, this.connectionCount));
-        
-        // Update storage used
-        this.storageUsed += (Math.random() - 0.5) * 1;
-        this.storageUsed = Math.max(60, Math.min(80, this.storageUsed));
-        
-        // Update uptime (slowly decrease)
-        this.uptime -= Math.random() * 0.01;
-        this.uptime = Math.max(99.0, this.uptime);
-        
-        // Update DOM
-        this.updateMetricElement('data-rate', this.dataRate.toLocaleString());
-        this.updateMetricElement('connection-count', this.connectionCount);
-        this.updateMetricElement('storage-used', this.storageUsed.toFixed(1));
-        this.updateMetricElement('uptime', this.uptime.toFixed(1));
-    }
-    
-    updateMetricElement(id, value) {
-        const element = document.getElementById(id);
-        if (element) {
-            element.textContent = value;
-        }
-    }
-    
-    setupControls() {
-        const startBtn = document.getElementById('start-collection');
-        const stopBtn = document.getElementById('stop-collection');
-        const exportBtn = document.getElementById('export-data');
-        
-        if (startBtn) {
-            startBtn.addEventListener('click', () => {
-                this.startCollection();
-            });
-        }
-        
-        if (stopBtn) {
-            stopBtn.addEventListener('click', () => {
-                this.stopCollection();
-            });
-        }
-        
-        if (exportBtn) {
-            exportBtn.addEventListener('click', () => {
-                this.exportData();
-            });
-        }
-    }
-    
-    startCollection() {
+
+    start() {
+        if (this.isRunning) return;
         this.isRunning = true;
-        this.updateGatewayStatus('Aktif');
-        this.updateProcessorStatus('Çalışıyor');
-        this.updateDatabaseStatus('Kaydediliyor');
-        
-        // Activate all sensors
-        document.querySelectorAll('.sensor-node').forEach(node => {
-            node.classList.add('active');
-        });
-        
-        // Visual feedback
-        document.body.style.filter = 'none';
+        this._set('dc-status', 'ÇALIŞIYOR');
+        this._setDots(true);
+        this._startLoop();
     }
-    
-    stopCollection() {
+
+    stop() {
         this.isRunning = false;
-        this.updateGatewayStatus('Durduruldu');
-        this.updateProcessorStatus('Durduruldu');
-        this.updateDatabaseStatus('Durduruldu');
-        
-        // Deactivate all sensors
-        document.querySelectorAll('.sensor-node').forEach(node => {
-            node.classList.remove('active');
-        });
-        
-        // Visual feedback
-        document.body.style.filter = 'grayscale(30%)';
+        this._set('dc-status', 'DURDURULDU');
+        this._setDots(false);
+        clearInterval(this._timer);
     }
-    
-    exportData() {
-        // Simulate data export
-        const exportBtn = document.getElementById('export-data');
-        if (exportBtn) {
-            const originalText = exportBtn.innerHTML;
-            exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>DİŞA AKTARILIYOR...</span>';
-            exportBtn.style.background = '#f59e0b';
-            
-            setTimeout(() => {
-                exportBtn.innerHTML = '<i class="fas fa-check"></i><span>BAŞARILI!</span>';
-                exportBtn.style.background = '#10b981';
-                
-                setTimeout(() => {
-                    exportBtn.innerHTML = originalText;
-                    exportBtn.style.background = '#60a5fa';
-                }, 2000);
-            }, 3000);
+
+    reset() {
+        this.stop();
+        this.sensors[0].val = 24.5;
+        this.sensors[1].val = 2.3;
+        this.sensors[2].val = 150;
+        this.sensors[3].val = 75;
+        this.rate   = 1247;
+        this.uptime = 99.9;
+        this._updateAll();
+        this._set('dc-status', 'HAZIR');
+    }
+
+    _startLoop() {
+        this._timer = setInterval(() => {
+            if (!this.isRunning) return;
+            this.sensors.forEach(s => {
+                s.val = Math.max(s.min, Math.min(s.max, s.val + (Math.random() - 0.5) * s.step * 2));
+                this._updateSensor(s);
+            });
+            this.rate   = Math.max(800,  Math.min(1800, this.rate   + (Math.random() - 0.5) * 50));
+            this.uptime = Math.max(99.0, Math.min(100,  this.uptime + (Math.random() - 0.5) * 0.05));
+            this._set('dc-rate',     Math.round(this.rate));
+            this._set('dc-hub-rate', Math.round(this.rate) + '/s');
+            this._set('dc-uptime',   this.uptime.toFixed(1) + '%');
+        }, 1500);
+    }
+
+    _updateSensor(s) {
+        const el = document.getElementById(`dc-val-${s.id}`);
+        if (el) el.textContent = s.fmt(s.val);
+        const bar = document.getElementById(`dc-bar-${s.id}`);
+        if (bar) bar.style.width = (s.bar(s.val, s.min, s.max) * 100).toFixed(0) + '%';
+        if (Math.random() < 0.12) {
+            const dot = document.getElementById(`dc-dot-${s.id}`);
+            if (dot) {
+                dot.classList.remove('active');
+                dot.classList.add('warn');
+                setTimeout(() => { dot.classList.remove('warn'); dot.classList.add('active'); }, 400);
+            }
         }
     }
-    
-    updateGatewayStatus(status) {
-        const statusElement = document.getElementById('gateway-status');
-        if (statusElement) {
-            statusElement.textContent = status;
-            statusElement.style.color = status === 'Aktif' ? '#10b981' : '#ef4444';
-        }
+
+    _updateAll() {
+        this.sensors.forEach(s => this._updateSensor(s));
+        this._set('dc-rate',     Math.round(this.rate));
+        this._set('dc-hub-rate', Math.round(this.rate) + '/s');
+        this._set('dc-uptime',   this.uptime.toFixed(1) + '%');
     }
-    
-    updateProcessorStatus(status) {
-        const statusElement = document.getElementById('processor-status');
-        if (statusElement) {
-            statusElement.textContent = status;
-            statusElement.style.color = status === 'Çalışıyor' ? '#f59e0b' : '#ef4444';
-        }
-    }
-    
-    updateDatabaseStatus(status) {
-        const statusElement = document.getElementById('db-status');
-        if (statusElement) {
-            statusElement.textContent = status;
-            statusElement.style.color = status === 'Kaydediliyor' ? '#8b5cf6' : '#ef4444';
-        }
-    }
-    
-    // Random sensor failures
-    simulateSensorFailure() {
-        if (!this.isRunning) return;
-        
-        const sensors = ['temp1', 'pressure1', 'flow1', 'level1'];
-        const randomSensor = sensors[Math.floor(Math.random() * sensors.length)];
-        const sensorNode = document.querySelector(`[data-sensor="${randomSensor}"]`);
-        
-        if (sensorNode) {
-            sensorNode.classList.remove('active');
-            
-            // Reactivate after 5 seconds
-            setTimeout(() => {
-                if (this.isRunning) {
-                    sensorNode.classList.add('active');
-                }
-            }, 5000);
-        }
-        
-        // Schedule next failure
-        setTimeout(() => {
-            this.simulateSensorFailure();
-        }, Math.random() * 30000 + 15000); // 15-45 seconds
-    }
-    
-    // Data flow animation
-    animateDataFlow() {
-        const flowLines = document.querySelectorAll('.flow-line');
-        flowLines.forEach((line, index) => {
-            line.style.animationDelay = `${index * 0.5}s`;
+
+    _setDots(active) {
+        [0, 1, 2, 3].forEach(i => {
+            const dot = document.getElementById(`dc-dot-${i}`);
+            if (!dot) return;
+            dot.classList.remove('active', 'warn');
+            if (active) dot.classList.add('active');
         });
     }
+
+    _set(id, txt) { const el = document.getElementById(id); if (el) el.textContent = txt; }
 }
 
-// Initialize animation when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    const dataCollectionAnimation = document.querySelector('.data-collection-hero-animation');
-    if (dataCollectionAnimation) {
-        const dataCollection = new DataCollectionAnimation();
-        
-        // Start sensor failure simulation after 10 seconds
-        setTimeout(() => {
-            dataCollection.simulateSensorFailure();
-        }, 10000);
-        
-        // Start data flow animation
-        dataCollection.animateDataFlow();
-    }
-}); 
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('.data-collection-hero-animation')) new DataCollectionAnimation();
+});

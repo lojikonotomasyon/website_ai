@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 120" width="600" height="120">
+  <rect width="600" height="120" fill="#22262E"/>
+  
+  <rect fill="#A8ADB8" x="19" y="23" width="10" height="60" rx="3"/>
+  <rect fill="#22262E"   x="19" y="44"  width="10" height="2" rx="0"/>
+  <rect fill="#22262E"   x="19" y="62" width="10" height="2" rx="0"/>
+  <rect fill="#A8ADB8" x="19" y="81" width="10" height="20" rx="0"/>
+  <rect fill="#A8ADB8" x="19" y="91" width="56" height="10" rx="3"/>
+  <rect fill="#A8ADB8" x="19" y="91" width="10"  height="10" rx="0"/>
+  <rect fill="#D4A017" x="19"  y="91" width="10" height="10" rx="2"/>
+  <rect fill="#D4A017" x="40"  y="91" width="10" height="10" rx="2"/>
+  <rect fill="#D4A017" x="61" y="91" width="10" height="10" rx="2"/>
+  <polygon fill="#D4A017" points="77,91 87,96 77,101"/>
+  
+  <rect fill="#A8ADB8"   x="122" y="12" width="2" height="96" opacity="0.15"/>
+  <rect fill="#D4A017" x="122" y="44" width="2" height="32" rx="1"/>
+  <rect fill="#D4A017" x="130" y="24" width="456" height="2" rx="1"/>
+  <text font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-size="40" font-weight="700" letter-spacing="1"
+        dominant-baseline="central" y="58">
+    <tspan fill="#A8ADB8" x="128">Loji</tspan><tspan fill="#D4A017">k</tspan><tspan fill="#A8ADB8">On</tspan>
+  </text>
+  <rect fill="#A8ADB8" x="130" y="88" width="456" height="2" opacity="0.15" rx="1"/>
+  <text fill="#A8ADB8" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-size="10" letter-spacing="2" x="130" y="104">SOFTWARE · AUTOMATION · INTRALOGISTICS</text>
+</svg>

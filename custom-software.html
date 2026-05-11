@@ -92,7 +92,7 @@
     <header class="header">
         <nav class="nav-container">
             <div class="logo">
-                <h2>Lojikon</h2>
+                <h2>Loji<span style="color:#d4a017">k</span>On</h2>
                 <p class="header-slogan">Endüstriyel Otomasyon</p>
             </div>
             
@@ -169,7 +169,7 @@
                 
                 <!-- Custom Software Animation -->
                 <div class="custom-software-hero-animation">
-                    <div class="development-environment">
+                    <div style="display:none">
                         <!-- IDE Header -->
                         <div class="ide-header">
                             <div class="header-title">
@@ -292,6 +292,99 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Topbar -->
+                    <div class="cs-topbar">
+                        <span class="cs-title"><i class="fas fa-code"></i>LOJIKON IDE</span>
+                        <div class="cs-tab active" id="cs-tab-0">main.py</div>
+                        <div class="cs-tab" id="cs-tab-1">config.js</div>
+                        <div class="cs-tab" id="cs-tab-2">api.sql</div>
+                        <div class="cs-topbar-right">
+                            <span class="cs-dot red"></span>
+                            <span class="cs-dot yellow"></span>
+                            <span class="cs-dot green"></span>
+                        </div>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="cs-body">
+                        <!-- File Tree -->
+                        <div class="cs-files">
+                            <div class="cs-file-hdr">EXPLORER</div>
+                            <div class="cs-file active" id="cs-file-0"><i class="fas fa-file-code"></i>main.py</div>
+                            <div class="cs-file" id="cs-file-1"><i class="fas fa-file-code"></i>config.js</div>
+                            <div class="cs-file" id="cs-file-2"><i class="fas fa-database"></i>api.sql</div>
+                            <div class="cs-file" id="cs-file-3"><i class="fas fa-cog"></i>settings.py</div>
+                            <div class="cs-file" id="cs-file-4"><i class="fas fa-file-code"></i>models.py</div>
+                            <div class="cs-file" id="cs-file-5"><i class="fas fa-vial"></i>tests.py</div>
+                        </div>
+
+                        <!-- Code Editor -->
+                        <div class="cs-editor">
+                            <div class="cs-linenos">
+                                <span class="cs-lno">1</span><span class="cs-lno">2</span>
+                                <span class="cs-lno cur" id="cs-cur-lno">3</span>
+                                <span class="cs-lno">4</span><span class="cs-lno">5</span>
+                                <span class="cs-lno">6</span><span class="cs-lno">7</span>
+                                <span class="cs-lno">8</span><span class="cs-lno">9</span>
+                                <span class="cs-lno">10</span><span class="cs-lno">11</span>
+                                <span class="cs-lno">12</span>
+                            </div>
+                            <div class="cs-code" id="cs-code">
+                                <div class="cs-line"><span class="cs-kw">class</span> <span class="cs-cls">LojikonSystem</span>:</div>
+                                <div class="cs-line">    <span class="cs-kw">def</span> <span class="cs-fn">__init__</span>(<span class="cs-var">self</span>):</div>
+                                <div class="cs-line cur-line">        <span class="cs-var">self</span>.version = <span class="cs-str">"4.0.0"</span><span class="cs-cursor"></span></div>
+                                <div class="cs-line">        <span class="cs-var">self</span>.status  = <span class="cs-str">"active"</span></div>
+                                <div class="cs-line">        <span class="cs-var">self</span>.sensors = []</div>
+                                <div class="cs-line"></div>
+                                <div class="cs-line">    <span class="cs-kw">def</span> <span class="cs-fn">start</span>(<span class="cs-var">self</span>):</div>
+                                <div class="cs-line">        <span class="cs-cmt"># Üretim başlat</span></div>
+                                <div class="cs-line">        <span class="cs-var">self</span>.status = <span class="cs-str">"running"</span></div>
+                                <div class="cs-line">        <span class="cs-kw">return</span> <span class="cs-num">True</span></div>
+                                <div class="cs-line"></div>
+                                <div class="cs-line"><span class="cs-var">sys</span> = <span class="cs-cls">LojikonSystem</span>()</div>
+                            </div>
+                        </div>
+
+                        <!-- Metrics Panel -->
+                        <div class="cs-panel">
+                            <div class="cs-panel-hdr">BUILD</div>
+                            <div class="cs-build">
+                                <div class="cs-build-lbl">DURUM</div>
+                                <div class="cs-build-val ok" id="cs-build">SUCCESS</div>
+                            </div>
+                            <div class="cs-metric">
+                                <div class="cs-metric-lbl">CPU</div>
+                                <div class="cs-metric-val" id="cs-cpu">23%</div>
+                                <div class="cs-bar"><div class="cs-bar-fill" id="cs-cpu-bar" style="width:23%"></div></div>
+                            </div>
+                            <div class="cs-metric">
+                                <div class="cs-metric-lbl">RAM</div>
+                                <div class="cs-metric-val" id="cs-ram">148 MB</div>
+                                <div class="cs-bar"><div class="cs-bar-fill" id="cs-ram-bar" style="width:37%"></div></div>
+                            </div>
+                            <div class="cs-metric">
+                                <div class="cs-metric-lbl">SATIR</div>
+                                <div class="cs-metric-val" id="cs-loc">1.2k</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terminal -->
+                    <div class="cs-term">
+                        <div class="cs-term-hdr">TERMINAL</div>
+                        <div id="cs-term-out">
+                            <div class="cs-term-line cmd">$ python main.py</div>
+                            <div class="cs-term-line ok" id="cs-term-last">&#9658; Lojikon System v4.0.0 başlatıldı</div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="cs-controls">
+                        <button class="cs-btn" id="cs-start" title="Başlat">&#9654;</button>
+                        <button class="cs-btn" id="cs-stop"  title="Durdur">&#9632;</button>
+                        <button class="cs-btn" id="cs-reset" title="Sıfırla">&#8634;</button>
                     </div>
                 </div>
             </div>
@@ -564,7 +657,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Lojikon</h3>
+                    <h3>Loji<span style="color:#d4a017">k</span>On</h3>
                     <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>

@@ -298,7 +298,7 @@ function showNotification(message, type = 'info') {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#d4a017'};
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 8px;
@@ -344,7 +344,7 @@ function initializeScrollToTop() {
         right: 30px;
         width: 50px;
         height: 50px;
-        background: #3b82f6;
+        background: #d4a017;
         color: white;
         border: none;
         border-radius: 50%;
@@ -355,7 +355,7 @@ function initializeScrollToTop() {
         visibility: hidden;
         transition: all 0.3s ease;
         z-index: 9999;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 12px rgba(212,160,23, 0.4);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -385,13 +385,13 @@ function initializeScrollToTop() {
     // Hover effects
     scrollToTopBtn.addEventListener('mouseenter', () => {
         scrollToTopBtn.style.transform = 'translateY(-3px)';
-        scrollToTopBtn.style.background = '#1d4ed8';
-        scrollToTopBtn.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+        scrollToTopBtn.style.background = '#b07d10';
+        scrollToTopBtn.style.boxShadow = '0 6px 20px rgba(212,160,23, 0.5)';
     });
-    
+
     scrollToTopBtn.addEventListener('mouseleave', () => {
         scrollToTopBtn.style.transform = 'translateY(0)';
-        scrollToTopBtn.style.background = '#3b82f6';
+        scrollToTopBtn.style.background = '#d4a017';
         scrollToTopBtn.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
     });
 }

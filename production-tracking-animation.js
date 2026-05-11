@@ -1,266 +1,158 @@
-// ===== ÜRETİM TAKİBİ ANİMASYONU JAVASCRIPT =====
+// ===== ÜRETİM TAKİBİ ANİMASYONU =====
 
 class ProductionTrackingAnimation {
     constructor() {
+        this.isRunning  = false;
+        this.rate       = 125;
+        this.quality    = 99.5;
+        this.efficiency = 87.3;
+        this.total      = 2847;
+        this.produced   = 0;
+        this.timer      = null;
+
+        this.procStates = [
+            { dot: 'pt-dot-0', st: 'pt-sts-0', state: 'run',  label: 'Hazır' },
+            { dot: 'pt-dot-1', st: 'pt-sts-1', state: 'run',  label: 'Çalışıyor' },
+            { dot: 'pt-dot-2', st: 'pt-sts-2', state: 'run',  label: 'Kontrol' },
+            { dot: 'pt-dot-3', st: 'pt-sts-3', state: 'idle', label: 'Hazır' },
+        ];
+
+        document.getElementById('pt-start')?.addEventListener('click', () => this.start());
+        document.getElementById('pt-stop')?.addEventListener('click',  () => this.stop());
+        document.getElementById('pt-reset')?.addEventListener('click', () => this.reset());
+
+        this._startMetricLoop();
+        this.start();
+    }
+
+    start() {
+        if (this.isRunning) return;
         this.isRunning = true;
-        this.productionRate = 125;
-        this.qualityRate = 99.5;
-        this.efficiencyRate = 87.3;
-        this.totalProduction = 2847;
-        this.productCounter = 0;
-        this.defectiveCount = 0;
-        this.qualityCount = 0;
-        
-        this.init();
+        this._set('pt-status', 'ÇALIŞIYOR');
+        this._renderProcs();
+        this._spawnLoop();
     }
-    
-    init() {
-        this.updateTime();
-        this.updateMetrics();
-        this.setupControls();
-        this.startProduction();
-        
-        // Update time every second
-        setInterval(() => {
-            this.updateTime();
-        }, 1000);
-        
-        // Update metrics every 2 seconds
-        setInterval(() => {
-            this.updateMetrics();
-        }, 2000);
-    }
-    
-    updateTime() {
-        const timeElement = document.getElementById('production-time');
-        if (timeElement) {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('tr-TR', {
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            timeElement.textContent = timeString;
-        }
-    }
-    
-    updateMetrics() {
-        // Update production rate
-        this.productionRate += Math.floor((Math.random() - 0.5) * 10);
-        this.productionRate = Math.max(100, Math.min(150, this.productionRate));
-        
-        // Update quality rate
-        this.qualityRate += (Math.random() - 0.5) * 0.5;
-        this.qualityRate = Math.max(98.0, Math.min(100.0, this.qualityRate));
-        
-        // Update efficiency rate
-        this.efficiencyRate += (Math.random() - 0.5) * 2;
-        this.efficiencyRate = Math.max(80.0, Math.min(95.0, this.efficiencyRate));
-        
-        // Update total production
-        this.totalProduction += Math.floor(Math.random() * 5);
-        
-        // Update DOM
-        this.updateMetricElement('production-rate', this.productionRate);
-        this.updateMetricElement('quality-rate', this.qualityRate.toFixed(1));
-        this.updateMetricElement('efficiency-rate', this.efficiencyRate.toFixed(1));
-        this.updateMetricElement('total-production', this.totalProduction.toLocaleString());
-    }
-    
-    updateMetricElement(id, value) {
-        const element = document.getElementById(id);
-        if (element) {
-            element.textContent = value;
-        }
-    }
-    
-    setupControls() {
-        const startBtn = document.getElementById('start-production');
-        const stopBtn = document.getElementById('stop-production');
-        const resetBtn = document.getElementById('reset-production');
-        
-        if (startBtn) {
-            startBtn.addEventListener('click', () => {
-                this.startProduction();
-            });
-        }
-        
-        if (stopBtn) {
-            stopBtn.addEventListener('click', () => {
-                this.stopProduction();
-            });
-        }
-        
-        if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
-                this.resetProduction();
-            });
-        }
-    }
-    
-    startProduction() {
-        this.isRunning = true;
-        this.updateStationStatus(1, 'Hazır');
-        this.updateStationStatus(2, 'Çalışıyor');
-        this.updateStationStatus(3, 'Kontrol');
-        this.updateStationStatus(4, 'Hazır');
-        
-        // Start product generation
-        this.generateProducts();
-    }
-    
-    stopProduction() {
+
+    stop() {
         this.isRunning = false;
-        this.updateStationStatus(1, 'Durduruldu');
-        this.updateStationStatus(2, 'Durduruldu');
-        this.updateStationStatus(3, 'Durduruldu');
-        this.updateStationStatus(4, 'Durduruldu');
-    }
-    
-    resetProduction() {
-        this.isRunning = false;
-        this.productionRate = 125;
-        this.qualityRate = 99.5;
-        this.efficiencyRate = 87.3;
-        this.totalProduction = 2847;
-        this.productCounter = 0;
-        this.defectiveCount = 0;
-        this.qualityCount = 0;
-        
-        this.updateMetrics();
-        this.updateStationStatus(1, 'Hazır');
-        this.updateStationStatus(2, 'Çalışıyor');
-        this.updateStationStatus(3, 'Kontrol');
-        this.updateStationStatus(4, 'Hazır');
-        
-        // Clear products
-        const productsContainer = document.getElementById('products-container');
-        if (productsContainer) {
-            productsContainer.innerHTML = '';
-        }
-    }
-    
-    updateStationStatus(stationNumber, status) {
-        const statusElement = document.getElementById(`station-${stationNumber}-status`);
-        const station = document.querySelector(`[data-station="${stationNumber}"]`);
-        const indicator = station?.querySelector('.station-indicator');
-        
-        if (statusElement) {
-            statusElement.textContent = status;
-        }
-        
-        if (station && indicator) {
-            station.classList.remove('active');
-            indicator.classList.remove('active');
-            
-            if (status === 'Çalışıyor' || status === 'Kontrol') {
-                station.classList.add('active');
-                indicator.classList.add('active');
-            }
-        }
-    }
-    
-    generateProducts() {
-        if (!this.isRunning) return;
-        
-        // Create new product
-        this.createProduct();
-        
-        // Schedule next product
-        const interval = (60 / this.productionRate) * 1000; // Convert to milliseconds
-        setTimeout(() => {
-            this.generateProducts();
-        }, interval);
-    }
-    
-    createProduct() {
-        const productsContainer = document.getElementById('products-container');
-        if (!productsContainer) return;
-        
-        this.productCounter++;
-        
-        const product = document.createElement('div');
-        product.className = 'product';
-        product.textContent = this.productCounter;
-        
-        // Random quality check
-        const isDefective = Math.random() < (1 - this.qualityRate / 100);
-        const isQuality = Math.random() < 0.3;
-        
-        if (isDefective) {
-            product.classList.add('defective');
-            this.defectiveCount++;
-        } else if (isQuality) {
-            product.classList.add('quality');
-            this.qualityCount++;
-        }
-        
-        productsContainer.appendChild(product);
-        
-        // Remove product after animation
-        setTimeout(() => {
-            if (product.parentNode) {
-                product.parentNode.removeChild(product);
-            }
-        }, 4000);
-        
-        // Update QC lights
-        this.updateQCLights(isDefective, isQuality);
-    }
-    
-    updateQCLights(isDefective, isQuality) {
-        const qcLights = document.querySelectorAll('.qc-light');
-        
-        // Reset all lights
-        qcLights.forEach(light => {
-            light.classList.remove('green', 'red', 'yellow');
+        clearTimeout(this.timer);
+        this._set('pt-status', 'DURDURULDU');
+        this.procStates.forEach((p, i) => {
+            this._setProc(i, 'off', 'Durduruldu');
         });
-        
-        // Set appropriate light
-        if (isDefective) {
-            qcLights[1].classList.add('red'); // Red light for defective
-        } else if (isQuality) {
-            qcLights[0].classList.add('green'); // Green light for quality
-        } else {
-            qcLights[2].classList.add('yellow'); // Yellow light for normal
-        }
-        
-        // Reset lights after 1 second
-        setTimeout(() => {
-            qcLights.forEach(light => {
-                light.classList.remove('green', 'red', 'yellow');
-            });
-        }, 1000);
+        this._setQC(null);
     }
-    
-    // Random station status changes
-    randomizeStationStatus() {
+
+    reset() {
+        this.stop();
+        this.produced   = 0;
+        this.rate       = 125;
+        this.quality    = 99.5;
+        this.efficiency = 87.3;
+        this.total      = 2847;
+        this._set('pt-status', 'HAZIR');
+        this._set('pt-produced', '0');
+        this._updateMetrics();
+        document.getElementById('pt-products').innerHTML = '';
+        this.procStates = [
+            { dot: 'pt-dot-0', st: 'pt-sts-0', state: 'run',  label: 'Hazır' },
+            { dot: 'pt-dot-1', st: 'pt-sts-1', state: 'run',  label: 'Çalışıyor' },
+            { dot: 'pt-dot-2', st: 'pt-sts-2', state: 'run',  label: 'Kontrol' },
+            { dot: 'pt-dot-3', st: 'pt-sts-3', state: 'idle', label: 'Hazır' },
+        ];
+        this._renderProcs();
+    }
+
+    _spawnLoop() {
         if (!this.isRunning) return;
-        
-        const stations = [1, 2, 3, 4];
-        const randomStation = stations[Math.floor(Math.random() * stations.length)];
-        const statuses = ['Çalışıyor', 'Hazır', 'Beklemede', 'Hata'];
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-        
-        this.updateStationStatus(randomStation, randomStatus);
-        
-        // Schedule next randomization
-        setTimeout(() => {
-            this.randomizeStationStatus();
-        }, Math.random() * 10000 + 5000); // 5-15 seconds
+        this._spawnProduct();
+        const interval = Math.max(500, (60 / this.rate) * 1000);
+        this.timer = setTimeout(() => this._spawnLoop(), interval);
     }
+
+    _spawnProduct() {
+        const belt = document.getElementById('pt-products');
+        if (!belt) return;
+
+        const r = Math.random();
+        const type = r < 0.05 ? 'defect' : r < 0.25 ? 'ok' : 'normal';
+
+        const p = document.createElement('div');
+        p.className = `pt-product ${type}`;
+        p.style.left = '-30px';
+        belt.appendChild(p);
+
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            p.style.left = (belt.clientWidth + 30) + 'px';
+        }));
+
+        this.produced++;
+        this.total++;
+        this._set('pt-produced', this.produced);
+        this._set('pt-total',    this.total.toLocaleString('tr-TR'));
+        this._setQC(type);
+
+        setTimeout(() => p.parentNode?.removeChild(p), 4200);
+    }
+
+    _setQC(type) {
+        document.getElementById('pt-light-g')?.classList.remove('green-on');
+        document.getElementById('pt-light-y')?.classList.remove('yellow-on');
+        document.getElementById('pt-light-r')?.classList.remove('red-on');
+        if (type === 'ok')     document.getElementById('pt-light-g')?.classList.add('green-on');
+        else if (type === 'defect') document.getElementById('pt-light-r')?.classList.add('red-on');
+        else if (type === 'normal') document.getElementById('pt-light-y')?.classList.add('yellow-on');
+        if (type) setTimeout(() => {
+            document.getElementById('pt-light-g')?.classList.remove('green-on');
+            document.getElementById('pt-light-y')?.classList.remove('yellow-on');
+            document.getElementById('pt-light-r')?.classList.remove('red-on');
+        }, 800);
+    }
+
+    _startMetricLoop() {
+        setInterval(() => {
+            if (!this.isRunning) return;
+            this.rate       = Math.max(100, Math.min(150, this.rate + (Math.random()-0.5)*8));
+            this.quality    = Math.max(98,  Math.min(100, this.quality + (Math.random()-0.5)*0.4));
+            this.efficiency = Math.max(80,  Math.min(95,  this.efficiency + (Math.random()-0.5)*1.5));
+            this._updateMetrics();
+            // Random proc state change
+            if (Math.random() < 0.3) {
+                const idx = Math.floor(Math.random() * 4);
+                const opts = [
+                    { state: 'run',  label: 'Çalışıyor' },
+                    { state: 'idle', label: 'Hazır' },
+                    { state: 'warn', label: 'Beklemede' },
+                ];
+                const o = opts[Math.floor(Math.random() * opts.length)];
+                this._setProc(idx, o.state, o.label);
+            }
+        }, 2500);
+    }
+
+    _updateMetrics() {
+        this._set('pt-rate',    Math.round(this.rate));
+        this._set('pt-quality', `${this.quality.toFixed(1)}%`);
+        this._set('pt-eff',     `${this.efficiency.toFixed(1)}%`);
+        this._set('pt-total',   this.total.toLocaleString('tr-TR'));
+    }
+
+    _setProc(idx, state, label) {
+        this.procStates[idx].state = state;
+        this.procStates[idx].label = label;
+        const dot = document.getElementById(this.procStates[idx].dot);
+        const st  = document.getElementById(this.procStates[idx].st);
+        if (dot) dot.dataset.state = state;
+        if (st)  st.textContent    = label;
+    }
+
+    _renderProcs() {
+        this.procStates.forEach((p, i) => this._setProc(i, p.state, p.label));
+    }
+
+    _set(id, txt) { const el = document.getElementById(id); if (el) el.textContent = txt; }
 }
 
-// Initialize animation when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    const productionAnimation = document.querySelector('.production-hero-animation');
-    if (productionAnimation) {
-        const production = new ProductionTrackingAnimation();
-        
-        // Start random station changes after 10 seconds
-        setTimeout(() => {
-            production.randomizeStationStatus();
-        }, 10000);
-    }
-}); 
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('.production-hero-animation')) new ProductionTrackingAnimation();
+});

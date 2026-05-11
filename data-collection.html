@@ -92,7 +92,7 @@
     <header class="header">
         <nav class="nav-container">
             <div class="logo">
-                <h2>Lojikon</h2>
+                <h2>Loji<span style="color:#d4a017">k</span>On</h2>
                 <p class="header-slogan">Endüstriyel Otomasyon</p>
             </div>
             
@@ -169,15 +169,7 @@
                 
                 <!-- Data Collection Animation -->
                 <div class="data-collection-hero-animation">
-                    <div class="data-network">
-                        <!-- Network Header -->
-                        <div class="network-header">
-                            <div class="header-title">
-                                <i class="fas fa-network-wired"></i>
-                                <span>VERİ TOPLAMA AĞI</span>
-                            </div>
-                            <div class="network-time" id="network-time">00:00:00</div>
-                        </div>
+                    <div style="display:none">
                         
                         <!-- Sensor Nodes -->
                         <div class="sensor-nodes">
@@ -316,6 +308,108 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="dc-controls">
+                        <button class="dc-btn" id="dc-start" title="Başlat">&#9654;</button>
+                        <button class="dc-btn" id="dc-stop"  title="Durdur">&#9632;</button>
+                        <button class="dc-btn" id="dc-reset" title="Sıfırla">&#8634;</button>
+                    </div>
+
+                    <!-- Info Panel -->
+                    <div class="dc-info-panel">
+                        <div class="dc-info-row">
+                            <span class="dc-lbl">DURUM</span>
+                            <span class="dc-val" id="dc-status">ÇALIŞIYOR</span>
+                        </div>
+                        <div class="dc-sep"></div>
+                        <div class="dc-info-row">
+                            <span class="dc-lbl">HIZ</span>
+                            <span class="dc-val" id="dc-rate">1247</span>
+                        </div>
+                        <div class="dc-info-row">
+                            <span class="dc-lbl">BAĞLI</span>
+                            <span class="dc-val" id="dc-conn">4</span>
+                        </div>
+                        <div class="dc-info-row">
+                            <span class="dc-lbl">UPTIME</span>
+                            <span class="dc-val" id="dc-uptime">99.9%</span>
+                        </div>
+                    </div>
+
+                    <!-- SVG connection lines and animated packets -->
+                    <svg class="dc-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <defs>
+                            <path id="dc-path-0" d="M 10,21 L 50,50"/>
+                            <path id="dc-path-1" d="M 90,21 L 50,50"/>
+                            <path id="dc-path-2" d="M 10,79 L 50,50"/>
+                            <path id="dc-path-3" d="M 90,79 L 50,50"/>
+                        </defs>
+                        <use href="#dc-path-0" class="dc-conn-line"/>
+                        <use href="#dc-path-1" class="dc-conn-line"/>
+                        <use href="#dc-path-2" class="dc-conn-line"/>
+                        <use href="#dc-path-3" class="dc-conn-line"/>
+                        <circle class="dc-packet" r="0.8">
+                            <animateMotion dur="2.4s" repeatCount="indefinite" begin="0s"><mpath href="#dc-path-0"/></animateMotion>
+                        </circle>
+                        <circle class="dc-packet" r="0.8">
+                            <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.6s"><mpath href="#dc-path-1"/></animateMotion>
+                        </circle>
+                        <circle class="dc-packet" r="0.8">
+                            <animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s"><mpath href="#dc-path-2"/></animateMotion>
+                        </circle>
+                        <circle class="dc-packet" r="0.8">
+                            <animateMotion dur="2.4s" repeatCount="indefinite" begin="1.8s"><mpath href="#dc-path-3"/></animateMotion>
+                        </circle>
+                    </svg>
+
+                    <!-- Sensor Nodes -->
+                    <div class="dc-node dc-node-0" id="dc-node-0">
+                        <div class="dc-node-dot active" id="dc-dot-0"></div>
+                        <div class="dc-node-top">
+                            <i class="dc-node-icon fas fa-thermometer-half"></i>
+                            <span class="dc-node-name">SICAKLIK</span>
+                        </div>
+                        <div class="dc-node-val" id="dc-val-0">24.5°C</div>
+                        <div class="dc-node-bar"><div class="dc-node-bar-fill" id="dc-bar-0" style="width:45%"></div></div>
+                    </div>
+
+                    <div class="dc-node dc-node-1" id="dc-node-1">
+                        <div class="dc-node-dot active" id="dc-dot-1"></div>
+                        <div class="dc-node-top">
+                            <i class="dc-node-icon fas fa-tachometer-alt"></i>
+                            <span class="dc-node-name">BASINÇ</span>
+                        </div>
+                        <div class="dc-node-val" id="dc-val-1">2.3 bar</div>
+                        <div class="dc-node-bar"><div class="dc-node-bar-fill" id="dc-bar-1" style="width:58%"></div></div>
+                    </div>
+
+                    <div class="dc-node dc-node-2" id="dc-node-2">
+                        <div class="dc-node-dot active" id="dc-dot-2"></div>
+                        <div class="dc-node-top">
+                            <i class="dc-node-icon fas fa-water"></i>
+                            <span class="dc-node-name">DEBİ</span>
+                        </div>
+                        <div class="dc-node-val" id="dc-val-2">150 L/m</div>
+                        <div class="dc-node-bar"><div class="dc-node-bar-fill" id="dc-bar-2" style="width:75%"></div></div>
+                    </div>
+
+                    <div class="dc-node dc-node-3" id="dc-node-3">
+                        <div class="dc-node-dot active" id="dc-dot-3"></div>
+                        <div class="dc-node-top">
+                            <i class="dc-node-icon fas fa-arrows-alt-v"></i>
+                            <span class="dc-node-name">SEVİYE</span>
+                        </div>
+                        <div class="dc-node-val" id="dc-val-3">75%</div>
+                        <div class="dc-node-bar"><div class="dc-node-bar-fill" id="dc-bar-3" style="width:75%"></div></div>
+                    </div>
+
+                    <!-- Central Hub -->
+                    <div class="dc-hub">
+                        <i class="dc-hub-icon fas fa-server"></i>
+                        <span class="dc-hub-label">MERKEZ<br>HUB</span>
+                        <span class="dc-hub-rate" id="dc-hub-rate">1247/s</span>
                     </div>
                 </div>
             </div>
@@ -588,7 +682,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Lojikon</h3>
+                    <h3>Loji<span style="color:#d4a017">k</span>On</h3>
                     <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>

@@ -1,191 +1,262 @@
-/* ===== PLC PROGRAMLAMA SAYFASI ÖZEL CSS ===== */
+/* ===== PLC PROGRAMLAMA ANİMASYONU CSS ===== */
 
-/* Hero Section */
-.plc-hero {
-    background: var(--g-p);
-    position: relative;
-    overflow: hidden;
-}
-
+/* ─── CONTAINER ──────────────────────────── */
 .plc-hero-animation {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
+    width: 100%;
+    height: 500px;
+    min-height: 460px;
+    position: relative;
+    background: radial-gradient(ellipse at 50% 20%, #22262e 0%, #161820 55%, #13151a 100%);
+    border-radius: 16px;
+    box-shadow: 0 28px 65px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+    overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
+    flex-direction: column;
 }
 
-.plc-ide {
-    background: #1e1e1e;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+.plc-hero-animation::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: 16px;
+    background-image:
+        linear-gradient(rgba(212,160,23,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,160,23,0.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none; z-index: 0;
+}
+
+.plc-hero-animation::after {
+    content: 'PLC LADDER DİYAGRAMI';
+    position: absolute;
+    top: 6px; left: 0; right: 0;
+    text-align: center;
+    font-size: 0.5rem; font-weight: 700;
+    letter-spacing: 0.22em;
+    color: rgba(148,163,184,0.3);
+    pointer-events: none; z-index: 1;
+}
+
+/* ─── STATUS BAR ─────────────────────────── */
+.plc-statusbar {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    background: rgba(6,14,26,0.95);
+    border-bottom: 1px solid rgba(212,160,23,0.12);
+    padding: 0 12px;
+    gap: 16px;
+    flex-shrink: 0;
+    z-index: 10;
+    position: relative;
+}
+
+.plc-sb-item { display: flex; align-items: center; gap: 5px; }
+.plc-sb-lbl { font-size: 0.38rem; color: #334155; text-transform: uppercase; letter-spacing: 0.08em; }
+.plc-sb-val { font-size: 0.52rem; font-weight: 700; font-family: 'Courier New', monospace; }
+.plc-sb-val.run  { color: #22c55e; }
+.plc-sb-val.stop { color: #ef4444; }
+.plc-sb-val.blue { color: #e8c040; }
+.plc-sb-right { margin-left: auto; }
+
+/* ─── BODY ───────────────────────────────── */
+.plc-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    z-index: 5;
+}
+
+/* I/O Input Panel */
+.plc-io-in, .plc-io-out {
+    width: 80px;
+    flex-shrink: 0;
+    background: rgba(5,11,20,0.7);
+    padding: 10px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     overflow: hidden;
 }
+.plc-io-in { border-right: 1px solid rgba(212,160,23,0.08); }
+.plc-io-out { border-left: 1px solid rgba(212,160,23,0.08); }
 
-.ide-header {
-    background: #2d2d30;
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #3e3e42;
+.plc-io-hdr {
+    font-size: 0.34rem;
+    font-weight: 700;
+    color: #2e2510;
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+    text-align: center;
 }
 
-.ide-tabs {
-    display: flex;
-    gap: 5px;
-}
+.plc-io-item { display: flex; align-items: center; gap: 5px; }
 
-.tab {
-    background: #3e3e42;
-    color: #cccccc;
-    padding: 8px 15px;
-    border-radius: 4px 4px 0 0;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.plc-io-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: #2e2510;
+    transition: background 0.2s, box-shadow 0.2s;
 }
+.plc-io-dot.on   { background: #22c55e; box-shadow: 0 0 5px rgba(34,197,94,0.7); }
+.plc-io-dot.warn { background: #f59e0b; box-shadow: 0 0 5px rgba(245,158,11,0.7); }
 
-.tab.active {
-    background: #007acc;
-    color: white;
-}
+.plc-io-lbl { font-size: 0.38rem; color: #334155; font-family: 'Courier New', monospace; }
+.plc-io-lbl.on { color: #f0d060; }
 
-.ide-controls {
-    display: flex;
-    gap: 8px;
-}
-
-.ide-controls button {
-    background: #3e3e42;
-    border: none;
-    color: #cccccc;
-    padding: 6px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.ide-controls button:hover {
-    background: #007acc;
-    color: white;
-}
-
-.code-editor {
-    display: flex;
-    height: 300px;
-}
-
-.line-numbers {
-    background: #252526;
-    color: #858585;
-    padding: 15px 10px;
-    font-family: 'Consolas', monospace;
-    font-size: 12px;
-    line-height: 1.5;
-    text-align: right;
-    border-right: 1px solid #3e3e42;
-}
-
-.line-numbers span {
-    display: block;
-    margin-bottom: 2px;
-}
-
-.code-content {
+/* ─── LADDER AREA ────────────────────────── */
+.plc-ladder {
     flex: 1;
-    padding: 15px;
-    font-family: 'Consolas', monospace;
-    font-size: 12px;
-    line-height: 1.5;
-    color: #d4d4d4;
-    overflow-y: auto;
-}
-
-.code-line {
-    margin-bottom: 2px;
-    white-space: nowrap;
-}
-
-.keyword {
-    color: #569cd6;
-    font-weight: bold;
-}
-
-.number {
-    color: #b5cea8;
-}
-
-.input {
-    color: #9cdcfe;
-}
-
-.output {
-    color: #4ec9b0;
-}
-
-.function {
-    color: #dcdcaa;
-}
-
-.parameter {
-    color: #ce9178;
-}
-
-.timer {
-    color: #4fc1ff;
-}
-
-.counter {
-    color: #c586c0;
-}
-
-.operator {
-    color: #d4d4d4;
-}
-
-.indent {
-    color: #858585;
-    margin-left: 20px;
-}
-
-.plc-status {
-    background: #2d2d30;
-    padding: 10px 15px;
+    padding: 12px 8px;
     display: flex;
-    gap: 20px;
-    border-top: 1px solid #3e3e42;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+    min-width: 0;
 }
 
-.status-item {
+.plc-rung {
     display: flex;
     align-items: center;
-    gap: 5px;
+    height: 38px;
+    background: rgba(6,13,24,0.5);
+    border: 1px solid rgba(212,160,23,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+}
+.plc-rung.active { border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.04); }
+.plc-rung.warn   { border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.04); }
+
+.plc-rung-line {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px;
+    background: rgba(42,32,12,0.5);
+    transform: translateY(-50%);
+}
+.plc-rung.active .plc-rung-line { background: rgba(34,197,94,0.5); }
+.plc-rung.warn   .plc-rung-line { background: rgba(245,158,11,0.5); }
+
+.plc-rail-l, .plc-rail-r {
+    width: 3px; height: 100%;
+    background: rgba(42,32,12,0.8);
+    flex-shrink: 0;
+}
+.plc-rail-r { margin-left: auto; }
+.plc-rung.active .plc-rail-l,
+.plc-rung.active .plc-rail-r { background: rgba(34,197,94,0.6); }
+
+.plc-contact {
+    display: flex; align-items: center;
+    flex-shrink: 0; margin: 0 4px;
+    position: relative;
 }
 
-.status-label {
-    color: #858585;
-    font-size: 12px;
+.plc-contact-box {
+    width: 24px; height: 20px;
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(6,13,24,0.7);
+    font-size: 0.36rem;
+    font-family: 'Courier New', monospace;
+    color: #d4a017;
+}
+.plc-rung.active .plc-contact-box { border-color: rgba(34,197,94,0.5); color: #22c55e; }
+
+.plc-contact-lbl {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    font-size: 0.3rem; color: #334155;
+    font-family: 'Courier New', monospace; white-space: nowrap;
+}
+.plc-rung.active .plc-contact-lbl { color: #22c55e; }
+
+.plc-coil {
+    display: flex; align-items: center;
+    margin: 0 4px 0 auto;
+    flex-shrink: 0; position: relative;
 }
 
-.status-value {
-    font-size: 12px;
-    font-weight: bold;
+.plc-coil-box {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,160,23,0.3);
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(6,13,24,0.7);
+    font-size: 0.32rem;
+    font-family: 'Courier New', monospace;
+    color: #d4a017;
+}
+.plc-rung.active .plc-coil-box {
+    border-color: rgba(34,197,94,0.6); color: #22c55e;
+    box-shadow: 0 0 6px rgba(34,197,94,0.4);
 }
 
-.status-value.online {
-    color: #4ec9b0;
+.plc-coil-lbl {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    font-size: 0.3rem; color: #334155;
+    font-family: 'Courier New', monospace; white-space: nowrap;
+}
+.plc-rung.active .plc-coil-lbl { color: #22c55e; }
+
+.plc-net-lbl {
+    font-size: 0.3rem; color: #2e2510;
+    font-family: 'Courier New', monospace; padding: 0 4px; flex-shrink: 0;
 }
 
-.status-value.running {
-    color: #4fc1ff;
+/* ─── METRICS BAR ────────────────────────── */
+.plc-metrics {
+    height: 44px;
+    flex-shrink: 0;
+    background: rgba(4,9,18,0.9);
+    border-top: 1px solid rgba(212,160,23,0.1);
+    display: flex; align-items: center;
+    overflow: hidden; position: relative; z-index: 5;
 }
+
+.plc-metric {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 6px;
+    border-right: 1px solid rgba(212,160,23,0.08);
+}
+.plc-metric:last-child { border-right: none; }
+
+.plc-metric-lbl  { font-size: 0.34rem; color: #334155; text-transform: uppercase; letter-spacing: 0.08em; }
+.plc-metric-val  { font-size: 0.88rem; font-weight: 700; color: #e8c040; font-family: 'Courier New', monospace; }
+.plc-metric-unit { font-size: 0.3rem; color: #2e2510; }
+
+/* ─── CONTROLS ───────────────────────────── */
+.plc-controls {
+    position: absolute;
+    top: 42px; right: 12px;
+    display: flex; gap: 5px;
+    background: rgba(6,13,24,0.9);
+    border: 1px solid rgba(212,160,23,0.13);
+    border-radius: 8px; padding: 5px 7px;
+    backdrop-filter: blur(10px); z-index: 30;
+}
+
+.plc-btn {
+    width: 24px; height: 24px;
+    border: 1px solid rgba(212,160,23,0.25);
+    border-radius: 5px;
+    background: rgba(212,160,23,0.12);
+    color: #f0d060; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; transition: all 0.2s ease;
+}
+.plc-btn:hover { background: rgba(212,160,23,0.28); color: #fff; border-color: rgba(212,160,23,0.5); }
+
+/* ─── MOBİL ──────────────────────────────── */
+@media (max-width: 768px) {
+    .plc-hero-animation { height: 420px; min-height: 380px; }
+    .plc-io-in, .plc-io-out { width: 60px; }
+    .plc-btn { width: 20px; height: 20px; font-size: 0.55rem; }
+}
+
 
 /* ===== SAYFA ÖZEL BÖLÜMLER ===== */
 

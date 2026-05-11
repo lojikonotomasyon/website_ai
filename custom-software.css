@@ -1,406 +1,323 @@
-/* ===== ÖZEL YAZILIM SAYFASI ÖZEL CSS ===== */
+/* ===== ÖZEL YAZILIM ANİMASYONU CSS ===== */
 
 .custom-software-hero-animation {
     width: 100%;
-    height: 100%;
-    min-height: 500px;
+    height: 500px;
+    min-height: 460px;
     position: relative;
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    border-radius: 15px;
+    background: radial-gradient(ellipse at 50% 20%, #22262e 0%, #161820 55%, #13151a 100%);
+    border-radius: 16px;
+    box-shadow: 0 28px 65px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.development-environment {
-    width: 100%;
-    height: 100%;
-    position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    color: white;
-    font-family: 'Courier New', monospace;
 }
 
-/* IDE Header */
-.ide-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(10px);
+.custom-software-hero-animation::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background-image:
+        linear-gradient(rgba(212,160,23,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,160,23,0.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.header-title {
+/* ─── TOPBAR ─────────────────────────────── */
+.cs-topbar {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #60a5fa;
+    height: 36px;
+    background: rgba(6,14,26,0.95);
+    border-bottom: 1px solid rgba(212,160,23,0.12);
+    padding: 0 10px;
+    flex-shrink: 0;
+    z-index: 10;
+    position: relative;
+    gap: 0;
 }
 
-.header-title i {
-    font-size: 1.5rem;
-}
-
-.file-tabs {
+.cs-title {
+    font-size: 0.46rem;
+    font-weight: 700;
+    color: #e8c040;
+    letter-spacing: 0.1em;
+    margin-right: 14px;
+    white-space: nowrap;
     display: flex;
+    align-items: center;
     gap: 5px;
 }
 
-.tab {
-    padding: 8px 15px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 5px 5px 0 0;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.cs-tab {
+    height: 100%;
+    padding: 0 12px;
+    font-size: 0.42rem;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(212,160,23,0.08);
+    cursor: default;
+    font-family: 'Courier New', monospace;
+}
+.cs-tab.active {
+    color: #f0d060;
+    background: rgba(212,160,23,0.07);
+    border-bottom: 2px solid #d4a017;
 }
 
-.tab.active {
-    background: #60a5fa;
-    color: white;
+.cs-topbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.tab:hover:not(.active) {
-    background: rgba(0, 0, 0, 0.5);
+.cs-dot { width: 8px; height: 8px; border-radius: 50%; }
+.cs-dot.red    { background: #ef4444; }
+.cs-dot.yellow { background: #f59e0b; }
+.cs-dot.green  { background: #22c55e; }
+
+/* ─── BODY ───────────────────────────────── */
+.cs-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    z-index: 5;
 }
+
+/* File Tree */
+.cs-files {
+    width: 108px;
+    flex-shrink: 0;
+    background: rgba(5,11,20,0.7);
+    border-right: 1px solid rgba(212,160,23,0.08);
+    overflow: hidden;
+    padding: 8px 0;
+}
+
+.cs-file-hdr {
+    font-size: 0.36rem;
+    font-weight: 700;
+    color: #2e2510;
+    letter-spacing: 0.14em;
+    padding: 0 8px 6px;
+}
+
+.cs-file {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    font-size: 0.42rem;
+    color: #475569;
+    font-family: 'Courier New', monospace;
+    transition: background 0.2s, color 0.2s;
+}
+.cs-file.active { background: rgba(212,160,23,0.1); color: #f0d060; }
+.cs-file i { font-size: 0.55rem; color: #b07d10; flex-shrink: 0; }
 
 /* Code Editor */
-.code-editor {
-    display: flex;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    height: 200px;
-}
-
-.line-numbers {
-    background: #2d3748;
-    padding: 15px 10px;
-    border-right: 1px solid #4a5568;
-    font-size: 0.9rem;
-    color: #718096;
-    text-align: right;
-    min-width: 40px;
-}
-
-.line-number {
-    line-height: 1.5;
-    font-family: 'Courier New', monospace;
-}
-
-.code-content {
+.cs-editor {
     flex: 1;
-    padding: 15px;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    overflow-y: auto;
-}
-
-.code-line {
-    margin-bottom: 5px;
-    font-family: 'Courier New', monospace;
-}
-
-.keyword {
-    color: #f56565;
-    font-weight: bold;
-}
-
-.class-name {
-    color: #4299e1;
-    font-weight: bold;
-}
-
-.function-name {
-    color: #48bb78;
-    font-weight: bold;
-}
-
-.parameter {
-    color: #ed8936;
-}
-
-.variable {
-    color: #9f7aea;
-}
-
-.property {
-    color: #38b2ac;
-}
-
-.string {
-    color: #f6ad55;
-}
-
-.comment {
-    color: #718096;
-    font-style: italic;
-}
-
-/* Terminal */
-.terminal {
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    margin-bottom: 20px;
-    overflow: hidden;
-}
-
-.terminal-header {
-    background: #2d3748;
-    padding: 10px 15px;
     display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-    color: #a0aec0;
+    overflow: hidden;
+    min-width: 0;
 }
 
-.terminal-content {
-    padding: 15px;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    font-family: 'Courier New', monospace;
-}
-
-.terminal-line {
-    margin-bottom: 5px;
-    color: #e2e8f0;
-}
-
-.terminal-line:last-child {
-    color: #48bb78;
-    font-weight: bold;
-}
-
-/* Development Tools */
-.dev-tools {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 2;
-}
-
-.tool-panel {
+.cs-linenos {
+    width: 28px;
+    flex-shrink: 0;
+    background: rgba(5,11,20,0.4);
+    border-right: 1px solid rgba(212,160,23,0.06);
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-
-.tool-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 15px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 8px;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.tool-item:hover {
-    background: rgba(0, 0, 0, 0.9);
-    transform: translateX(-5px);
-}
-
-.tool-item i {
-    font-size: 1.2rem;
-    color: #60a5fa;
-}
-
-.tool-item span {
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-/* Progress Indicators */
-.progress-indicators {
-    position: absolute;
-    bottom: 80px;
-    left: 20px;
-    right: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    z-index: 2;
-}
-
-.progress-card {
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.progress-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.progress-title {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    margin-bottom: 10px;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
+    align-items: flex-end;
     overflow: hidden;
-    margin-bottom: 8px;
 }
 
-.progress-fill {
+.cs-lno {
+    font-size: 0.38rem;
+    color: #2e2510;
+    padding: 0 5px;
+    line-height: 1.75;
+    font-family: 'Courier New', monospace;
+}
+.cs-lno.cur { color: #e8c040; }
+
+.cs-code {
+    flex: 1;
+    padding: 10px 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.cs-line {
+    font-size: 0.44rem;
+    line-height: 1.75;
+    font-family: 'Courier New', monospace;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 2px;
+}
+.cs-line.cur-line { background: rgba(212,160,23,0.07); }
+
+.cs-kw  { color: #c084fc; }
+.cs-fn  { color: #e8c040; }
+.cs-cls { color: #34d399; }
+.cs-str { color: #fbbf24; }
+.cs-cmt { color: #334155; font-style: italic; }
+.cs-num { color: #fb923c; }
+.cs-var { color: #e2e8f0; }
+
+.cs-cursor {
+    display: inline-block;
+    width: 1px;
+    height: 0.65rem;
+    background: #e8c040;
+    vertical-align: text-bottom;
+    animation: csBlink 0.9s step-end infinite;
+}
+@keyframes csBlink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Right Metrics Panel */
+.cs-panel {
+    width: 108px;
+    flex-shrink: 0;
+    background: rgba(5,11,20,0.7);
+    border-left: 1px solid rgba(212,160,23,0.08);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.cs-panel-hdr {
+    font-size: 0.34rem;
+    font-weight: 700;
+    color: #2e2510;
+    letter-spacing: 0.14em;
+    margin-bottom: 2px;
+}
+
+.cs-build {
+    background: rgba(6,13,24,0.8);
+    border: 1px solid rgba(212,160,23,0.1);
+    border-radius: 4px;
+    padding: 5px 6px;
+}
+
+.cs-build-lbl { font-size: 0.34rem; color: #334155; text-transform: uppercase; letter-spacing: 0.08em; }
+.cs-build-val {
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-family: 'Courier New', monospace;
+}
+.cs-build-val.ok  { color: #22c55e; }
+.cs-build-val.run { color: #f59e0b; }
+.cs-build-val.err { color: #ef4444; }
+
+.cs-metric {
+    background: rgba(6,13,24,0.8);
+    border: 1px solid rgba(212,160,23,0.1);
+    border-radius: 4px;
+    padding: 5px 6px;
+}
+.cs-metric-lbl { font-size: 0.34rem; color: #334155; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+.cs-metric-val { font-size: 0.72rem; font-weight: 700; color: #e8c040; font-family: 'Courier New', monospace; }
+
+.cs-bar {
+    height: 2px;
+    background: rgba(212,160,23,0.1);
+    border-radius: 1px;
+    overflow: hidden;
+    margin-top: 3px;
+}
+.cs-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #60a5fa, #3b82f6);
-    border-radius: 4px;
-    transition: width 0.5s ease;
+    background: linear-gradient(90deg, #b07d10, #d4a017);
+    border-radius: 1px;
+    transition: width 0.7s ease;
+}
+
+/* ─── TERMINAL ───────────────────────────── */
+.cs-term {
+    height: 60px;
+    flex-shrink: 0;
+    background: rgba(4,9,18,0.95);
+    border-top: 1px solid rgba(212,160,23,0.1);
+    padding: 5px 10px;
+    overflow: hidden;
     position: relative;
+    z-index: 5;
 }
 
-.progress-fill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    animation: progressShine 2s ease-in-out infinite;
+.cs-term-hdr {
+    font-size: 0.34rem;
+    color: #2e2510;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 3px;
 }
 
-@keyframes progressShine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-.progress-value {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #60a5fa;
+.cs-term-line {
+    font-size: 0.42rem;
+    color: #475569;
     font-family: 'Courier New', monospace;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
 }
+.cs-term-line.ok  { color: #22c55e; }
+.cs-term-line.err { color: #ef4444; }
+.cs-term-line.cmd { color: #e8c040; }
 
-/* Control Panel */
-.control-panel {
+/* ─── CONTROLS ───────────────────────────── */
+.cs-controls {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    padding: 15px;
-    backdrop-filter: blur(10px);
-    z-index: 2;
-}
-
-.control-buttons {
+    bottom: 68px;
+    right: 116px;
     display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
-.control-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 15px 20px;
-    border: none;
+    gap: 5px;
+    background: rgba(6,13,24,0.9);
+    border: 1px solid rgba(212,160,23,0.13);
     border-radius: 8px;
-    background: #4a5568;
-    color: white;
+    padding: 5px 7px;
+    backdrop-filter: blur(10px);
+    z-index: 30;
+}
+
+.cs-btn {
+    width: 24px; height: 24px;
+    border: 1px solid rgba(212,160,23,0.25);
+    border-radius: 5px;
+    background: rgba(212,160,23,0.12);
+    color: #f0d060;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    font-weight: bold;
-    min-width: 100px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem;
+    transition: all 0.2s ease;
+}
+.cs-btn:hover { background: rgba(212,160,23,0.28); color: #fff; border-color: rgba(212,160,23,0.5); }
+
+/* ─── MOBİL ──────────────────────────────── */
+@media (max-width: 768px) {
+    .custom-software-hero-animation { height: 420px; min-height: 380px; }
+    .cs-files { width: 80px; }
+    .cs-panel { width: 80px; }
+    .cs-term { height: 48px; }
+    .cs-btn { width: 20px; height: 20px; font-size: 0.55rem; }
 }
 
-.control-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.control-btn#run-code {
-    background: #10b981;
-}
-
-.control-btn#run-code:hover {
-    background: #059669;
-}
-
-.control-btn#debug-code {
-    background: #f59e0b;
-}
-
-.control-btn#debug-code:hover {
-    background: #d97706;
-}
-
-.control-btn#deploy-code {
-    background: #8b5cf6;
-}
-
-.control-btn#deploy-code:hover {
-    background: #7c3aed;
-}
-
-.control-btn i {
-    font-size: 1.5rem;
-}
-
-/* Code Typing Animation */
-.code-line {
-    opacity: 0;
-    animation: codeTyping 0.5s ease forwards;
-}
-
-.code-line:nth-child(1) { animation-delay: 0.1s; }
-.code-line:nth-child(2) { animation-delay: 0.2s; }
-.code-line:nth-child(3) { animation-delay: 0.3s; }
-.code-line:nth-child(4) { animation-delay: 0.4s; }
-.code-line:nth-child(5) { animation-delay: 0.5s; }
-.code-line:nth-child(6) { animation-delay: 0.6s; }
-.code-line:nth-child(7) { animation-delay: 0.7s; }
-.code-line:nth-child(8) { animation-delay: 0.8s; }
-.code-line:nth-child(9) { animation-delay: 0.9s; }
-.code-line:nth-child(10) { animation-delay: 1.0s; }
-
-@keyframes codeTyping {
-    0% {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Cursor Blink */
-.code-line::after {
-    content: '|';
-    color: #60a5fa;
-    animation: cursorBlink 1s infinite;
-    margin-left: 2px;
-}
-
-@keyframes cursorBlink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-}
 
 /* ===== SAYFA ÖZEL BÖLÜMLER ===== */
 

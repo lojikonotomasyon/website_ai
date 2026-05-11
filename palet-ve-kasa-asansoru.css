@@ -6,10 +6,10 @@
     min-height: 500px;
     height: 500px;
     position: relative;
-    background: radial-gradient(ellipse at 30% 20%, #0f2240 0%, #0a1628 60%, #060e1a 100%);
+    background: radial-gradient(ellipse at 30% 20%, #0f2240 0%, #0a1628 60%, #17191e 100%);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(59,130,246,0.12);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,160,23,0.12);
 }
 
 .lift-system {
@@ -37,8 +37,8 @@
         #0c1828 50%,
         #070f1c 100%
     );
-    border-left:  4px solid #1e3a5f;
-    border-right: 4px solid #1e3a5f;
+    border-left:  4px solid #2e2510;
+    border-right: 4px solid #2e2510;
     border-radius: 4px;
     overflow: hidden;
 }
@@ -52,8 +52,8 @@
         180deg,
         transparent 0px,
         transparent 27px,
-        rgba(30,58,95,0.25) 27px,
-        rgba(30,58,95,0.25) 28px
+        rgba(42,32,12,0.25) 27px,
+        rgba(42,32,12,0.25) 28px
     );
 }
 
@@ -66,9 +66,9 @@
     transform: translateX(-50%);
     width: 44px;
     height: 22px;
-    background: radial-gradient(ellipse at center, #3b82f6 0%, #1d4ed8 60%, #1e3a8a 100%);
+    background: radial-gradient(ellipse at center, #d4a017 0%, #b07d10 60%, #1e3a8a 100%);
     border-radius: 22px 22px 4px 4px;
-    box-shadow: 0 0 18px rgba(59,130,246,0.5), 0 4px 8px rgba(0,0,0,0.4);
+    box-shadow: 0 0 18px rgba(212,160,23,0.5), 0 4px 8px rgba(0,0,0,0.4);
     z-index: 5;
 }
 
@@ -78,7 +78,7 @@
     top: 0;
     bottom: 0;
     width: 14px;
-    background: linear-gradient(to right, #1e3a5f, #2563eb, #1e3a5f);
+    background: linear-gradient(to right, #2e2510, #b07d10, #2e2510);
     box-shadow: 0 0 10px rgba(37,99,235,0.4);
     z-index: 2;
 }
@@ -121,10 +121,10 @@
     right: 0;
     height: 6px;
     background: linear-gradient(90deg,
-        rgba(30,58,95,0.5) 0%,
-        rgba(59,130,246,0.85) 25%,
-        rgba(59,130,246,0.85) 75%,
-        rgba(30,58,95,0.5) 100%
+        rgba(42,32,12,0.5) 0%,
+        rgba(212,160,23,0.85) 25%,
+        rgba(212,160,23,0.85) 75%,
+        rgba(42,32,12,0.5) 100%
     );
     border-radius: 3px;
     transition: box-shadow 0.35s ease, background 0.35s ease;
@@ -137,12 +137,12 @@
 
 .floor.active {
     background: linear-gradient(90deg,
-        rgba(96,165,250,0.6) 0%,
-        #60a5fa 25%,
-        #60a5fa 75%,
-        rgba(96,165,250,0.6) 100%
+        rgba(232,192,64,0.6) 0%,
+        #e8c040 25%,
+        #e8c040 75%,
+        rgba(232,192,64,0.6) 100%
     );
-    box-shadow: 0 0 18px rgba(96,165,250,0.7), 0 0 40px rgba(96,165,250,0.3);
+    box-shadow: 0 0 18px rgba(232,192,64,0.7), 0 0 40px rgba(232,192,64,0.3);
 }
 
 .floor-surface { display: none; }
@@ -154,7 +154,7 @@
     width: 62px;
     height: 56px;
     background: linear-gradient(160deg, #1a3050 0%, #243d5e 60%, #1a3050 100%);
-    border: 1px solid #2563eb;
+    border: 1px solid #b07d10;
     transition: transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.45s;
     pointer-events: none;
     z-index: 9;
@@ -197,10 +197,10 @@
     left: -88px;
     width: 30px;
     height: 30px;
-    background: #060e1a;
-    border: 2px solid #2563eb;
+    background: #17191e;
+    border: 2px solid #b07d10;
     border-radius: 6px;
-    color: #60a5fa;
+    color: #e8c040;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -428,7 +428,7 @@
     font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #3b82f6;
+    color: #d4a017;
     font-family: 'Courier New', monospace;
     margin-bottom: 10px;
     text-align: center;
@@ -463,7 +463,7 @@
 .display-item .value {
     font-size: 0.78rem;
     font-weight: 700;
-    color: #60a5fa;
+    color: #e8c040;
 }
 
 /* Kat butonları */
@@ -479,7 +479,7 @@
     border: 1px solid rgba(37,99,235,0.35);
     border-radius: 6px;
     background: rgba(15,33,63,0.8);
-    color: #93c5fd;
+    color: #f0d060;
     cursor: pointer;
     font-size: 0.82rem;
     font-weight: 700;
@@ -489,16 +489,16 @@
 
 .floor-btn:hover {
     background: rgba(37,99,235,0.4);
-    border-color: #60a5fa;
+    border-color: #e8c040;
     color: #fff;
     transform: scale(1.06);
 }
 
 .floor-btn.active {
     background: rgba(37,99,235,0.55);
-    border-color: #60a5fa;
+    border-color: #e8c040;
     color: #fff;
-    box-shadow: 0 0 10px rgba(59,130,246,0.4);
+    box-shadow: 0 0 10px rgba(212,160,23,0.4);
 }
 
 /* Kontrol butonları */
@@ -513,7 +513,7 @@
     border: 1px solid rgba(37,99,235,0.3);
     border-radius: 6px;
     background: rgba(15,33,63,0.8);
-    color: #93c5fd;
+    color: #f0d060;
     cursor: pointer;
     transition: all 0.18s ease;
     font-size: 0.75rem;
@@ -576,7 +576,7 @@
 .indicator-value {
     font-size: 1rem;
     font-weight: 700;
-    color: #60a5fa;
+    color: #e8c040;
     font-family: 'Courier New', monospace;
 }
 

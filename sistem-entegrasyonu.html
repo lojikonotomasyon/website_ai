@@ -92,7 +92,7 @@
     <header class="header">
         <nav class="nav-container">
             <div class="logo">
-                <h2>Lojikon</h2>
+                <h2>Loji<span style="color:#d4a017">k</span>On</h2>
                 <p class="header-slogan">Endüstriyel Otomasyon</p>
             </div>
 
@@ -123,99 +123,113 @@
         
         <!-- System Integration Animation -->
         <div class="integration-hero-animation">
-            <div class="integration-dashboard">
-                <div class="dashboard-header">
-                    <h3>Sistem Entegrasyonu Dashboard</h3>
-                    <div class="dashboard-controls">
-                        <button class="refresh-btn"><i class="fas fa-sync-alt"></i></button>
-                        <button class="settings-btn"><i class="fas fa-cog"></i></button>
-                    </div>
+
+            <!-- Controls -->
+            <div class="si-controls">
+                <button class="si-btn" id="si-start" title="Başlat">&#9654;</button>
+                <button class="si-btn" id="si-stop"  title="Durdur">&#9632;</button>
+                <button class="si-btn" id="si-reset" title="Sıfırla">&#8634;</button>
+            </div>
+
+            <!-- SVG connection lines -->
+            <svg class="si-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                    <path id="si-path-0" d="M 10,21 L 50,50"/>
+                    <path id="si-path-1" d="M 90,21 L 50,50"/>
+                    <path id="si-path-2" d="M 10,79 L 50,50"/>
+                    <path id="si-path-3" d="M 90,79 L 50,50"/>
+                </defs>
+                <use href="#si-path-0" class="si-conn-line"/>
+                <use href="#si-path-1" class="si-conn-line"/>
+                <use href="#si-path-2" class="si-conn-line"/>
+                <use href="#si-path-3" class="si-conn-line"/>
+                <circle class="si-packet" r="0.9">
+                    <animateMotion dur="2.2s" repeatCount="indefinite" begin="0s"><mpath href="#si-path-0"/></animateMotion>
+                </circle>
+                <circle class="si-packet" r="0.9">
+                    <animateMotion dur="2.2s" repeatCount="indefinite" begin="0.55s"><mpath href="#si-path-1"/></animateMotion>
+                </circle>
+                <circle class="si-packet" r="0.9">
+                    <animateMotion dur="2.2s" repeatCount="indefinite" begin="1.1s"><mpath href="#si-path-2"/></animateMotion>
+                </circle>
+                <circle class="si-packet" r="0.9">
+                    <animateMotion dur="2.2s" repeatCount="indefinite" begin="1.65s"><mpath href="#si-path-3"/></animateMotion>
+                </circle>
+            </svg>
+
+            <!-- System Nodes -->
+            <div class="si-node si-node-0 active" id="si-node-0">
+                <div class="si-node-dot active" id="si-dot-0"></div>
+                <div class="si-node-top">
+                    <i class="si-node-icon fas fa-building"></i>
+                    <span class="si-node-name">ERP</span>
                 </div>
-                <div class="dashboard-content">
-                    <div class="system-grid">
-                        <div class="system-card erp">
-                            <div class="system-icon">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <div class="system-info">
-                                <h4>ERP Sistemi</h4>
-                                <div class="status online">Bağlı</div>
-                                <div class="data-flow">
-                                    <span class="flow-indicator active"></span>
-                                    <span class="flow-indicator active"></span>
-                                    <span class="flow-indicator active"></span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="system-card mes">
-                            <div class="system-icon">
-                                <i class="fas fa-industry"></i>
-                            </div>
-                            <div class="system-info">
-                                <h4>MES Sistemi</h4>
-                                <div class="status online">Bağlı</div>
-                                <div class="data-flow">
-                                    <span class="flow-indicator active"></span>
-                                    <span class="flow-indicator active"></span>
-                                    <span class="flow-indicator active"></span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="system-card scada">
-                            <div class="system-icon">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <div class="system-info">
-                                <h4>SCADA</h4>
-                                <div class="status online">Bağlı</div>
-                                <div class="data-flow">
-                                    <span class="flow-indicator active"></span>
-                                    <span class="flow-indicator active"></span>
-                                    <span class="flow-indicator active"></span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="system-card plc">
-                            <div class="system-icon">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <div class="system-info">
-                                <h4>PLC Sistemleri</h4>
-                                <div class="status online">Bağlı</div>
-                                <div class="data-flow">
-                                    <span class="flow-indicator active"></span>
-                                    <span class="flow-indicator active"></span>
-                                    <span class="flow-indicator active"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="integration-center">
-                        <div class="center-icon">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                        <div class="center-info">
-                            <h4>Entegrasyon Merkezi</h4>
-                            <div class="metrics">
-                                <div class="metric">
-                                    <span class="metric-label">Aktif Bağlantı:</span>
-                                    <span class="metric-value">4/4</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-label">Veri Akışı:</span>
-                                    <span class="metric-value">2.5 MB/s</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-label">Gecikme:</span>
-                                    <span class="metric-value">15ms</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="si-node-sys">SAP / Oracle</div>
+                <div class="si-node-row">
+                    <span class="si-node-stat ok" id="si-stat-0">BAĞLI</span>
+                    <span class="si-node-thr" id="si-thr-0">1.2 MB/s</span>
+                </div>
+            </div>
+
+            <div class="si-node si-node-1 active" id="si-node-1">
+                <div class="si-node-dot active" id="si-dot-1"></div>
+                <div class="si-node-top">
+                    <i class="si-node-icon fas fa-industry"></i>
+                    <span class="si-node-name">MES</span>
+                </div>
+                <div class="si-node-sys">Manufacturing</div>
+                <div class="si-node-row">
+                    <span class="si-node-stat ok" id="si-stat-1">BAĞLI</span>
+                    <span class="si-node-thr" id="si-thr-1">0.8 MB/s</span>
+                </div>
+            </div>
+
+            <div class="si-node si-node-2 active" id="si-node-2">
+                <div class="si-node-dot active" id="si-dot-2"></div>
+                <div class="si-node-top">
+                    <i class="si-node-icon fas fa-desktop"></i>
+                    <span class="si-node-name">SCADA</span>
+                </div>
+                <div class="si-node-sys">İzleme Sistemi</div>
+                <div class="si-node-row">
+                    <span class="si-node-stat ok" id="si-stat-2">BAĞLI</span>
+                    <span class="si-node-thr" id="si-thr-2">0.5 MB/s</span>
+                </div>
+            </div>
+
+            <div class="si-node si-node-3" id="si-node-3">
+                <div class="si-node-dot active" id="si-dot-3"></div>
+                <div class="si-node-top">
+                    <i class="si-node-icon fas fa-microchip"></i>
+                    <span class="si-node-name">PLC</span>
+                </div>
+                <div class="si-node-sys">Saha Cihazları</div>
+                <div class="si-node-row">
+                    <span class="si-node-stat ok" id="si-stat-3">BAĞLI</span>
+                    <span class="si-node-thr" id="si-thr-3">2.1 MB/s</span>
+                </div>
+            </div>
+
+            <!-- Central Hub -->
+            <div class="si-hub">
+                <i class="si-hub-icon fas fa-network-wired"></i>
+                <span class="si-hub-label">ENTEG.<br>SUNUCU</span>
+                <span class="si-hub-val" id="si-hub-val">4.6 MB/s</span>
+            </div>
+
+            <!-- Info Panel -->
+            <div class="si-info-panel">
+                <div class="si-info-item">
+                    <span class="si-lbl">BAĞLANTI</span>
+                    <span class="si-val" id="si-conn">4/4</span>
+                </div>
+                <div class="si-info-item">
+                    <span class="si-lbl">GECİKME</span>
+                    <span class="si-val" id="si-latency">15 ms</span>
+                </div>
+                <div class="si-info-item">
+                    <span class="si-lbl">UPTIME</span>
+                    <span class="si-val" id="si-uptime">99.9%</span>
                 </div>
             </div>
         </div>

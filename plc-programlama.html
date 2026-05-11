@@ -92,7 +92,7 @@
     <header class="header">
         <nav class="nav-container">
             <div class="logo">
-                <h2>Lojikon</h2>
+                <h2>Loji<span style="color:#d4a017">k</span>On</h2>
                 <p class="header-slogan">Endüstriyel Otomasyon</p>
             </div>
 
@@ -123,49 +123,152 @@
         
         <!-- PLC Programming Animation -->
         <div class="plc-hero-animation">
-            <div class="plc-ide">
-                <div class="ide-header">
-                    <div class="ide-tabs">
-                        <div class="tab active" data-file="main.lad">main.lad</div>
-                        <div class="tab" data-file="functions.fbd">functions.fbd</div>
-                        <div class="tab" data-file="variables.scl">variables.scl</div>
+
+            <!-- Status Bar -->
+            <div class="plc-statusbar">
+                <div class="plc-sb-item">
+                    <span class="plc-sb-lbl">CPU</span>
+                    <span class="plc-sb-val blue">S7-1200</span>
+                </div>
+                <div class="plc-sb-item">
+                    <span class="plc-sb-lbl">MOD</span>
+                    <span class="plc-sb-val run" id="plc-mode">RUN</span>
+                </div>
+                <div class="plc-sb-item">
+                    <span class="plc-sb-lbl">SCAN</span>
+                    <span class="plc-sb-val blue"><span id="plc-scan">8.4</span> ms</span>
+                </div>
+                <div class="plc-sb-item plc-sb-right">
+                    <span class="plc-sb-lbl">AĞLAR</span>
+                    <span class="plc-sb-val blue">4</span>
+                </div>
+            </div>
+
+            <!-- Body -->
+            <div class="plc-body">
+                <!-- Input I/O -->
+                <div class="plc-io-in">
+                    <div class="plc-io-hdr">INPUTS</div>
+                    <div class="plc-io-item"><span class="plc-io-dot on"  id="plc-in-0"></span><span class="plc-io-lbl on" id="plc-inl-0">I0.0</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot on"  id="plc-in-1"></span><span class="plc-io-lbl on" id="plc-inl-1">I0.1</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot"     id="plc-in-2"></span><span class="plc-io-lbl"    id="plc-inl-2">I0.2</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot on"  id="plc-in-3"></span><span class="plc-io-lbl on" id="plc-inl-3">I0.3</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot"     id="plc-in-4"></span><span class="plc-io-lbl"    id="plc-inl-4">I0.4</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot warn" id="plc-in-5"></span><span class="plc-io-lbl"   id="plc-inl-5">I0.5</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot"     id="plc-in-6"></span><span class="plc-io-lbl"    id="plc-inl-6">I0.6</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot on"  id="plc-in-7"></span><span class="plc-io-lbl on" id="plc-inl-7">I0.7</span></div>
+                </div>
+
+                <!-- Ladder Diagram -->
+                <div class="plc-ladder">
+                    <!-- Rung 0 -->
+                    <div class="plc-rung active" id="plc-rung-0">
+                        <div class="plc-rung-line"></div>
+                        <div class="plc-rail-l"></div>
+                        <span class="plc-net-lbl">N1</span>
+                        <div class="plc-contact">
+                            <div class="plc-contact-box">&#x2015;&#x2015;</div>
+                            <span class="plc-contact-lbl">I0.0</span>
+                        </div>
+                        <div class="plc-contact">
+                            <div class="plc-contact-box">&#x2015;&#x2015;</div>
+                            <span class="plc-contact-lbl">I0.1</span>
+                        </div>
+                        <div class="plc-coil">
+                            <div class="plc-coil-box">( )</div>
+                            <span class="plc-coil-lbl">Q0.0</span>
+                        </div>
+                        <div class="plc-rail-r"></div>
                     </div>
-                    <div class="ide-controls">
-                        <button class="compile-btn"><i class="fas fa-play"></i></button>
-                        <button class="debug-btn"><i class="fas fa-bug"></i></button>
-                        <button class="download-btn"><i class="fas fa-download"></i></button>
+                    <!-- Rung 1 -->
+                    <div class="plc-rung" id="plc-rung-1">
+                        <div class="plc-rung-line"></div>
+                        <div class="plc-rail-l"></div>
+                        <span class="plc-net-lbl">N2</span>
+                        <div class="plc-contact">
+                            <div class="plc-contact-box">&#x2015;&#x2015;</div>
+                            <span class="plc-contact-lbl">I0.2</span>
+                        </div>
+                        <div class="plc-coil">
+                            <div class="plc-coil-box">( )</div>
+                            <span class="plc-coil-lbl">Q0.1</span>
+                        </div>
+                        <div class="plc-rail-r"></div>
+                    </div>
+                    <!-- Rung 2 -->
+                    <div class="plc-rung active" id="plc-rung-2">
+                        <div class="plc-rung-line"></div>
+                        <div class="plc-rail-l"></div>
+                        <span class="plc-net-lbl">N3</span>
+                        <div class="plc-contact">
+                            <div class="plc-contact-box">&#x2015;&#x2015;</div>
+                            <span class="plc-contact-lbl">I0.3</span>
+                        </div>
+                        <div class="plc-contact">
+                            <div class="plc-contact-box">T1</div>
+                            <span class="plc-contact-lbl">TON</span>
+                        </div>
+                        <div class="plc-coil">
+                            <div class="plc-coil-box">( )</div>
+                            <span class="plc-coil-lbl">Q0.2</span>
+                        </div>
+                        <div class="plc-rail-r"></div>
+                    </div>
+                    <!-- Rung 3 -->
+                    <div class="plc-rung warn" id="plc-rung-3">
+                        <div class="plc-rung-line"></div>
+                        <div class="plc-rail-l"></div>
+                        <span class="plc-net-lbl">N4</span>
+                        <div class="plc-contact">
+                            <div class="plc-contact-box">&#x2015;&#x2015;</div>
+                            <span class="plc-contact-lbl">I0.5</span>
+                        </div>
+                        <div class="plc-coil">
+                            <div class="plc-coil-box">( )</div>
+                            <span class="plc-coil-lbl">Q0.3</span>
+                        </div>
+                        <div class="plc-rail-r"></div>
                     </div>
                 </div>
-                <div class="code-editor">
-                    <div class="line-numbers">
-                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                        <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
-                    </div>
-                    <div class="code-content">
-                        <div class="code-line"><span class="keyword">NETWORK</span> <span class="number">1</span></div>
-                        <div class="code-line"><span class="indent">|</span><span class="input">I0.0</span><span class="operator">--| |--</span><span class="output">Q0.0</span></div>
-                        <div class="code-line"><span class="keyword">NETWORK</span> <span class="number">2</span></div>
-                        <div class="code-line"><span class="indent">|</span><span class="input">I0.1</span><span class="operator">--| |--</span><span class="function">TON</span><span class="parameter">(T1, 1000ms)</span></div>
-                        <div class="code-line"><span class="indent">|</span><span class="timer">T1</span><span class="operator">--| |--</span><span class="output">Q0.1</span></div>
-                        <div class="code-line"><span class="keyword">NETWORK</span> <span class="number">3</span></div>
-                        <div class="code-line"><span class="indent">|</span><span class="input">I0.2</span><span class="operator">--| |--</span><span class="function">CTU</span><span class="parameter">(C1, 100)</span></div>
-                        <div class="code-line"><span class="indent">|</span><span class="counter">C1</span><span class="operator">--| |--</span><span class="output">Q0.2</span></div>
-                    </div>
+
+                <!-- Output I/O -->
+                <div class="plc-io-out">
+                    <div class="plc-io-hdr">OUTPUTS</div>
+                    <div class="plc-io-item"><span class="plc-io-dot on"  id="plc-out-0"></span><span class="plc-io-lbl on" id="plc-outl-0">Q0.0</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot"     id="plc-out-1"></span><span class="plc-io-lbl"    id="plc-outl-1">Q0.1</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot on"  id="plc-out-2"></span><span class="plc-io-lbl on" id="plc-outl-2">Q0.2</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot warn" id="plc-out-3"></span><span class="plc-io-lbl"   id="plc-outl-3">Q0.3</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot"     id="plc-out-4"></span><span class="plc-io-lbl"    id="plc-outl-4">Q0.4</span></div>
+                    <div class="plc-io-item"><span class="plc-io-dot"     id="plc-out-5"></span><span class="plc-io-lbl"    id="plc-outl-5">Q0.5</span></div>
                 </div>
-                <div class="plc-status">
-                    <div class="status-item">
-                        <span class="status-label">CPU:</span>
-                        <span class="status-value online">ONLINE</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-label">RUN:</span>
-                        <span class="status-value running">RUNNING</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-label">I/O:</span>
-                        <span class="status-value">24/16</span>
-                    </div>
+            </div>
+
+            <!-- Metrics Bar -->
+            <div class="plc-metrics">
+                <div class="plc-metric">
+                    <span class="plc-metric-lbl">SCAN</span>
+                    <span class="plc-metric-val" id="plc-scan-m">8.4</span>
+                    <span class="plc-metric-unit">ms</span>
                 </div>
+                <div class="plc-metric">
+                    <span class="plc-metric-lbl">CPU</span>
+                    <span class="plc-metric-val" id="plc-cpu">18%</span>
+                </div>
+                <div class="plc-metric">
+                    <span class="plc-metric-lbl">I/O</span>
+                    <span class="plc-metric-val">8/6</span>
+                </div>
+                <div class="plc-metric">
+                    <span class="plc-metric-lbl">ERRORS</span>
+                    <span class="plc-metric-val" id="plc-err">0</span>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="plc-controls">
+                <button class="plc-btn" id="plc-start" title="Başlat">&#9654;</button>
+                <button class="plc-btn" id="plc-stop"  title="Durdur">&#9632;</button>
+                <button class="plc-btn" id="plc-reset" title="Sıfırla">&#8634;</button>
             </div>
         </div>
     </section>
