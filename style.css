@@ -27,6 +27,9 @@ body{font-family:'Inter',sans-serif;line-height:1.6;color:#333;overflow-x:hidden
 .nav-menu a:hover{color:var(--a)}
 .nav-menu a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--a);transition:width .3s}
 .nav-menu a:hover::after{width:100%}
+.header-actions{display:flex;align-items:center;gap:1rem}
+.lang-toggle{background:var(--a);color:#1a1a2e;border:none;border-radius:6px;padding:6px 16px;font-size:.85rem;font-weight:700;cursor:pointer;transition:.3s;letter-spacing:.08em;margin-left:.5rem}
+.lang-toggle:hover{background:#e8b820;box-shadow:0 4px 14px rgba(212,160,23,.5);transform:translateY(-1px)}
 .header-social-links{display:flex;gap:1rem}
 .header-social-links a{color:var(--wh);font-size:1.2rem;transition:.3s;width:35px;height:35px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.1);backdrop-filter:blur(10px)}
 .header-social-links a:hover{background:var(--a);transform:translateY(-2px);box-shadow:0 5px 15px rgba(212,160,23,.3)}
@@ -183,6 +186,7 @@ body{font-family:'Inter',sans-serif;line-height:1.6;color:#333;overflow-x:hidden
 @media (max-width:768px){
     .hamburger{display:flex}
     .header-social-links,.header-slogan{display:none}
+    .header-actions{gap:.5rem}
     .nav-menu{position:fixed;top:70px;left:-100%;width:100%;height:calc(100vh - 70px);background:var(--g-p);flex-direction:column;justify-content:flex-start;align-items:center;padding-top:2rem;transition:left .3s;backdrop-filter:blur(10px)}
     .nav-menu.active{left:0}
     .nav-menu li{margin:1rem 0}

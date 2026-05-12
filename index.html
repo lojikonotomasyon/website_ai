@@ -121,12 +121,12 @@
           "name": "Endüstriyel Otomasyon Çözümleri",
           "itemListElement": [
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sorter Sistemleri", "url": "https://lojikon.com/sorter.html"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Palet ve Kasa Asansörü", "url": "https://lojikon.com/palet-ve-kasa-asansoru.html"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Miniload ve Shuttle Sistemleri", "url": "https://lojikon.com/miniload-ve-shuttle.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Palet ve Kasa Asansörü", "url": "https://lojikon.com/pallet-elevator.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Miniload ve Shuttle Sistemleri", "url": "https://lojikon.com/miniload-shuttle.html"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pick-to-Light Sistemleri", "url": "https://lojikon.com/pick-to-light.html"}},
             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "SCADA Sistemleri", "url": "https://lojikon.com/scada.html"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "PLC Programlama", "url": "https://lojikon.com/plc-programlama.html"}},
-            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sistem Entegrasyonu", "url": "https://lojikon.com/sistem-entegrasyonu.html"}}
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "PLC Programlama", "url": "https://lojikon.com/plc-programming.html"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sistem Entegrasyonu", "url": "https://lojikon.com/system-integration.html"}}
           ]
         }
       },
@@ -150,54 +150,62 @@
     </script>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav-container">
-            <div class="logo">
-                <h2>Loji<span style="color:#d4a017">k</span>On</h2>
-                <p class="header-slogan">Endüstriyel Otomasyon</p>
-            </div>
-            
-            <ul class="nav-menu">
-                <li><a href="#home">Ana Sayfa</a></li>
-                <li><a href="#about">Hakkımızda</a></li>
-                <li><a href="#solutions">Çözümler</a></li>
-                <li><a href="#services">Hizmetler</a></li>
-                <li><a href="#contact">İletişim</a></li>
-            </ul>
-            
+
+    <!-- PARTIAL:header:START -->
+<!-- Header -->
+<header class="header">
+    <nav class="nav-container">
+        <div class="logo">
+            <h2>Loji<span style="color:#d4a017">k</span>On</h2>
+            <p class="header-slogan">Endüstriyel Otomasyon</p>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+            <li><a href="index.html#about" data-i18n="nav.about">Hakkımızda</a></li>
+            <li><a href="index.html#solutions" data-i18n="nav.solutions">Çözümler</a></li>
+            <li><a href="index.html#services" data-i18n="nav.services">Hizmetler</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
+        </ul>
+
+        <div class="header-actions">
             <div class="header-social-links">
                 <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.youtube.com/@LojikonOtomasyonVeYazlmTicLtdS" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
-            
+            <button id="lang-toggle" class="lang-toggle">EN</button>
             <button class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
+    <!-- PARTIAL:header:END -->
+
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container" id="main-hero-container">
             <div class="hero-content">
                 <div class="hero-text-content">
-                    <h1 class="hero-title">
+                    <h1 class="hero-title" data-i18n-html="index.heroTitleHTML">
                         Lojikon <span class="highlight">Endüstriyel Çözümler</span>
                     </h1>
                     
-                    <div class="hero-slogan">
-                        <span class="fixed-text">Akıllı</span>
-                        <span class="variable-1" id="var1">Sistemler</span>
-                        <span class="fixed-text">, Akıllı</span>
-                        <span class="variable-2" id="var2">Yarın</span>
-                    </div>
-                    
-                    <p class="hero-description">
+                    <!-- PARTIAL:hero-slogan:START -->
+<div class="hero-slogan">
+    <span class="fixed-text" data-i18n="hero.smart">Akıllı</span>
+    <span class="variable-1" id="var1"></span>
+    <span class="fixed-text">, </span>
+    <span class="fixed-text" data-i18n="hero.smart">Akıllı</span>
+    <span class="variable-2" id="var2"></span>
+</div>
+    <!-- PARTIAL:hero-slogan:END -->
+                    <p class="hero-description" data-i18n="index.heroDesc">
                         Endüstri 4.0 teknolojileri ile işletmenizi dijital dönüşüme hazırlıyoruz. 
                         Akıllı otomasyon çözümleri, intralogistics sistemleri ve SCADA entegrasyonları ile 
                         operasyonel verimliliğinizi %40'a kadar artırın, maliyetlerinizi %30 azaltın.
@@ -206,26 +214,26 @@
                     <div class="hero-buttons">
                         <a href="#solutions" class="btn btn-primary">
                             <i class="fas fa-cogs"></i>
-                            Çözümlerimiz
+                            <span data-i18n="btn.ourSolutions">Çözümlerimiz</span>
                         </a>
                         <a href="#contact" class="btn btn-secondary">
                             <i class="fas fa-phone"></i>
-                            İletişim
+                            <span data-i18n="btn.contact">İletişim</span>
                         </a>
                     </div>
                     
                     <div class="hero-stats">
                         <div class="stat">
                             <h3>500+</h3>
-                            <p>Proje</p>
+                            <p data-i18n="index.stat1">Proje</p>
                         </div>
                         <div class="stat">
                             <h3>10+</h3>
-                            <p>Yıl Deneyim</p>
+                            <p data-i18n="index.stat2">Yıl Deneyim</p>
                         </div>
                         <div class="stat">
                             <h3>%99.9</h3>
-                            <p>Başarı Oranı</p>
+                            <p data-i18n="index.stat3">Başarı Oranı</p>
                         </div>
                     </div>
                 </div>
@@ -256,27 +264,27 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2>Hakkımızda</h2>
-                <p>2014'ten beri endüstriyel otomasyon alanında hizmet veriyoruz</p>
+                <h2 data-i18n="about.title">Hakkımızda</h2>
+                <p data-i18n="about.subtitle">2014'ten beri endüstriyel otomasyon alanında hizmet veriyoruz</p>
             </div>
             
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Lojikon Otomasyon</h3>
-                    <p>
+                    <h3 data-i18n="about.h3">Lojikon Otomasyon</h3>
+                    <p data-i18n="about.desc">
                         Lojikon, endüstriyel otomasyon ve intralogistics çözümleri konusunda uzmanlaşmış 
                         bir şirkettir. Müşterilerimizin ihtiyaçlarına özel çözümler geliştirerek, 
                         operasyonel verimliliği artırıyoruz.
                     </p>
                     
-                    <h3>Neden Biz?</h3>
+                    <h3 data-i18n="about.whyUs">Neden Biz?</h3>
                     <ul>
-                        <li>10+ yıl deneyim</li>
-                        <li>500+ başarılı proje</li>
-                        <li>%99.9 başarı oranı</li>
-                        <li>7/24 teknik destek</li>
-                        <li>PLC ve SCADA uzmanlığı</li>
-                        <li>Endüstri 4.0 çözümleri</li>
+                        <li data-i18n="about.li1">10+ yıl deneyim</li>
+                        <li data-i18n="about.li2">500+ başarılı proje</li>
+                        <li data-i18n="about.li3">%99.9 başarı oranı</li>
+                        <li data-i18n="about.li4">7/24 teknik destek</li>
+                        <li data-i18n="about.li5">PLC ve SCADA uzmanlığı</li>
+                        <li data-i18n="about.li6">Endüstri 4.0 çözümleri</li>
                     </ul>
                 </div>
                 
@@ -287,252 +295,314 @@
         </div>
     </section>
 
-    <!-- Solutions Section -->
-    <section id="solutions" class="solutions">
-        <div class="container">
-            <div class="section-header">
-                <h2>Çözümlerimiz</h2>
-                <p>Endüstriyel otomasyon ve intralogistics çözümlerimiz</p>
+
+    <!-- PARTIAL:solutions-section:START -->
+<!-- Solutions Section -->
+<section id="solutions" class="solutions">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-i18n="solutions.title">Çözümlerimiz</h2>
+            <p data-i18n="solutions.subtitle">Endüstriyel otomasyon ve intralogistics çözümlerimiz</p>
+        </div>
+
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <a href="sorter.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i class="fas fa-sort"></i>
+                    </div>
+                    <h3 data-i18n="solutions.sorter.title">Sorter Sistemleri</h3>
+                    <p data-i18n="solutions.sorter.desc">Cross belt, tilt tray, narrow belt ve shoe sorter sistemleri ile otomatik sıralama ve dağıtım.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.sorter.f1">3000+ parça/saat</span>
+                        <span data-i18n="solutions.sorter.f2">%99.9 doğruluk</span>
+                        <span data-i18n="solutions.sorter.f3">PLC kontrolü</span>
+                    </div>
+                </a>
             </div>
-            
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <a href="sorter.html" class="solution-link">
-                        <div class="solution-icon">
-                            <i class="fas fa-sort"></i>
-                        </div>
-                        <h3>Sorter Sistemleri</h3>
-                        <p>Cross belt, tilt tray, narrow belt ve shoe sorter sistemleri ile otomatik sıralama ve dağıtım.</p>
-                        <div class="solution-features">
-                            <span>3000+ parça/saat</span>
-                            <span>%99.9 doğruluk</span>
-                            <span>PLC kontrolü</span>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="solution-card">
-                    <a href="palet-ve-kasa-asansoru.html" class="solution-link">
-                        <div class="solution-icon">
-                            <i class="fas fa-arrow-up"></i>
-                        </div>
-                        <h3>Palet ve Kasa Asansörü Sistemleri</h3>
-                        <p>Otomatik palet ve kasa yükleme, boşaltma ve transfer sistemleri ile verimli depo yönetimi.</p>
-                        <div class="solution-features">
-                            <span>Çok katlı</span>
-                            <span>Güvenli</span>
-                            <span>Hızlı</span>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="solution-card">
-                                            <a href="miniload-ve-shuttle.html" class="solution-link">
-                        <div class="solution-icon">
-                            <i class="fas fa-warehouse"></i>
-                        </div>
-                        <h3>Miniload ve Shuttle Sistemleri</h3>
-                        <p>Shuttle tabanlı otomatik depolama ve geri çekme sistemleri ile kompakt depolama.</p>
-                        <div class="solution-features">
-                            <span>Yüksek yoğunluk</span>
-                            <span>Hızlı erişim</span>
-                            <span>Esnek</span>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="solution-card">
-                    <a href="pick-to-light.html" class="solution-link">
-                        <div class="solution-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3>Pick to Light</h3>
-                        <p>LED ışık göstergeli toplama sistemleri ile hızlı ve hatasız sipariş hazırlama.</p>
-                        <div class="solution-features">
-                            <span>Hızlı toplama</span>
-                            <span>Hata azaltma</span>
-                            <span>Kolay kullanım</span>
-                        </div>
-                    </a>
-                </div>
+
+            <div class="solution-card">
+                <a href="pallet-elevator.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <h3 data-i18n="solutions.pallet.title">Palet ve Kasa Asansörü</h3>
+                    <p data-i18n="solutions.pallet.desc">Otomatik palet ve kasa yükleme, boşaltma ve transfer sistemleri ile verimli depo yönetimi.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.pallet.f1">Çok katlı</span>
+                        <span data-i18n="solutions.pallet.f2">Güvenli</span>
+                        <span data-i18n="solutions.pallet.f3">Hızlı</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="solution-card">
+                <a href="miniload-shuttle.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3 data-i18n="solutions.miniload.title">Miniload ve Shuttle</h3>
+                    <p data-i18n="solutions.miniload.desc">Shuttle tabanlı otomatik depolama ve geri çekme sistemleri ile kompakt depolama.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.miniload.f1">Yüksek yoğunluk</span>
+                        <span data-i18n="solutions.miniload.f2">Hızlı erişim</span>
+                        <span data-i18n="solutions.miniload.f3">Esnek</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="solution-card">
+                <a href="pick-to-light.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 data-i18n="solutions.picktolight.title">Pick to Light</h3>
+                    <p data-i18n="solutions.picktolight.desc">LED ışık göstergeli toplama sistemleri ile hızlı ve hatasız sipariş hazırlama.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.picktolight.f1">Hızlı toplama</span>
+                        <span data-i18n="solutions.picktolight.f2">Hata azaltma</span>
+                        <span data-i18n="solutions.picktolight.f3">Kolay kullanım</span>
+                    </div>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+    <!-- PARTIAL:solutions-section:END -->
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Hizmetlerimiz</h2>
-                <p>Endüstriyel otomasyon alanında sunduğumuz hizmetler</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <a href="plc-programlama.html" class="service-link">
-                        <div class="service-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>PLC Programlama</h3>
-                        <p>Siemens, Allen Bradley, Schneider ve diğer PLC markaları için özel programlama hizmetleri.</p>
-                        <ul class="service-features">
-                            <li>Ladder Logic</li>
-                            <li>Function Block</li>
-                            <li>Structured Text</li>
-                        </ul>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <a href="scada.html" class="service-link">
-                        <div class="service-icon">
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                        <h3>SCADA Sistemleri</h3>
-                        <p>WinCC, FactoryTalk View ve diğer SCADA yazılımları ile izleme ve kontrol sistemleri.</p>
-                        <ul class="service-features">
-                            <li>Gerçek zamanlı izleme</li>
-                            <li>Veri toplama</li>
-                            <li>Raporlama</li>
-                        </ul>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <a href="sistem-entegrasyonu.html" class="service-link">
-                        <div class="service-icon">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3>Sistem Entegrasyonu</h3>
-                        <p>Mevcut sistemlerinizle entegrasyon ve otomasyon çözümleri geliştirme.</p>
-                        <ul class="service-features">
-                            <li>MES entegrasyonu</li>
-                            <li>ERP bağlantısı</li>
-                            <li>Veri entegrasyonu</li>
-                        </ul>
-                    </a>
-                </div>
-            </div>
+
+
+    <!-- PARTIAL:services-section:START -->
+<!-- Services Section -->
+<section id="services" class="services">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-i18n="services.title">Hizmetlerimiz</h2>
+            <p data-i18n="services.subtitle">Endüstriyel otomasyon alanında sunduğumuz hizmetler</p>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>İletişim</h2>
-                <p>Bizimle iletişime geçin</p>
-            </div>
-            
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Adres</h4>
-                            <p>Silivri - İSTANBUL TÜRKİYE<br>Endüstriyel Otomasyon Merkezi</p>
-                        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <a href="scada.html" class="service-link">
+                    <div class="service-icon">
+                        <i class="fas fa-desktop"></i>
                     </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Telefon</h4>
-                            <p>+90 212 657 18 03<br>+90 533 388 33 92</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>info@lojikon.com<br>yusuf@lojikon.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h4>Çalışma Saatleri</h4>
-                            <p>Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 13:00</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Adınız *" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email Adresiniz *" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" name="phone" placeholder="Telefon Numaranız">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" placeholder="Mesajınız *" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        Gönder
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Loji<span style="color:#d4a017">k</span>On</h3>
-                    <p>Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@LojikonOtomasyonVeYazlmTicLtdS" target="_blank"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Çözümler</h4>
-                    <ul>
-                        <li><a href="sorter.html">Sorter Sistemleri</a></li>
-                        <li><a href="palet-ve-kasa-asansoru.html">Palet ve Kasa Asansörü</a></li>
-                        <li><a href="miniload-ve-shuttle.html">Miniload ve Shuttle</a></li>
-                        <li><a href="pick-to-light.html">Pick to Light</a></li>
+                    <h3 data-i18n="services.scada.title">SCADA Sistemleri</h3>
+                    <p data-i18n="services.scada.desc">WinCC, FactoryTalk View ve diğer SCADA yazılımları ile izleme ve kontrol sistemleri.</p>
+                    <ul class="service-features">
+                        <li data-i18n="services.scada.f1">Gerçek zamanlı izleme</li>
+                        <li data-i18n="services.scada.f2">Veri toplama</li>
+                        <li data-i18n="services.scada.f3">Raporlama</li>
                     </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Hizmetler</h4>
-                    <ul>
-                        <li><a href="scada.html">SCADA Sistemleri</a></li>
-                        <li><a href="production-tracking.html">Üretim Takibi</a></li>
-                        <li><a href="data-collection.html">Veri Toplama</a></li>
-                        <li><a href="custom-software.html">Özel Yazılım</a></li>
-                        <li><a href="plc-programlama.html">PLC Programlama</a></li>
-                        <li><a href="sistem-entegrasyonu.html">Sistem Entegrasyonu</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>İletişim</h4>
-                    <p>Silivri - İSTANBUL TÜRKİYE</p>
-                    <p>+90 212 657 18 03</p>
-                    <p>info@lojikon.com</p>
-                </div>
+                </a>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti. Tüm hakları saklıdır.</p>
+
+            <div class="service-card">
+                <a href="production-tracking.html" class="service-link">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-i18n="services.production.title">Üretim Takibi</h3>
+                    <p data-i18n="services.production.desc">Üretim süreçlerinin gerçek zamanlı takibi ve raporlanması ile verimlilik artışı.</p>
+                    <ul class="service-features">
+                        <li data-i18n="services.production.f1">OEE takibi</li>
+                        <li data-i18n="services.production.f2">Üretim raporları</li>
+                        <li data-i18n="services.production.f3">Anlık bildirimler</li>
+                    </ul>
+                </a>
+            </div>
+
+            <div class="service-card">
+                <a href="data-collection.html" class="service-link">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 data-i18n="services.dataCollection.title">Veri Toplama</h3>
+                    <p data-i18n="services.dataCollection.desc">Saha cihazlarından otomatik veri toplama, analiz ve raporlama sistemleri.</p>
+                    <ul class="service-features">
+                        <li data-i18n="services.dataCollection.f1">IoT entegrasyonu</li>
+                        <li data-i18n="services.dataCollection.f2">Veri analizi</li>
+                        <li data-i18n="services.dataCollection.f3">Bulut depolama</li>
+                    </ul>
+                </a>
+            </div>
+
+            <div class="service-card">
+                <a href="custom-software.html" class="service-link">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 data-i18n="services.customSoftware.title">Özel Yazılım</h3>
+                    <p data-i18n="services.customSoftware.desc">İşletmenize özel otomasyon yazılımları ve endüstriyel uygulama geliştirme.</p>
+                    <ul class="service-features">
+                        <li data-i18n="services.customSoftware.f1">MES yazılımları</li>
+                        <li data-i18n="services.customSoftware.f2">HMI geliştirme</li>
+                        <li data-i18n="services.customSoftware.f3">API entegrasyonu</li>
+                    </ul>
+                </a>
+            </div>
+
+            <div class="service-card">
+                <a href="plc-programming.html" class="service-link">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 data-i18n="services.plc.title">PLC Programlama</h3>
+                    <p data-i18n="services.plc.desc">Siemens, Allen Bradley, Schneider ve diğer PLC markaları için özel programlama hizmetleri.</p>
+                    <ul class="service-features">
+                        <li data-i18n="services.plc.f1">Ladder Logic</li>
+                        <li data-i18n="services.plc.f2">Function Block</li>
+                        <li data-i18n="services.plc.f3">Structured Text</li>
+                    </ul>
+                </a>
+            </div>
+
+            <div class="service-card">
+                <a href="system-integration.html" class="service-link">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 data-i18n="services.integration.title">Sistem Entegrasyonu</h3>
+                    <p data-i18n="services.integration.desc">Mevcut sistemlerinizle entegrasyon ve otomasyon çözümleri geliştirme.</p>
+                    <ul class="service-features">
+                        <li data-i18n="services.integration.f1">MES entegrasyonu</li>
+                        <li data-i18n="services.integration.f2">ERP bağlantısı</li>
+                        <li data-i18n="services.integration.f3">Veri entegrasyonu</li>
+                    </ul>
+                </a>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
+    <!-- PARTIAL:services-section:END -->
+
+
+
+    <!-- PARTIAL:contact-section:START -->
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-i18n="contact.title">İletişim</h2>
+            <p data-i18n="contact.subtitle">Bizimle iletişime geçin</p>
+        </div>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4 data-i18n="contact.address">Adres</h4>
+                        <p data-i18n-html="contact.addressVal">Silivri - İSTANBUL TÜRKİYE<br>Endüstriyel Otomasyon Merkezi</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4 data-i18n="contact.phone">Telefon</h4>
+                        <p>+90 212 657 18 03<br>+90 533 388 33 92</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4 data-i18n="contact.email">Email</h4>
+                        <p>info@lojikon.com<br>yusuf@lojikon.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4 data-i18n="contact.hours">Çalışma Saatleri</h4>
+                        <p data-i18n-html="contact.hoursVal">Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 13:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" name="name" data-i18n-ph="contact.namePh" placeholder="Adınız *" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" data-i18n-ph="contact.emailPh" placeholder="Email Adresiniz *" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" data-i18n-ph="contact.phonePh" placeholder="Telefon Numaranız">
+                </div>
+                <div class="form-group">
+                    <textarea name="message" data-i18n-ph="contact.messagePh" placeholder="Mesajınız *" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    <span data-i18n="contact.send">Gönder</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+    <!-- PARTIAL:contact-section:END -->
+
+
+
+    <!-- PARTIAL:footer:START -->
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Loji<span style="color:#d4a017">k</span>On</h3>
+                <p data-i18n="footer.tagline">Endüstriyel otomasyon ve intralogistics çözümleri ile işletmenizi geleceğe taşıyoruz.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@LojikonOtomasyonVeYazlmTicLtdS" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4 data-i18n="footer.solutions">Çözümler</h4>
+                <ul>
+                    <li><a href="sorter.html" data-i18n="footer.sorter">Sorter Sistemleri</a></li>
+                    <li><a href="pallet-elevator.html" data-i18n="footer.palletElevator">Palet ve Kasa Asansörü</a></li>
+                    <li><a href="miniload-shuttle.html" data-i18n="footer.miniload">Miniload ve Shuttle</a></li>
+                    <li><a href="pick-to-light.html" data-i18n="footer.pickToLight">Pick to Light</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 data-i18n="footer.services">Hizmetler</h4>
+                <ul>
+                    <li><a href="scada.html" data-i18n="footer.scada">SCADA Sistemleri</a></li>
+                    <li><a href="production-tracking.html" data-i18n="footer.production">Üretim Takibi</a></li>
+                    <li><a href="data-collection.html" data-i18n="footer.dataCollection">Veri Toplama</a></li>
+                    <li><a href="custom-software.html" data-i18n="footer.customSoftware">Özel Yazılım</a></li>
+                    <li><a href="plc-programming.html" data-i18n="footer.plc">PLC Programlama</a></li>
+                    <li><a href="system-integration.html" data-i18n="footer.integration">Sistem Entegrasyonu</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 data-i18n="footer.contactTitle">İletişim</h4>
+                <p>Silivri - İSTANBUL TÜRKİYE</p>
+                <p>+90 212 657 18 03</p>
+                <p>info@lojikon.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p data-i18n="footer.copyright">&copy; 2024 Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</footer>
+    <!-- PARTIAL:footer:END -->
+
 
                     <!-- Scripts -->
+                <script src="js/i18n.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
                 <script src="script.js"></script>
             </body>

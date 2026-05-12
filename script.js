@@ -159,56 +159,64 @@ class HeroSlider {
 function initializeSloganAnimation() {
     const var1Element = document.getElementById('var1');
     const var2Element = document.getElementById('var2');
-    
+
     if (!var1Element || !var2Element) return;
-    
-    // Slogan verileri
-    const sloganData = [
-        { var1: "Sistemler", var2: "Yarın" },
-        { var1: "Çözümler", var2: "Dönüşüm" },
-        { var1: "Teknolojiler", var2: "Vizyon" },
-        { var1: "Endüstri", var2: "Gelişim" },
-        { var1: "Projeler", var2: "Süreç" },
-        { var1: "Altyapılar", var2: "Hedef" },
-        { var1: "Entegrasyonlar", var2: "Zaman" },
-        { var1: "Hizmetler", var2: "Yaşam" }
-    ];
+
+    const sloganWords = {
+        tr: [
+            { var1: 'Sistemler',     var2: 'Yarın'      },
+            { var1: 'Çözümler',      var2: 'Dönüşüm'    },
+            { var1: 'Teknolojiler',  var2: 'Vizyon'      },
+            { var1: 'Endüstri',      var2: 'Gelişim'     },
+            { var1: 'Projeler',      var2: 'Süreç'       },
+            { var1: 'Altyapılar',    var2: 'Hedef'       },
+            { var1: 'Yatırım',       var2: 'Gelecek'     },
+            { var1: 'Entegrasyonlar',var2: 'Zaman'       },
+            { var1: 'Hizmetler',     var2: 'Yaşam'       },
+        ],
+        en: [
+            { var1: 'Systems',       var2: 'Tomorrow'    },
+            { var1: 'Solutions',     var2: 'Transformation' },
+            { var1: 'Technologies',  var2: 'Vision'      },
+            { var1: 'Industry',      var2: 'Growth'      },
+            { var1: 'Projects',      var2: 'Process'     },
+            { var1: 'Infrastructures', var2: 'Goals'     },
+            { var1: 'Investment',    var2: 'Future'      },
+            { var1: 'Integrations',  var2: 'Time'        },
+            { var1: 'Services',      var2: 'Life'        },
+        ],
+    };
 
     let currentIndex = 0;
 
-    // Değişken kelimeleri değiştiren fonksiyon
+    function getLang() {
+        return localStorage.getItem('lojikon_lang') || 'tr';
+    }
+
     function changeWords() {
-        // Fade out efekti
         var1Element.classList.add('fade-out');
         var2Element.classList.add('fade-out');
 
         setTimeout(() => {
-            // Kelimeleri değiştir
-            var1Element.textContent = sloganData[currentIndex].var1;
-            var2Element.textContent = sloganData[currentIndex].var2;
-            
-            // Fade in efekti
+            const data = sloganWords[getLang()];
+            var1Element.textContent = data[currentIndex].var1;
+            var2Element.textContent = data[currentIndex].var2;
+
             var1Element.classList.remove('fade-out');
             var2Element.classList.remove('fade-out');
             var1Element.classList.add('fade-in');
             var2Element.classList.add('fade-in');
 
-            // Bir sonraki indekse geç
-            currentIndex = (currentIndex + 1) % sloganData.length;
+            currentIndex = (currentIndex + 1) % data.length;
 
-            // Fade in sınıfını kaldır
             setTimeout(() => {
                 var1Element.classList.remove('fade-in');
                 var2Element.classList.remove('fade-in');
             }, 500);
-
         }, 300);
     }
 
-    // İlk değişimi hemen yap
     changeWords();
-    
-    // Her 3 saniyede bir değiştir
     setInterval(changeWords, 3000);
 }
 
@@ -423,27 +431,14 @@ function setupPageVisibilityHandling() {
 
 // Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize mobile menu
     initializeMobileMenu();
-    
-    // Initialize smooth scrolling
     initializeSmoothScrolling();
-    
-    // Initialize hero slider (only on main page)
+
     const heroSlider = document.querySelector('.hero-slider');
-    if (heroSlider) {
-        new HeroSlider();
-    }
-    
-    // Initialize slogan animation
+    if (heroSlider) new HeroSlider();
+
     initializeSloganAnimation();
-    
-    // Initialize contact form
     initializeContactForm();
-    
-    // Initialize scroll to top
     initializeScrollToTop();
-    
-    // Setup page visibility handling
     setupPageVisibilityHandling();
-}); 
+});

@@ -49,10 +49,10 @@ lojikon-website/
 ├── sorter.html                   # Sorter sayfası
 ├── sorter.css                    # Sorter sayfa stilleri
 ├── sorter-animation.js           # Sorter animasyonu
-├── palet-ve-kasa-asansoru.html               # Palet ve Kasa Asansörü sayfası
-├── palet-ve-kasa-asansoru.css                # Palet ve Kasa Asansörü stilleri
-├── palet-ve-kasa-asansoru-animation.js       # Palet ve Kasa Asansörü animasyonu
-├── miniload-ve-shuttle.html      # Miniload ve Shuttle sayfası
+├── pallet-elevator.html               # Palet ve Kasa Asansörü sayfası
+├── pallet-elevator.css                # Palet ve Kasa Asansörü stilleri
+├── pallet-elevator-animation.js       # Palet ve Kasa Asansörü animasyonu
+├── miniload-shuttle.html      # Miniload ve Shuttle sayfası
 ├── miniload.css                  # Miniload stilleri
 ├── miniload-animation.js         # Miniload animasyonu
 ├── pick-to-light.html            # Pick to Light sayfası
@@ -70,12 +70,12 @@ lojikon-website/
 ├── custom-software.html          # Özel Yazılım sayfası
 ├── custom-software.css           # Özel Yazılım stilleri
 ├── custom-software-animation.js  # Özel Yazılım animasyonu
-├── plc-programlama.html          # PLC Programlama sayfası
-├── plc-programlama.css           # PLC Programlama stilleri
-├── plc-programlama-animation.js  # PLC Programlama animasyonu
-├── sistem-entegrasyonu.html      # Sistem Entegrasyonu sayfası
-├── sistem-entegrasyonu.css       # Sistem Entegrasyonu stilleri
-├── sistem-entegrasyonu-animation.js # Sistem Entegrasyonu animasyonu
+├── plc-programming.html          # PLC Programlama sayfası
+├── plc-programming.css           # PLC Programlama stilleri
+├── plc-programming-animation.js  # PLC Programlama animasyonu
+├── system-integration.html      # Sistem Entegrasyonu sayfası
+├── system-integration.css       # Sistem Entegrasyonu stilleri
+├── system-integration-animation.js # Sistem Entegrasyonu animasyonu
 ├── img/                          # Görseller
 ├── sitemap.xml                   # SEO sitemap
 ├── robots.txt                    # SEO robots
