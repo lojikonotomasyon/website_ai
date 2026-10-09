@@ -4,12 +4,15 @@
     "description": "Endüstriyel otomasyon ve intralogistics çözümleri sağlayıcısı. Sorter, palet ve kasa asansörü, miniload ve shuttle ve SCADA sistemleri.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#3b82f6",
-    "orientation": "portrait-primary",
+    "background_color": "#0f1217",
+    "theme_color": "#14171d",
     "scope": "/",
     "lang": "tr",
-    "categories": ["business", "productivity", "utilities"],
+    "categories": [
+        "business",
+        "productivity",
+        "utilities"
+    ],
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -19,7 +22,13 @@
         {
             "src": "/android-chrome-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
         }
     ]
-} 
+}

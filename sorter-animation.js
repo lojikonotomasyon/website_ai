@@ -245,7 +245,7 @@ class SorterAnimation {
             if (s) s.textContent = Math.round(60 * this.animationSpeed);
 
             const c = document.getElementById('capacity-value');
-            if (c) c.textContent = Math.round(1200 * this.animationSpeed);
+            if (c) c.textContent = Math.round(14000 * this.animationSpeed);
 
             const e = document.getElementById('efficiency-value');
             if (e) e.textContent = (98.5 + Math.random() * 1.2).toFixed(1);

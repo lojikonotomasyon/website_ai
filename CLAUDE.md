@@ -98,7 +98,7 @@ Her sayfa şu yapıya sahiptir:
 | Kategori | Sayfalar |
 |---|---|
 | **Çözümler** | sorter.html, pallet-elevator.html, miniload-shuttle.html, pick-to-light.html |
-| **Hizmetler** | scada.html, production-tracking.html, data-collection.html, custom-software.html, plc-programming.html, system-integration.html |
+| **Hizmetler** | wms-wcs.html (öne çıkan kart), scada.html, production-tracking.html, data-collection.html, custom-software.html, plc-programming.html, system-integration.html |
 
 ---
 
@@ -135,6 +135,19 @@ Site TR/EN dil desteğine sahiptir. Sistem tamamen tarayıcı-taraflıdır.
 - ✅ Hizmetler bölümü (6 kart)
 - ✅ İletişim formu (etiketler, placeholder'lar)
 - ✅ Hero bölümü (başlık, açıklama, butonlar, istatistikler) — tüm 11 sayfa
+
+---
+
+## Görseller ve Yayın
+
+- `img/*.jpeg` orijinal fotoğraflardır; sitede **optimize kopyalar** kullanılır:
+  - `img/web/` → hero slider + hakkımızda (max 1200px)
+  - `img/projects/` → ana sayfa "Projeler" galerisi ve alt sayfa "Sahadan" galerileri (max 900px)
+  - Yeni kopya: `sips -s format jpeg -s formatOptions 70 -Z 900 img/X.jpeg --out img/projects/x.jpg`
+- Galerideki `.project-link` bağlantıları script.js'teki lightbox ile açılır.
+- `_config.yml` GitHub Pages'in `partials/`, `.md` ve `.py` dosyalarını yayınlamasını engeller.
+- Favicon/logo: `favicon.svg` kaynak; PNG'ler (`img/logo.png`, `android-chrome-*`, `apple-touch-icon.png`) ondan üretildi.
+- Ana sayfadaki SSS metni değişirse `index.html` içindeki `FAQPage` JSON-LD'yi de güncelle.
 
 ---
 

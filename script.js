@@ -1,9 +1,16 @@
 // ===== ANA JAVASCRIPT - LOJIKON WEBSITE =====
 
 // EmailJS Configuration
-(function() {
-    emailjs.init("pMn_T_QHghVJklt3q");
-})();
+const EMAILJS_PUBLIC_KEY  = 'pMn_T_QHghVJklt3q';
+const EMAILJS_SERVICE_ID  = 'service_93y8btr';
+const EMAILJS_TEMPLATE_ID = 'template_j48q9zh';
+const CONTACT_EMAIL = 'info@lojikon.com';
+const CONTACT_PHONE = '+90 212 657 18 03';
+
+// EmailJS yüklenemezse sitenin geri kalanı çalışmaya devam etsin
+if (window.emailjs) {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
 // Mobile menu initialization
 function initializeMobileMenu() {
@@ -13,8 +20,9 @@ function initializeMobileMenu() {
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function(e) {
             e.preventDefault();
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            const open = navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active', open);
+            hamburger.setAttribute('aria-expanded', String(open));
         });
         
         // Close menu when clicking on links
@@ -41,11 +49,12 @@ function initializeSmoothScrolling() {
     const links = document.querySelectorAll('a[href^="#"]');
     links.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
+            if (targetId.length < 2) return;
             const targetElement = document.querySelector(targetId);
-            
+
             if (targetElement) {
+                e.preventDefault();
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
@@ -127,20 +136,7 @@ class HeroSlider {
         this.updateButtonStates();
     }
     
-    updateButtonStates() {
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
-        
-        if (prevBtn) {
-            prevBtn.style.opacity = this.currentSlide === 0 ? '0.5' : '1';
-            prevBtn.style.pointerEvents = this.currentSlide === 0 ? 'none' : 'auto';
-        }
-        
-        if (nextBtn) {
-            nextBtn.style.opacity = this.currentSlide === this.totalSlides - 1 ? '0.5' : '1';
-            nextBtn.style.pointerEvents = this.currentSlide === this.totalSlides - 1 ? 'none' : 'auto';
-        }
-    }
+    updateButtonStates() {}
     
     startAutoPlay() {
         if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
@@ -221,187 +217,228 @@ function initializeSloganAnimation() {
 }
 
 // Contact form initialization with EmailJS
+const FORM_MESSAGES = {
+    tr: {
+        required: 'Lütfen adınızı, email adresinizi ve mesajınızı yazın.',
+        email:    'Geçerli bir email adresi giriniz.',
+        sending:  'Gönderiliyor...',
+        success:  'Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.',
+        error:    'Mesajınız şu anda iletilemedi. Lütfen ' + CONTACT_EMAIL + ' adresine yazın veya ' + CONTACT_PHONE + ' numarasını arayın.',
+        mailto:   'Mesajı email ile gönder',
+    },
+    en: {
+        required: 'Please enter your name, email address and message.',
+        email:    'Please enter a valid email address.',
+        sending:  'Sending...',
+        success:  'Your message has been sent! We will get back to you shortly.',
+        error:    'Your message could not be delivered right now. Please email ' + CONTACT_EMAIL + ' or call ' + CONTACT_PHONE + '.',
+        mailto:   'Send the message by email',
+    },
+};
+
+function formMsg(key) {
+    const lang = (window.I18N && I18N.currentLang) || localStorage.getItem('lojikon_lang') || 'tr';
+    return (FORM_MESSAGES[lang] || FORM_MESSAGES.tr)[key];
+}
+
 function initializeContactForm() {
     const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Form validation
-            const formData = new FormData(this);
-            const requiredFields = ['name', 'email', 'message'];
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                const value = formData.get(field);
-                if (!value || value.trim() === '') {
-                    isValid = false;
-                    showNotification(`${field.charAt(0).toUpperCase() + field.slice(1)} alanı zorunludur.`, 'error');
-                }
-            });
-            
-            if (!isValid) return;
-            
-            // Email validation
-            const email = formData.get('email');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showNotification('Geçerli bir email adresi giriniz.', 'error');
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
-            submitBtn.disabled = true;
-            
-            // EmailJS Template Parameters
-            const templateParams = {
-                from_name: formData.get('name'),
-                from_email: formData.get('email'),
-                from_phone: formData.get('phone') || 'Belirtilmemiş',
-                service_type: formData.get('service_type') || 'Genel İletişim',
-                message: formData.get('message'),
-                to_name: 'Lojikon Ekibi'
-            };
-            
-            // Send email using EmailJS
-            emailjs.send('service_myv14au', 'template_j48q9zh', templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    showNotification('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.', 'success');
-                    contactForm.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    showNotification('Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.', 'error');
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                });
-        });
-    }
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const name    = (formData.get('name') || '').trim();
+        const email   = (formData.get('email') || '').trim();
+        const message = (formData.get('message') || '').trim();
+        const phone   = (formData.get('phone') || '').trim();
+        const company = (formData.get('company') || '').trim();
+        const topic   = formData.get('service_type') || 'Genel İletişim';
+
+        if (!name || !email || !message) {
+            showNotification(formMsg('required'), 'error');
+            return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showNotification(formMsg('email'), 'error');
+            return;
+        }
+
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> ' + formMsg('sending');
+        submitBtn.disabled = true;
+
+        const fullMessage = (company ? 'Firma: ' + company + '\n\n' : '') + message;
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            from_phone: phone || 'Belirtilmemiş',
+            service_type: topic,
+            company: company || 'Belirtilmemiş',
+            message: fullMessage,
+            to_name: 'Lojikon Ekibi'
+        };
+
+        // Gönderim başarısız olursa ziyaretçi mesajını kaybetmesin: hazır doldurulmuş email bağlantısı
+        const mailtoHref = 'mailto:' + CONTACT_EMAIL +
+            '?subject=' + encodeURIComponent('Web sitesi iletişim formu - ' + topic) +
+            '&body=' + encodeURIComponent(
+                'Ad: ' + name + '\nEmail: ' + email + '\nTelefon: ' + (phone || '-') +
+                '\nFirma: ' + (company || '-') + '\n\n' + message);
+
+        const restore = () => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        };
+
+        const onError = (error) => {
+            console.error('EmailJS gönderim hatası:', error);
+            showNotification(formMsg('error'), 'error', { href: mailtoHref, label: formMsg('mailto') }, 15000);
+            restore();
+        };
+
+        if (!window.emailjs) {
+            onError('EmailJS kütüphanesi yüklenemedi');
+            return;
+        }
+
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+            .then(function() {
+                showNotification(formMsg('success'), 'success');
+                contactForm.reset();
+                restore();
+            }, onError);
+    });
 }
 
 // Notification system
-function showNotification(message, type = 'info') {
-    // Remove existing notifications
-    const existingNotifications = document.querySelectorAll('.notification');
-    existingNotifications.forEach(notification => notification.remove());
-    
-    // Create notification element
+function showNotification(message, type = 'info', action = null, duration = 5000) {
+    document.querySelectorAll('.notification').forEach(n => n.remove());
+
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
-    `;
-    
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#d4a017'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 400px;
-    `;
-    
-    // Add to page
+    notification.setAttribute('role', type === 'error' ? 'alert' : 'status');
+
+    const content = document.createElement('div');
+    content.className = 'notification-content';
+    const text = document.createElement('span');
+    text.className = 'notification-message';
+    text.textContent = message;
+    content.appendChild(text);
+
+    if (action) {
+        const link = document.createElement('a');
+        link.className = 'notification-action';
+        link.href = action.href;
+        link.textContent = action.label;
+        content.appendChild(link);
+    }
+
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'notification-close';
+    closeBtn.setAttribute('aria-label', 'Kapat');
+    closeBtn.innerHTML = '&times;';
+    content.appendChild(closeBtn);
+    notification.appendChild(content);
+
     document.body.appendChild(notification);
-    
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // Close button functionality
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.style.transform = 'translateX(100%)';
+    requestAnimationFrame(() => notification.classList.add('show'));
+
+    const hide = () => {
+        notification.classList.remove('show');
         setTimeout(() => notification.remove(), 300);
-    });
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 5000);
+    };
+    closeBtn.addEventListener('click', hide);
+    setTimeout(() => { if (notification.parentNode) hide(); }, duration);
 }
 
 // Scroll to top functionality
 function initializeScrollToTop() {
     const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.innerHTML = '↑';
+    scrollToTopBtn.type = 'button';
     scrollToTopBtn.className = 'scroll-to-top';
-    scrollToTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background: #d4a017;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        font-weight: bold;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 9999;
-        box-shadow: 0 4px 12px rgba(212,160,23, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    `;
-    
+    scrollToTopBtn.setAttribute('aria-label', 'Sayfanın başına dön');
+    scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up" aria-hidden="true"></i>';
     document.body.appendChild(scrollToTopBtn);
-    
-    // Show/hide based on scroll position
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.visibility = 'visible';
-        } else {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.visibility = 'hidden';
-        }
-    });
-    
-    // Scroll to top functionality
+
     scrollToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    return scrollToTopBtn;
+}
+
+// Header shadow + scroll-to-top visibility
+function initializeScrollState(scrollToTopBtn) {
+    const header = document.querySelector('.header');
+    const onScroll = () => {
+        const y = window.scrollY;
+        if (header) header.classList.toggle('scrolled', y > 20);
+        if (scrollToTopBtn) scrollToTopBtn.classList.toggle('visible', y > 400);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+}
+
+// Fade-in sections as they enter the viewport
+function initializeReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const targets = document.querySelectorAll(
+        '.section-header, .solution-card, .service-card, .process-step, .project-item, ' +
+        '.industries-grid li, .faq-item, .about-content, .contact-content, ' +
+        '.step-card, .benefit-card, .application-card, .spec-card'
+    );
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    targets.forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+    });
+}
+
+// Project photo lightbox
+function initializeLightbox() {
+    const links = document.querySelectorAll('.project-link');
+    if (!links.length) return;
+
+    const box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.innerHTML = '<button type="button" class="lightbox-close" aria-label="Kapat">&times;</button>' +
+                    '<img alt=""><p class="lightbox-caption"></p>';
+    document.body.appendChild(box);
+
+    const img = box.querySelector('img');
+    const caption = box.querySelector('.lightbox-caption');
+    const close = () => { box.classList.remove('open'); document.body.style.overflow = ''; };
+
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const thumb = link.querySelector('img');
+            const fig = link.closest('figure');
+            img.src = link.href;
+            img.alt = thumb ? thumb.alt : '';
+            caption.textContent = fig && fig.querySelector('figcaption') ? fig.querySelector('figcaption').textContent : '';
+            box.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            box.querySelector('.lightbox-close').focus();
         });
     });
-    
-    // Hover effects
-    scrollToTopBtn.addEventListener('mouseenter', () => {
-        scrollToTopBtn.style.transform = 'translateY(-3px)';
-        scrollToTopBtn.style.background = '#b07d10';
-        scrollToTopBtn.style.boxShadow = '0 6px 20px rgba(212,160,23, 0.5)';
-    });
-
-    scrollToTopBtn.addEventListener('mouseleave', () => {
-        scrollToTopBtn.style.transform = 'translateY(0)';
-        scrollToTopBtn.style.background = '#d4a017';
-        scrollToTopBtn.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
-    });
+    box.addEventListener('click', (e) => { if (e.target !== img) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 }
 
 // Page visibility handling
@@ -439,6 +476,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initializeSloganAnimation();
     initializeContactForm();
-    initializeScrollToTop();
+    initializeScrollState(initializeScrollToTop());
+    initializeReveal();
+    initializeLightbox();
     setupPageVisibilityHandling();
 });

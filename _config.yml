@@ -1,0 +1,10 @@
+# GitHub Pages yayın ayarları
+# Geliştirme dosyalarının canlı sitede ayrı sayfa olarak yayınlanmasını engeller.
+exclude:
+  - partials/
+  - "*.md"
+  - "*.py"
+  - build.js
+  - js/includes.js
+  - .lojikon/
+  - .claude/

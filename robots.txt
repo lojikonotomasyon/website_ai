@@ -1,22 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /partials/
 
-# Sitemap
 Sitemap: https://lojikon.com/sitemap.xml
-
-# JS ve CSS'e izin ver (Google render için gerekli)
-Allow: /*.js$
-Allow: /*.css$
-
-# Görseller
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.png$
-Allow: /*.gif$
-Allow: /*.webp$
-Allow: /*.svg$
-
-# Gereksiz dizinleri engelle
-Disallow: /admin/
-Disallow: /private/
-Disallow: /temp/

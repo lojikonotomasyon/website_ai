@@ -1,0 +1,15 @@
+# Cloudflare Pages başlıkları
+# Geliştirme dosyaları yayında erişilebilir kalır ama arama motorlarına kapalıdır.
+/partials/*
+  X-Robots-Tag: noindex
+/*.md
+  X-Robots-Tag: noindex
+/*.py
+  X-Robots-Tag: noindex
+/build.js
+  X-Robots-Tag: noindex
+
+# Ortak güvenlik başlıkları
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

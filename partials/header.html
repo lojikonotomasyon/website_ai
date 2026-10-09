@@ -1,28 +1,32 @@
 <!-- Header -->
+<a class="skip-link" href="#home">İçeriğe geç</a>
 <header class="header">
-    <nav class="nav-container">
-        <div class="logo">
-            <h2>Loji<span style="color:#d4a017">k</span>On</h2>
-            <p class="header-slogan">Endüstriyel Otomasyon</p>
-        </div>
+    <nav class="nav-container" aria-label="Ana menü">
+        <a href="index.html" class="logo" aria-label="Lojikon Ana Sayfa">
+            <img src="favicon.svg" alt="" width="36" height="36" class="logo-mark">
+            <span class="logo-text">
+                <span class="logo-name">Loji<span class="logo-k">k</span>On</span>
+                <span class="header-slogan" data-i18n="nav.slogan">Akıllı Depo Sistemleri</span>
+            </span>
+        </a>
 
         <ul class="nav-menu">
             <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
             <li><a href="index.html#about" data-i18n="nav.about">Hakkımızda</a></li>
             <li><a href="index.html#solutions" data-i18n="nav.solutions">Çözümler</a></li>
             <li><a href="index.html#services" data-i18n="nav.services">Hizmetler</a></li>
+            <li><a href="index.html#projects" data-i18n="nav.projects">Projeler</a></li>
             <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
         </ul>
 
         <div class="header-actions">
             <div class="header-social-links">
-                <a href="https://www.linkedin.com/company/lojikon/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.facebook.com/LojikonLtd" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/lojikon.tr" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@LojikonOtomasyonVeYazlmTicLtdS" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/lojikon/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@LojikonOtomasyonVeYazlmTicLtdS" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
-            <button id="lang-toggle" class="lang-toggle">EN</button>
-            <button class="hamburger">
+            <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Dil değiştir / Change language">EN</button>
+            <a href="#contact" class="btn btn-primary btn-sm header-cta" data-i18n="btn.quote">Teklif Al</a>
+            <button class="hamburger" type="button" aria-label="Menüyü aç" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>

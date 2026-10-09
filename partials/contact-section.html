@@ -2,6 +2,7 @@
 <section id="contact" class="contact">
     <div class="container">
         <div class="section-header">
+            <span class="eyebrow" data-i18n="contact.eyebrow">Bize Ulaşın</span>
             <h2 data-i18n="contact.title">İletişim</h2>
             <p data-i18n="contact.subtitle">Bizimle iletişime geçin</p>
         </div>
@@ -9,55 +10,84 @@
         <div class="contact-content">
             <div class="contact-info">
                 <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                     <div>
-                        <h4 data-i18n="contact.address">Adres</h4>
-                        <p data-i18n-html="contact.addressVal">Fevzipaşa Mahallesi, Gölet Caddesi, No:23/D Değirmenköy Silivri/İSTANBUL<br>Endüstriyel Otomasyon Merkezi</p>
+                        <h3 data-i18n="contact.address">Adres</h3>
+                        <p data-i18n-html="contact.addressVal">Fevzipaşa Mahallesi, Gölet Caddesi, No:23/D Değirmenköy Silivri/İSTANBUL</p>
                     </div>
                 </div>
 
                 <div class="contact-item">
-                    <i class="fas fa-phone"></i>
+                    <i class="fas fa-phone" aria-hidden="true"></i>
                     <div>
-                        <h4 data-i18n="contact.phone">Telefon</h4>
-                        <p>+90 212 657 18 03<br>+90 533 388 33 92</p>
+                        <h3 data-i18n="contact.phone">Telefon</h3>
+                        <p><a href="tel:+902126571803">+90 212 657 18 03</a><br><a href="tel:+905333883392">+90 533 388 33 92</a></p>
                     </div>
                 </div>
 
                 <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
                     <div>
-                        <h4 data-i18n="contact.email">Email</h4>
-                        <p>info@lojikon.com<br>yusuf@lojikon.com</p>
+                        <h3 data-i18n="contact.email">Email</h3>
+                        <p><a href="mailto:info@lojikon.com">info@lojikon.com</a><br><a href="mailto:yusuf@lojikon.com">yusuf@lojikon.com</a></p>
                     </div>
                 </div>
 
                 <div class="contact-item">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-clock" aria-hidden="true"></i>
                     <div>
-                        <h4 data-i18n="contact.hours">Çalışma Saatleri</h4>
+                        <h3 data-i18n="contact.hours">Çalışma Saatleri</h3>
                         <p data-i18n-html="contact.hoursVal">Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 13:00</p>
                     </div>
                 </div>
             </div>
 
             <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <input type="text" name="name" data-i18n-ph="contact.namePh" placeholder="Adınız *" required>
+                <h3 class="contact-form-title" data-i18n="contact.formTitle">Keşif ve teklif talebi</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cf-name" class="sr-only" data-i18n="contact.namePh">Adınız *</label>
+                        <input id="cf-name" type="text" name="name" autocomplete="name" data-i18n-ph="contact.namePh" placeholder="Adınız *" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-company" class="sr-only" data-i18n="contact.companyPh">Firma Adı</label>
+                        <input id="cf-company" type="text" name="company" autocomplete="organization" data-i18n-ph="contact.companyPh" placeholder="Firma Adı">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cf-email" class="sr-only" data-i18n="contact.emailPh">Email Adresiniz *</label>
+                        <input id="cf-email" type="email" name="email" autocomplete="email" data-i18n-ph="contact.emailPh" placeholder="Email Adresiniz *" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-phone" class="sr-only" data-i18n="contact.phonePh">Telefon Numaranız</label>
+                        <input id="cf-phone" type="tel" name="phone" autocomplete="tel" data-i18n-ph="contact.phonePh" placeholder="Telefon Numaranız">
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" data-i18n-ph="contact.emailPh" placeholder="Email Adresiniz *" required>
+                    <label for="cf-topic" class="sr-only" data-i18n="contact.topic">Konu</label>
+                    <select id="cf-topic" name="service_type">
+                        <option value="Genel İletişim" data-i18n="contact.topicGeneral">Konu seçin (opsiyonel)</option>
+                        <option value="Sorter Sistemleri" data-i18n="footer.sorter">Sorter Sistemleri</option>
+                        <option value="Palet ve Kasa Asansörü" data-i18n="footer.palletElevator">Palet ve Kasa Asansörü</option>
+                        <option value="Miniload ve Shuttle" data-i18n="footer.miniload">Miniload ve Shuttle</option>
+                        <option value="Pick to Light" data-i18n="footer.pickToLight">Pick to Light</option>
+                        <option value="WMS / WCS" data-i18n="footer.wms">WMS / WCS Yazılımı</option>
+                        <option value="SCADA / Üretim Takibi" data-i18n="contact.topicScada">SCADA / Üretim Takibi</option>
+                        <option value="PLC Programlama" data-i18n="footer.plc">PLC Programlama</option>
+                        <option value="Yazılım / Entegrasyon" data-i18n="contact.topicSoftware">Yazılım / Entegrasyon</option>
+                        <option value="Servis / Bakım" data-i18n="contact.topicService">Servis / Bakım</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="tel" name="phone" data-i18n-ph="contact.phonePh" placeholder="Telefon Numaranız">
-                </div>
-                <div class="form-group">
-                    <textarea name="message" data-i18n-ph="contact.messagePh" placeholder="Mesajınız *" required></textarea>
+                    <label for="cf-message" class="sr-only" data-i18n="contact.messagePh">Mesajınız *</label>
+                    <textarea id="cf-message" name="message" data-i18n-ph="contact.messagePh" placeholder="Mesajınız *" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i>
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
                     <span data-i18n="contact.send">Gönder</span>
                 </button>
+                <p class="form-note" data-i18n="contact.note">Genellikle 1 iş günü içinde dönüş yapıyoruz.</p>
             </form>
         </div>
     </div>

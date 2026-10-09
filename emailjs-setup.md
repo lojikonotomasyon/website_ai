@@ -125,7 +125,13 @@
    - Template ID'nin doğru olduğundan emin olun
    - Template'in aktif olduğundan emin olun
 
-4. **"User ID not found"**
+4. **"Outlook: Invalid grant. Please reconnect your Outlook account"** (HTTP 412)
+   - EmailJS'in mail gönderdiği Outlook hesabının yetkisi düşmüş (şifre değişikliği, oturum iptali veya süre dolması)
+   - Dashboard > **Email Services** > ilgili servis (`service_93y8btr`) > **Reconnect** ile Outlook hesabına yeniden giriş yapın
+   - Ardından sitedeki formdan bir test mesajı gönderin
+   - Form hata verirse ziyaretçiye telefon/email ve hazır doldurulmuş "email ile gönder" bağlantısı gösterilir
+
+5. **"User ID not found"**
    - User ID'nin doğru kopyalandığından emin olun
    - API Keys sayfasından tekrar kontrol edin
 
