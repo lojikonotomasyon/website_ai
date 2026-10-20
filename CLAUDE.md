@@ -106,6 +106,7 @@ Her sayfa şu yapıya sahiptir:
 
 - `sitemap.xml` tüm sayfa URL'lerini içerir — yeni sayfa eklenince güncelle
 - **Site Cloudflare Pages'te yayınlanır** (`main`'e push → otomatik deploy). Cloudflare `/x.html` → `/x` 308 yönlendirmesi yapar; bu yüzden canonical, `og:url`, sitemap ve JSON-LD'de **uzantısız** URL kullan (`https://lojikon.com/sorter`). `_config.yml` Cloudflare'de etkisizdir; arama motoru kuralları `_headers` ve `robots.txt`'de.
+- `_headers` `*.pages.dev` kopyasını `noindex` yapar. www → apex yönlendirmesi `_redirects` ile yapılamaz; Cloudflare panelinden (Bulk Redirects / Redirect Rules) yapılır.
 - Her sayfada `<link rel="canonical">`, `og:url`, `og:title`, `og:description` mevcut
 - Schema.org yapısal veri (JSON-LD) her sayfada tanımlı
 - Tüm sayfa isimleri İngilizce (`plc-programming.html`, `system-integration.html`, vb.)

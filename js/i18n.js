@@ -167,7 +167,7 @@ const TRANSLATIONS = {
         },
         // ── Page: Index ──
         index: {
-            heroTitleHTML: 'Endüstriyel <span class="highlight">Otomasyon</span> ve Intralojistik Çözümleri',
+            heroTitleHTML: '<span class="highlight">Akıllı Depo</span> Sistemleri ve Endüstriyel Otomasyon',
             heroDesc:  'Sorter, palet ve kasa asansörü, miniload-shuttle ve pick-to-light sistemlerini kendi geliştirdiğimiz WMS / WCS yazılımıyla birlikte anahtar teslim kuruyoruz. Depolarınızda hızı artırıyor, hatayı ve işletme maliyetini düşürüyoruz.',
             stat1: 'Proje', stat2: 'Yıl Deneyim', stat3: 'Teknik Destek',
         },
@@ -918,7 +918,7 @@ const TRANSLATIONS = {
             learnMore:    'Learn More',
         },
         index: {
-            heroTitleHTML: 'Industrial <span class="highlight">Automation</span> & Intralogistics Solutions',
+            heroTitleHTML: '<span class="highlight">Smart Warehouse</span> Systems & Industrial Automation',
             heroDesc:  'We deliver sorters, pallet and tote elevators, miniload-shuttle and pick-to-light systems turnkey, together with our in-house WMS / WCS software. We make your warehouses faster, with fewer errors and lower operating costs.',
             stat1: 'Projects', stat2: 'Years Experience', stat3: 'Technical Support',
         },
