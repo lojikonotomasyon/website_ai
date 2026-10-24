@@ -487,4 +487,51 @@
 .application-card p {
     color: var(--secondary);
     line-height: 1.6;
-} 
+}
+
+/* Technical Specs Section */
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.spec-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--accent);
+}
+
+.spec-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.spec-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.spec-card ul {
+    list-style: none;
+}
+
+.spec-card li {
+    padding: 0.5rem 0;
+    color: var(--secondary);
+    border-bottom: 1px solid var(--border);
+}
+
+.spec-card li:last-child {
+    border-bottom: none;
+}
+
+.spec-card strong {
+    color: var(--primary);
+    font-weight: 600;
+}

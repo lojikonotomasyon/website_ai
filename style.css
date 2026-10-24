@@ -312,8 +312,8 @@ address{font-style:normal}
 
 /* Alt sayfa kartlarını ana tasarımla uyumlu hale getir */
 body :is(.how-it-works,.where-used){background:var(--soft)}
-body :is(.why-use,.technical-specs){background:var(--wh)}
-body :is(.how-it-works,.why-use,.where-used,.technical-specs){padding:6rem 0}
+body :is(.why-use,.technical-specs,.product-types){background:var(--wh)}
+body :is(.how-it-works,.why-use,.where-used,.technical-specs,.product-types){padding:6rem 0}
 body :is(.step-card,.benefit-card,.application-card,.spec-card,.specs-column){background:var(--wh);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
 body :is(.step-card,.benefit-card,.application-card,.spec-card,.specs-column):hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(212,160,23,.45)}
 body .spec-card{border-left:3px solid var(--gold)}
@@ -322,6 +322,17 @@ body :is(.step-icon,.benefit-icon,.application-icon){border-radius:12px;backgrou
 body :is(.step-icon,.benefit-icon,.application-icon) i{color:var(--gold)}
 body .step-number{background:var(--gold);color:var(--ink);font-size:.95rem;font-weight:800}
 body :is(.step-card,.benefit-card,.application-card,.spec-card) h3{font-size:1.15rem}
+
+/* Ürün sayfaları: tip kartları, teknik özellik başlığı, açık zeminli bölüm */
+body section.section-soft{background:var(--soft)}
+.applications-grid.types-grid{grid-template-columns:repeat(2,1fr);margin-bottom:4rem}
+.applications-grid.types-grid:last-child{margin-bottom:0}
+.types-grid .application-card{text-align:left}
+.types-grid .application-icon{margin:0 0 1.25rem}
+.type-fit{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.92rem}
+.type-fit strong{color:var(--gold-d)}
+.specs-title{text-align:center;font-size:1.5rem;font-weight:800;margin-bottom:2rem;color:var(--text)}
+@media (max-width:768px){.applications-grid.types-grid{grid-template-columns:1fr}}
 
 /* ---------- Responsive ---------- */
 @media (max-width:1180px){
@@ -370,7 +381,7 @@ body :is(.step-card,.benefit-card,.application-card,.spec-card) h3{font-size:1.1
     .service-featured .service-link{flex-direction:column;align-items:stretch;gap:1.5rem;padding:1.75rem}
     .service-featured h3{font-size:1.4rem}
     .footer-cta-actions .btn{flex:1 1 100%}
-    body :is(.how-it-works,.why-use,.where-used,.technical-specs){padding:4.5rem 0}
+    body :is(.how-it-works,.why-use,.where-used,.technical-specs,.product-types){padding:4.5rem 0}
 }
 @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}

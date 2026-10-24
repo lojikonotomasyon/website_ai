@@ -80,6 +80,42 @@
             "item": "https://lojikon.com/pick-to-light"
           }
         ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Pick-to-light nedir?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Pick-to-light, raf gözlerindeki ışıklı göstergelerle operatöre hangi üründen kaç adet alacağını gösteren kâğıtsız sipariş toplama sistemidir. Operatör ürünü alıp butona basarak toplamayı onaylar. Liste okuma ve ürün arama ihtiyacı ortadan kalktığı için toplama hem hızlanır hem de hatasız hale gelir."}
+          },
+          {
+            "@type": "Question",
+            "name": "Pick-to-light ile put-to-light arasındaki fark nedir?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Pick-to-light raftan ürün toplamak için, put-to-light ise toplu toplanan ürünleri siparişlere, mağazalara veya müşterilere ayırmak için kullanılır. İkisi de aynı ışıklı gösterge mantığıyla çalışır ve aynı depoda birlikte kullanılabilir."}
+          },
+          {
+            "@type": "Question",
+            "name": "Pick-to-light toplama hızını ne kadar artırır?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Hız; sipariş yapısına, raf düzenine ve ürün çeşidine göre değişir. Kurduğumuz sistemler saatte 800'den fazla toplama kapasitesi ve %99.9 doğrulukla çalışır."}
+          },
+          {
+            "@type": "Question",
+            "name": "Mevcut raflarıma kurulabilir mi?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Evet. Işıklı göstergeler mevcut raflarınıza, kasa gözlerinize ve dinamik (akışkan) raflarınıza monte edilir; depoyu yeniden kurmanız gerekmez. Göstergeler IP65 korumalıdır ve 12V DC ile çalışır."}
+          },
+          {
+            "@type": "Question",
+            "name": "Hangi yazılımlarla çalışır?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Kendi WMS / WCS yazılımımızla doğrudan çalışır. Farklı bir WMS veya ERP kullanıyorsanız sistemi, siparişleri o yazılımdan alacak şekilde entegre ediyoruz."}
+          },
+          {
+            "@type": "Question",
+            "name": "Personelin sisteme alışması ne kadar sürer?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Işık yanan gözden göstergedeki adet kadar ürün alıp butona basmak yeterli olduğu için yeni personel kısa sürede uyum sağlar. Devreye alma sırasında operatörlerinize eğitim veriyoruz."}
+          }
+        ]
       }
     ]
     </script>
@@ -256,7 +292,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 data-i18n="sections.howItWorks">Nasıl Çalışır?</h2>
-                <p data-i18n="picktolight.howItWorksDesc">Pick-to-light sisteminin çalışma prensibi ve adımları</p>
+                <p data-i18n="picktolight.howItWorksDesc">Pick-to-light, raf gözlerindeki ışıklı göstergelerle operatöre hangi üründen kaç adet alacağını gösteren kâğıtsız sipariş toplama sistemidir. Süreç dört adımda işler:</p>
             </div>
             
             <div class="steps-grid">
@@ -347,55 +383,155 @@
     <section id="where-used" class="where-used">
         <div class="container">
             <div class="section-header">
-                <h2 data-i18n="sections.whereUsed">Nerede Kullanılır?</h2>
-                <p data-i18n="picktolight.whereUsedDesc">Pick-to-light sistemlerinin kullanım alanları</p>
+                <span class="eyebrow" data-i18n="home.indEyebrow">Sektörler</span>
+                <h2 data-i18n="picktolight.whereUsedTitle">Pick-to-Light Hangi Sektörlerde Kullanılır?</h2>
+                <p data-i18n="picktolight.whereUsedDesc">Çok kalemli siparişlerin elle toplandığı her depoda hızı ve doğruluğu artırır.</p>
             </div>
-            
+
             <div class="applications-grid">
-                <div class="application-card">
-                    <div class="application-icon">
-                        <i class="fas fa-warehouse"></i>
-                    </div>
-                    <h3 data-i18n="picktolight.app1h">Depo Yönetimi</h3>
-                    <p data-i18n="picktolight.app1p">Büyük depolar ve dağıtım merkezlerinde toplama operasyonları.</p>
-                </div>
-                
                 <div class="application-card">
                     <div class="application-icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <h3 data-i18n="picktolight.app2h">E-ticaret</h3>
-                    <p data-i18n="picktolight.app2p">Online satış platformlarında sipariş hazırlama.</p>
+                    <h3 data-i18n="picktolight.app1h">E-ticaret ve Fulfillment</h3>
+                    <p data-i18n="picktolight.app1p">Çok kalemli siparişleri kâğıtsız ve hızlı toplar; put-to-light ile toplu toplanan ürünleri siparişlere ayırır.</p>
                 </div>
-                
+
                 <div class="application-card">
                     <div class="application-icon">
-                        <i class="fas fa-industry"></i>
+                        <i class="fas fa-store"></i>
                     </div>
-                    <h3 data-i18n="picktolight.app3h">Üretim</h3>
-                    <p data-i18n="picktolight.app3p">Fabrikalarda malzeme toplama ve kitting işlemleri.</p>
+                    <h3 data-i18n="picktolight.app2h">Perakende ve Mağaza Dağıtımı</h3>
+                    <p data-i18n="picktolight.app2p">Mağaza siparişlerini ışıklı gözlere dağıtarak sevkiyat hazırlığını hızlandırır.</p>
                 </div>
-                
+
                 <div class="application-card">
                     <div class="application-icon">
-                        <i class="fas fa-shipping-fast"></i>
+                        <i class="fas fa-pills"></i>
                     </div>
-                    <h3 data-i18n="picktolight.app4h">Lojistik</h3>
-                    <p data-i18n="picktolight.app4p">Kargo merkezlerinde paket toplama ve sıralama.</p>
+                    <h3 data-i18n="picktolight.app3h">İlaç ve Ecza Depoları</h3>
+                    <p data-i18n="picktolight.app3p">Eczane siparişlerinde küçük ve birbirine benzeyen ürünleri karıştırmadan, yüksek doğrulukla toplar.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-spray-can-sparkles"></i>
+                    </div>
+                    <h3 data-i18n="picktolight.app4h">Kozmetik ve Kişisel Bakım</h3>
+                    <p data-i18n="picktolight.app4p">Çok çeşitli küçük ürünün toplandığı siparişlerde hata oranını düşürür.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3 data-i18n="picktolight.app5h">Otomotiv Yedek Parça</h3>
+                    <p data-i18n="picktolight.app5p">Bayi siparişlerinde binlerce farklı parça arasından doğru parçayı doğru adette toplar.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 data-i18n="picktolight.app6h">Üretim ve Montaj</h3>
+                    <p data-i18n="picktolight.app6p">Montaj hattında doğru parçanın doğru sırayla alınmasını sağlar; kitting işlemlerinde hatalı montajı önler.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-shirt"></i>
+                    </div>
+                    <h3 data-i18n="picktolight.app7h">Tekstil ve Hazır Giyim</h3>
+                    <p data-i18n="picktolight.app7p">Beden ve renk varyantı fazla olan ürünlerde toplama hatalarını en aza indirir.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 data-i18n="picktolight.app8h">Kitap ve Yayıncılık</h3>
+                    <p data-i18n="picktolight.app8p">Çok sayıda başlığın bulunduğu depolarda okul ve mağaza siparişlerini hızlı ve doğru hazırlar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Types Section -->
+    <section id="system-types" class="product-types">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow" data-i18n="picktolight.typesEyebrow">Sistem Tipleri</span>
+                <h2 data-i18n="picktolight.typesTitle">Pick-to-Light ve Put-to-Light</h2>
+                <p data-i18n="picktolight.typesDesc">Aynı ışıklı gösterge altyapısı hem raftan toplama hem de toplanan ürünleri siparişlere ayırma işlemlerinde kullanılır.</p>
+            </div>
+
+            <div class="applications-grid types-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 data-i18n="picktolight.type1h">Pick-to-Light (Işıklı Toplama)</h3>
+                    <p data-i18n="picktolight.type1p">Siparişteki her ürünün raf gözünde ışık yanar, göstergede alınacak adet görünür. Operatör ürünü alıp butona basar ve sistem bir sonraki ürüne geçer. Çok çeşitli ürünün az adetlerle toplandığı siparişlerde hızı ve doğruluğu artırır.</p>
+                    <p class="type-fit" data-i18n-html="picktolight.type1fit"><strong>Uygun işler:</strong> raftan sipariş toplama, kitting, montaj hattı besleme</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-table-cells"></i>
+                    </div>
+                    <h3 data-i18n="picktolight.type2h">Put-to-Light (Işıklı Dağıtma)</h3>
+                    <p data-i18n="picktolight.type2p">Toplu toplanan ürünler barkodla okutulur; ürünün gideceği sipariş, mağaza veya müşteri gözünde ışık yanar ve konulacak adet gösterilir. Çok sayıda siparişin aynı anda hazırlandığı e-ticaret ve mağaza dağıtımında kullanılır.</p>
+                    <p class="type-fit" data-i18n-html="picktolight.type2fit"><strong>Uygun işler:</strong> siparişlere ayırma, mağaza dağıtımı, iade işleme</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Technical Specs Section -->
-    <section id="technical-specs" class="technical-specs">
+    <section id="technical-specs" class="technical-specs section-soft">
         <div class="container">
             <div class="section-header">
                 <h2 data-i18n="sections.techSpecs">Teknik Özellikler</h2>
                 <p data-i18n="picktolight.techSpecsDesc">Pick-to-light sistemlerinin teknik detayları</p>
             </div>
-            
+
             <div class="specs-grid" id="specs-container"></div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container faq-container">
+            <div class="section-header">
+                <span class="eyebrow" data-i18n="home.faqEyebrow">SSS</span>
+                <h2 data-i18n="picktolight.faqTitle">Pick-to-Light Hakkında Sık Sorulan Sorular</h2>
+            </div>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary data-i18n="picktolight.q1">Pick-to-light nedir?</summary>
+                    <p data-i18n="picktolight.a1">Pick-to-light, raf gözlerindeki ışıklı göstergelerle operatöre hangi üründen kaç adet alacağını gösteren kâğıtsız sipariş toplama sistemidir. Operatör ürünü alıp butona basarak toplamayı onaylar. Liste okuma ve ürün arama ihtiyacı ortadan kalktığı için toplama hem hızlanır hem de hatasız hale gelir.</p>
+                </details>
+                <details class="faq-item">
+                    <summary data-i18n="picktolight.q2">Pick-to-light ile put-to-light arasındaki fark nedir?</summary>
+                    <p data-i18n="picktolight.a2">Pick-to-light raftan ürün toplamak için, put-to-light ise toplu toplanan ürünleri siparişlere, mağazalara veya müşterilere ayırmak için kullanılır. İkisi de aynı ışıklı gösterge mantığıyla çalışır ve aynı depoda birlikte kullanılabilir.</p>
+                </details>
+                <details class="faq-item">
+                    <summary data-i18n="picktolight.q3">Pick-to-light toplama hızını ne kadar artırır?</summary>
+                    <p data-i18n="picktolight.a3">Hız; sipariş yapısına, raf düzenine ve ürün çeşidine göre değişir. Kurduğumuz sistemler saatte 800'den fazla toplama kapasitesi ve %99.9 doğrulukla çalışır.</p>
+                </details>
+                <details class="faq-item">
+                    <summary data-i18n="picktolight.q4">Mevcut raflarıma kurulabilir mi?</summary>
+                    <p data-i18n="picktolight.a4">Evet. Işıklı göstergeler mevcut raflarınıza, kasa gözlerinize ve dinamik (akışkan) raflarınıza monte edilir; depoyu yeniden kurmanız gerekmez. Göstergeler IP65 korumalıdır ve 12V DC ile çalışır.</p>
+                </details>
+                <details class="faq-item">
+                    <summary data-i18n="picktolight.q5">Hangi yazılımlarla çalışır?</summary>
+                    <p data-i18n="picktolight.a5">Kendi WMS / WCS yazılımımızla doğrudan çalışır. Farklı bir WMS veya ERP kullanıyorsanız sistemi, siparişleri o yazılımdan alacak şekilde entegre ediyoruz.</p>
+                </details>
+                <details class="faq-item">
+                    <summary data-i18n="picktolight.q6">Personelin sisteme alışması ne kadar sürer?</summary>
+                    <p data-i18n="picktolight.a6">Işık yanan gözden göstergedeki adet kadar ürün alıp butona basmak yeterli olduğu için yeni personel kısa sürede uyum sağlar. Devreye alma sırasında operatörlerinize eğitim veriyoruz.</p>
+                </details>
+            </div>
         </div>
     </section>
 
@@ -419,7 +555,7 @@
                     <h3 data-i18n="solutions.sorter.title">Sorter Sistemleri</h3>
                     <p data-i18n="solutions.sorter.desc">Cross belt, tilt tray, narrow belt ve shoe sorter sistemleri ile otomatik sıralama ve dağıtım.</p>
                     <div class="solution-features">
-                        <span data-i18n="solutions.sorter.f1">12.000–16.000 parça/saat</span>
+                        <span data-i18n="solutions.sorter.f1">16.000 parça/saat'e kadar</span>
                         <span data-i18n="solutions.sorter.f2">%99.9 doğruluk</span>
                         <span data-i18n="solutions.sorter.f3">PLC kontrolü</span>
                     </div>

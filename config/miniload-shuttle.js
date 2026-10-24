@@ -34,7 +34,7 @@ window.PAGE_SPECS = {
                 { label: { tr: 'PLC',      en: 'PLC' },            value: 'Beckhoff' },
                 { label: { tr: 'WMS',      en: 'WMS' },            value: { tr: 'Entegre',           en: 'Integrated' } },
                 { label: { tr: 'Kontrol',  en: 'Control' },        value: { tr: 'Otomatik',          en: 'Automatic' } },
-                { label: { tr: 'İletişim', en: 'Communication' },  value: 'Ethercet, Ethernet, SocketIO, Websocket, Http' },
+                { label: { tr: 'İletişim', en: 'Communication' },  value: 'EtherCAT, Ethernet, SocketIO, Websocket, Http' },
             ]
         },
     ]

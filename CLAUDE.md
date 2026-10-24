@@ -149,7 +149,8 @@ Site TR/EN dil desteğine sahiptir. Sistem tamamen tarayıcı-taraflıdır.
 - Galerideki `.project-link` bağlantıları script.js'teki lightbox ile açılır.
 - `_config.yml` GitHub Pages'in `partials/`, `.md` ve `.py` dosyalarını yayınlamasını engeller.
 - Favicon/logo: `favicon.svg` kaynak; PNG'ler (`img/logo.png`, `android-chrome-*`, `apple-touch-icon.png`) ondan üretildi.
-- Ana sayfadaki SSS metni değişirse `index.html` içindeki `FAQPage` JSON-LD'yi de güncelle.
+- SSS metni değişirse o sayfadaki `FAQPage` JSON-LD'yi de güncelle (`index.html` ve 4 çözüm sayfası). Metin `js/i18n.js`'teki TR çeviriyle birebir aynı olmalı.
+- Çözüm sayfalarındaki tip kartları (`.types-grid`, `.type-fit`), `.specs-title` ve açık zemin yardımcısı (`.section-soft`) ortak `style.css`'te tanımlıdır. Bölüm zeminleri açık/beyaz sırayla değişmeli.
 
 ---
 
