@@ -22,8 +22,8 @@ window.PAGE_SPECS = {
         {
             title: { tr: 'Performans', en: 'Performance' },
             items: [
-                { label: { tr: 'Depolama Kapasitesi',   en: 'Storage Capacity' },    value: { tr: '1600+ kutu/saat', en: '1600+ boxes/hour' } },
-                { label: { tr: 'Geri Alma Kapasitesi',  en: 'Retrieval Capacity' },  value: { tr: '1600+ kutu/saat', en: '1600+ boxes/hour' } },
+                { label: { tr: 'Depolama Kapasitesi',   en: 'Storage Capacity' },    value: { tr: '1600+ kutu/saat (koridor başına)', en: '1600+ boxes/hour (per aisle)' } },
+                { label: { tr: 'Geri Alma Kapasitesi',  en: 'Retrieval Capacity' },  value: { tr: '1600+ kutu/saat (koridor başına)', en: '1600+ boxes/hour (per aisle)' } },
                 { label: { tr: 'Doğruluk Oranı',        en: 'Accuracy Rate' },       value: { tr: '%99.8',          en: '99.8%' } },
                 { label: { tr: 'Çalışma Süresi',        en: 'Uptime' },              value: '24/7' },
             ]
