@@ -34,7 +34,7 @@ website_ai/
 │   ├── header.html              ← Menü, logo, sosyal linkler
 │   ├── footer.html              ← Alt bilgi, linkler, copyright
 │   ├── solutions-section.html   ← Çözümler kartları (4 ürün)
-│   ├── services-section.html    ← Hizmetler kartları (6 hizmet)
+│   ├── services-section.html    ← Hizmetler kartları (sadece WMS/WCS)
 │   └── contact-section.html     ← İletişim formu + bilgileri
 │
 ├── build.py                     ← Partial'ları tüm sayfalara enjekte eder
@@ -48,12 +48,7 @@ website_ai/
 ├── pallet-elevator.html         ← Çözüm sayfası
 ├── miniload-shuttle.html        ← Çözüm sayfası
 ├── pick-to-light.html           ← Çözüm sayfası
-├── scada.html                   ← Hizmet sayfası
-├── production-tracking.html     ← Hizmet sayfası
-├── data-collection.html         ← Hizmet sayfası
-├── custom-software.html         ← Hizmet sayfası
-├── plc-programming.html         ← Hizmet sayfası
-└── system-integration.html      ← Hizmet sayfası
+└── wms-wcs.html                 ← Hizmet sayfası (WMS / WCS)
 ```
 
 ---
@@ -98,7 +93,9 @@ Her sayfa şu yapıya sahiptir:
 | Kategori | Sayfalar |
 |---|---|
 | **Çözümler** | sorter.html, pallet-elevator.html, miniload-shuttle.html, pick-to-light.html |
-| **Hizmetler** | wms-wcs.html (öne çıkan kart), scada.html, production-tracking.html, data-collection.html, custom-software.html, plc-programming.html, system-integration.html |
+| **Hizmetler** | wms-wcs.html (öne çıkan kart) |
+
+**Odak:** Site yalnızca intralojistik / akıllı depo odaklıdır. Genel endüstriyel otomasyon hizmet sayfaları (SCADA, Üretim Takibi, Veri Toplama, Özel Yazılım, PLC Programlama, Sistem Entegrasyonu) kaldırıldı; eski URL'leri `_redirects` ana sayfaya yönlendirir. Başlık ve metinlerde "endüstriyel otomasyon" ifadesi kullanma.
 
 ---
 
@@ -106,10 +103,10 @@ Her sayfa şu yapıya sahiptir:
 
 - `sitemap.xml` tüm sayfa URL'lerini içerir — yeni sayfa eklenince güncelle
 - **Site Cloudflare Pages'te yayınlanır** (`main`'e push → otomatik deploy). Cloudflare `/x.html` → `/x` 308 yönlendirmesi yapar; bu yüzden canonical, `og:url`, sitemap ve JSON-LD'de **uzantısız** URL kullan (`https://lojikon.com/sorter`). `_config.yml` Cloudflare'de etkisizdir; arama motoru kuralları `_headers` ve `robots.txt`'de.
-- `_headers` `*.pages.dev` kopyasını `noindex` yapar. www → apex yönlendirmesi `_redirects` ile yapılamaz; Cloudflare panelinden (Bulk Redirects / Redirect Rules) yapılır.
+- `_headers` `*.pages.dev` kopyasını `noindex` yapar. `_redirects` kaldırılan sayfaları yönlendirir. www → apex yönlendirmesi `_redirects` ile yapılamaz; Cloudflare panelinden (Bulk Redirects / Redirect Rules) yapılır.
 - Her sayfada `<link rel="canonical">`, `og:url`, `og:title`, `og:description` mevcut
 - Schema.org yapısal veri (JSON-LD) her sayfada tanımlı
-- Tüm sayfa isimleri İngilizce (`plc-programming.html`, `system-integration.html`, vb.)
+- Tüm sayfa isimleri İngilizce (`pallet-elevator.html`, `pick-to-light.html`, vb.)
 
 ---
 
@@ -134,9 +131,9 @@ Site TR/EN dil desteğine sahiptir. Sistem tamamen tarayıcı-taraflıdır.
 - ✅ Header (nav menüsü, dil butonu)
 - ✅ Footer (başlıklar, linkler, copyright)
 - ✅ Çözümler bölümü (4 kart)
-- ✅ Hizmetler bölümü (6 kart)
+- ✅ Hizmetler bölümü
 - ✅ İletişim formu (etiketler, placeholder'lar)
-- ✅ Hero bölümü (başlık, açıklama, butonlar, istatistikler) — tüm 11 sayfa
+- ✅ Hero bölümü (başlık, açıklama, butonlar, istatistikler) — tüm sayfalar
 
 ---
 

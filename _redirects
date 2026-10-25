@@ -1,0 +1,13 @@
+# Kaldırılan hizmet sayfaları → ana sayfa hizmetler bölümü
+/scada                 /#services  301
+/scada.html            /#services  301
+/production-tracking   /#services  301
+/production-tracking.html /#services 301
+/data-collection       /#services  301
+/data-collection.html  /#services  301
+/custom-software       /#services  301
+/custom-software.html  /#services  301
+/plc-programming       /#services  301
+/plc-programming.html  /#services  301
+/system-integration    /#services  301
+/system-integration.html /#services 301

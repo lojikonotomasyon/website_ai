@@ -1,6 +1,6 @@
-# 🚀 Lojikon - Endüstriyel Otomasyon ve Intralogistics Website
+# 🚀 Lojikon - Akıllı Depo ve İntralojistik Website
 
-Modern, responsive ve SEO dostu HTML/CSS/JS website'ı. Endüstriyel otomasyon ve intralogistics çözümleri için tasarlanmıştır.
+Modern, responsive ve SEO dostu HTML/CSS/JS website'ı. intralojistik ve akıllı depo çözümleri için tasarlanmıştır.
 
 ## 🎯 Proje Özellikleri
 
@@ -58,24 +58,6 @@ lojikon-website/
 ├── pick-to-light.html            # Pick to Light sayfası
 ├── pick-to-light.css             # Pick to Light stilleri
 ├── pick-to-light-animation.js    # Pick to Light animasyonu
-├── scada.html                    # SCADA sayfası
-├── scada.css                     # SCADA stilleri
-├── scada-animation.js            # SCADA animasyonu
-├── production-tracking.html      # Üretim Takibi sayfası
-├── production-tracking.css       # Üretim Takibi stilleri
-├── production-tracking-animation.js # Üretim Takibi animasyonu
-├── data-collection.html          # Veri Toplama sayfası
-├── data-collection.css           # Veri Toplama stilleri
-├── data-collection-animation.js  # Veri Toplama animasyonu
-├── custom-software.html          # Özel Yazılım sayfası
-├── custom-software.css           # Özel Yazılım stilleri
-├── custom-software-animation.js  # Özel Yazılım animasyonu
-├── plc-programming.html          # PLC Programlama sayfası
-├── plc-programming.css           # PLC Programlama stilleri
-├── plc-programming-animation.js  # PLC Programlama animasyonu
-├── system-integration.html      # Sistem Entegrasyonu sayfası
-├── system-integration.css       # Sistem Entegrasyonu stilleri
-├── system-integration-animation.js # Sistem Entegrasyonu animasyonu
 ├── img/                          # Görseller
 ├── sitemap.xml                   # SEO sitemap
 ├── robots.txt                    # SEO robots
@@ -127,12 +109,7 @@ lojikon-website/
 - **Pick to Light** - LED ışık göstergeli toplama
 
 ### 5. Hizmetler
-- **SCADA Sistemleri** - WinCC, FactoryTalk View
 - **Üretim Takip Sistemleri** - Gerçek zamanlı izleme
-- **Veri Toplama Sistemleri** - PLC veri entegrasyonu
-- **Özel Yazılım** - Müşteriye özel çözümler
-- **PLC Programlama** - Siemens, Allen Bradley
-- **Sistem Entegrasyonu** - MES, ERP entegrasyonu
 
 ### 6. İletişim
 - İletişim bilgileri
@@ -152,12 +129,6 @@ lojikon-website/
 - **Palet ve Kasa Asansörü Animasyonu** - Çok katlı asansör simülasyonu
 - **Miniload ve Shuttle Animasyonu** - Shuttle depolama simülasyonu
 - **Pick to Light Animasyonu** - LED toplama simülasyonu
-- **SCADA Animasyonu** - Kontrol paneli simülasyonu
-- **Üretim Takibi Animasyonu** - Üretim hattı simülasyonu
-- **Veri Toplama Animasyonu** - Veri akışı simülasyonu
-- **Özel Yazılım Animasyonu** - Yazılım geliştirme simülasyonu
-- **PLC Programlama Animasyonu** - Kod yazma simülasyonu
-- **Sistem Entegrasyonu Animasyonu** - Bağlantı simülasyonu
 
 ### Genel Animasyonlar
 - Scroll animasyonları
@@ -286,6 +257,6 @@ Bu proje Lojikon için özel olarak geliştirilmiştir.
 
 ---
 
-**Lojikon** - Endüstriyel Otomasyon ve Intralogistics Çözümleri
+**Lojikon** - Akıllı Depo ve İntralojistik Çözümleri
 **Son Güncelleme**: 19 Aralık 2024
 **Versiyon**: v2.0.5 

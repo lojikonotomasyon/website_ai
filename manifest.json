@@ -1,7 +1,7 @@
 {
-    "name": "Lojikon - Endüstriyel Otomasyon",
+    "name": "Lojikon - Akıllı Depo ve İntralojistik",
     "short_name": "Lojikon",
-    "description": "Endüstriyel otomasyon ve intralogistics çözümleri sağlayıcısı. Sorter, palet ve kasa asansörü, miniload ve shuttle ve SCADA sistemleri.",
+    "description": "İntralojistik ve depo otomasyonu çözümleri. Sorter, palet ve kasa asansörü, miniload ve shuttle, pick-to-light ve WMS / WCS yazılımı.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#0f1217",
