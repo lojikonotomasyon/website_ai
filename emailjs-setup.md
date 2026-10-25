@@ -164,7 +164,7 @@
 - [EmailJS Support](https://www.emailjs.com/support/)
 
 ### Lojikon Teknik Destek:
-- Email: yusuf@lojikon.com
+- Email: info@lojikon.com
 - Telefon: +90 533 388 33 92
 
 ---
