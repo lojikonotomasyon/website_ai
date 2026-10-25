@@ -11,3 +11,8 @@
 /plc-programming.html  /#services  301
 /system-integration    /#services  301
 /system-integration.html /#services 301
+
+# Bakım müşterisi portalı (Lojikon Takip Sistemi, ProjectManager): firma kendi
+# linkinden açar, uygulama aynı yolu okuyup sadece şifre sorar.
+/:firma/maintenance    https://pm.lojikon.com/:firma/maintenance  302
+/:firma/maintenance/   https://pm.lojikon.com/:firma/maintenance  302
