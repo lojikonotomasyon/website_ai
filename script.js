@@ -270,23 +270,31 @@ function initializeContactForm() {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> ' + formMsg('sending');
         submitBtn.disabled = true;
 
-        const fullMessage = (company ? 'Firma: ' + company + '\n\n' : '') + message;
+        // Gönderen bilgileri mesaj gövdesinde de yer alır: EmailJS şablonu hangi
+        // değişkenleri kullanırsa kullansın, dönüş için gereken bilgi maile ulaşır.
+        const senderDetails =
+            'Ad: ' + name + '\nEmail: ' + email + '\nTelefon: ' + (phone || '-') +
+            '\nFirma: ' + (company || '-') + '\nKonu: ' + topic;
         const templateParams = {
             from_name: name,
             from_email: email,
             from_phone: phone || 'Belirtilmemiş',
             service_type: topic,
             company: company || 'Belirtilmemiş',
-            message: fullMessage,
-            to_name: 'Lojikon Ekibi'
+            message: senderDetails + '\n\nMesaj:\n' + message,
+            to_name: 'Lojikon Ekibi',
+            // EmailJS varsayılan şablonunun kullandığı değişken adları
+            name: name,
+            email: email,
+            phone: phone || 'Belirtilmemiş',
+            title: topic,
+            reply_to: email
         };
 
         // Gönderim başarısız olursa ziyaretçi mesajını kaybetmesin: hazır doldurulmuş email bağlantısı
         const mailtoHref = 'mailto:' + CONTACT_EMAIL +
             '?subject=' + encodeURIComponent('Web sitesi iletişim formu - ' + topic) +
-            '&body=' + encodeURIComponent(
-                'Ad: ' + name + '\nEmail: ' + email + '\nTelefon: ' + (phone || '-') +
-                '\nFirma: ' + (company || '-') + '\n\n' + message);
+            '&body=' + encodeURIComponent(senderDetails + '\n\n' + message);
 
         const restore = () => {
             submitBtn.innerHTML = originalText;
