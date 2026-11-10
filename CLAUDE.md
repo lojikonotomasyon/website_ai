@@ -23,6 +23,8 @@ python3 build.py
 
 **Ne yapar:** `partials/` klasöründeki dosyaları tüm HTML sayfalarına otomatik enjekte eder.
 
+**Sürüm etiketi:** Build, HTML'deki yerel CSS/JS bağlantılarına dosya içeriğinden üretilen `?v=` etiketi ekler. Cloudflare bu dosyaları tarayıcıda 4 saat sakladığı için, CSS/JS değişince build çalıştırılmazsa ziyaretçiler eski dosyayı görür (ör. çeviri anahtarları `sorter.newTitle` gibi görünür).
+
 **Neden gerekli:** Ortak bileşenler (header, footer, çözümler, hizmetler, iletişim) her HTML dosyasında
 `<!-- PARTIAL:xxx:START -->` / `<!-- PARTIAL:xxx:END -->` marker'ları arasına yazılır.
 Partial dosyası değişince bu marker'lar arasındaki içerik güncellenir.
@@ -108,6 +110,7 @@ Her sayfa şu yapıya sahiptir:
 - **Site Cloudflare Pages'te yayınlanır** (`main`'e push → otomatik deploy). Cloudflare `/x.html` → `/x` 308 yönlendirmesi yapar; bu yüzden canonical, `og:url`, sitemap ve JSON-LD'de **uzantısız** URL kullan (`https://lojikon.com/sorter`). `_config.yml` Cloudflare'de etkisizdir; arama motoru kuralları `_headers` ve `robots.txt`'de.
 - `_headers` `*.pages.dev` kopyasını `noindex` yapar. `_redirects` kaldırılan sayfaları yönlendirir. www → apex yönlendirmesi `_redirects` ile yapılamaz; Cloudflare panelinden (Bulk Redirects / Redirect Rules) yapılır.
 - Her sayfada `<link rel="canonical">`, `og:url`, `og:title`, `og:description` mevcut
+- Paylaşım görseli `img/og-lojikon.jpg` (1200x630). İçerik ortadaki 630x630 alanda durmalı; WhatsApp önizlemede kare kırpar.
 - Schema.org yapısal veri (JSON-LD) her sayfada tanımlı
 - Tüm sayfa isimleri İngilizce (`pallet-elevator.html`, `pick-to-light.html`, vb.)
 

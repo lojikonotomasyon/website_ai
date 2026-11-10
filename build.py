@@ -10,7 +10,7 @@
 # Marker formatı (HTML dosyalarında):
 #   <!-- PARTIAL:header:START -->  ...içerik...  <!-- PARTIAL:header:END -->
 
-import os, sys
+import os, sys, re, hashlib
 
 BASE     = os.path.dirname(os.path.abspath(__file__))
 PARTIALS = os.path.join(BASE, 'partials')
@@ -30,9 +30,19 @@ html_files = sorted(
 
 total_updated = 0
 
+ASSET_RE = re.compile(r'((?:src|href)=")(?!https?:|//)([^"?#]+\.(?:css|js))(?:\?v=[0-9a-z]+)?"')
+
+def versioned(match):
+    asset = os.path.join(BASE, match.group(2).lstrip('/'))
+    if not os.path.isfile(asset):
+        return match.group(0)
+    digest = hashlib.md5(open(asset, 'rb').read()).hexdigest()[:8]
+    return f'{match.group(1)}{match.group(2)}?v={digest}"'
+
 for fname in html_files:
     fpath = os.path.join(BASE, fname)
-    content = open(fpath, encoding='utf-8').read()
+    original = open(fpath, encoding='utf-8').read()
+    content = original
     changed = False
 
     for name, partial_path in PARTIAL_MAP.items():
@@ -58,6 +68,9 @@ for fname in html_files:
         after   = content[end_idx + len(end_marker):]
         content = before + new_block + after
         changed = True
+
+    content = ASSET_RE.sub(versioned, content)
+    changed = changed or content != original
 
     if changed:
         open(fpath, 'w', encoding='utf-8').write(content)

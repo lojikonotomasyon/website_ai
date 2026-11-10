@@ -12,6 +12,7 @@
 
 const fs   = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const BASE     = __dirname;
 const PARTIALS = path.join(BASE, 'partials');
@@ -30,9 +31,17 @@ const htmlFiles = fs.readdirSync(BASE)
     .map(f => path.join(BASE, f));
 
 let totalUpdated = 0;
+const ASSET_RE = /((?:src|href)=")(?!https?:|\/\/)([^"?#]+\.(?:css|js))(?:\?v=[0-9a-z]+)?"/g;
+const versioned = (match, attr, file) => {
+    const asset = path.join(BASE, file);
+    if (!fs.existsSync(asset) || !fs.statSync(asset).isFile()) return match;
+    const digest = crypto.createHash('md5').update(fs.readFileSync(asset)).digest('hex').slice(0, 8);
+    return `${attr}${file}?v=${digest}"`;
+};
 
 htmlFiles.forEach(filePath => {
-    let content = fs.readFileSync(filePath, 'utf8');
+    const original = fs.readFileSync(filePath, 'utf8');
+    let content = original;
     let changed  = false;
 
     for (const [name, partialPath] of Object.entries(PARTIAL_MAP)) {
@@ -52,6 +61,8 @@ htmlFiles.forEach(filePath => {
         changed = true;
     }
 
+    content = content.replace(ASSET_RE, versioned);
+    changed = changed || content !== original;
     if (changed) {
         fs.writeFileSync(filePath, content, 'utf8');
         console.log(`✓  ${path.basename(filePath)}`);
