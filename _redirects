@@ -30,6 +30,26 @@
 /system-integration.html /#solutions 301
 
 /miniload-shuttle      /miniload  301
+/palet-ve-kasa-asansoru  /pallet-elevator  301
+/palet-ve-kasa-asansoru.html  /pallet-elevator  301
+/palet-lift  /pallet-elevator  301
+/palet-lift.html  /pallet-elevator  301
+/kasa-lift  /pallet-elevator  301
+/kasa-lift.html  /pallet-elevator  301
+/continuous-lift  /pallet-elevator  301
+/continuous-lift.html  /pallet-elevator  301
+/miniload-ve-shuttle  /miniload  301
+/miniload-ve-shuttle.html  /miniload  301
+/plc-programlama  /#solutions  301
+/plc-programlama.html  /#solutions  301
+/sistem-entegrasyonu  /#solutions  301
+/sistem-entegrasyonu.html  /#solutions  301
+/template-example  /  301
+/template-example.html  /  301
+/contact-form.htm  /  301
+/contact-info.htm  /  301
+/header.htm  /  301
+/footer.htm  /  301
 /miniload-shuttle.html /miniload  301
 
 /maintenance           https://pm.lojikon.com/maintenance  302

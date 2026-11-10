@@ -145,7 +145,7 @@ Site TR/EN dil desteğine sahiptir. Sistem tamamen tarayıcı-taraflıdır.
 ## Görseller ve Yayın
 
 - `img/*.jpeg` orijinal fotoğraflardır; sitede **optimize kopyalar** kullanılır:
-  - `img/web/` → hero slider + hakkımızda (max 1200px)
+  - `img/web/` → hero slider + hakkımızda: WebP, tam boy + `-640` küçük sürüm (`srcset`)
   - `img/projects/` → ana sayfa "Projeler" galerisi ve alt sayfa "Sahadan" galerileri (max 900px)
   - Yeni kopya: `sips -s format jpeg -s formatOptions 70 -Z 900 img/X.jpeg --out img/projects/x.jpg`
 - Galerideki `.project-link` bağlantıları script.js'teki lightbox ile açılır.

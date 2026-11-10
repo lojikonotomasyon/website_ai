@@ -9,7 +9,7 @@
     --wh:#fff;
     --gold:#d4a017;
     --gold-l:#e8c040;
-    --gold-d:#9a7105;
+    --gold-d:#8a6604;
     --radius:14px;
     --radius-sm:10px;
     --shadow-sm:0 1px 2px rgba(16,24,40,.05);
@@ -117,7 +117,7 @@ address{font-style:normal}
 .section-header p{font-size:1.1875rem;color:var(--muted);line-height:1.7}
 
 .trust-strip{padding:2.25rem 0;background:var(--ink-2);border-top:1px solid rgba(255,255,255,.05)}
-.trust-label{text-align:center;color:rgba(255,255,255,.45);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem}
+.trust-label{text-align:center;color:rgba(255,255,255,.6);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem}
 .trust-logos{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:1rem 4.5rem}
 .trust-logos li{color:rgba(255,255,255,.7);font-weight:800;font-size:1.6rem;letter-spacing:.08em}
 
