@@ -1,19 +1,15 @@
-// ===== MİNİLOAD VE SHUTTLE ANİMASYONU =====
-// 4×5 raf ızgarası, 2 eksenli vinç (crosshair), getBoundingClientRect ile
-// piksel hassasiyetli konumlama.
-
 class MiniloadAnimation {
     constructor() {
         this.ROWS = 4;
         this.COLS = 5;
-        this.MOVE_T = 1500; // ms, vinç seyahat süresi
+        this.MOVE_T = 1500;
 
         this.isRunning = false;
         this.opTimer   = null;
         this.opCount   = 0;
 
         this.TOTE_COLORS = ['#f59e0b', '#3b82f6', '#22c55e', '#ef4444', '#a78bfa'];
-        this.grid = [];  // [row][col] = renk string | null
+        this.grid = [];
 
         this._initGrid();
         this._buildDOM();
@@ -21,14 +17,12 @@ class MiniloadAnimation {
         this._setupVisibility();
         this._startInfoUpdates();
 
-        // DOM boyutları yerleştikten sonra vinç başlangıç pozisyonu
         requestAnimationFrame(() => requestAnimationFrame(() => {
             this._initCranePos();
             setTimeout(() => this.start(), 400);
         }));
     }
 
-    // ─── RAF IZGARA DURUMU ────────────────────────────────────────
     _initGrid() {
         this.grid = [];
         for (let r = 0; r < this.ROWS; r++) {
@@ -41,13 +35,11 @@ class MiniloadAnimation {
         }
     }
 
-    // ─── DOM OLUŞTURMA ────────────────────────────────────────────
     _buildDOM() {
         const grid = document.getElementById('rack-grid');
         if (!grid) return;
         grid.innerHTML = '';
 
-        // Üst fiziksel sıradan (ROWS-1) alt sıraya (0) doğru ekle
         for (let r = this.ROWS - 1; r >= 0; r--) {
             for (let c = 0; c < this.COLS; c++) {
                 const cell = document.createElement('div');
@@ -66,7 +58,6 @@ class MiniloadAnimation {
         }
     }
 
-    // ─── POZİSYON HESAPLAMA ───────────────────────────────────────
     _container() { return document.querySelector('.miniload-hero-animation'); }
 
     _cellPos(row, col) {
@@ -93,7 +84,6 @@ class MiniloadAnimation {
         };
     }
 
-    // ─── VİNÇ HAREKETİ ───────────────────────────────────────────
     _moveCrane(pos, instant = false) {
         const hBar = document.getElementById('crane-h-bar');
         const vBar = document.getElementById('crane-v-bar');
@@ -130,7 +120,6 @@ class MiniloadAnimation {
         if (pos) this._moveCrane(pos, true);
     }
 
-    // ─── RAF OPERASYONLARI ────────────────────────────────────────
     _getOccupied() {
         const cells = [];
         for (let r = 0; r < this.ROWS; r++)
@@ -191,7 +180,6 @@ class MiniloadAnimation {
         setTimeout(() => el.classList.remove('visible'), 2000);
     }
 
-    // ─── ANA DÖNGÜ ────────────────────────────────────────────────
     _runCycle() {
         if (!this.isRunning) return;
 
@@ -240,7 +228,6 @@ class MiniloadAnimation {
         }, this.MOVE_T + 100);
     }
 
-    // ─── KONTROL ──────────────────────────────────────────────────
     start() {
         if (this.isRunning) return;
         this.isRunning = true;
@@ -277,7 +264,6 @@ class MiniloadAnimation {
         });
     }
 
-    // ─── EKRAN GÜNCELLEMELERİ ────────────────────────────────────
     _setStatus(text) {
         const el = document.getElementById('crane-status');
         if (el) el.textContent = text;

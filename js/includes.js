@@ -1,13 +1,8 @@
-// ===== LOJIKON - Partial HTML Loader =====
-// Her sayfada ortak bileşenleri (header, footer, vb.) tek yerden yükler.
-// Partial dosyasını güncelle → tüm sayfalara otomatik yansır.
-
 (function () {
     const PARTIALS = {
         'partial-header':   'partials/header.html',
         'partial-footer':   'partials/footer.html',
         'partial-solutions':'partials/solutions-section.html',
-        'partial-services': 'partials/services-section.html',
         'partial-contact':  'partials/contact-section.html',
     };
 
@@ -19,7 +14,6 @@
         el.outerHTML = await res.text();
     }
 
-    // Tüm partial'ları paralel yükle, bitince 'includes:ready' event'i ateşle
     window._includesReady = Promise.all(
         Object.entries(PARTIALS).map(([id, url]) =>
             loadPartial(id, url).catch(e => console.warn(e))

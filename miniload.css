@@ -1,6 +1,3 @@
-/* ===== MINILOAD SAYFASI ÖZEL CSS ===== */
-
-/* ─── HERO ANİMASYON CONTAINER ──────────────────────────────── */
 .miniload-hero-animation {
     width: 100%;
     height: 500px;
@@ -10,10 +7,9 @@
     border-radius: 16px;
     box-shadow: 0 28px 65px rgba(0, 0, 0, 0.6),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    overflow: hidden; /* frame içindeyiz, vinç barlar container içinde kalır */
+    overflow: hidden;
 }
 
-/* Subtle grid */
 .miniload-hero-animation::before {
     content: '';
     position: absolute;
@@ -27,9 +23,8 @@
     z-index: 0;
 }
 
-/* System label */
 .miniload-hero-animation::after {
-    content: 'MİNİLOAD / SHUTTLE SİSTEMİ';
+    content: 'MİNİLOAD SİSTEMİ';
     position: absolute;
     top: 6px;
     left: 0; right: 0;
@@ -42,7 +37,6 @@
     z-index: 1;
 }
 
-/* ─── RAF ÇERÇEVE ────────────────────────────────────────────── */
 .rack-frame {
     position: absolute;
     top: 65px;
@@ -55,7 +49,6 @@
     z-index: 5;
 }
 
-/* ─── RAF IZGARA ─────────────────────────────────────────────── */
 .rack-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -69,7 +62,6 @@
     transition: background 0.3s ease;
 }
 
-/* Derinlik efekti — hücre arka duvarı */
 .rack-cell::before {
     content: '';
     position: absolute;
@@ -88,7 +80,6 @@
     box-shadow: inset 0 0 12px rgba(212, 160, 23, 0.25);
 }
 
-/* ─── RAF TOTE'LAR ───────────────────────────────────────────── */
 .rack-tote {
     position: absolute;
     inset: 7px;
@@ -99,10 +90,9 @@
     z-index: 2;
 }
 
-/* ─── VİNÇ: YATAY RAY ───────────────────────────────────────── */
 .crane-h-bar {
     position: absolute;
-    left: 12px; right: 12px; /* raf çerçevesi ile aynı genişlik */
+    left: 12px; right: 12px;
     height: 2px;
     background: linear-gradient(90deg,
         transparent 0%,
@@ -117,11 +107,10 @@
     pointer-events: none;
 }
 
-/* ─── VİNÇ: DİKEY RAY ───────────────────────────────────────── */
 .crane-v-bar {
     position: absolute;
-    top: 65px;   /* raf üstüyle hizalı */
-    bottom: 55px; /* çıkış istasyonu merkezine kadar uzanır */
+    top: 65px;
+    bottom: 55px;
     width: 2px;
     background: linear-gradient(180deg,
         transparent 0%,
@@ -136,7 +125,6 @@
     pointer-events: none;
 }
 
-/* ─── VİNÇ: BAŞ (kesişim noktası) ───────────────────────────── */
 .crane-head {
     position: absolute;
     width: 20px;
@@ -151,7 +139,6 @@
     pointer-events: none;
 }
 
-/* ─── ÇIKIŞ İSTASYONU ────────────────────────────────────────── */
 .output-station {
     position: absolute;
     bottom: 42px;
@@ -194,7 +181,6 @@
     color: #334155;
 }
 
-/* ─── BİLGİ PANELİ ──────────────────────────────────────────── */
 .ml-info-panel {
     position: absolute;
     top: 28px;
@@ -235,7 +221,6 @@
     margin: 4px 0;
 }
 
-/* ─── KONTROLLER ─────────────────────────────────────────────── */
 .ml-controls {
     position: absolute;
     top: 28px;
@@ -271,7 +256,6 @@
     border-color: rgba(212, 160, 23, 0.5);
 }
 
-/* ─── MOBİL ──────────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .miniload-hero-animation {
         height: 420px;
@@ -307,10 +291,14 @@
     .ml-btn    { width: 22px; height: 22px; font-size: 0.58rem; }
 }
 
+#solutions {
+    background: var(--wh);
+}
 
-/* ===== SAYFA ÖZEL BÖLÜMLER ===== */
+#contact {
+    background: var(--soft);
+}
 
-/* How It Works Section */
 .how-it-works {
     padding: 5rem 0;
     background: var(--light-bg);
@@ -382,7 +370,6 @@
     line-height: 1.6;
 }
 
-/* Why Use Section */
 .why-use {
     padding: 5rem 0;
 }
@@ -435,7 +422,6 @@
     line-height: 1.6;
 }
 
-/* Where Used Section */
 .where-used {
     padding: 5rem 0;
     background: var(--light-bg);
@@ -489,7 +475,6 @@
     line-height: 1.6;
 }
 
-/* Technical Specs Section */
 .specs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

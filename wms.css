@@ -1,8 +1,3 @@
-/* ===== WMS SAYFASI ===== */
-
-/* ===== SAYFA ÖZEL BÖLÜMLER ===== */
-
-/* How It Works Section */
 .how-it-works {
     padding: 5rem 0;
     background: var(--light-bg);
@@ -74,7 +69,6 @@
     line-height: 1.6;
 }
 
-/* Why Use Section */
 .why-use {
     padding: 5rem 0;
 }
@@ -127,7 +121,6 @@
     line-height: 1.6;
 }
 
-/* Where Used Section */
 .where-used {
     padding: 5rem 0;
     background: var(--light-bg);
@@ -181,7 +174,6 @@
     line-height: 1.6;
 }
 
-/* Technical Specs Section */
 .technical-specs {
     padding: 5rem 0;
 }
@@ -232,14 +224,12 @@
     font-weight: 600;
 }
 
-/* ===== WMS / WCS KATMANLARI ===== */
 #where-used .applications-grid{grid-template-columns:repeat(3,1fr)}
 @media (max-width:1024px){#where-used .applications-grid{grid-template-columns:repeat(2,1fr)}}
 .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 .layer-card p{color:var(--secondary);line-height:1.7}
 .layer-tag{display:inline-block;margin-bottom:.9rem;padding:4px 12px;border-radius:999px;background:var(--ink);color:var(--gold);font-weight:800;font-size:.85rem;letter-spacing:.1em}
 
-/* ===== WMS HERO GÖRSELİ ===== */
 .wms-hero-visual{width:100%;max-width:980px;margin:0 auto;height:460px;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 80px rgba(0,0,0,.45)}
 .wms-hero-visual img{width:100%;height:100%;object-fit:cover}
 

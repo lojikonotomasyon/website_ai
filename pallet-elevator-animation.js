@@ -1,5 +1,3 @@
-// ===== PALET VE KASA ASANSÖRÜ ANİMASYONU =====
-
 class PalletLiftAnimation {
     constructor() {
         this.currentFloor  = 1;
@@ -7,10 +5,8 @@ class PalletLiftAnimation {
         this.isAutoMode    = true;
         this.autoInterval  = null;
 
-        // Her kattaki platform "bottom" değerleri (px) — .lift-structure içinde
         this.floorPos = { 1: 8, 2: 118, 3: 228, 4: 338 };
 
-        // Platform yüksekliği = 85px → palet platformun üstüne oturur
         this.platformH = 85;
 
         this.init();
@@ -18,7 +14,7 @@ class PalletLiftAnimation {
 
     init() {
         this.setupControls();
-        this.snapToFloor(1);      // başlangıç konumu (transition yok)
+        this.snapToFloor(1);
         this.updateDisplay(1);
         this.updateFloorButtons(1);
 
@@ -27,7 +23,6 @@ class PalletLiftAnimation {
         }, 1500);
     }
 
-    /* Transition olmadan anında konumlandır (ilk yükleme için) */
     snapToFloor(floor) {
         const platform     = document.getElementById('lift-platform');
         const pallet       = document.getElementById('pallet');
@@ -41,7 +36,6 @@ class PalletLiftAnimation {
 
         this._applyPosition(floor);
 
-        // Sonraki frame'de transition'ı geri aç
         requestAnimationFrame(() => requestAnimationFrame(() => {
             platform.style.transition     = '';
             pallet.style.transition       = '';
@@ -60,8 +54,8 @@ class PalletLiftAnimation {
         const minPos = this.floorPos[1];
 
         platform.style.bottom      = pos + 'px';
-        pallet.style.bottom        = (pos + this.platformH - 4) + 'px';  // paleti platforma oturtur
-        counterweight.style.bottom = (maxPos + minPos - pos) + 'px';     // ters yönde hareket
+        pallet.style.bottom        = (pos + this.platformH - 4) + 'px';
+        counterweight.style.bottom = (maxPos + minPos - pos) + 'px';
     }
 
     goToFloor(floor) {
@@ -75,7 +69,6 @@ class PalletLiftAnimation {
         this.updateFloorButtons(floor);
         this._applyPosition(floor);
 
-        // CSS transition süresi: 2.0s + küçük buffer
         const duration = 2150;
 
         setTimeout(() => {
@@ -132,7 +125,6 @@ class PalletLiftAnimation {
             clearInterval(this.autoInterval);
             this.autoInterval = null;
         }
-        // Mevcut konuma geri sabitle
         this.isMoving = false;
         this.snapToFloor(this.currentFloor);
         this.updateStatus('DURDURULDU');
@@ -160,7 +152,6 @@ class PalletLiftAnimation {
         if (!this.isAutoMode) return;
         clearInterval(this.autoInterval);
 
-        // Sıralı kat sekansı: 1→3→2→4→1→…
         const sequence = [1, 3, 2, 4];
         let idx = sequence.indexOf(this.currentFloor);
         if (idx === -1) idx = 0;
@@ -215,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const anim = new PalletLiftAnimation();
     anim.startPerformanceUpdates();
 
-    // Auto mode başlangıçta aktif göster
     const autoBtn = document.getElementById('auto-mode');
     if (autoBtn) autoBtn.classList.add('active');
 });

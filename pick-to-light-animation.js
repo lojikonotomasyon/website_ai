@@ -1,5 +1,3 @@
-// ===== PICK-TO-LIGHT ANİMASYONU =====
-
 class PickToLightAnimation {
     constructor() {
         this.BAYS      = 4;

@@ -4,10 +4,13 @@ window.PAGE_SPECS = {
         {
             title: { tr: 'Shuttle Özellikleri', en: 'Shuttle Specifications' },
             items: [
-                { label: { tr: 'Maksimum Hız',    en: 'Maximum Speed' },    value: '5.0 m/s' },
-                { label: { tr: 'Yük Kapasitesi',  en: 'Load Capacity' },    value: '50 kg' },
-                { label: { tr: 'Pil Ömrü',        en: 'Battery Life' },     value: { tr: '10 saat',  en: '10 hours' } },
+                { label: { tr: 'Gövde Yüksekliği', en: 'Body Height' },      value: { tr: '17 cm (kasa ve palet)', en: '17 cm (tote and pallet)' } },
+                { label: { tr: 'Maksimum Hız',    en: 'Maximum Speed' },    value: { tr: '5 m/sn', en: '5 m/s' } },
+                { label: { tr: 'Yük Kapasitesi (Kasa)', en: 'Load Capacity (Tote)' }, value: '50 kg' },
+                { label: { tr: 'Yük Kapasitesi (Palet)', en: 'Load Capacity (Pallet)' }, value: { tr: 'maks. 1000 kg', en: 'max. 1000 kg' } },
+                { label: { tr: 'Akü Ömrü',        en: 'Battery Life' },     value: { tr: '13 saat kesintisiz',  en: '13 hours non-stop' } },
                 { label: { tr: 'Şarj Süresi',     en: 'Charge Time' },      value: { tr: '2 saat',  en: '2 hours' } },
+                { label: { tr: 'Otomatik Şarj',   en: 'Automatic Charging' }, value: { tr: 'Boş zamanlarda ve molalarda', en: 'During idle times and breaks' } },
             ]
         },
         {

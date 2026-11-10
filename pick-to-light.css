@@ -1,6 +1,3 @@
-/* ===== PICK-TO-LIGHT SAYFASI ÖZEL CSS ===== */
-
-/* ─── HERO ANİMASYON CONTAINER ──────────────── */
 .pick-to-light-hero-animation {
     width: 100%;
     height: 500px;
@@ -38,7 +35,6 @@
     z-index: 1;
 }
 
-/* ─── RAF / SHELF ────────────────────────────── */
 .ptl-shelf {
     position: absolute;
     top: 65px;
@@ -66,7 +62,6 @@
 .ptl-bay:last-child { border-right: none; }
 .ptl-bay.active { background: rgba(34,197,94,0.06); }
 
-/* LED */
 .ptl-led {
     width: 22px;
     height: 22px;
@@ -89,7 +84,6 @@
     to   { box-shadow: 0 0 18px rgba(34,197,94,1.0), 0 0 38px rgba(34,197,94,0.55); }
 }
 
-/* Qty display */
 .ptl-qty {
     font-size: 1.4rem;
     font-weight: 700;
@@ -99,7 +93,6 @@
     min-height: 1.6rem;
 }
 
-/* Bin area */
 .ptl-bin {
     flex: 1;
     width: calc(100% - 14px);
@@ -136,7 +129,6 @@
     z-index: 1;
 }
 
-/* ─── RAIL ───────────────────────────────────── */
 .ptl-rail {
     position: absolute;
     top: 236px;
@@ -148,7 +140,6 @@
     z-index: 5;
 }
 
-/* ─── CART ───────────────────────────────────── */
 .ptl-cart {
     position: absolute;
     top: 212px;
@@ -174,7 +165,6 @@
     padding: 0 3px;
 }
 
-/* ─── OUTPUT TRAY ────────────────────────────── */
 .ptl-tray {
     position: absolute;
     bottom: 42px;
@@ -207,7 +197,6 @@
     font-variant-numeric: tabular-nums;
 }
 
-/* ─── INFO PANEL ─────────────────────────────── */
 .ptl-info-panel {
     position: absolute;
     top: 28px;
@@ -248,7 +237,6 @@
     margin: 4px 0;
 }
 
-/* ─── CONTROLS ───────────────────────────────── */
 .ptl-controls {
     position: absolute;
     top: 28px;
@@ -284,7 +272,6 @@
     border-color: rgba(212,160,23,0.5);
 }
 
-/* ─── MOBİL ──────────────────────────────────── */
 @media (max-width: 768px) {
     .pick-to-light-hero-animation { height: 420px; min-height: 380px; }
     .ptl-shelf { top: 60px; height: 140px; }
@@ -293,10 +280,6 @@
     .ptl-btn { width: 22px; height: 22px; font-size: 0.58rem; }
 }
 
-
-/* ===== SAYFA ÖZEL BÖLÜMLER ===== */
-
-/* How It Works Section */
 .how-it-works {
     padding: 5rem 0;
     background: var(--light-bg);
@@ -368,7 +351,6 @@
     line-height: 1.6;
 }
 
-/* Why Use Section */
 .why-use {
     padding: 5rem 0;
 }
@@ -421,7 +403,6 @@
     line-height: 1.6;
 }
 
-/* Where Used Section */
 .where-used {
     padding: 5rem 0;
     background: var(--light-bg);
@@ -475,7 +456,6 @@
     line-height: 1.6;
 }
 
-/* Technical Specs Section */
 .technical-specs {
     padding: 5rem 0;
 }
@@ -526,7 +506,6 @@
     font-weight: 600;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .steps-grid,
     .benefits-grid,

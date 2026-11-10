@@ -1,20 +1,37 @@
-# Kaldırılan hizmet sayfaları → ana sayfa hizmetler bölümü
-/scada                 /#services  301
-/scada.html            /#services  301
-/production-tracking   /#services  301
-/production-tracking.html /#services 301
-/data-collection       /#services  301
-/data-collection.html  /#services  301
-/custom-software       /#services  301
-/custom-software.html  /#services  301
-/plc-programming       /#services  301
-/plc-programming.html  /#services  301
-/system-integration    /#services  301
-/system-integration.html /#services 301
+/CLAUDE.md  /  301
+/README.md  /  301
+/seo-optimization.md  /  301
+/emailjs-setup.md  /  301
+/build.py  /  301
+/build.js  /  301
+/add_cards_i18n.py  /  301
+/add_hero_i18n.py  /  301
+/add_hero_slogan_partial.py  /  301
+/add_section_i18n.py  /  301
+/add_specli_i18n.py  /  301
+/add_subtitle_i18n.py  /  301
+/update_html_specs.py  /  301
+/_config.yml  /  301
+/.gitignore  /  301
+/partials/*  /  301
+/.lojikon/*  /  301
 
-# Bakım müşterisi portalı (Lojikon Takip Sistemi, ProjectManager): tüm
-# firmalar tek linkten firma adı + şifreyle girer. Eski /<firma>/maintenance
-# linkleri de aynı sayfaya gider (firma adı linkte görünmez).
+/scada                 /#solutions  301
+/scada.html            /#solutions  301
+/production-tracking   /#solutions  301
+/production-tracking.html /#solutions 301
+/data-collection       /#solutions  301
+/data-collection.html  /#solutions  301
+/custom-software       /#solutions  301
+/custom-software.html  /#solutions  301
+/plc-programming       /#solutions  301
+/plc-programming.html  /#solutions  301
+/system-integration    /#solutions  301
+/system-integration.html /#solutions 301
+
+/miniload-shuttle      /miniload  301
+/miniload-shuttle.html /miniload  301
+
 /maintenance           https://pm.lojikon.com/maintenance  302
 /maintenance/          https://pm.lojikon.com/maintenance  302
 /:firma/maintenance    https://pm.lojikon.com/maintenance  302

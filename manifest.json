@@ -1,7 +1,7 @@
 {
     "name": "Lojikon - Akıllı Depo ve İntralojistik",
     "short_name": "Lojikon",
-    "description": "İntralojistik ve depo otomasyonu çözümleri. Sorter, palet ve kasa asansörü, miniload ve shuttle, pick-to-light ve WMS / WCS yazılımı.",
+    "description": "İntralojistik ve depo otomasyonu çözümleri. Sorter, palet ve kasa asansörü, miniload, four-way shuttle, pick-to-light ve WMS / WCS yazılımı.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#0f1217",

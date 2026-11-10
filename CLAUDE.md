@@ -1,5 +1,13 @@
 # Lojikon Website — Claude için Proje Notları
 
+## Zorunlu Kurallar
+
+- Bu bir web sitesi olduğu için kod sayfalarının hiçbirine açıklama (yorum satırı) eklenmeyecek.
+- `CLAUDE.md` ve geliştirme dosyaları Cloudflare'de yayınlanmaz (`_redirects` ana sayfaya yönlendirir).
+- Commit ve push yalnızca kullanıcı "yayına al" dediğinde yapılır.
+
+---
+
 ## Proje Türü
 Tamamen statik HTML/CSS/JS sitesi. Build adımı gerektirir (sunucu yok, framework yok).
 
@@ -33,8 +41,7 @@ website_ai/
 ├── partials/                    ← TEK KAYNAK — buradan değiştir
 │   ├── header.html              ← Menü, logo, sosyal linkler
 │   ├── footer.html              ← Alt bilgi, linkler, copyright
-│   ├── solutions-section.html   ← Çözümler kartları (4 ürün)
-│   ├── services-section.html    ← Hizmetler kartları (sadece WMS/WCS)
+│   ├── solutions-section.html   ← Çözümler kartları (6 ürün)
 │   └── contact-section.html     ← İletişim formu + bilgileri
 │
 ├── build.py                     ← Partial'ları tüm sayfalara enjekte eder
@@ -46,9 +53,10 @@ website_ai/
 ├── index.html                   ← Ana sayfa
 ├── sorter.html                  ← Çözüm sayfası
 ├── pallet-elevator.html         ← Çözüm sayfası
-├── miniload-shuttle.html        ← Çözüm sayfası
+├── shuttle.html                 ← Çözüm sayfası (Three.js 3D simülasyon)
+├── miniload.html                ← Çözüm sayfası
 ├── pick-to-light.html           ← Çözüm sayfası
-└── wms-wcs.html                 ← Hizmet sayfası (WMS / WCS)
+└── wms-wcs.html                 ← Çözüm sayfası (WMS / WCS)
 ```
 
 ---
@@ -69,10 +77,6 @@ Her sayfa şu yapıya sahiptir:
     <section id="solutions">...</section>
     <!-- PARTIAL:solutions-section:END -->
 
-    <!-- PARTIAL:services-section:START -->
-    <section id="services">...</section>
-    <!-- PARTIAL:services-section:END -->
-
     <!-- PARTIAL:contact-section:START -->
     <section id="contact">...</section>
     <!-- PARTIAL:contact-section:END -->
@@ -88,12 +92,11 @@ Her sayfa şu yapıya sahiptir:
 
 ---
 
-## Çözümler vs Hizmetler
+## Çözümler
 
 | Kategori | Sayfalar |
 |---|---|
-| **Çözümler** | sorter.html, pallet-elevator.html, miniload-shuttle.html, pick-to-light.html |
-| **Hizmetler** | wms-wcs.html (öne çıkan kart) |
+| **Çözümler** | sorter.html, pallet-elevator.html, shuttle.html, miniload.html, pick-to-light.html, wms-wcs.html |
 
 **Odak:** Site yalnızca intralojistik / akıllı depo odaklıdır. Genel endüstriyel otomasyon hizmet sayfaları (SCADA, Üretim Takibi, Veri Toplama, Özel Yazılım, PLC Programlama, Sistem Entegrasyonu) kaldırıldı; eski URL'leri `_redirects` ana sayfaya yönlendirir. Başlık ve metinlerde "endüstriyel otomasyon" ifadesi kullanma.
 
@@ -131,7 +134,6 @@ Site TR/EN dil desteğine sahiptir. Sistem tamamen tarayıcı-taraflıdır.
 - ✅ Header (nav menüsü, dil butonu)
 - ✅ Footer (başlıklar, linkler, copyright)
 - ✅ Çözümler bölümü (4 kart)
-- ✅ Hizmetler bölümü
 - ✅ İletişim formu (etiketler, placeholder'lar)
 - ✅ Hero bölümü (başlık, açıklama, butonlar, istatistikler) — tüm sayfalar
 
@@ -146,7 +148,7 @@ Site TR/EN dil desteğine sahiptir. Sistem tamamen tarayıcı-taraflıdır.
 - Galerideki `.project-link` bağlantıları script.js'teki lightbox ile açılır.
 - `_config.yml` GitHub Pages'in `partials/`, `.md` ve `.py` dosyalarını yayınlamasını engeller.
 - Favicon/logo: `favicon.svg` kaynak; PNG'ler (`img/logo.png`, `android-chrome-*`, `apple-touch-icon.png`) ondan üretildi.
-- SSS metni değişirse o sayfadaki `FAQPage` JSON-LD'yi de güncelle (`index.html` ve 4 çözüm sayfası). Metin `js/i18n.js`'teki TR çeviriyle birebir aynı olmalı.
+- SSS metni değişirse o sayfadaki `FAQPage` JSON-LD'yi de güncelle (`index.html` ve 5 çözüm sayfası). Metin `js/i18n.js`'teki TR çeviriyle birebir aynı olmalı.
 - Çözüm sayfalarındaki tip kartları (`.types-grid`, `.type-fit`), `.specs-title` ve açık zemin yardımcısı (`.section-soft`) ortak `style.css`'te tanımlıdır. Bölüm zeminleri açık/beyaz sırayla değişmeli.
 
 ---
@@ -163,5 +165,5 @@ Site TR/EN dil desteğine sahiptir. Sistem tamamen tarayıcı-taraflıdır.
 1. Mevcut bir sayfayı kopyala
 2. PARTIAL marker'larını koru (içerik build.py tarafından doldurulur)
 3. `sitemap.xml`'e ekle
-4. `partials/solutions-section.html` veya `partials/services-section.html`'e kart ekle
+4. `partials/solutions-section.html`'e kart ekle
 5. `python3 build.py`

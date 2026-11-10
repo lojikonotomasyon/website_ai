@@ -19,7 +19,6 @@ PARTIAL_MAP = {
     'header':            'partials/header.html',
     'footer':            'partials/footer.html',
     'solutions-section': 'partials/solutions-section.html',
-    'services-section':  'partials/services-section.html',
     'contact-section':   'partials/contact-section.html',
     'hero-slogan':       'partials/hero-slogan.html',
 }

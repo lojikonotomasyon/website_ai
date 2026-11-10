@@ -1,18 +1,13 @@
-// ===== ANA JAVASCRIPT - LOJIKON WEBSITE =====
-
-// EmailJS Configuration
 const EMAILJS_PUBLIC_KEY  = 'pMn_T_QHghVJklt3q';
 const EMAILJS_SERVICE_ID  = 'service_93y8btr';
 const EMAILJS_TEMPLATE_ID = 'template_j48q9zh';
 const CONTACT_EMAIL = 'info@lojikon.com';
 const CONTACT_PHONE = '+90 212 657 18 03';
 
-// EmailJS yüklenemezse sitenin geri kalanı çalışmaya devam etsin
 if (window.emailjs) {
     emailjs.init(EMAILJS_PUBLIC_KEY);
 }
 
-// Mobile menu initialization
 function initializeMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
@@ -25,7 +20,6 @@ function initializeMobileMenu() {
             hamburger.setAttribute('aria-expanded', String(open));
         });
         
-        // Close menu when clicking on links
         const menuLinks = document.querySelectorAll('.nav-menu a');
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -34,7 +28,6 @@ function initializeMobileMenu() {
             });
         });
         
-        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                 hamburger.classList.remove('active');
@@ -44,7 +37,6 @@ function initializeMobileMenu() {
     }
 }
 
-// Smooth scrolling for anchor links
 function initializeSmoothScrolling() {
     const links = document.querySelectorAll('a[href^="#"]');
     links.forEach(link => {
@@ -64,7 +56,6 @@ function initializeSmoothScrolling() {
     });
 }
 
-// Hero Slider for main page
 class HeroSlider {
     constructor() {
         this.currentSlide = 0;
@@ -85,19 +76,16 @@ class HeroSlider {
     }
     
     bindEvents() {
-        // Previous/Next buttons
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
         
         if (prevBtn) prevBtn.addEventListener('click', () => this.prevSlide());
         if (nextBtn) nextBtn.addEventListener('click', () => this.nextSlide());
         
-        // Dots
         this.dots.forEach((dot, index) => {
             dot.addEventListener('click', () => this.goToSlide(index));
         });
         
-        // Pause on hover
         const slider = document.querySelector('.hero-slider');
         if (slider) {
             slider.addEventListener('mouseenter', () => this.pauseAutoPlay());
@@ -121,11 +109,9 @@ class HeroSlider {
     }
     
     updateSlide() {
-        // Hide all slides
         this.slides.forEach(slide => slide.classList.remove('active'));
         this.dots.forEach(dot => dot.classList.remove('active'));
         
-        // Show current slide
         if (this.slides[this.currentSlide]) {
             this.slides[this.currentSlide].classList.add('active');
         }
@@ -151,7 +137,6 @@ class HeroSlider {
     }
 }
 
-// Slogan animation
 function initializeSloganAnimation() {
     const var1Element = document.getElementById('var1');
     const var2Element = document.getElementById('var2');
@@ -216,7 +201,6 @@ function initializeSloganAnimation() {
     setInterval(changeWords, 3000);
 }
 
-// Contact form initialization with EmailJS
 const FORM_MESSAGES = {
     tr: {
         required: 'Lütfen adınızı, email adresinizi ve mesajınızı yazın.',
@@ -270,8 +254,6 @@ function initializeContactForm() {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> ' + formMsg('sending');
         submitBtn.disabled = true;
 
-        // Gönderen bilgileri mesaj gövdesinde de yer alır: EmailJS şablonu hangi
-        // değişkenleri kullanırsa kullansın, dönüş için gereken bilgi maile ulaşır.
         const senderDetails =
             'Ad: ' + name + '\nEmail: ' + email + '\nTelefon: ' + (phone || '-') +
             '\nFirma: ' + (company || '-') + '\nKonu: ' + topic;
@@ -283,7 +265,6 @@ function initializeContactForm() {
             company: company || 'Belirtilmemiş',
             message: senderDetails + '\n\nMesaj:\n' + message,
             to_name: 'Lojikon Ekibi',
-            // EmailJS varsayılan şablonunun kullandığı değişken adları
             name: name,
             email: email,
             phone: phone || 'Belirtilmemiş',
@@ -291,7 +272,6 @@ function initializeContactForm() {
             reply_to: email
         };
 
-        // Gönderim başarısız olursa ziyaretçi mesajını kaybetmesin: hazır doldurulmuş email bağlantısı
         const mailtoHref = 'mailto:' + CONTACT_EMAIL +
             '?subject=' + encodeURIComponent('Web sitesi iletişim formu - ' + topic) +
             '&body=' + encodeURIComponent(senderDetails + '\n\n' + message);
@@ -321,7 +301,6 @@ function initializeContactForm() {
     });
 }
 
-// Notification system
 function showNotification(message, type = 'info', action = null, duration = 5000) {
     document.querySelectorAll('.notification').forEach(n => n.remove());
 
@@ -363,7 +342,6 @@ function showNotification(message, type = 'info', action = null, duration = 5000
     setTimeout(() => { if (notification.parentNode) hide(); }, duration);
 }
 
-// Scroll to top functionality
 function initializeScrollToTop() {
     const scrollToTopBtn = document.createElement('button');
     scrollToTopBtn.type = 'button';
@@ -378,7 +356,6 @@ function initializeScrollToTop() {
     return scrollToTopBtn;
 }
 
-// Header shadow + scroll-to-top visibility
 function initializeScrollState(scrollToTopBtn) {
     const header = document.querySelector('.header');
     const onScroll = () => {
@@ -390,13 +367,12 @@ function initializeScrollState(scrollToTopBtn) {
     onScroll();
 }
 
-// Fade-in sections as they enter the viewport
 function initializeReveal() {
     if (!('IntersectionObserver' in window)) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const targets = document.querySelectorAll(
-        '.section-header, .solution-card, .service-card, .process-step, .project-item, ' +
+        '.section-header, .solution-card, .process-step, .project-item, ' +
         '.industries-grid li, .faq-item, .about-content, .contact-content, ' +
         '.step-card, .benefit-card, .application-card, .spec-card'
     );
@@ -415,7 +391,6 @@ function initializeReveal() {
     });
 }
 
-// Project photo lightbox
 function initializeLightbox() {
     const links = document.querySelectorAll('.project-link');
     if (!links.length) return;
@@ -449,21 +424,18 @@ function initializeLightbox() {
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 }
 
-// Page visibility handling
 function setupPageVisibilityHandling() {
     let isPageVisible = true;
     
     function handleVisibilityChange() {
         if (document.hidden) {
             isPageVisible = false;
-            // Pause animations when page is hidden
             const animations = document.querySelectorAll('[style*="animation"]');
             animations.forEach(element => {
                 element.style.animationPlayState = 'paused';
             });
         } else {
             isPageVisible = true;
-            // Resume animations when page is visible
             const animations = document.querySelectorAll('[style*="animation"]');
             animations.forEach(element => {
                 element.style.animationPlayState = 'running';
@@ -474,7 +446,6 @@ function setupPageVisibilityHandling() {
     document.addEventListener('visibilitychange', handleVisibilityChange);
 }
 
-// Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeMobileMenu();
     initializeSmoothScrolling();

@@ -1,5 +1,3 @@
-// Renders technical spec cards from window.PAGE_SPECS config.
-// Called by i18n.js on every language change and on DOMContentLoaded.
 window.renderSpecsForLang = function (lang) {
     if (!window.PAGE_SPECS) return;
     const container = document.getElementById('specs-container');

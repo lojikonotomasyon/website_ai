@@ -1,5 +1,3 @@
-# Cloudflare Pages başlıkları
-# Geliştirme dosyaları yayında erişilebilir kalır ama arama motorlarına kapalıdır.
 /partials/*
   X-Robots-Tag: noindex
 /*.md
@@ -9,11 +7,9 @@
 /build.js
   X-Robots-Tag: noindex
 
-# pages.dev kopyası arama motorlarına kapalıdır; asıl adres lojikon.com
 https://:project.pages.dev/*
   X-Robots-Tag: noindex
 
-# Ortak güvenlik başlıkları
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
