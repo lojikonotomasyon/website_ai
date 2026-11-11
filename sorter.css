@@ -30,7 +30,7 @@
     position: absolute;
     top: 14px;
     left: 14px;
-    width: 330px;
+    width: 230px;
     padding: 12px;
     color: #e8ebf0;
     background: rgba(18, 21, 27, 0.9);
@@ -41,7 +41,7 @@
 
 .sr3d-stats {
     display: grid;
-    grid-template-columns: 1.25fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 6px;
     margin-bottom: 8px;
 }
@@ -77,27 +77,17 @@
     font-size: 12.5px;
 }
 
-.sr3d-row label {
+.sr3d-note {
     flex: 1;
-    color: #c3cad6;
+    color: #a3adbd;
 }
 
-.sr3d-row select,
 .sr3d-row button {
     min-height: 34px;
     padding: 5px 9px;
     font: inherit;
     font-size: 12.5px;
     border-radius: 8px;
-}
-
-.sr3d-row select {
-    color: #e8ebf0;
-    background: #262c37;
-    border: 1px solid #363e4c;
-}
-
-.sr3d-row button {
     font-weight: 600;
     color: #14171d;
     cursor: pointer;

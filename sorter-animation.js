@@ -295,22 +295,8 @@
         return new THREE.Vector3(f.cx + f.ox * r, FEEDH + 0.026, f.oz * r);
     }
 
-    let NF = 4;
-    function showCapacity() {
-        document.getElementById("sr3d-cap").textContent = (2 * NF * 3600).toLocaleString(
-            I18N.currentLang === "en" ? "en-US" : "tr-TR",
-        );
-    }
-    const langToggle = document.getElementById("lang-toggle");
-    if (langToggle) langToggle.addEventListener("click", () => setTimeout(showCapacity, 0));
-    function setNF(n) {
-        NF = n;
-        buildFeeds(n);
-        makePulses(2 * n);
-        showCapacity();
-    }
-    document.getElementById("sr3d-nf").onchange = (e) => setNF(parseInt(e.target.value));
-    setNF(4);
+    buildFeeds(4);
+    makePulses(8);
 
     let th = 0.65,
         ph = 1.05,
@@ -369,7 +355,7 @@
         const dt = paused ? 0 : Math.max(0, Math.min(0.05, (t - last) / 1000));
         last = t;
         T += dt;
-        const k = NF / 2;
+        const k = 2;
         feeds.forEach((f) => {
             f.t += dt;
             if (f.t >= 1) {
