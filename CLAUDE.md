@@ -59,7 +59,12 @@ website_ai/
 ├── miniload.html                ← Çözüm sayfası
 ├── pick-to-light.html           ← Çözüm sayfası
 ├── wms-wcs.html                 ← Çözüm sayfası (WMS / WCS)
-└── conveyor.html                ← Çözüm sayfası (Konveyör)
+├── conveyor.html                ← Çözüm sayfası (Konveyör)
+├── cross-belt-sorter.html, shoe-sorter.html, narrow-belt-sorter.html, tilt-tray-sorter.html  ← Sorter tipi alt sayfaları (guide.css; değerler config/sorter.js ile aynı olmalı)
+├── rehber.html                  ← Rehber ana sayfası (tüm rehber kartları)
+├── referanslar.html             ← Referans firmalar (liste ana sayfadaki trust-strip ile aynı tutulmalı)
+├── *-nedir.html ve diğer rehber yazıları  ← Rehber yazıları (guide.css); güncel liste rehber.html kartlarında ve sitemap.xml'de
+└── llms.txt                     ← Yapay zeka sistemleri için şirket özeti
 ```
 
 ---
@@ -156,6 +161,14 @@ Site TR/EN dil desteğine sahiptir. Sistem tamamen tarayıcı-taraflıdır.
 - Çözüm sayfalarındaki tip kartları (`.types-grid`, `.type-fit`), `.specs-title` ve açık zemin yardımcısı (`.section-soft`) ortak `style.css`'te tanımlıdır. Bölüm zeminleri açık/beyaz sırayla değişmeli.
 
 ---
+
+## Rehber Sayfaları
+
+- Rehber yazıları yalnızca Türkçedir; gövde metninde `data-i18n` yoktur. Ortak arayüz metinleri `guide.*` anahtarlarındadır, EN modunda `guide.langNote` uyarısı görünür.
+- Her rehberde `Article`, `BreadcrumbList` ve `FAQPage` şeması vardır; SSS metni sayfadaki `<summary>`/`<p>` ile birebir aynı olmalı.
+- Lojikon'a ait rakamlar yalnızca çözüm sayfalarındaki onaylı değerlerden alınır (sorter 30.000 parça/saat; "15 m'de 240 şut" yazılmaz).
+- Yeni rehber eklenince: `rehber.html` kartı + `ItemList`, ilgili rehber kartları, `sitemap.xml`, `llms.txt`.
+- Yapay zeka botları Cloudflare AI Crawl Control'den açıktır; `robots.txt` bunları engellememeli.
 
 ## Sık Kullanılan İşlemler
 

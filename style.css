@@ -120,6 +120,18 @@ address{font-style:normal}
 .trust-label{text-align:center;color:rgba(255,255,255,.6);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.1rem}
 .trust-logos{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:1rem 4.5rem}
 .trust-logos li{color:rgba(255,255,255,.7);font-weight:800;font-size:1.6rem;letter-spacing:.08em}
+.ref-logos{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;max-width:1000px;margin:0 auto}
+.ref-logo{display:grid;place-items:center;height:76px;padding:12px 18px;border-radius:12px;background:#fff}
+.ref-logo img{display:block;width:auto;height:44px;max-width:100%;object-fit:contain}
+.brand-logos .ref-logo img{height:28px}
+.ref-logo.is-text{color:var(--ink);font-weight:800;font-size:1rem;text-align:center;line-height:1.25}
+.ref-logos.brand-logos{grid-template-columns:repeat(6,1fr)}
+@media (max-width:1024px){.ref-logos{grid-template-columns:repeat(3,1fr)}.ref-logos.brand-logos{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.ref-logos{grid-template-columns:repeat(2,1fr)}.ref-logos.brand-logos{grid-template-columns:repeat(2,1fr)}.ref-logo{height:64px}.ref-logo img{height:36px}.brand-logos .ref-logo img{height:22px}}
+.ref-more{margin-top:1rem;text-align:center;font-size:.9rem}
+.ref-more a{color:var(--gold);font-weight:600;text-decoration:none}
+.ref-more a:hover{color:var(--gold-l)}
+.trust-label-sub{margin-top:2rem}
 
 .about{padding:6.5rem 0;background:var(--wh)}
 .about-content{display:grid;grid-template-columns:1fr 1.1fr;gap:4.5rem;align-items:center}
@@ -286,7 +298,7 @@ body :is(.step-card,.benefit-card,.application-card,.spec-card) h3{font-size:1.2
 body section.section-soft{background:var(--soft)}
 .applications-grid.types-grid{grid-template-columns:repeat(2,1fr);margin-bottom:4rem}
 .applications-grid.types-grid:last-child{margin-bottom:0}
-.types-grid .application-card{text-align:left}
+.types-grid .application-card{text-align:left;position:relative}
 .types-grid .application-icon{margin:0 0 1.25rem}
 .type-fit{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.9375rem}
 .type-fit strong{color:var(--gold-d)}
@@ -303,6 +315,12 @@ body section.section-soft{background:var(--soft)}
 .compare-table td{color:var(--muted)}
 .compare-table td.is-ours{font-weight:600;color:var(--text);background:rgba(212,160,23,.09)}
 .compare-note{max-width:760px;margin:1.5rem auto 0;text-align:center;color:var(--muted);font-size:.9375rem}
+.type-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;color:var(--gold-d);font-weight:600;text-decoration:none}
+.type-link:hover{text-decoration:underline;text-underline-offset:3px}
+.type-link::after{content:"";position:absolute;inset:0;border-radius:var(--radius)}
+.types-grid .application-card:has(.type-link){cursor:pointer}
+.guide-links{margin-top:2rem;text-align:center;color:var(--muted)}
+.guide-links a{color:var(--gold-d);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .compare-note a{font-weight:600;color:var(--gold-d);text-decoration:underline}
 @media (max-width:768px){.compare-block{margin-top:3rem}.compare-table,.compare-table thead,.compare-table tbody{display:block}.compare-table tr{display:grid;grid-template-columns:1fr 1fr}.compare-table thead th:first-child{display:none}.compare-table tbody th{grid-column:1/-1;width:auto;padding:.65rem .85rem;border-bottom:0}.compare-table thead th,.compare-table td{padding:.7rem .85rem;font-size:.92rem}.compare-table tbody tr:last-child th{border-bottom:0}.compare-table tbody tr:last-child td{border-bottom:0}}
 .specs-title{text-align:center;font-size:1.5rem;font-weight:800;margin-bottom:2rem;color:var(--text)}
@@ -310,6 +328,7 @@ body section.section-soft{background:var(--soft)}
 
 @media (max-width:1180px){
     .header-social-links{display:none}
+    .nav-menu a{padding:10px 10px;font-size:1rem}
     .solutions-grid{grid-template-columns:repeat(2,1fr)}
     .process-grid{grid-template-columns:repeat(2,1fr)}
     .footer-content{grid-template-columns:1fr 1fr}

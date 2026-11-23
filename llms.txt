@@ -1,0 +1,72 @@
+# Lojikon (Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.)
+
+> Lojikon is a Turkish intralogistics and smart warehouse company that designs, manufactures and commissions turnkey warehouse automation: sorter systems, conveyor systems, four-way shuttle systems, miniload AS/RS, pallet and case elevators and pick-to-light / put-to-light systems, all controlled by its own in-house WMS / WCS software. Mechanical design, manufacturing, electrical panels, PLC programming and software are done in-house, in Türkiye.
+
+## Company facts
+
+- Legal name: Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti. Brand: Lojikon.
+- Founded in 2014. 100+ completed projects. 10+ years of experience in intralogistics.
+- Location: Fevzipaşa Mah. Gölet Cad. No:23/D, Değirmenköy, Silivri / İstanbul, Türkiye.
+- Engineering, manufacturing and software in Türkiye: mechanics, electrical panels, PLC and WMS / WCS from one source.
+- Service: commissioning, operator and maintenance training, periodic maintenance, remote access and 24/7 technical support.
+
+## Solutions
+
+- [Sorter systems](https://lojikon.com/sorter): in-house developed sorter with up to 30,000 items per hour and a very high number of chutes in a compact footprint; cross belt (9,000–16,000 items/hour), shoe (12,000–16,000), narrow belt (5,000) and tilt tray (3,500) sorters. Accuracy 99.9%+.
+  - [Cross Belt Sorter](https://lojikon.com/cross-belt-sorter): 9,000–16,000 items/hour, 99.9%+ accuracy, 1.5 m/s; polybagged apparel, boxes, envelopes, books, cosmetics.
+  - [Shoe Sorter](https://lojikon.com/shoe-sorter): 12,000–16,000 items/hour, 99.5%+ accuracy, 4 m/s; cartons, totes, boxes of different sizes.
+  - [Narrow Belt Sorter](https://lojikon.com/narrow-belt-sorter): 5,000 items/hour, 99.7%+ accuracy, 2.5 m/s; cartons, boxes, flat-bottomed totes.
+  - [Tilt Tray Sorter](https://lojikon.com/tilt-tray-sorter): 3,500 items/hour, 99.8%+ accuracy, 3.0 m/s; books, small parcels, polybagged and irregularly shaped items.
+- [Conveyor systems](https://lojikon.com/conveyor): belt, roller and chain conveyors, transfer and merge units; project-specific layouts integrated with sorters, shuttles, lifts and WMS / WCS.
+- [Four-way shuttle](https://lojikon.com/shuttle): 17 cm body height, 5 m/s speed, 13 hours of continuous operation on one charge; for totes and pallets; capacity grows by adding vehicles.
+- [Miniload AS/RS](https://lojikon.com/miniload): 1,600+ totes per hour per aisle, 16,000 totes per hour with 10 aisles, 99.8% accuracy.
+- [Pallet and case elevators](https://lojikon.com/pallet-elevator): loads up to 1,500 kg, speeds up to 1.5 m/s, 4–20 floors, synchronized with conveyors and WCS.
+- [Pick-to-light and put-to-light](https://lojikon.com/pick-to-light): 800+ picks per hour, 99.9% accuracy, real-time stock updates in WMS.
+- [WMS / WCS software](https://lojikon.com/wms-wcs): in-house warehouse management (receiving, putaway, picking, shipping, counting) and warehouse control software that drives sorters, shuttles, miniloads, elevators, conveyors and pick-to-light directly over PLC (Siemens, Beckhoff); integrates with ERP systems.
+
+## References
+
+Some of the companies Lojikon works with: LC Waikiki, bkmkitap, Kitapyurdu, Civil Mağazacılık, Laszırh, Ligas Tekstil, Valfsan, Mercan Ambalaj, SPS Etiket, Şendağ Plastik. Full list: https://lojikon.com/referanslar
+
+Brands used in Lojikon projects include Siemens, Beckhoff, SMC, Cognex, Keyence and Teledyne DALSA.
+
+## Guides (Turkish)
+
+- [Depo Otomasyonu Nedir? Akıllı Depo Sistemleri ve Otomasyon Seviyeleri](https://lojikon.com/depo-otomasyonu-nedir): Akıllı depo sistemlerinin bileşenleri, otomasyon seviyeleri ve yatırıma nereden başlanacağı.
+- [Depo Otomasyonu Projesi Nasıl İlerler? Keşiften Devreye Almaya Aşamalar](https://lojikon.com/otomasyon-projesi-asamalari): Keşif, tasarım, imalat, kurulum, devreye alma ve bakım aşamalarında neler yapılır?
+- [Depo Yerleşimi (Layout) Nasıl Planlanır?](https://lojikon.com/depo-yerlesimi-planlama): Akış tipleri, ABC analizi, bölge planlaması ve otomasyon için yerleşim kararları.
+- [WMS ve WCS Farkı Nedir? Depo Yönetim ve Depo Kontrol Yazılımı](https://lojikon.com/wms-wcs-farki): Depo yönetim sistemi, depo kontrol sistemi ve PLC'nin görevleri ve birlikte nasıl çalıştıkları.
+- [Depoda Barkod ve Kamera ile Ürün Tanıma](https://lojikon.com/barkod-kamera-ile-urun-tanima): Lazer ve kamera tabanlı okuyucular, okuma tünelleri ve okuma oranını etkileyen etkenler.
+- [Sorter Nedir? Nasıl Çalışır ve Hangi Depoda Gerekir?](https://lojikon.com/sorter-nedir): Sorterın nasıl çalıştığı, hangi parçalardan oluştuğu, kapasitesini neyin belirlediği ve ne zaman gerektiği.
+- [Sorter Tipleri Karşılaştırması: Cross Belt, Tilt Tray, Narrow Belt ve Shoe Sorter](https://lojikon.com/sorter-tipleri): Cross belt, tilt tray, narrow belt ve shoe sorterın çalışma prensibi, uygun ürünler ve kapasiteleri.
+- [Kargo Ayrıştırma Merkezi Otomasyonu: Paket Akışı ve Sorter Hattı](https://lojikon.com/kargo-ayristirma-merkezi-otomasyonu): Boşaltmadan yüklemeye paket akışı, sorter hattı ve tasarımda dikkat edilecekler.
+- [Konveyör Nedir? Konveyör Çeşitleri ve Doğru Konveyör Seçimi](https://lojikon.com/konveyor-nedir): Bant, rulolu, zincirli ve modüler bantlı konveyörler; hangi ürün için hangisinin seçildiği.
+- [Konveyör Hatlarında İş Güvenliği: Riskler ve Önlemler](https://lojikon.com/konveyor-is-guvenligi): Konveyör ve sorter hatlarında başlıca riskler, güvenlik önlemleri ve bakım güvenliği.
+- [Konveyör ve Sorter Bakımı: Periyodik Bakım Rehberi](https://lojikon.com/konveyor-sorter-bakimi): Günlük ve periyodik kontroller, kestirimci bakım, yedek parça yönetimi ve uzaktan destek.
+- [Miniload (AS/RS) Nedir? Otomatik Kutu ve Kasa Depolama Sistemi](https://lojikon.com/miniload-nedir): Otomatik kutu ve kasa depolamanın çalışma prensibi, kapasitesi ve shuttle sisteminden farkı.
+- [Four-Way Shuttle Nedir? Dört Yönlü Mekik Depolama Sistemi](https://lojikon.com/four-way-shuttle-nedir): Dört yönlü mekik sisteminin çalışma prensibi, iki yönlü shuttle ve miniload'dan farkları.
+- [Otomatik Palet Deposu Nedir? Birim Yük AS/RS ve Palet Shuttle](https://lojikon.com/otomatik-palet-deposu): Vinçli birim yük AS/RS ve palet shuttle sistemleri; farkları ve uygun oldukları depolar.
+- [Ürün Personele (Goods-to-Person) Toplama Nedir?](https://lojikon.com/goods-to-person-nedir): Ürünün personele getirildiği toplama yöntemi; miniload, shuttle ve toplama istasyonları.
+- [Pick-to-Light Nedir? Işıklı Sipariş Toplama ve Put-to-Light](https://lojikon.com/pick-to-light-nedir): Işıklı sipariş toplama ve put-to-light sistemlerinin çalışması, avantajları ve uygun olduğu depolar.
+- [Put Wall Nedir? Işıklı Sipariş Ayrıştırma Duvarı](https://lojikon.com/put-wall-nedir): Toplu toplanan ürünlerin ışıklı gözlerle siparişlere ayrılması; sorterla karşılaştırma.
+- [Sipariş Toplama Yöntemleri: Tekli, Toplu, Bölgesel ve Dalga Toplama](https://lojikon.com/siparis-toplama-yontemleri): Tekli, toplu, bölgesel ve dalga toplamanın farkları; hangi depoya hangisinin uygun olduğu.
+- [Palet Asansörü Nedir? Palet ve Kasa Asansörü Rehberi](https://lojikon.com/palet-asansoru-nedir): Palet ve kasa asansörünün çalışması, güvenlik özellikleri ve forklift ile karşılaştırma.
+- [Çok Katlı Depo ve Mezanin Otomasyonu](https://lojikon.com/cok-katli-depo-otomasyonu): Katlar arası akış için asansörler, eğimli konveyörler, shuttle sistemleri ve tasarım kriterleri.
+- [E-ticaret Deposu Otomasyonu: Sipariş Artışına Hazırlanmak](https://lojikon.com/e-ticaret-deposu-otomasyonu): Çok sayıda küçük sipariş, kampanya dönemleri ve iadeler için otomasyon çözümleri.
+- [Tekstil ve Hazır Giyim Deposu Otomasyonu](https://lojikon.com/tekstil-deposu-otomasyonu): Beden ve renk varyantları, mağaza sevkiyatı, e-ticaret ve iadeler için otomasyon çözümleri.
+- [Kitap ve Yayıncılık Deposu Otomasyonu](https://lojikon.com/kitap-deposu-otomasyonu): Çok sayıda başlık, bayi ve e-ticaret siparişleri için konveyör, sorter ve toplama çözümleri.
+- [Depoda İade Süreci (Tersine Lojistik) Nasıl Yönetilir?](https://lojikon.com/iade-sureci-tersine-lojistik): İade kabulü, kontrol, sınıflandırma ve yeniden stoklama; iade akışında otomasyon.
+- [Sorter ve Konveyör Fiyatı Neye Göre Değişir?](https://lojikon.com/sorter-konveyor-fiyati): Fiyatı belirleyen sekiz etken, teklif öncesi hazırlanacak bilgiler ve yatırımın geri dönüşü.
+- [Depo Otomasyonunda Yatırımın Geri Dönüşü (ROI) Nasıl Hesaplanır?](https://lojikon.com/depo-otomasyonu-yatirim-geri-donusu): Hesaba katılacak tasarruf ve maliyet kalemleri, geri ödeme süresi ve temsili bir örnek.
+
+## Industries
+
+E-commerce and fulfillment, parcel and courier, apparel and textile, retail chains, automotive spare parts, books and publishing, pharmaceuticals and cosmetics, food and beverage, manufacturing.
+
+## Contact
+
+- Email: info@lojikon.com
+- Phone: +90 212 657 18 03 (office), +90 533 388 33 92 (sales)
+- Hours: Monday–Friday 09:00–18:00, Saturday 09:00–13:00 (TRT)
+- Website: https://lojikon.com (Turkish; English available via the language switch)
+- Profiles: [LinkedIn](https://www.linkedin.com/company/lojikon/), [YouTube](https://www.youtube.com/@LojikonOtomasyonVeYazlmTicLtdS), [Instagram](https://www.instagram.com/lojikon.tr), [Facebook](https://www.facebook.com/LojikonLtd)
