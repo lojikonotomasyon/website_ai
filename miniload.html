@@ -38,6 +38,65 @@
 [
   {
     "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Lojikon Miniload AS/RS Sistemi",
+    "url": "https://lojikon.com/miniload",
+    "image": "https://lojikon.com/img/og-lojikon.jpg",
+    "description": "Türkiye'de Lojikon tarafından tasarlanıp üretilen otomatik kutu depolama sistemi. Koridor başına saatte 1600+ kutu, 10 koridorda saatte 16.000 kutu ve %99.8 doğrulukla çalışır; Lojikon WMS / WCS ile yönetilir.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Lojikon"
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.",
+      "url": "https://lojikon.com/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Silivri",
+        "addressRegion": "İstanbul",
+        "addressCountry": "TR"
+      }
+    },
+    "countryOfOrigin": {
+      "@type": "Country",
+      "name": "Türkiye"
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Koridor kapasitesi",
+        "value": "Saatte 1600+ kutu"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "10 koridorda kapasite",
+        "value": "Saatte 16.000 kutu"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Doğruluk",
+        "value": "%99.8"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Çalışma",
+        "value": "7/24"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Kontrol",
+        "value": "Beckhoff PLC, EtherCAT, Lojikon WMS / WCS"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Üretim",
+        "value": "Türkiye'de yerli mühendislik ve üretim"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "Service",
     "name": "Miniload AS/RS Sistemleri",
     "description": "Miniload sistemleri ile her raf koridorunda saatte 1600+ kutu, 10 koridorlu bir sistemde saatte 16.000 kutu işleme kapasitesi. Yüksek yoğunluklu otomatik depolama ve geri alma ile %99.8 doğrulukta kompakt depo yönetimi.",
@@ -134,7 +193,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-    <link rel="stylesheet" href="style.css?v=ca08dca6">
+    <link rel="stylesheet" href="style.css?v=754c1416">
     <link rel="stylesheet" href="miniload.css?v=94d81564">
 </head>
 <body>
@@ -180,6 +239,7 @@
         <div class="hero-container solution-page">
             <div class="hero-content">
                 <div class="hero-text-content">
+                    <span class="hero-badge" data-i18n="hero.local">Yerli Mühendislik ve Üretim · Mekanik ve Yazılım Tek Elden</span>
                     <h1 class="hero-title" data-i18n-html="miniload.heroTitleHTML"><span class="highlight">Miniload</span> Sistemleri</h1>
                     
                     <!-- PARTIAL:hero-slogan:START -->
@@ -426,6 +486,48 @@
             </div>
 
             <div class="specs-grid" id="specs-container"></div>
+            <div class="compare-block">
+                <h3 class="specs-title" data-i18n="miniload.vs.title">Miniload ve Klasik Raflı Depo</h3>
+                <div class="compare-wrap">
+                    <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-i18n="miniload.vs.c0">Kriter</th>
+                            <th scope="col" class="is-ours" data-i18n="miniload.vs.c1">Lojikon Miniload</th>
+                            <th scope="col" data-i18n="miniload.vs.c2">Klasik Raf ve Elle Toplama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" data-i18n="miniload.vs.r1k">Saatlik işlem</th>
+                            <td class="is-ours" data-i18n="miniload.vs.r1a">Koridor başına saatte 1600+ kutu</td>
+                            <td data-i18n="miniload.vs.r1b">Operatör hızına bağlı, değişken akış</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="miniload.vs.r2k">Doğruluk</th>
+                            <td class="is-ours" data-i18n="miniload.vs.r2a">%99.8</td>
+                            <td data-i18n="miniload.vs.r2b">Elle toplamada tipik olarak %97–98.5 civarı</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="miniload.vs.r3k">Çalışma süresi</th>
+                            <td class="is-ours" data-i18n="miniload.vs.r3a">7/24 kesintisiz operasyon</td>
+                            <td data-i18n="miniload.vs.r3b">Vardiya ve personel sayısına bağlı</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="miniload.vs.r4k">Alan kullanımı</th>
+                            <td class="is-ours" data-i18n="miniload.vs.r4a">Bina yüksekliği tavana kadar kullanılır</td>
+                            <td data-i18n="miniload.vs.r4b">Raf yüksekliği genellikle insanın erişebildiği seviyeyle sınırlı kalır</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="miniload.vs.r5k">Yazılım</th>
+                            <td class="is-ours" data-i18n="miniload.vs.r5a">Lojikon WMS / WCS ile doğrudan yönetim</td>
+                            <td data-i18n="miniload.vs.r5b">Stok takibi çoğunlukla ayrı yazılımla veya elle yapılır</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                <p class="compare-note" data-i18n="miniload.vs.note">Yaygın uygulama sütunu genel sektör gözlemlerini yansıtır; değerler sisteme ve projeye göre değişebilir.</p>
+            </div>
         </div>
     </section>
 
@@ -551,6 +653,22 @@
             </div>
 
             <div class="solution-card">
+                <a href="conveyor.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-right-left"></i>
+                    </div>
+                    <h3 data-i18n="solutions.conveyor.title">Konveyör Sistemleri</h3>
+                    <p data-i18n="solutions.conveyor.desc">Bant, rulolu ve zincirli konveyörler ile depo içinde kesintisiz ve otomatik ürün akışı.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.conveyor.f1">Bant, rulolu, zincirli</span>
+                        <span data-i18n="solutions.conveyor.f2">PLC kontrolü</span>
+                        <span data-i18n="solutions.conveyor.f3">Tam entegrasyon</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card is-wide">
                 <a href="wms-wcs.html" class="solution-link">
                     <div class="solution-icon">
                         <i aria-hidden="true" class="fas fa-diagram-project"></i>
@@ -701,6 +819,7 @@
                     <li><a href="shuttle.html" data-i18n="footer.shuttle">Four-Way Shuttle</a></li>
                     <li><a href="miniload.html" data-i18n="footer.miniload">Miniload Sistemleri</a></li>
                     <li><a href="pick-to-light.html" data-i18n="footer.pickToLight">Pick to Light</a></li>
+                    <li><a href="conveyor.html" data-i18n="footer.conveyor">Konveyör Sistemleri</a></li>
                     <li><a href="wms-wcs.html" data-i18n="footer.wms">WMS / WCS Yazılımı</a></li>
                 </ul>
             </div>
@@ -724,7 +843,7 @@
 
     <script src="config/miniload.js?v=fa357e1a"></script>
     <script src="js/spec-renderer.js?v=c3dc3d58"></script>
-    <script src="js/i18n.js?v=ff2e7228"></script>
+    <script src="js/i18n.js?v=99b81ece"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js?v=b7a7d3c1"></script>
     <script src="miniload-animation.js?v=c8d2d85d"></script>

@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konveyör Sistemleri | Bant, Rulolu ve Zincirli Konveyör | Lojikon</title>
+    <meta name="description" content="Bant, rulolu ve zincirli konveyör sistemleri: mekanik, pano ve PLC yazılımı tek elden. Sorter, shuttle ve WMS ile entegre, depoya özel konveyör hatları.">
+    <meta name="keywords" content="konveyör sistemleri, bant konveyör, rulolu konveyör, zincirli konveyör, palet konveyörü, depo konveyör hattı">
+    <meta name="author" content="Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lojikon.com/conveyor">
+    <meta property="og:title" content="Konveyör Sistemleri – Lojikon">
+    <meta property="og:description" content="Depoya özel bant, rulolu ve zincirli konveyör hatları. Mekanik, elektrik pano ve PLC yazılımı tek elden; sorter, shuttle ve WMS / WCS ile entegre.">
+    <meta property="og:image" content="https://lojikon.com/img/og-lojikon.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="LojikOn – Akıllı Depo Sistemleri">
+    <meta property="og:site_name" content="Lojikon">
+    <meta property="og:locale" content="tr_TR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Konveyör Sistemleri – Lojikon">
+    <meta name="twitter:description" content="Depoya özel bant, rulolu ve zincirli konveyör hatları. Mekanik, elektrik pano ve PLC yazılımı tek elden; sorter, shuttle ve WMS / WCS ile entegre.">
+    <meta name="twitter:image" content="https://lojikon.com/img/og-lojikon.jpg">
+
+    <link rel="canonical" href="https://lojikon.com/conveyor">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#14171d">
+
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Lojikon Konveyör Sistemleri",
+    "url": "https://lojikon.com/conveyor",
+    "image": "https://lojikon.com/img/projects/conveyor-line-1.jpg",
+    "description": "Türkiye'de Lojikon tarafından tasarlanıp üretilen bant, rulolu ve zincirli konveyör sistemleri. Mekanik imalat, elektrik pano ve PLC yazılımı tek elden; sorter, shuttle, miniload, asansör ve WMS / WCS ile tek akış olarak çalışır.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Lojikon"
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.",
+      "url": "https://lojikon.com/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Silivri",
+        "addressRegion": "İstanbul",
+        "addressCountry": "TR"
+      }
+    },
+    "countryOfOrigin": {
+      "@type": "Country",
+      "name": "Türkiye"
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Konveyör tipleri",
+        "value": "Bant, rulolu ve zincirli konveyör; transfer ve birleştirme üniteleri"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Kontrol",
+        "value": "PLC ve Lojikon WCS yazılımı"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Entegrasyon",
+        "value": "Sorter, shuttle, miniload, palet asansörü, pick-to-light, WMS / WCS"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Üretim",
+        "value": "Türkiye'de yerli mühendislik ve üretim"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Konveyör Sistemleri",
+    "description": "Bant, rulolu ve zincirli konveyörler ile transfer ve birleştirme ünitelerinden oluşan, depoya özel tasarlanan otomatik konveyör hatları. Mekanik, elektrik pano ve PLC yazılımı tek elden.",
+    "url": "https://lojikon.com/conveyor",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.",
+      "url": "https://lojikon.com",
+      "telephone": "+90-212-657-18-03",
+      "email": "info@lojikon.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Fevzipaşa Mah. Gölet Cad. No:23/D, Değirmenköy",
+        "addressLocality": "Silivri",
+        "addressRegion": "İstanbul",
+        "addressCountry": "TR"
+      }
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    "serviceType": "Intralogistics - Conveyor Systems"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://lojikon.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Konveyör Sistemleri",
+        "item": "https://lojikon.com/conveyor"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Konveyör sistemi nedir?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Konveyör sistemi; ürün, koli, kasa ve paletleri depo veya tesis içinde bir noktadan diğerine otomatik olarak taşıyan hat sistemidir. Bant, rulolu ve zincirli konveyörler, transfer ve birleştirme üniteleriyle birlikte sorter, shuttle, miniload, asansör ve toplama istasyonları arasında kesintisiz akış sağlar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hangi konveyör tipini seçmeliyim?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seçim; taşınan ürünün tipine, ağırlığına ve ambalajına, hat uzunluğuna ve hedeflenen akışa bağlıdır. Poşet, kitap ve küçük ürünlerde genellikle bant konveyör, koli ve kasalarda rulolu konveyör, paletlerde zincirli konveyör tercih edilir. Keşifte ürün profilinizi inceleyip en uygun hattı öneriyoruz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mevcut konveyör hattıma ekleme veya değişiklik yapılabilir mi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Evet. Mevcut hattınızı ve PLC altyapınızı inceleyip yeni bölümleri, transfer ünitelerini veya sorter bağlantısını hattınıza entegre ediyoruz. Geçiş planını operasyonu en az kesintiye uğratacak şekilde hazırlıyoruz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Konveyör sistemi WMS ve diğer otomasyon sistemleriyle çalışır mı?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Evet. Konveyör hattını kendi geliştirdiğimiz WCS yazılımı ve PLC ile yönetiyoruz; sorter, shuttle, miniload, palet asansörü ve pick-to-light sistemleriyle tek hat olarak çalışır. Farklı bir WMS veya ERP kullanıyorsanız onunla da entegre ediyoruz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kurulumdan sonra bakım ve destek veriyor musunuz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Evet. Devreye alma sonrasında operatör ve bakım ekibinize eğitim veriyor; periyodik bakım, uzaktan erişim ve 7/24 teknik destekle sistemin kesintisiz çalışmasını sağlıyoruz."
+        }
+      }
+    ]
+  }
+]
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css?v=754c1416">
+    <link rel="stylesheet" href="conveyor.css?v=9a9cdad7">
+</head>
+<body>
+
+    <!-- PARTIAL:header:START -->
+<a class="skip-link" href="#home">İçeriğe geç</a>
+<header class="header">
+    <nav class="nav-container" aria-label="Ana menü">
+        <a href="index.html" class="logo" aria-label="Lojikon Ana Sayfa">
+            <img src="favicon.svg" alt="" width="36" height="36" class="logo-mark">
+            <span class="logo-text">
+                <span class="logo-name">Loji<span class="logo-k">k</span>On</span>
+                <span class="header-slogan" data-i18n="nav.slogan">Akıllı Depo Sistemleri</span>
+            </span>
+        </a>
+
+        <ul class="nav-menu">
+            <li><a href="index.html" data-i18n="nav.home">Ana Sayfa</a></li>
+            <li><a href="index.html#about" data-i18n="nav.about">Hakkımızda</a></li>
+            <li><a href="index.html#solutions" data-i18n="nav.solutions">Çözümler</a></li>
+            <li><a href="index.html#projects" data-i18n="nav.projects">Projeler</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
+        </ul>
+
+        <div class="header-actions">
+            <div class="header-social-links">
+                <a href="https://www.linkedin.com/company/lojikon/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@LojikonOtomasyonVeYazlmTicLtdS" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+            <button id="lang-toggle" class="lang-toggle" type="button" title="Dil değiştir / Change language">EN</button>
+            <a href="#contact" class="btn btn-primary btn-sm header-cta" data-i18n="btn.quote">Teklif Al</a>
+            <button class="hamburger" type="button" aria-label="Menüyü aç" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+</header>
+    <!-- PARTIAL:header:END -->
+
+    <section id="home" class="hero">
+        <div class="hero-container solution-page">
+            <div class="hero-content">
+                <div class="hero-text-content">
+                    <span class="hero-badge" data-i18n="hero.local">Yerli Mühendislik ve Üretim · Mekanik ve Yazılım Tek Elden</span>
+                    <h1 class="hero-title" data-i18n-html="conveyor.heroTitleHTML"><span class="highlight">Konveyör</span> Sistemleri</h1>
+
+                    <!-- PARTIAL:hero-slogan:START -->
+<div class="hero-slogan">
+    <span class="fixed-text" data-i18n="hero.smart">Akıllı</span> <span class="variable-1" id="var1"></span><span class="fixed-text">,</span> <span class="fixed-text" data-i18n="hero.smart">Akıllı</span> <span class="variable-2" id="var2"></span>
+</div>
+    <!-- PARTIAL:hero-slogan:END -->
+                    <p class="hero-description" data-i18n="conveyor.heroDesc">Bant, rulolu ve zincirli konveyörlerle ürün, koli, kasa ve paletleri tesisinizde otomatik taşıyoruz. Mekanik imalat, elektrik pano ve PLC yazılımı tek elden; konveyör hattı sorter, shuttle, miniload ve asansör sistemlerinizle tek akış olarak çalışır.</p>
+
+                    <div class="hero-buttons">
+                        <a href="#how-it-works" class="btn btn-primary">
+                            <i class="fas fa-cogs"></i>
+                            <span data-i18n="btn.howItWorks">Nasıl Çalışır?</span>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-phone"></i>
+                            <span data-i18n="btn.contact">İletişim</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <strong data-i18n="conveyor.stat1v">Tek Elden</strong>
+                            <p data-i18n="conveyor.stat1">Mekanik, Pano ve Yazılım</p>
+                        </div>
+                        <div class="stat">
+                            <strong data-i18n="conveyor.stat2v">PLC</strong>
+                            <p data-i18n="conveyor.stat2">Kontrollü Akış</p>
+                        </div>
+                        <div class="stat">
+                            <strong>24/7</strong>
+                            <p data-i18n="conveyor.stat3">Çalışma</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-slider" aria-roledescription="carousel" aria-label="Konveyör projesi fotoğrafları">
+                    <img class="hero-slide active" src="img/web/conveyor-3.jpg" srcset="img/web/conveyor-3-640.jpg 640w, img/web/conveyor-3.jpg 1200w" sizes="(max-width: 1024px) 100vw, 1200px" width="1200" height="900" alt="Toplama kasaları üzerinde ilerleyen konveyör hattı" fetchpriority="high">
+                    <img class="hero-slide" src="img/web/conveyor-1.jpg" srcset="img/web/conveyor-1-640.jpg 640w, img/web/conveyor-1.jpg 1200w" sizes="(max-width: 1024px) 100vw, 1200px" width="1200" height="900" alt="Depo boyunca uzanan bant konveyör hattı" loading="lazy">
+                    <img class="hero-slide" src="img/web/conveyor-2.jpg" srcset="img/web/conveyor-2-640.jpg 640w, img/web/conveyor-2.jpg 1200w" sizes="(max-width: 1024px) 100vw, 1200px" width="1200" height="900" alt="Kitap deposunda kurulan bant konveyör" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="sections.howItWorks">Nasıl Çalışır?</h2>
+                <p data-i18n="conveyor.howItWorksDesc">Konveyör hattı, ürünü giriş noktasından hedefine kadar insan müdahalesi olmadan taşır. Süreç dört adımda işler:</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-right-to-bracket"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.step1h">Giriş</h3>
+                    <p data-i18n="conveyor.step1p">Ürün hatta alınır; gerekirse barkod okutularak sisteme tanıtılır.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-arrow-right-long"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.step2h">Taşıma</h3>
+                    <p data-i18n="conveyor.step2p">Ürün bant veya rulolu hatlar üzerinde ilerler; hız ve ürün aralığı PLC ile kontrol edilir.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.step3h">Yönlendirme</h3>
+                    <p data-i18n="conveyor.step3p">Transfer ve birleştirme üniteleri ürünü WCS'nin belirlediği hatta aktarır.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.step4h">Teslim</h3>
+                    <p data-i18n="conveyor.step4p">Ürün sorter, toplama istasyonu, asansör veya sevkiyat noktasına ulaşır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-use" class="why-use">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="sections.whyUse">Neden Kullanılır?</h2>
+                <p data-i18n="conveyor.whyUseDesc">Konveyör sistemlerinin avantajları ve faydaları</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.ben1h">Kesintisiz Akış</h3>
+                    <p data-i18n="conveyor.ben1p">Ürünler depo içinde beklemeden, sürekli ve düzenli bir akışla ilerler.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.ben2h">İnsan Gücü Tasarrufu</h3>
+                    <p data-i18n="conveyor.ben2p">Elle taşıma ve araba ile yürüme ortadan kalkar; personel katma değerli işlere yönlenir.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.ben3h">Tam Entegrasyon</h3>
+                    <p data-i18n="conveyor.ben3p">Sorter, shuttle, miniload, asansör ve WMS / WCS ile tek sistem olarak çalışır.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.ben4h">Projeye Özel Tasarım</h3>
+                    <p data-i18n="conveyor.ben4p">Hat yerleşimi binanıza, ürün tipinize ve akış hedefinize göre tasarlanır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="where-used" class="where-used">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow" data-i18n="home.indEyebrow">Sektörler</span>
+                <h2 data-i18n="conveyor.whereUsedTitle">Konveyör Sistemleri Hangi Sektörlerde Kullanılır?</h2>
+                <p data-i18n="conveyor.whereUsedDesc">Ürünü depo içinde hızlı ve düzenli taşıması gereken her işletme için uygundur.</p>
+            </div>
+
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.app1h">E-ticaret ve Fulfillment</h3>
+                    <p data-i18n="conveyor.app1p">Siparişteki ürünleri toplama, paketleme ve sevkiyat istasyonları arasında otomatik taşır.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-truck-fast"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.app2h">Kargo ve Kurye</h3>
+                    <p data-i18n="conveyor.app2p">Gelen ve giden gönderileri sorter hattına besler, ayrışan paketleri sevkiyat noktalarına taşır.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.app3h">Kitap ve Yayıncılık</h3>
+                    <p data-i18n="conveyor.app3p">Kitap ve yayınları toplama, ayrıştırma ve paketleme alanları arasında hasarsız taşır.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.app4h">Perakende Zincirleri</h3>
+                    <p data-i18n="conveyor.app4p">Mağaza siparişlerini kasa bazında toplama ve sevkiyat alanlarına iletir.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.app5h">Gıda ve İçecek</h3>
+                    <p data-i18n="conveyor.app5p">Koli ve kasaları üretim çıkışından depoya ve sevkiyata kesintisiz taşır.</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.app6h">Üretim ve Montaj</h3>
+                    <p data-i18n="conveyor.app6p">Hammadde, yarı mamul ve bitmiş ürünü istasyonlar arasında doğru sırayla iletir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technical-specs" class="technical-specs">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow" data-i18n="conveyor.typesEyebrow">Konveyör Türleri</span>
+                <h2 data-i18n="conveyor.typesTitle">Bant, Rulolu ve Zincirli Konveyör</h2>
+                <p data-i18n="conveyor.typesDesc">Doğru konveyör tipi; ürünün şekline, ağırlığına ve ambalajına göre seçilir. Keşif sırasında ürün profilinizi analiz edip en uygun hattı öneriyoruz.</p>
+            </div>
+
+            <div class="applications-grid types-grid">
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-grip-lines"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.type1h">Bant Konveyör</h3>
+                    <p data-i18n="conveyor.type1p">Sürekli bir bant üzerinde ürünü taşır. Ürün bantla tam temas ettiği için poşetli, düzensiz şekilli ve küçük ürünlerde güvenli taşıma sağlar; eğimli hatlarda da kullanılır.</p>
+                    <p class="type-fit" data-i18n-html="conveyor.type1fit"><strong>Uygun ürünler:</strong> poşetli ürünler, kitaplar, küçük paketler, zarflar</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-ellipsis"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.type2h">Rulolu Konveyör</h3>
+                    <p data-i18n="conveyor.type2p">Yan yana dizilmiş rulolar üzerinde ürünü taşır. Tahrikli bölgelerle ürünler birbirine çarpmadan biriktirilebilir; tabanı düz yüklerde verimli ve dayanıklı bir çözümdür.</p>
+                    <p class="type-fit" data-i18n-html="conveyor.type2fit"><strong>Uygun ürünler:</strong> koliler, kasalar, tabanı düz kutular</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.type3h">Zincirli Konveyör</h3>
+                    <p data-i18n="conveyor.type3p">Paletleri zincirler üzerinde taşır. Ağır yükleri dengeli biçimde iletir; palet asansörü, streç makinesi ve depo girişleriyle birlikte çalışır.</p>
+                    <p class="type-fit" data-i18n-html="conveyor.type3fit"><strong>Uygun yükler:</strong> paletler, ağır ve büyük yükler</p>
+                </div>
+
+                <div class="application-card">
+                    <div class="application-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 data-i18n="conveyor.type4h">Transfer ve Birleştirme Üniteleri</h3>
+                    <p data-i18n="conveyor.type4p">Ürünü bir hattan diğerine aktarır, hatları birleştirir veya ayırır. 90 derece transfer ve birleştirme noktalarıyla karmaşık yerleşimlerde düzenli akış sağlar.</p>
+                    <p class="type-fit" data-i18n-html="conveyor.type4fit"><strong>Kullanım:</strong> hat geçişleri, birleştirme ve ayırma noktaları</p>
+                </div>
+            </div>
+
+            <div class="compare-block">
+                <h3 class="specs-title" data-i18n="conveyor.vs.title">Lojikon Konveyör ve Parçalı Tedarik</h3>
+                <div class="compare-wrap">
+                    <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-i18n="conveyor.vs.c0">Kriter</th>
+                            <th scope="col" class="is-ours" data-i18n="conveyor.vs.c1">Lojikon Konveyör</th>
+                            <th scope="col" data-i18n="conveyor.vs.c2">Farklı Tedarikçilerden Hat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" data-i18n="conveyor.vs.r1k">Mekanik ve kontrol</th>
+                            <td class="is-ours" data-i18n="conveyor.vs.r1a">Mekanik imalat, elektrik pano ve PLC yazılımı tek elden</td>
+                            <td data-i18n="conveyor.vs.r1b">Mekanik, pano ve yazılım genellikle farklı firmalardan gelir</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="conveyor.vs.r2k">Entegrasyon</th>
+                            <td class="is-ours" data-i18n="conveyor.vs.r2a">Sorter, shuttle, miniload, asansör ve WMS / WCS ile tek akış</td>
+                            <td data-i18n="conveyor.vs.r2b">Her sistem için ayrı arayüz ve ek geliştirme gerekebilir</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="conveyor.vs.r3k">Tasarım</th>
+                            <td class="is-ours" data-i18n="conveyor.vs.r3a">Binanıza ve ürün tipinize göre projeye özel yerleşim</td>
+                            <td data-i18n="conveyor.vs.r3b">Çoğunlukla standart modüllerle sınırlı uyum</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="conveyor.vs.r4k">Servis</th>
+                            <td class="is-ours" data-i18n="conveyor.vs.r4a">Tek muhatap; arızalar tek ekip tarafından çözülür</td>
+                            <td data-i18n="conveyor.vs.r4b">Arızada birden fazla firmayla görüşmek gerekebilir</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                <p class="compare-note" data-i18n="conveyor.vs.note">Yaygın uygulama sütunu genel sektör gözlemlerini yansıtır; değerler sisteme ve projeye göre değişebilir.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq section-soft">
+        <div class="container faq-container">
+            <div class="section-header">
+                <span class="eyebrow" data-i18n="home.faqEyebrow">SSS</span>
+                <h2 data-i18n="conveyor.faqTitle">Konveyör Sistemleri Hakkında Sık Sorulan Sorular</h2>
+            </div>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary data-i18n="conveyor.q1">Konveyör sistemi nedir?</summary>
+                    <p data-i18n="conveyor.a1">Konveyör sistemi; ürün, koli, kasa ve paletleri depo veya tesis içinde bir noktadan diğerine otomatik olarak taşıyan hat sistemidir. Bant, rulolu ve zincirli konveyörler, transfer ve birleştirme üniteleriyle birlikte sorter, shuttle, miniload, asansör ve toplama istasyonları arasında kesintisiz akış sağlar.</p>
+                </details>
+                <details class="faq-item">
+                    <summary data-i18n="conveyor.q2">Hangi konveyör tipini seçmeliyim?</summary>
+                    <p data-i18n="conveyor.a2">Seçim; taşınan ürünün tipine, ağırlığına ve ambalajına, hat uzunluğuna ve hedeflenen akışa bağlıdır. Poşet, kitap ve küçük ürünlerde genellikle bant konveyör, koli ve kasalarda rulolu konveyör, paletlerde zincirli konveyör tercih edilir. Keşifte ürün profilinizi inceleyip en uygun hattı öneriyoruz.</p>
+                </details>
+                <details class="faq-item">
+                    <summary data-i18n="conveyor.q3">Mevcut konveyör hattıma ekleme veya değişiklik yapılabilir mi?</summary>
+                    <p data-i18n="conveyor.a3">Evet. Mevcut hattınızı ve PLC altyapınızı inceleyip yeni bölümleri, transfer ünitelerini veya sorter bağlantısını hattınıza entegre ediyoruz. Geçiş planını operasyonu en az kesintiye uğratacak şekilde hazırlıyoruz.</p>
+                </details>
+                <details class="faq-item">
+                    <summary data-i18n="conveyor.q4">Konveyör sistemi WMS ve diğer otomasyon sistemleriyle çalışır mı?</summary>
+                    <p data-i18n="conveyor.a4">Evet. Konveyör hattını kendi geliştirdiğimiz WCS yazılımı ve PLC ile yönetiyoruz; sorter, shuttle, miniload, palet asansörü ve pick-to-light sistemleriyle tek hat olarak çalışır. Farklı bir WMS veya ERP kullanıyorsanız onunla da entegre ediyoruz.</p>
+                </details>
+                <details class="faq-item">
+                    <summary data-i18n="conveyor.q5">Kurulumdan sonra bakım ve destek veriyor musunuz?</summary>
+                    <p data-i18n="conveyor.a5">Evet. Devreye alma sonrasında operatör ve bakım ekibinize eğitim veriyor; periyodik bakım, uzaktan erişim ve 7/24 teknik destekle sistemin kesintisiz çalışmasını sağlıyoruz.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="field-photos" class="page-gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow" data-i18n="gallery.eyebrow">Sahadan</span>
+                <h2 data-i18n="gallery.title">Kurduğumuz Sistemlerden Görüntüler</h2>
+            </div>
+            <div class="projects-grid cols-4">
+                <figure class="project-item">
+                    <a href="img/projects/conveyor-line-1.jpg" class="project-link"><img src="img/projects/conveyor-line-1.jpg" width="900" height="675" loading="lazy" alt="Depo boyunca uzanan bant konveyör hattı"></a>
+                    <figcaption data-i18n="gallery.convLine">Bant Konveyör Hattı</figcaption>
+                </figure>
+                <figure class="project-item">
+                    <a href="img/projects/conveyor-line-2.jpg" class="project-link"><img src="img/projects/conveyor-line-2.jpg" width="900" height="675" loading="lazy" alt="Kitap deposunda bant konveyör"></a>
+                    <figcaption data-i18n="gallery.convBooks">Kitap Deposunda Konveyör</figcaption>
+                </figure>
+                <figure class="project-item">
+                    <a href="img/projects/conveyor-line-3.jpg" class="project-link"><img src="img/projects/conveyor-line-3.jpg" width="900" height="675" loading="lazy" alt="Toplama kasaları üzerinde ilerleyen konveyör hattı"></a>
+                    <figcaption data-i18n="gallery.convSort">Ayrıştırma Hattı ve Toplama Kasaları</figcaption>
+                </figure>
+                <figure class="project-item">
+                    <a href="img/projects/conveyor-line-4.jpg" class="project-link"><img src="img/projects/conveyor-line-4.jpg" width="675" height="900" loading="lazy" alt="Lojikon konveyör kontrol panosu"></a>
+                    <figcaption data-i18n="gallery.convPanel">Konveyör Kontrol Panosu</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTIAL:solutions-section:START -->
+<section id="solutions" class="solutions">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow" data-i18n="solutions.eyebrow">Ürünler</span>
+            <h2 data-i18n="solutions.title">Çözümlerimiz</h2>
+            <p data-i18n="solutions.subtitle">İntralojistik ve depo otomasyonu çözümlerimiz</p>
+        </div>
+
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <a href="sorter.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-sort"></i>
+                    </div>
+                    <h3 data-i18n="solutions.sorter.title">Sorter Sistemleri</h3>
+                    <p data-i18n="solutions.sorter.desc">Cross belt, tilt tray, narrow belt ve shoe sorter sistemleri ile otomatik sıralama ve dağıtım.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.sorter.f1">30.000 parça/saat'e kadar</span>
+                        <span data-i18n="solutions.sorter.f2">%99.9 doğruluk</span>
+                        <span data-i18n="solutions.sorter.f3">PLC kontrolü</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card">
+                <a href="pallet-elevator.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-arrow-up"></i>
+                    </div>
+                    <h3 data-i18n="solutions.pallet.title">Palet ve Kasa Asansörü</h3>
+                    <p data-i18n="solutions.pallet.desc">Otomatik palet ve kasa yükleme, boşaltma ve transfer sistemleri ile verimli depo yönetimi.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.pallet.f1">Çok katlı</span>
+                        <span data-i18n="solutions.pallet.f2">Güvenli</span>
+                        <span data-i18n="solutions.pallet.f3">Hızlı</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card">
+                <a href="shuttle.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-arrows-up-down-left-right"></i>
+                    </div>
+                    <h3 data-i18n="solutions.shuttle.title">Four-Way Shuttle</h3>
+                    <p data-i18n="solutions.shuttle.desc">17 cm gövde yüksekliği, 5 m/sn hız ve 13 saat akü ömrü ile kasa ve palet için yüksek yoğunluklu depolama.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.shuttle.f1">17 cm gövde</span>
+                        <span data-i18n="solutions.shuttle.f2">5 m/sn hız</span>
+                        <span data-i18n="solutions.shuttle.f3">13 saat akü</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card">
+                <a href="miniload.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-warehouse"></i>
+                    </div>
+                    <h3 data-i18n="solutions.miniload.title">Miniload Sistemleri</h3>
+                    <p data-i18n="solutions.miniload.desc">Kasa ve kutular için otomatik depolama ve geri alma sistemleri ile kompakt depolama.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.miniload.f1">Yüksek yoğunluk</span>
+                        <span data-i18n="solutions.miniload.f2">Hızlı erişim</span>
+                        <span data-i18n="solutions.miniload.f3">Esnek</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card">
+                <a href="pick-to-light.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 data-i18n="solutions.picktolight.title">Pick to Light</h3>
+                    <p data-i18n="solutions.picktolight.desc">LED ışık göstergeli toplama sistemleri ile hızlı ve hatasız sipariş hazırlama.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.picktolight.f1">Hızlı toplama</span>
+                        <span data-i18n="solutions.picktolight.f2">Hata azaltma</span>
+                        <span data-i18n="solutions.picktolight.f3">Kolay kullanım</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card">
+                <a href="conveyor.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-right-left"></i>
+                    </div>
+                    <h3 data-i18n="solutions.conveyor.title">Konveyör Sistemleri</h3>
+                    <p data-i18n="solutions.conveyor.desc">Bant, rulolu ve zincirli konveyörler ile depo içinde kesintisiz ve otomatik ürün akışı.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.conveyor.f1">Bant, rulolu, zincirli</span>
+                        <span data-i18n="solutions.conveyor.f2">PLC kontrolü</span>
+                        <span data-i18n="solutions.conveyor.f3">Tam entegrasyon</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card is-wide">
+                <a href="wms-wcs.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-diagram-project"></i>
+                    </div>
+                    <h3 data-i18n="solutions.wms.title">WMS / WCS Yazılımı</h3>
+                    <p data-i18n="solutions.wms.desc">Depo süreçlerinizi yöneten WMS ve ekipmanlarınızı kontrol eden WCS tek platformda.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.wms.f1">Kendi yazılımımız</span>
+                        <span data-i18n="solutions.wms.f2">ERP entegrasyonu</span>
+                        <span data-i18n="solutions.wms.f3">Ekipman kontrolü</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- PARTIAL:solutions-section:END -->
+
+    <!-- PARTIAL:contact-section:START -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow" data-i18n="contact.eyebrow">Bize Ulaşın</span>
+            <h2 data-i18n="contact.title">İletişim</h2>
+            <p data-i18n="contact.subtitle">Bizimle iletişime geçin</p>
+        </div>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    <div>
+                        <h3 data-i18n="contact.address">Adres</h3>
+                        <p data-i18n-html="contact.addressVal">Fevzipaşa Mahallesi, Gölet Caddesi, No:23/D Değirmenköy Silivri/İSTANBUL</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    <div>
+                        <h3 data-i18n="contact.phone">Telefon</h3>
+                        <p><a href="tel:+902126571803">+90 212 657 18 03</a><br><a href="tel:+905333883392">+90 533 388 33 92</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <div>
+                        <h3 data-i18n="contact.email">Email</h3>
+                        <p><a href="mailto:info@lojikon.com">info@lojikon.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-clock" aria-hidden="true"></i>
+                    <div>
+                        <h3 data-i18n="contact.hours">Çalışma Saatleri</h3>
+                        <p data-i18n-html="contact.hoursVal">Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 13:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <h3 class="contact-form-title" data-i18n="contact.formTitle">Keşif ve teklif talebi</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cf-name" class="sr-only" data-i18n="contact.namePh">Adınız *</label>
+                        <input id="cf-name" type="text" name="name" autocomplete="name" data-i18n-ph="contact.namePh" placeholder="Adınız *" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-company" class="sr-only" data-i18n="contact.companyPh">Firma Adı</label>
+                        <input id="cf-company" type="text" name="company" autocomplete="organization" data-i18n-ph="contact.companyPh" placeholder="Firma Adı">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cf-email" class="sr-only" data-i18n="contact.emailPh">Email Adresiniz *</label>
+                        <input id="cf-email" type="email" name="email" autocomplete="email" data-i18n-ph="contact.emailPh" placeholder="Email Adresiniz *" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cf-phone" class="sr-only" data-i18n="contact.phonePh">Telefon Numaranız</label>
+                        <input id="cf-phone" type="tel" name="phone" autocomplete="tel" data-i18n-ph="contact.phonePh" placeholder="Telefon Numaranız">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cf-topic" class="sr-only" data-i18n="contact.topic">Konu</label>
+                    <select id="cf-topic" name="service_type">
+                        <option value="Genel İletişim" data-i18n="contact.topicGeneral">Konu seçin (opsiyonel)</option>
+                        <option value="Sorter Sistemleri" data-i18n="footer.sorter">Sorter Sistemleri</option>
+                        <option value="Palet ve Kasa Asansörü" data-i18n="footer.palletElevator">Palet ve Kasa Asansörü</option>
+                        <option value="Four-Way Shuttle" data-i18n="footer.shuttle">Four-Way Shuttle</option>
+                        <option value="Miniload" data-i18n="footer.miniload">Miniload Sistemleri</option>
+                        <option value="Pick to Light" data-i18n="footer.pickToLight">Pick to Light</option>
+                        <option value="WMS / WCS" data-i18n="footer.wms">WMS / WCS Yazılımı</option>
+                        <option value="Servis / Bakım" data-i18n="contact.topicService">Servis / Bakım</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cf-message" class="sr-only" data-i18n="contact.messagePh">Mesajınız *</label>
+                    <textarea id="cf-message" name="message" data-i18n-ph="contact.messagePh" placeholder="Mesajınız *" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    <span data-i18n="contact.send">Gönder</span>
+                </button>
+                <p class="form-note" data-i18n="contact.note">Genellikle 1 iş günü içinde dönüş yapıyoruz.</p>
+            </form>
+        </div>
+    </div>
+</section>
+    <!-- PARTIAL:contact-section:END -->
+
+    <!-- PARTIAL:footer:START -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-cta">
+            <div>
+                <h2 class="footer-cta-title" data-i18n="footer.ctaTitle">Projenizi konuşalım</h2>
+                <p data-i18n="footer.ctaDesc">Tesisinizi ziyaret edelim, ihtiyacınızı analiz edelim ve size özel bir çözüm önerisi hazırlayalım.</p>
+            </div>
+            <div class="footer-cta-actions">
+                <a href="tel:+902126571803" class="btn btn-primary"><i class="fas fa-phone"></i> +90 212 657 18 03</a>
+                <a href="mailto:info@lojikon.com" class="btn btn-ghost"><i class="fas fa-envelope"></i> info@lojikon.com</a>
+            </div>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-section footer-brand">
+                <a href="index.html" class="logo" aria-label="Lojikon Ana Sayfa">
+                    <img src="favicon.svg" alt="" width="36" height="36" class="logo-mark" loading="lazy">
+                    <span class="logo-name">Loji<span class="logo-k">k</span>On</span>
+                </a>
+                <p data-i18n="footer.tagline">Akıllı depo sistemleri ile işletmenizi geleceğe taşıyoruz.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/lojikon/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/LojikonLtd" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/lojikon.tr" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@LojikonOtomasyonVeYazlmTicLtdS" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3 data-i18n="footer.solutions">Çözümler</h3>
+                <ul>
+                    <li><a href="sorter.html" data-i18n="footer.sorter">Sorter Sistemleri</a></li>
+                    <li><a href="pallet-elevator.html" data-i18n="footer.palletElevator">Palet ve Kasa Asansörü</a></li>
+                    <li><a href="shuttle.html" data-i18n="footer.shuttle">Four-Way Shuttle</a></li>
+                    <li><a href="miniload.html" data-i18n="footer.miniload">Miniload Sistemleri</a></li>
+                    <li><a href="pick-to-light.html" data-i18n="footer.pickToLight">Pick to Light</a></li>
+                    <li><a href="conveyor.html" data-i18n="footer.conveyor">Konveyör Sistemleri</a></li>
+                    <li><a href="wms-wcs.html" data-i18n="footer.wms">WMS / WCS Yazılımı</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 data-i18n="footer.contactTitle">İletişim</h3>
+                <address>
+                    <p><a href="https://maps.google.com/?q=Fevzipa%C5%9Fa+Mahallesi+G%C3%B6let+Caddesi+No%3A23%2FD+De%C4%9Firmenk%C3%B6y+Silivri+%C4%B0stanbul" target="_blank" rel="noopener">Fevzipaşa Mah. Gölet Cad. No:23/D<br>Değirmenköy, Silivri / İstanbul</a></p>
+                    <p><a href="tel:+902126571803">+90 212 657 18 03</a></p>
+                    <p><a href="mailto:info@lojikon.com">info@lojikon.com</a></p>
+                </address>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p data-i18n="footer.copyright">&copy; 2026 Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</footer>
+    <!-- PARTIAL:footer:END -->
+
+    <script src="js/i18n.js?v=99b81ece"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js?v=b7a7d3c1"></script>
+</body>
+</html>

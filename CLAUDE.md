@@ -43,7 +43,7 @@ website_ai/
 ├── partials/                    ← TEK KAYNAK — buradan değiştir
 │   ├── header.html              ← Menü, logo, sosyal linkler
 │   ├── footer.html              ← Alt bilgi, linkler, copyright
-│   ├── solutions-section.html   ← Çözümler kartları (6 ürün)
+│   ├── solutions-section.html   ← Çözümler kartları (7 ürün)
 │   └── contact-section.html     ← İletişim formu + bilgileri
 │
 ├── build.py                     ← Partial'ları tüm sayfalara enjekte eder
@@ -58,7 +58,8 @@ website_ai/
 ├── shuttle.html                 ← Çözüm sayfası (Three.js 3D simülasyon)
 ├── miniload.html                ← Çözüm sayfası
 ├── pick-to-light.html           ← Çözüm sayfası
-└── wms-wcs.html                 ← Çözüm sayfası (WMS / WCS)
+├── wms-wcs.html                 ← Çözüm sayfası (WMS / WCS)
+└── conveyor.html                ← Çözüm sayfası (Konveyör)
 ```
 
 ---
@@ -98,7 +99,7 @@ Her sayfa şu yapıya sahiptir:
 
 | Kategori | Sayfalar |
 |---|---|
-| **Çözümler** | sorter.html, pallet-elevator.html, shuttle.html, miniload.html, pick-to-light.html, wms-wcs.html |
+| **Çözümler** | sorter.html, pallet-elevator.html, shuttle.html, miniload.html, pick-to-light.html, wms-wcs.html, conveyor.html |
 
 **Odak:** Site yalnızca intralojistik / akıllı depo odaklıdır. Genel endüstriyel otomasyon hizmet sayfaları (SCADA, Üretim Takibi, Veri Toplama, Özel Yazılım, PLC Programlama, Sistem Entegrasyonu) kaldırıldı; eski URL'leri `_redirects` ana sayfaya yönlendirir. Başlık ve metinlerde "endüstriyel otomasyon" ifadesi kullanma.
 
@@ -151,7 +152,7 @@ Site TR/EN dil desteğine sahiptir. Sistem tamamen tarayıcı-taraflıdır.
 - Galerideki `.project-link` bağlantıları script.js'teki lightbox ile açılır.
 - `_config.yml` GitHub Pages'in `partials/`, `.md` ve `.py` dosyalarını yayınlamasını engeller.
 - Favicon/logo: `favicon.svg` kaynak; PNG'ler (`img/logo.png`, `android-chrome-*`, `apple-touch-icon.png`) ondan üretildi.
-- SSS metni değişirse o sayfadaki `FAQPage` JSON-LD'yi de güncelle (`index.html` ve 5 çözüm sayfası). Metin `js/i18n.js`'teki TR çeviriyle birebir aynı olmalı.
+- SSS metni değişirse o sayfadaki `FAQPage` JSON-LD'yi de güncelle (`index.html` ve 6 çözüm sayfası: sorter, miniload, shuttle, pallet-elevator, pick-to-light, conveyor). Metin `js/i18n.js`'teki TR çeviriyle birebir aynı olmalı.
 - Çözüm sayfalarındaki tip kartları (`.types-grid`, `.type-fit`), `.specs-title` ve açık zemin yardımcısı (`.section-soft`) ortak `style.css`'te tanımlıdır. Bölüm zeminleri açık/beyaz sırayla değişmeli.
 
 ---

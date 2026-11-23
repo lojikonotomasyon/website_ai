@@ -41,7 +41,9 @@
         "applicationCategory": "BusinessApplication",
         "applicationSubCategory": "Depo Yönetim ve Kontrol Sistemi (WMS / WCS)",
         "operatingSystem": "Web",
-        "description": "Mal kabul, adresleme, sipariş toplama, sevkiyat ve sayım süreçlerini yöneten WMS ile sorter, shuttle, palet asansörü, konveyör ve pick-to-light ekipmanlarını gerçek zamanlı kontrol eden WCS katmanından oluşan depo yazılımı.",
+        "countryOfOrigin": {"@type": "Country", "name": "Türkiye"},
+        "featureList": ["Depo yönetimi: mal kabul, adresleme, sipariş toplama, sevkiyat, sayım", "Sorter, shuttle, miniload, palet asansörü, konveyör ve pick-to-light kontrolü", "Siemens ve Beckhoff PLC'lerle doğrudan haberleşme", "ERP entegrasyonu", "Canlı stok görünürlüğü"],
+        "description": "Türkiye'de Lojikon tarafından geliştirilen yerli depo yazılımı. Mal kabul, adresleme, sipariş toplama, sevkiyat ve sayım süreçlerini yöneten WMS ile sorter, shuttle, palet asansörü, konveyör ve pick-to-light ekipmanlarını gerçek zamanlı kontrol eden WCS katmanından oluşan depo yazılımı.",
         "url": "https://lojikon.com/wms-wcs",
         "inLanguage": "tr-TR",
         "publisher": {
@@ -88,7 +90,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css?v=ca08dca6">
+    <link rel="stylesheet" href="style.css?v=754c1416">
     <link rel="stylesheet" href="wms.css?v=484a4f41">
 </head>
 <body>
@@ -134,7 +136,7 @@
         <div class="hero-container solution-page">
             <div class="hero-content">
                 <div class="hero-text-content">
-                    <span class="hero-badge" data-i18n="wms.badge">Lojikon Yazılım</span>
+                    <span class="hero-badge" data-i18n="hero.local">Yerli Mühendislik ve Üretim · Mekanik ve Yazılım Tek Elden</span>
                     <h1 class="hero-title" data-i18n-html="wms.heroTitleHTML">
                         <span class="highlight">WMS / WCS</span> Depo Yazılımı
                     </h1>
@@ -358,6 +360,43 @@
                     </ul>
                 </div>
             </div>
+            <div class="compare-block">
+                <h3 class="specs-title" data-i18n="wms.vs.title">Bütünleşik Platform ve Ayrı Tedarikçiler</h3>
+                <div class="compare-wrap">
+                    <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-i18n="wms.vs.c0">Kriter</th>
+                            <th scope="col" class="is-ours" data-i18n="wms.vs.c1">Lojikon WMS / WCS</th>
+                            <th scope="col" data-i18n="wms.vs.c2">Ayrı Yazılım + Farklı Donanım</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" data-i18n="wms.vs.r1k">Donanım haberleşmesi</th>
+                            <td class="is-ours" data-i18n="wms.vs.r1a">Sorter, shuttle, miniload ve asansörlerle doğrudan PLC haberleşmesi</td>
+                            <td data-i18n="wms.vs.r1b">Ara katman (middleware) üzerinden bağlantı; gecikme ve uyum sorunları görülebilir</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="wms.vs.r2k">ERP entegrasyonu</th>
+                            <td class="is-ours" data-i18n="wms.vs.r2a">ERP sisteminizle entegre çalışır</td>
+                            <td data-i18n="wms.vs.r2b">Her entegrasyon için ayrı geliştirme süreci gerekebilir</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="wms.vs.r3k">Teknik destek</th>
+                            <td class="is-ours" data-i18n="wms.vs.r3a">Tek muhatap: mekanik ve yazılım Lojikon'da</td>
+                            <td data-i18n="wms.vs.r3b">Sorunun yazılımda mı mekanikte mi olduğu belirsiz kalabilir</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="wms.vs.r4k">İzleme</th>
+                            <td class="is-ours" data-i18n="wms.vs.r4a">Canlı stok görünürlüğü ve anlık performans takibi</td>
+                            <td data-i18n="wms.vs.r4b">Genellikle vardiya sonu raporlarıyla sınırlı</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                <p class="compare-note" data-i18n="wms.vs.note">Yaygın uygulama sütunu genel sektör gözlemlerini yansıtır; değerler sisteme ve projeye göre değişebilir.</p>
+            </div>
         </div>
     </section>
 
@@ -452,6 +491,22 @@
             </div>
 
             <div class="solution-card">
+                <a href="conveyor.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-right-left"></i>
+                    </div>
+                    <h3 data-i18n="solutions.conveyor.title">Konveyör Sistemleri</h3>
+                    <p data-i18n="solutions.conveyor.desc">Bant, rulolu ve zincirli konveyörler ile depo içinde kesintisiz ve otomatik ürün akışı.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.conveyor.f1">Bant, rulolu, zincirli</span>
+                        <span data-i18n="solutions.conveyor.f2">PLC kontrolü</span>
+                        <span data-i18n="solutions.conveyor.f3">Tam entegrasyon</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card is-wide">
                 <a href="wms-wcs.html" class="solution-link">
                     <div class="solution-icon">
                         <i aria-hidden="true" class="fas fa-diagram-project"></i>
@@ -602,6 +657,7 @@
                     <li><a href="shuttle.html" data-i18n="footer.shuttle">Four-Way Shuttle</a></li>
                     <li><a href="miniload.html" data-i18n="footer.miniload">Miniload Sistemleri</a></li>
                     <li><a href="pick-to-light.html" data-i18n="footer.pickToLight">Pick to Light</a></li>
+                    <li><a href="conveyor.html" data-i18n="footer.conveyor">Konveyör Sistemleri</a></li>
                     <li><a href="wms-wcs.html" data-i18n="footer.wms">WMS / WCS Yazılımı</a></li>
                 </ul>
             </div>
@@ -623,7 +679,7 @@
 </footer>
     <!-- PARTIAL:footer:END -->
 
-    <script src="js/i18n.js?v=ff2e7228"></script>
+    <script src="js/i18n.js?v=99b81ece"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js?v=b7a7d3c1"></script>
 </body>

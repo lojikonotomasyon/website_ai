@@ -181,11 +181,11 @@ class PalletLiftAnimation {
     startPerformanceUpdates() {
         const update = () => {
             const speedEl = document.getElementById('lift-speed');
-            if (speedEl) speedEl.textContent = this.isMoving ? '2.5' : '0.0';
+            if (speedEl) speedEl.textContent = this.isMoving ? '1.5' : '0.0';
 
             const capEl = document.getElementById('lift-capacity');
             if (capEl && !this.isMoving) {
-                capEl.textContent = (1800 + Math.floor(Math.random() * 400));
+                capEl.textContent = 1500;
             }
 
             const effEl = document.getElementById('lift-efficiency');
@@ -193,7 +193,7 @@ class PalletLiftAnimation {
 
             const weightEl = document.getElementById('load-weight');
             if (weightEl && !this.isMoving) {
-                weightEl.textContent = (1200 + Math.floor(Math.random() * 800)) + ' kg';
+                weightEl.textContent = (800 + Math.floor(Math.random() * 700)) + ' kg';
             }
         };
 

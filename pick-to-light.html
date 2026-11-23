@@ -37,6 +37,55 @@
     [
       {
         "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Lojikon Pick-to-Light ve Put-to-Light",
+        "url": "https://lojikon.com/pick-to-light",
+        "image": "https://lojikon.com/img/og-lojikon.jpg",
+        "description": "Türkiye'de Lojikon tarafından geliştirilen LED ışıklı sipariş toplama sistemi. Saatte 800+ toplama ve %99.9 doğrulukla kâğıtsız toplama sağlar; Lojikon WMS ile anlık stok güncellemesi yapar.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Lojikon"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.",
+          "url": "https://lojikon.com/",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Silivri",
+            "addressRegion": "İstanbul",
+            "addressCountry": "TR"
+          }
+        },
+        "countryOfOrigin": {
+          "@type": "Country",
+          "name": "Türkiye"
+        },
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Toplama hızı",
+            "value": "Saatte 800+ toplama"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Doğruluk",
+            "value": "%99.9"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Kontrol",
+            "value": "Siemens S7-1200, Profinet, Lojikon WMS"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Üretim",
+            "value": "Türkiye'de yerli mühendislik ve üretim"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
         "@type": "Service",
         "name": "Pick-to-Light Sistemleri",
         "description": "LED ışıklı göstergeler ile hızlı ve hatasız sipariş toplama. Hata oranını %40 azaltan pick-to-light çözümleri; e-ticaret, ilaç ve otomotiv depoları için idealdir.",
@@ -123,7 +172,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-    <link rel="stylesheet" href="style.css?v=ca08dca6">
+    <link rel="stylesheet" href="style.css?v=754c1416">
     <link rel="stylesheet" href="pick-to-light.css?v=65c501c1">
 </head>
 <body>
@@ -169,6 +218,7 @@
         <div class="hero-container solution-page">
             <div class="hero-content">
                 <div class="hero-text-content">
+                    <span class="hero-badge" data-i18n="hero.local">Yerli Mühendislik ve Üretim · Mekanik ve Yazılım Tek Elden</span>
                     <h1 class="hero-title" data-i18n-html="picktolight.heroTitleHTML">
                         <span class="highlight">Pick-to-Light</span> Sistemleri
                     </h1>
@@ -476,6 +526,43 @@
             </div>
 
             <div class="specs-grid" id="specs-container"></div>
+            <div class="compare-block">
+                <h3 class="specs-title" data-i18n="picktolight.vs.title">Pick-to-Light ve Kâğıt Listeli Toplama</h3>
+                <div class="compare-wrap">
+                    <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-i18n="picktolight.vs.c0">Kriter</th>
+                            <th scope="col" class="is-ours" data-i18n="picktolight.vs.c1">Lojikon Pick-to-Light</th>
+                            <th scope="col" data-i18n="picktolight.vs.c2">Kâğıt Liste / El Terminali</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" data-i18n="picktolight.vs.r1k">Toplama hızı</th>
+                            <td class="is-ours" data-i18n="picktolight.vs.r1a">Saatte 800+ toplama</td>
+                            <td data-i18n="picktolight.vs.r1b">Tipik olarak saatte 150–250 satır</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="picktolight.vs.r2k">Doğruluk</th>
+                            <td class="is-ours" data-i18n="picktolight.vs.r2a">%99.9</td>
+                            <td data-i18n="picktolight.vs.r2b">Tipik olarak %97–98</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="picktolight.vs.r3k">Eğitim</th>
+                            <td class="is-ours" data-i18n="picktolight.vs.r3a">Işıklı yönlendirmeyle kısa sürede adaptasyon</td>
+                            <td data-i18n="picktolight.vs.r3b">Depo ve ürün bilgisi için uzun eğitim süreci</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="picktolight.vs.r4k">Bölge yönetimi</th>
+                            <td class="is-ours" data-i18n="picktolight.vs.r4a">Bölgesel toplama ve WMS ile anlık stok düşümü</td>
+                            <td data-i18n="picktolight.vs.r4b">Operatör depoyu baştan sona gezer</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                <p class="compare-note" data-i18n="picktolight.vs.note">Yaygın uygulama sütunu genel sektör gözlemlerini yansıtır; değerler sisteme ve projeye göre değişebilir.</p>
+            </div>
         </div>
     </section>
 
@@ -605,6 +692,22 @@
             </div>
 
             <div class="solution-card">
+                <a href="conveyor.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-right-left"></i>
+                    </div>
+                    <h3 data-i18n="solutions.conveyor.title">Konveyör Sistemleri</h3>
+                    <p data-i18n="solutions.conveyor.desc">Bant, rulolu ve zincirli konveyörler ile depo içinde kesintisiz ve otomatik ürün akışı.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.conveyor.f1">Bant, rulolu, zincirli</span>
+                        <span data-i18n="solutions.conveyor.f2">PLC kontrolü</span>
+                        <span data-i18n="solutions.conveyor.f3">Tam entegrasyon</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card is-wide">
                 <a href="wms-wcs.html" class="solution-link">
                     <div class="solution-icon">
                         <i aria-hidden="true" class="fas fa-diagram-project"></i>
@@ -755,6 +858,7 @@
                     <li><a href="shuttle.html" data-i18n="footer.shuttle">Four-Way Shuttle</a></li>
                     <li><a href="miniload.html" data-i18n="footer.miniload">Miniload Sistemleri</a></li>
                     <li><a href="pick-to-light.html" data-i18n="footer.pickToLight">Pick to Light</a></li>
+                    <li><a href="conveyor.html" data-i18n="footer.conveyor">Konveyör Sistemleri</a></li>
                     <li><a href="wms-wcs.html" data-i18n="footer.wms">WMS / WCS Yazılımı</a></li>
                 </ul>
             </div>
@@ -778,7 +882,7 @@
 
     <script src="config/pick-to-light.js?v=2f9406d2"></script>
     <script src="js/spec-renderer.js?v=c3dc3d58"></script>
-    <script src="js/i18n.js?v=ff2e7228"></script>
+    <script src="js/i18n.js?v=99b81ece"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js?v=b7a7d3c1"></script>
     <script src="pick-to-light-animation.js?v=23027248"></script>

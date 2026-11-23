@@ -4,7 +4,7 @@ window.PAGE_SPECS = {
         {
             title: { tr: 'Yük Kapasitesi', en: 'Load Capacity' },
             items: [
-                { label: { tr: 'Maksimum Yük',      en: 'Maximum Load' },    value: '2000 kg' },
+                { label: { tr: 'Maksimum Yük',      en: 'Maximum Load' },    value: '1500 kg' },
                 { label: { tr: 'Platform Boyutu',   en: 'Platform Size' },   value: '1200 x 1000 mm' },
                 { label: { tr: 'Pallet Boyutu',     en: 'Pallet Size' },     value: '1200 x 800 mm' },
                 { label: { tr: 'Yük Yüksekliği',   en: 'Load Height' },     value: '1500 mm' },
@@ -13,7 +13,7 @@ window.PAGE_SPECS = {
         {
             title: { tr: 'Hareket Özellikleri', en: 'Movement Features' },
             items: [
-                { label: { tr: 'Maksimum Hız',         en: 'Maximum Speed' },       value: '2.5 m/s' },
+                { label: { tr: 'Maksimum Hız',         en: 'Maximum Speed' },       value: '1.5 m/s' },
                 { label: { tr: 'İvme',                 en: 'Acceleration' },        value: '0.5 m/s²' },
                 { label: { tr: 'Duraklama Mesafesi',   en: 'Stopping Distance' },   value: '500 mm' },
                 { label: { tr: 'Kat Sayısı',           en: 'Number of Floors' },    value: { tr: '4-20 kat', en: '4-20 floors' } },

@@ -38,6 +38,65 @@
 [
   {
     "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Lojikon Four-Way Shuttle",
+    "url": "https://lojikon.com/shuttle",
+    "image": "https://lojikon.com/img/projects/shuttle-1.jpg",
+    "description": "Türkiye'de Lojikon tarafından geliştirilen, kasa ve palet için dört yönlü shuttle sistemi. 17 cm gövde yüksekliği, 5 m/sn hız ve tek şarjla 13 saat kesintisiz çalışma sunar; kapasite araç eklenerek kademeli olarak artırılır.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Lojikon"
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.",
+      "url": "https://lojikon.com/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Silivri",
+        "addressRegion": "İstanbul",
+        "addressCountry": "TR"
+      }
+    },
+    "countryOfOrigin": {
+      "@type": "Country",
+      "name": "Türkiye"
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Gövde yüksekliği",
+        "value": "17 cm"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Hız",
+        "value": "5 m/sn"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Akü çalışma süresi",
+        "value": "Tek şarjla 13 saat"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Hareket",
+        "value": "X ve Y yönünde dört yönlü, asansörle katlar arası"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Kontrol",
+        "value": "Beckhoff PLC, EtherCAT, Lojikon WMS / WCS"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Üretim",
+        "value": "Türkiye'de yerli mühendislik ve üretim"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "Service",
     "name": "Four-Way Shuttle Sistemleri",
     "description": "Kasa ve palet için dört yönlü shuttle araçları: toplam 17 cm gövde yüksekliği, 5 m/sn hız ve 13 saat kesintisiz akü ömrü ile yüksek yoğunluklu otomatik depolama.",
@@ -126,6 +185,14 @@
       },
       {
         "@type": "Question",
+        "name": "Shuttle sisteminin kapasitesi nasıl artırılır?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kapasite, sisteme yeni araç eklenerek kademeli olarak artırılır. Az araçla kurulan sistem, ihtiyaç arttıkça yeni araçlarla büyütülebilir; her koridor için baştan büyük yatırım yapmak gerekmez."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Mevcut depoma ve yazılımlarıma entegre edilebilir mi?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -151,8 +218,8 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-    <link rel="stylesheet" href="style.css?v=ca08dca6">
-    <link rel="stylesheet" href="shuttle.css?v=ea22ae14">
+    <link rel="stylesheet" href="style.css?v=754c1416">
+    <link rel="stylesheet" href="shuttle.css?v=88513975">
     <script type="importmap">
     {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
     </script>
@@ -200,6 +267,7 @@
         <div class="hero-container solution-page">
             <div class="hero-content">
                 <div class="hero-text-content">
+                    <span class="hero-badge" data-i18n="hero.local">Yerli Mühendislik ve Üretim · Mekanik ve Yazılım Tek Elden</span>
                     <h1 class="hero-title" data-i18n-html="shuttle.heroTitleHTML"><span class="highlight">Four-Way Shuttle</span> Sistemleri</h1>
                     
                     <!-- PARTIAL:hero-slogan:START -->
@@ -383,34 +451,34 @@
                     <thead>
                         <tr>
                             <th scope="col" data-i18n="shuttle.cmpCol0">Kriter</th>
-                            <th scope="col" class="is-shuttle" data-i18n="shuttle.cmpCol1">Four-Way Shuttle</th>
+                            <th scope="col" class="is-ours" data-i18n="shuttle.cmpCol1">Four-Way Shuttle</th>
                             <th scope="col" data-i18n="shuttle.cmpCol2">Miniload</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row" data-i18n="shuttle.cmp1k">Kapasite artışı</th>
-                            <td class="is-shuttle" data-i18n="shuttle.cmp1a">Araç ekleyerek kademeli olarak artar</td>
+                            <td class="is-ours" data-i18n="shuttle.cmp1a">Araç ekleyerek kademeli olarak artar</td>
                             <td data-i18n="shuttle.cmp1b">Genellikle yeni koridor ve yeni vinç gerektirir</td>
                         </tr>
                         <tr>
                             <th scope="row" data-i18n="shuttle.cmp2k">Arıza durumu</th>
-                            <td class="is-shuttle" data-i18n="shuttle.cmp2a">Bir araç dursa da diğer araçlar çalışmaya devam eder</td>
+                            <td class="is-ours" data-i18n="shuttle.cmp2a">Bir araç dursa da diğer araçlar çalışmaya devam eder</td>
                             <td data-i18n="shuttle.cmp2b">Vinç durduğunda hizmet verdiği koridor durur</td>
                         </tr>
                         <tr>
                             <th scope="row" data-i18n="shuttle.cmp3k">Erişim</th>
-                            <td class="is-shuttle" data-i18n="shuttle.cmp3a">X ve Y yönünde koridorlar arasında, asansörle Z ekseninde katlar arasında geçer</td>
+                            <td class="is-ours" data-i18n="shuttle.cmp3a">X ve Y yönünde koridorlar arasında, asansörle Z ekseninde katlar arasında geçer</td>
                             <td data-i18n="shuttle.cmp3b">Bağlı olduğu koridorda çalışır</td>
                         </tr>
                         <tr>
                             <th scope="row" data-i18n="shuttle.cmp4k">Bina uyumu</th>
-                            <td class="is-shuttle" data-i18n="shuttle.cmp4a">Kolonlu, düzensiz veya tavanı alçak alanlara uyarlanır</td>
+                            <td class="is-ours" data-i18n="shuttle.cmp4a">Kolonlu, düzensiz veya tavanı alçak alanlara uyarlanır</td>
                             <td data-i18n="shuttle.cmp4b">Düz, uzun ve yüksek koridor yerleşimi ister</td>
                         </tr>
                         <tr>
                             <th scope="row" data-i18n="shuttle.cmp5k">Yatırım</th>
-                            <td class="is-shuttle" data-i18n="shuttle.cmp5a">Az araçla başlar, ihtiyaç arttıkça büyür</td>
+                            <td class="is-ours" data-i18n="shuttle.cmp5a">Az araçla başlar, ihtiyaç arttıkça büyür</td>
                             <td data-i18n="shuttle.cmp5b">Her koridor için vinç yatırımı baştan yapılır</td>
                         </tr>
                     </tbody>
@@ -525,6 +593,43 @@
 
             <h3 class="specs-title" data-i18n="sections.techSpecs">Teknik Özellikler</h3>
             <div class="specs-grid" id="specs-container"></div>
+            <div class="compare-block">
+                <h3 class="specs-title" data-i18n="shuttle.vs.title">Lojikon Shuttle ve Konvansiyonel Mekik Sistemleri</h3>
+                <div class="compare-wrap">
+                    <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-i18n="shuttle.vs.c0">Kriter</th>
+                            <th scope="col" class="is-ours" data-i18n="shuttle.vs.c1">Lojikon Four-Way Shuttle</th>
+                            <th scope="col" data-i18n="shuttle.vs.c2">Konvansiyonel Mekik</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" data-i18n="shuttle.vs.r1k">Gövde yüksekliği</th>
+                            <td class="is-ours" data-i18n="shuttle.vs.r1a">17 cm ince gövde</td>
+                            <td data-i18n="shuttle.vs.r1b">Tipik olarak 22–28 cm; raf aralığında daha fazla yükseklik kaybı</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="shuttle.vs.r2k">Hız</th>
+                            <td class="is-ours" data-i18n="shuttle.vs.r2a">5 m/sn</td>
+                            <td data-i18n="shuttle.vs.r2b">Genellikle 2–3 m/sn</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="shuttle.vs.r3k">Hareket</th>
+                            <td class="is-ours" data-i18n="shuttle.vs.r3a">X ve Y yönünde dört yönlü hareket, asansörle katlar arası geçiş</td>
+                            <td data-i18n="shuttle.vs.r3b">Çoğunlukla tek koridorda ileri-geri hareket</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="shuttle.vs.r4k">Akü</th>
+                            <td class="is-ours" data-i18n="shuttle.vs.r4a">Tek şarjla 13 saat kesintisiz çalışma</td>
+                            <td data-i18n="shuttle.vs.r4b">Tipik olarak 6–8 saat; daha sık şarj molası</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                <p class="compare-note" data-i18n="shuttle.vs.note">Yaygın uygulama sütunu genel sektör gözlemlerini yansıtır; değerler sisteme ve projeye göre değişebilir.</p>
+            </div>
         </div>
     </section>
 
@@ -556,6 +661,10 @@
                     <p data-i18n="shuttle.a5">Miniload vinci bağlı olduğu koridorda çalışır; shuttle araçları ise koridorlar ve katlar arasında geçebilir. Bu sayede kapasite araç ekleyerek artırılır, bir araç dursa da diğerleri çalışmaya devam eder ve sistem kolonlu veya düzensiz binalara daha kolay uyarlanır.</p>
                 </details>
                 <details class="faq-item">
+                    <summary data-i18n="shuttle.qScale">Shuttle sisteminin kapasitesi nasıl artırılır?</summary>
+                    <p data-i18n="shuttle.aScale">Kapasite, sisteme yeni araç eklenerek kademeli olarak artırılır. Az araçla kurulan sistem, ihtiyaç arttıkça yeni araçlarla büyütülebilir; her koridor için baştan büyük yatırım yapmak gerekmez.</p>
+                </details>
+                <details class="faq-item">
                     <summary data-i18n="shuttle.q6">Mevcut depoma ve yazılımlarıma entegre edilebilir mi?</summary>
                     <p data-i18n="shuttle.a6">Evet. Bina yüksekliği, zemin ve kolon yerleşimi keşifte incelenir, raf sistemi binanıza göre tasarlanır. Kendi WMS / WCS yazılımımız shuttle ve konveyörleri tek platformdan yönetir; farklı bir WMS veya ERP kullanıyorsanız onunla da entegre ediyoruz.</p>
                 </details>
@@ -581,10 +690,6 @@
                 <figure class="project-item">
                     <a href="img/projects/shuttle-2.jpg" class="project-link"><img src="img/projects/shuttle-2.jpg" width="820" height="900" loading="lazy" alt="Depoda palet taşıyan ray tipi shuttle sistemi"></a>
                     <figcaption data-i18n="gallery.shuttleLine">Palet Shuttle Hattı</figcaption>
-                </figure>
-                <figure class="project-item">
-                    <a href="img/projects/conveyor-5.jpg" class="project-link"><img src="img/projects/conveyor-5.jpg" width="900" height="506" loading="lazy" alt="Shuttle sistemine bağlı palet transfer konveyörü"></a>
-                    <figcaption data-i18n="gallery.palletConv">Palet Transfer Konveyörü</figcaption>
                 </figure>
             </div>
         </div>
@@ -681,6 +786,22 @@
             </div>
 
             <div class="solution-card">
+                <a href="conveyor.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-right-left"></i>
+                    </div>
+                    <h3 data-i18n="solutions.conveyor.title">Konveyör Sistemleri</h3>
+                    <p data-i18n="solutions.conveyor.desc">Bant, rulolu ve zincirli konveyörler ile depo içinde kesintisiz ve otomatik ürün akışı.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.conveyor.f1">Bant, rulolu, zincirli</span>
+                        <span data-i18n="solutions.conveyor.f2">PLC kontrolü</span>
+                        <span data-i18n="solutions.conveyor.f3">Tam entegrasyon</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card is-wide">
                 <a href="wms-wcs.html" class="solution-link">
                     <div class="solution-icon">
                         <i aria-hidden="true" class="fas fa-diagram-project"></i>
@@ -831,6 +952,7 @@
                     <li><a href="shuttle.html" data-i18n="footer.shuttle">Four-Way Shuttle</a></li>
                     <li><a href="miniload.html" data-i18n="footer.miniload">Miniload Sistemleri</a></li>
                     <li><a href="pick-to-light.html" data-i18n="footer.pickToLight">Pick to Light</a></li>
+                    <li><a href="conveyor.html" data-i18n="footer.conveyor">Konveyör Sistemleri</a></li>
                     <li><a href="wms-wcs.html" data-i18n="footer.wms">WMS / WCS Yazılımı</a></li>
                 </ul>
             </div>
@@ -854,7 +976,7 @@
 
     <script src="config/shuttle.js?v=2ff4e116"></script>
     <script src="js/spec-renderer.js?v=c3dc3d58"></script>
-    <script src="js/i18n.js?v=ff2e7228"></script>
+    <script src="js/i18n.js?v=99b81ece"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js?v=b7a7d3c1"></script>
     <script type="module" src="shuttle-animation.js?v=7d367fbc" onerror="document.getElementById('shuttle3d').classList.add('is-fallback')"></script>

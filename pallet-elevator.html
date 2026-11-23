@@ -37,6 +37,65 @@
     [
       {
         "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Lojikon Palet ve Kasa Asansörü",
+        "url": "https://lojikon.com/pallet-elevator",
+        "image": "https://lojikon.com/img/projects/pallettelift-3.jpg",
+        "description": "Türkiye'de Lojikon tarafından binaya özel tasarlanıp üretilen otomatik palet ve kasa asansörü. 1500 kg'a kadar yükü 1.5 m/s'ye varan hızla 4–20 kat arasında taşır; konveyör hattı ve Lojikon WCS yazılımıyla senkronize çalışır.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Lojikon"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Lojikon Otomasyon ve Yazılım Ticaret Ltd. Şti.",
+          "url": "https://lojikon.com/",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Silivri",
+            "addressRegion": "İstanbul",
+            "addressCountry": "TR"
+          }
+        },
+        "countryOfOrigin": {
+          "@type": "Country",
+          "name": "Türkiye"
+        },
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Maksimum yük",
+            "value": "1500 kg"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Maksimum hız",
+            "value": "1.5 m/s"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Kat sayısı",
+            "value": "4–20 kat"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Günlük transfer",
+            "value": "1000+ palet"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Kontrol",
+            "value": "Siemens S7-1200, Profinet, Lojikon WCS"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Üretim",
+            "value": "Türkiye'de yerli mühendislik ve üretim"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
         "@type": "Service",
         "name": "Palet ve Kasa Asansörü Sistemleri",
         "description": "Çok katlı fabrika ve depo yapılarında otomatik palet ve kasa yükleme, boşaltma ve transfer. Güvenli, hızlı ve dayanıklı endüstriyel asansör çözümleri.",
@@ -91,12 +150,12 @@
           {
             "@type": "Question",
             "name": "Palet asansörü ile kasa asansörü arasındaki fark nedir?",
-            "acceptedAnswer": {"@type": "Answer", "text": "Palet asansörü 2000 kg'a kadar paletli yükleri taşır. Kasa asansörü ise kasa, koli ve kutular gibi daha hafif yükleri konveyör hattı üzerinden yüksek sıklıkta taşır. Seçim, yükün tipine ve saatlik sefer ihtiyacına göre yapılır."}
+            "acceptedAnswer": {"@type": "Answer", "text": "Palet asansörü 1500 kg'a kadar paletli yükleri taşır. Kasa asansörü ise kasa, koli ve kutular gibi daha hafif yükleri konveyör hattı üzerinden yüksek sıklıkta taşır. Seçim, yükün tipine ve saatlik sefer ihtiyacına göre yapılır."}
           },
           {
             "@type": "Question",
             "name": "Kaç kat arasında çalışır, kapasitesi nedir?",
-            "acceptedAnswer": {"@type": "Answer", "text": "Sistemlerimiz 4 ile 20 kat arasında, 2000 kg'a kadar yükle ve 2.5 m/s'ye varan hızla çalışacak şekilde tasarlanır; günde 1000'den fazla paleti katlar arasında taşıyabilir."}
+            "acceptedAnswer": {"@type": "Answer", "text": "Sistemlerimiz 4 ile 20 kat arasında, 1500 kg'a kadar yükle ve 1.5 m/s'ye varan hızla çalışacak şekilde tasarlanır; günde 1000'den fazla paleti katlar arasında taşıyabilir."}
           },
           {
             "@type": "Question",
@@ -123,7 +182,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-    <link rel="stylesheet" href="style.css?v=ca08dca6">
+    <link rel="stylesheet" href="style.css?v=754c1416">
     <link rel="stylesheet" href="pallet-elevator.css?v=12b57486">
 </head>
 <body>
@@ -169,6 +228,7 @@
         <div class="hero-container solution-page">
             <div class="hero-content">
                 <div class="hero-text-content">
+                    <span class="hero-badge" data-i18n="hero.local">Yerli Mühendislik ve Üretim · Mekanik ve Yazılım Tek Elden</span>
                     <h1 class="hero-title" data-i18n-html="pallet.heroTitleHTML">
                         <span class="highlight">Palet ve Kasa Asansörü</span> Sistemleri
                     </h1>
@@ -314,12 +374,12 @@
                         <div class="performance-indicators">
                             <div class="indicator">
                                 <span class="indicator-label">Hız</span>
-                                <span class="indicator-value" id="lift-speed">2.5</span>
+                                <span class="indicator-value" id="lift-speed">1.5</span>
                                 <span class="indicator-unit">m/s</span>
                             </div>
                             <div class="indicator">
                                 <span class="indicator-label">Kapasite</span>
-                                <span class="indicator-value" id="lift-capacity">2000</span>
+                                <span class="indicator-value" id="lift-capacity">1500</span>
                                 <span class="indicator-unit">kg</span>
                             </div>
                             <div class="indicator">
@@ -410,7 +470,7 @@
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
                     <h3 data-i18n="pallet.ben3h">Yüksek Hız</h3>
-                    <p data-i18n="pallet.ben3p">2.5 m/s hız ile hızlı pallet transfer işlemleri.</p>
+                    <p data-i18n="pallet.ben3p">1.5 m/s hız ile hızlı pallet transfer işlemleri.</p>
                 </div>
                 
                 <div class="benefit-card">
@@ -514,8 +574,8 @@
                         <i class="fas fa-pallet"></i>
                     </div>
                     <h3 data-i18n="pallet.type1h">Palet Asansörü</h3>
-                    <p data-i18n="pallet.type1p">Paletli yükleri katlar ve mezanin seviyeleri arasında 2.5 m/s'ye varan hızla taşır. Konveyör hattına bağlı çalıştığı için palet, hedef katta otomatik olarak hatta aktarılır; forklift beklemeden kesintisiz akış sağlanır.</p>
-                    <p class="type-fit" data-i18n-html="pallet.type1fit"><strong>Uygun yükler:</strong> 1200 x 800 mm paletler, 2000 kg'a kadar</p>
+                    <p data-i18n="pallet.type1p">Paletli yükleri katlar ve mezanin seviyeleri arasında 1.5 m/s'ye varan hızla taşır. Konveyör hattına bağlı çalıştığı için palet, hedef katta otomatik olarak hatta aktarılır; forklift beklemeden kesintisiz akış sağlanır.</p>
+                    <p class="type-fit" data-i18n-html="pallet.type1fit"><strong>Uygun yükler:</strong> 1200 x 800 mm paletler, 1500 kg'a kadar</p>
                 </div>
 
                 <div class="application-card">
@@ -530,6 +590,43 @@
 
             <h3 class="specs-title" data-i18n="sections.techSpecs">Teknik Özellikler</h3>
             <div class="specs-grid" id="specs-container"></div>
+            <div class="compare-block">
+                <h3 class="specs-title" data-i18n="pallet.vs.title">Otomatik Asansör ve Forklift ile Kat Transferi</h3>
+                <div class="compare-wrap">
+                    <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-i18n="pallet.vs.c0">Kriter</th>
+                            <th scope="col" class="is-ours" data-i18n="pallet.vs.c1">Lojikon Palet ve Kasa Asansörü</th>
+                            <th scope="col" data-i18n="pallet.vs.c2">Forklift / Elle Transfer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" data-i18n="pallet.vs.r1k">Akış</th>
+                            <td class="is-ours" data-i18n="pallet.vs.r1a">Katlar ve mezanin arasında kesintisiz otomatik transfer</td>
+                            <td data-i18n="pallet.vs.r1b">Forklift ve operatör müsaitliğine bağlı bekleme süreleri</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="pallet.vs.r2k">Konveyör uyumu</th>
+                            <td class="is-ours" data-i18n="pallet.vs.r2a">Konveyör hattıyla otomatik giriş ve çıkış</td>
+                            <td data-i18n="pallet.vs.r2b">Elle yükleme ve boşaltma</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="pallet.vs.r3k">Güvenlik</th>
+                            <td class="is-ours" data-i18n="pallet.vs.r3a">Otomatik kapı kilidi, sensörlü yük kontrolü ve PLC kontrolü</td>
+                            <td data-i18n="pallet.vs.r3b">Operatör kaynaklı çarpışma ve yaralanma riski</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" data-i18n="pallet.vs.r4k">Uyarlanabilirlik</th>
+                            <td class="is-ours" data-i18n="pallet.vs.r4a">1500 kg'a kadar yük, 4–20 kat; binanıza özel tasarım</td>
+                            <td data-i18n="pallet.vs.r4b">Rampa, yük asansörü ve koridor yapısıyla sınırlı</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                <p class="compare-note" data-i18n="pallet.vs.note">Yaygın uygulama sütunu genel sektör gözlemlerini yansıtır; değerler sisteme ve projeye göre değişebilir.</p>
+            </div>
         </div>
     </section>
 
@@ -546,11 +643,11 @@
                 </details>
                 <details class="faq-item">
                     <summary data-i18n="pallet.q2">Palet asansörü ile kasa asansörü arasındaki fark nedir?</summary>
-                    <p data-i18n="pallet.a2">Palet asansörü 2000 kg'a kadar paletli yükleri taşır. Kasa asansörü ise kasa, koli ve kutular gibi daha hafif yükleri konveyör hattı üzerinden yüksek sıklıkta taşır. Seçim, yükün tipine ve saatlik sefer ihtiyacına göre yapılır.</p>
+                    <p data-i18n="pallet.a2">Palet asansörü 1500 kg'a kadar paletli yükleri taşır. Kasa asansörü ise kasa, koli ve kutular gibi daha hafif yükleri konveyör hattı üzerinden yüksek sıklıkta taşır. Seçim, yükün tipine ve saatlik sefer ihtiyacına göre yapılır.</p>
                 </details>
                 <details class="faq-item">
                     <summary data-i18n="pallet.q3">Kaç kat arasında çalışır, kapasitesi nedir?</summary>
-                    <p data-i18n="pallet.a3">Sistemlerimiz 4 ile 20 kat arasında, 2000 kg'a kadar yükle ve 2.5 m/s'ye varan hızla çalışacak şekilde tasarlanır; günde 1000'den fazla paleti katlar arasında taşıyabilir.</p>
+                    <p data-i18n="pallet.a3">Sistemlerimiz 4 ile 20 kat arasında, 1500 kg'a kadar yükle ve 1.5 m/s'ye varan hızla çalışacak şekilde tasarlanır; günde 1000'den fazla paleti katlar arasında taşıyabilir.</p>
                 </details>
                 <details class="faq-item">
                     <summary data-i18n="pallet.q4">Güvenlik nasıl sağlanıyor?</summary>
@@ -682,6 +779,22 @@
             </div>
 
             <div class="solution-card">
+                <a href="conveyor.html" class="solution-link">
+                    <div class="solution-icon">
+                        <i aria-hidden="true" class="fas fa-right-left"></i>
+                    </div>
+                    <h3 data-i18n="solutions.conveyor.title">Konveyör Sistemleri</h3>
+                    <p data-i18n="solutions.conveyor.desc">Bant, rulolu ve zincirli konveyörler ile depo içinde kesintisiz ve otomatik ürün akışı.</p>
+                    <div class="solution-features">
+                        <span data-i18n="solutions.conveyor.f1">Bant, rulolu, zincirli</span>
+                        <span data-i18n="solutions.conveyor.f2">PLC kontrolü</span>
+                        <span data-i18n="solutions.conveyor.f3">Tam entegrasyon</span>
+                    </div>
+                    <span class="card-more"><span data-i18n="btn.learnMore">Detaylı İncele</span> <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+
+            <div class="solution-card is-wide">
                 <a href="wms-wcs.html" class="solution-link">
                     <div class="solution-icon">
                         <i aria-hidden="true" class="fas fa-diagram-project"></i>
@@ -832,6 +945,7 @@
                     <li><a href="shuttle.html" data-i18n="footer.shuttle">Four-Way Shuttle</a></li>
                     <li><a href="miniload.html" data-i18n="footer.miniload">Miniload Sistemleri</a></li>
                     <li><a href="pick-to-light.html" data-i18n="footer.pickToLight">Pick to Light</a></li>
+                    <li><a href="conveyor.html" data-i18n="footer.conveyor">Konveyör Sistemleri</a></li>
                     <li><a href="wms-wcs.html" data-i18n="footer.wms">WMS / WCS Yazılımı</a></li>
                 </ul>
             </div>
@@ -853,11 +967,11 @@
 </footer>
     <!-- PARTIAL:footer:END -->
 
-    <script src="config/pallet-elevator.js?v=d477ff46"></script>
+    <script src="config/pallet-elevator.js?v=701f45d4"></script>
     <script src="js/spec-renderer.js?v=c3dc3d58"></script>
-    <script src="js/i18n.js?v=ff2e7228"></script>
+    <script src="js/i18n.js?v=99b81ece"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js?v=b7a7d3c1"></script>
-                    <script src="pallet-elevator-animation.js?v=c5f75bc4"></script>
+                    <script src="pallet-elevator-animation.js?v=986da186"></script>
 </body>
 </html> 
